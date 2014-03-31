@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+ 
+  <package name="home" namespace="/"  extends="struts-default">
+    <action name="">
+		<result>pages/index.jsp</result>
+	</action>
+	<action name="Index">
+		<result>pages/index.jsp</result>
+	</action>
+	<action name="Inscription">
+		<result>pages/inscription.jsp</result>
+	</action>
+	<action name="InscriptionAction" class="action.inscription.InscriptionAction">
+		<result name="SUCCESS">pages/index.jsp</result>
+	</action>
+
+   </package>
+   
+   <constant name="struts.action.excludePattern" value="/_ah/.*"/> 
+   <constant name="struts.custom.i18n.resources" value="ressources/package"/>
+</struts>
