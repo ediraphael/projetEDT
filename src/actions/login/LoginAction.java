@@ -1,4 +1,4 @@
-package action.inscription;
+package actions.login;
 
 import java.util.Map;
 

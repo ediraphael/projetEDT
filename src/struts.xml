@@ -15,9 +15,14 @@
 	<action name="Inscription">
 		<result>pages/inscription.jsp</result>
 	</action>
-	<action name="InscriptionAction" class="action.inscription.InscriptionAction">
+	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
 		<result name="SUCCESS">pages/index.jsp</result>
 		<result name="input">pages/inscription.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	<action name="LoginAction" class="actions.login.LoginAction" method="execute">
+		<result name="SUCCESS">pages/index.jsp</result>
+		<result name="input">pages/login.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 

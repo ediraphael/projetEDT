@@ -1,4 +1,4 @@
-package action.inscription;
+package actions.inscription;
 
 import java.util.Map;
 import java.util.regex.Matcher;
