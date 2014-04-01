@@ -1,4 +1,4 @@
-package testUnitaire.model.dao;
+package unitCase.model.dao;
 
 import model.dao.UserDAO;
 
