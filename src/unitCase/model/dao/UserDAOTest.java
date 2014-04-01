@@ -21,7 +21,7 @@ public class UserDAOTest
 	@Test
 	public void testAddUser() 
 	{
-		udao.addUser("test@gmail.com", "pwd");
+		udao.addUser("test@gmail.com", "pwd",1);
 	}
 
 }

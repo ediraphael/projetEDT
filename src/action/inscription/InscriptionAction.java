@@ -37,7 +37,7 @@ public class InscriptionAction extends ActionSupport implements SessionAware
 		try
 		{
 			//Sauvegarde du user renseigné dans le formulaire
-			udao.addUser(userBean.getEmail(), userBean.getPassword());
+			udao.addUser(userBean.getEmail(), userBean.getPassword(), 1);
 		}
 		catch(Exception e)
 		{

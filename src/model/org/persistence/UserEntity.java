@@ -28,9 +28,13 @@ public class UserEntity implements Serializable
 
 	//Définition des colonnes de la table 
 	@Id
+	@Column(name="id_user")
 	private long id;
+	@Column(name="email")
 	private String email;
+	@Column(name="password")
 	private String password;
+	@Column(name="id_group")
 	private long idGroupe;
 
 

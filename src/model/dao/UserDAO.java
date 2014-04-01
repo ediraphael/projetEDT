@@ -28,7 +28,7 @@ public class UserDAO
 	 * @param email
 	 * @param password
 	 */
-	public void addUser(String email, String password)
+	public void addUser(String email, String password, long idGroupe)
 	{
 		em=FACTORY.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -36,6 +36,7 @@ public class UserDAO
 		user.setId(getNextId());
 		user.setEmail(email);
 		user.setPassword(password);
+		user.setIdGroupe(idGroupe);
 		try 
 		{
 			tx.begin();
