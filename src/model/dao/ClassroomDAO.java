@@ -42,4 +42,36 @@ public class ClassroomDAO
 			em.close();
 		}
 	}
+	
+	public void removeClassroom(long id)
+	{
+		em=FACTORY.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		ClassroomEntity classroom = new ClassroomEntity();
+		classroom.setId(id);
+		try 
+		{
+			tx.begin();
+			em.remove(classroom);
+			tx.commit();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void updateClassroom(long id)
+	{
+		em=FACTORY.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		ClassroomEntity classroom = new ClassroomEntity();
+		classroom.setId(id);
+		try 
+		{
+			tx.begin();
+			em.refresh(classroom);
+			tx.commit();
+		} finally {
+			em.close();
+		}
+	}
 }
