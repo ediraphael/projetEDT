@@ -7,8 +7,10 @@ accolade en mode :
 nom de variable, fonction explicite pas de private int x
 
 == Backoffice :
-CRUD des créneaux
-
+CRUD des schedule
+CRUD des classroom
+CRUD des user
+CRUD des group
 
 == Frontoffice :
 plusieurs affichages (compact, résumé, complète) 
