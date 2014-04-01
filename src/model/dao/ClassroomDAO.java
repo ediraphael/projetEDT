@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import model.org.persistence.ClassroomEntity;
-import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base
