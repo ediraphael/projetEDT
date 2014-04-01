@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 @NamedQueries
 ({
 	//définition de requetes simple appelable dans le DAO
@@ -30,6 +31,7 @@ public class UserEntity implements Serializable
 	private long id;
 	private String email;
 	private String password;
+	private long idGroupe;
 
 
 	
@@ -65,6 +67,16 @@ public class UserEntity implements Serializable
 	public void setPassword(String password) 
 	{
 		this.password = password;
+	}
+
+	public long getIdGroupe() 
+	{
+		return idGroupe;
+	}
+
+	public void setIdGroupe(long idGroupe) 
+	{
+		this.idGroupe = idGroupe;
 	}
 
 }

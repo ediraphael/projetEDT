@@ -1,6 +1,8 @@
 package action.inscription;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import model.dao.UserDAO;
 
@@ -20,7 +22,10 @@ public class InscriptionAction extends ActionSupport implements SessionAware
 	private Map<String, Object> session;
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
-
+	//pattern de vérification d'un email
+	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
+	
 	/**
 	 * Execution l'inscription en sauvegardant le user
 	 */
@@ -47,7 +52,29 @@ public class InscriptionAction extends ActionSupport implements SessionAware
 	 */
 	public void validate()
 	{
+		//test si le mail est renseigné
+		if("".equals(userBean.getEmail()))
+		{
+			addFieldError("error.email", getText("validator.field.empty"));
+		}
+		
+		//test si le user est renseigné
+		if("".equals(userBean.getPassword()))
+		{
+			addFieldError("error.password", getText("validator.field.empty"));
+		}
+		
+		if(!emailValidator(userBean.getEmail()))
+		{
+			addFieldError("error.password", getText("validator.mail.false"));
+		}
+	}
 
+	private boolean emailValidator(String email) 
+	{
+		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
 	}
 
 

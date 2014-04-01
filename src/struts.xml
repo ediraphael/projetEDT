@@ -17,6 +17,8 @@
 	</action>
 	<action name="InscriptionAction" class="action.inscription.InscriptionAction">
 		<result name="SUCCESS">pages/index.jsp</result>
+		<result name="input">pages/inscription.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
    </package>
