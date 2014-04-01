@@ -22,5 +22,5 @@
    </package>
    
    <constant name="struts.action.excludePattern" value="/_ah/.*"/> 
-   <constant name="struts.custom.i18n.resources" value="ressources/package"/>
+   <constant name="struts.custom.i18n.resources" value="resources/package"/>
 </struts>
