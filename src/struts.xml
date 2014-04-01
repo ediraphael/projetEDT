@@ -37,12 +37,12 @@
 	</action>
 	
 	<action name="Classroom">
-		<result>pages/backOffice/classroom.jsp</result>
+		<result>pages/backOffice/newClassroom.jsp</result>
 	</action>
 	
 	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/index.jsp</result>
-		<result name="input">pages/backOffice/classroom.jsp</result>
+		<result name="input">pages/backOffice/newClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
