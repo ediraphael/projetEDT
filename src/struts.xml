@@ -40,7 +40,7 @@
 		<result>pages/backOffice/classroom.jsp</result>
 	</action>
 	
-	<action name="ClassroomAction" class="actions.inscription.ClassroomAction" method="execute">
+	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/index.jsp</result>
 		<result name="input">pages/backOffice/classroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
