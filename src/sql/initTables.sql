@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 01 Avril 2014 à 13:07
+-- Généré le: Mar 01 Avril 2014 à 13:22
 -- Version du serveur: 5.5.35-0ubuntu0.13.10.2
 -- Version de PHP: 5.5.3-1ubuntu2.2
 
@@ -76,9 +76,20 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 CREATE TABLE IF NOT EXISTS `subject` (
   `id_subject` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
+  `short_name` varchar(256) NOT NULL,
   `color` varchar(256) NOT NULL,
   PRIMARY KEY (`id_subject`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `subject`
+--
+
+INSERT INTO `subject` (`id_subject`, `name`, `short_name`, `color`) VALUES
+(1, 'Cours magistral', 'CM', '#FAF616'),
+(2, 'Travaux pratiques', 'TP', '#FF771C'),
+(3, 'Devoir surveillé', 'DS', '#FF0000'),
+(4, 'Cours annulé', 'Annulé', '#BF00E6');
 
 -- --------------------------------------------------------
 
