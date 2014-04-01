@@ -1,16 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Struts 2 - Classroom </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title><s:property value="getText('title.schedule')"/></title>
 </head>
 <body>
-<h2>Struts 2 - Classroom </h2>
-<s:actionerror />
-<s:form action="ClassroomAction" method="post">
-	<s:textfield name="classroomBean.name" key="label.name" size="20" />
-	<s:fielderror theme="simple" fieldName="error.name"/>
-	<s:submit method="execute" key="label.valide" align="center" />
-</s:form>
+	<h2>Struts 2 - Classroom </h2>
+	<s:form action="ClassroomAction" method="post">
+		<s:textfield name="classroomBean.name" key="label.name" size="20" />
+		<s:fielderror theme="simple" fieldName="error.name"/>
+		<s:submit method="execute" key="label.valide" align="center" />
+	</s:form>
 </body>
 </html>

@@ -9,7 +9,7 @@ public class ClassroomBean
 		return name;
 	}
 	
-	public void setEmail(String name) 
+	public void setName(String name) 
 	{
 		this.name = name;
 	}
