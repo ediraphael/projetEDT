@@ -20,6 +20,9 @@
 		<result name="input">pages/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<action name="Horaire">
+		<result>pages/backOffice/newSchedule.jsp</result>
+	</action>
 
    </package>
    
