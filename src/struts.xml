@@ -12,6 +12,7 @@
 	<action name="Index">
 		<result>pages/index.jsp</result>
 	</action>
+	
 	<action name="Inscription">
 		<result>pages/inscription.jsp</result>
 	</action>
@@ -20,8 +21,12 @@
 		<result name="input">pages/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
-	<action name="Horaire">
+	
+	<action name="Horaire" >
 		<result>pages/backOffice/newSchedule.jsp</result>
+	</action>
+	<action name="HoraireInscription" class="action.horaire.HoraireAction">
+		
 	</action>
 
    </package>
