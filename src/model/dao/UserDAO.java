@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.persistence.UserEntity;
+import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base

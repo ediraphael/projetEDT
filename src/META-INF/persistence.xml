@@ -3,7 +3,7 @@
 	<persistence-unit name="ProjetEDT" transaction-type="RESOURCE_LOCAL">
 		
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>org.persistence.UserEntity</class>
+		<class>model.org.persistence.UserEntity</class>
 
 		<properties>
         	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
