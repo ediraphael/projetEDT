@@ -5,7 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import model.org.persistence.UserEntity;
 
@@ -33,7 +32,6 @@ public class UserDAO
 		em=FACTORY.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		UserEntity user = new UserEntity();
-		user.setId(getNextId());
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setIdGroupe(idGroupe);
@@ -46,24 +44,4 @@ public class UserDAO
 			em.close();
 		}
 	}
-	
-	/**
-	 * Méthode privée permetant de retrouver le prochain ID utilisable
-	 * @return nextId
-	 */
-	private long getNextId()
-	{
-		long nextId=0;
-		try 
-		{
-			Query q=em.createNamedQuery("UserEntity.findNextId");
-			nextId = (long) q.getResultList().get(0);
-			
-		}catch(Exception e)
-		{
-			nextId=0;
-		}
-		return nextId;
-	}
-
 }
