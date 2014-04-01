@@ -53,34 +53,34 @@ email(regex), mdp.
 == Model
 
 * UserEntity
-id_user
-email
-password
+id_user,
+email,
+password,
 #id_group
 
 * Schedule
-id_schedule
-hour_start
-hour_end
-day
-name
-comments
-#id_user_teacher
-#id_subject
-#id_classroom
+id_schedule,
+hour_start,
+hour_end,
+day,
+name,
+comments,
+#id_user_teacher,
+#id_subject,
+#id_classroom,
 #id_group
 
 * Group
-id_group
+id_group,
 name
 
 * Classroom
-id_classroom
+id_classroom,
 name
 
 * Subject
-id_subject
-name
+id_subject,
+name,
 color
 
 == Couleur edt
