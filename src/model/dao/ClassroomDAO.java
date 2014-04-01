@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import model.org.persistence.ClassroomEntity;
-import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base
@@ -37,6 +36,38 @@ public class ClassroomDAO
 		{
 			tx.begin();
 			em.persist(classroom);
+			tx.commit();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void removeClassroom(long id)
+	{
+		em=FACTORY.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		ClassroomEntity classroom = new ClassroomEntity();
+		classroom.setId(id);
+		try 
+		{
+			tx.begin();
+			em.remove(classroom);
+			tx.commit();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public void updateClassroom(long id)
+	{
+		em=FACTORY.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		ClassroomEntity classroom = new ClassroomEntity();
+		classroom.setId(id);
+		try 
+		{
+			tx.begin();
+			em.refresh(classroom);
 			tx.commit();
 		} finally {
 			em.close();
