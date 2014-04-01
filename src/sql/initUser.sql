@@ -23,7 +23,3 @@ GRANT ALL PRIVILEGES ON  projetEDT . * TO  'useredt'@'localhost' WITH GRANT OPTI
 /*********************** Selection de la base du projet ************************/
 USE projetEDT;
 
-/************************** Création de la table USER **************************/
-DROP TABLE IF EXISTS USERENTITY;
-CREATE TABLE USERENTITY (id INT primary key, email VARCHAR(256), password VARCHAR(256));
-
