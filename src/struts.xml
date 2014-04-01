@@ -12,10 +12,11 @@
 	<action name="Index">
 		<result>pages/index.jsp</result>
 	</action>
-	
 	<action name="Inscription">
 		<result>pages/inscription.jsp</result>
 	</action>
+
+	
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
 		<result name="SUCCESS">pages/index.jsp</result>
 		<result name="input">pages/inscription.jsp</result>
@@ -33,6 +34,16 @@
 	</action>
 	<action name="HoraireInscription" class="action.horaire.HoraireAction">
 		
+	</action>
+	
+	<action name="Classroom">
+		<result>pages/backOffice/classroom.jsp</result>
+	</action>
+	
+	<action name="InscriptionAction" class="actions.inscription.ClassroomAction" method="execute">
+		<result name="SUCCESS">pages/index.jsp</result>
+		<result name="input">pages/backOffice/classroom.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
    </package>
