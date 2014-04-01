@@ -47,5 +47,48 @@ par horaire
 par initulé
 
 
+== Inscription
+email(regex), mdp.
+
+== Model
+
+* UserEntity
+id_user,
+email,
+password,
+#id_group
+
+* Schedule
+id_schedule,
+hour_start,
+hour_end,
+day,
+name,
+comments,
+#id_user_teacher,
+#id_subject,
+#id_classroom,
+#id_group
+
+* Group
+id_group,
+name
+
+* Classroom
+id_classroom,
+name
+
+* Subject
+id_subject,
+name,
+color
+
+== Couleur edt
+* CM jaune
+* TP/TD orange
+* Partiel rouge
+* Annulé violet
+
+
 == Demander au prof : 
-W3C c’est à dire? html 5 possible? ou on se limite au 4?
+On peut faire html si balise non exotique.
