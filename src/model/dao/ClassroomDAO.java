@@ -6,15 +6,16 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+import model.org.persistence.ClassroomEntity;
 import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base
- * Cette classe DAO concerne les transaction pour les users
- * @author mickael
+ * Cette classe DAO concerne les transaction pour classroom
+ * @author raphael
  *
  */
-public class UserDAO 
+public class ClassroomDAO 
 {
 	//Mise en place de la factory pour savoir dans quel base nous allons taper
 	private final static  EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("ProjetEDT");
@@ -23,22 +24,19 @@ public class UserDAO
 	private EntityManager em;
 
 	/**
-	 * Methode permetant de sauvegarder un user
-	 * @param email
-	 * @param password
+	 * Methode permetant de sauvegarder une classe
+	 * @param name
 	 */
-	public void addUser(String email, String password, long idGroupe)
+	public void addClassroom(String name)
 	{
 		em=FACTORY.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		UserEntity user = new UserEntity();
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setIdGroupe(idGroupe);
+		ClassroomEntity classroom = new ClassroomEntity();
+		classroom.setName(name);
 		try 
 		{
 			tx.begin();
-			em.persist(user);
+			em.persist(classroom);
 			tx.commit();
 		} finally {
 			em.close();
