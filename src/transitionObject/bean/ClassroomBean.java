@@ -1,4 +1,4 @@
-package bean;
+package transitionObject.bean;
 
 public class ClassroomBean
 {

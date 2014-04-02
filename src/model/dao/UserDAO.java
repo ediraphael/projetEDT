@@ -5,7 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import transitionObject.dto.UserDTO;
 import model.org.persistence.UserEntity;
 
 /**
@@ -21,7 +23,7 @@ public class UserDAO
 	//Cette entité permet d'acceder aux tables
 	@PersistenceContext
 	private EntityManager em;
-
+	
 	/**
 	 * Methode permetant de sauvegarder un user
 	 * @param email
@@ -43,5 +45,36 @@ public class UserDAO
 		} finally {
 			em.close();
 		}
+	}
+	
+	/**
+	 * Methode permetant de sauvegarder un user
+	 * @param email
+	 * @param password
+	 */
+	public UserDTO getUser(String email, String password)
+	{
+		UserDTO userResult = null;
+		em=FACTORY.createEntityManager();
+		UserEntity user = new UserEntity();
+		user.setEmail(email);
+		user.setPassword(password);
+		try 
+		{
+			Query q=em.createNamedQuery("UserEntity.findByEmailAndPwd")
+					.setParameter("email", email).setParameter("pwd", password);
+			
+			if(q.getResultList().get(0) !=null)
+			{
+
+			}
+			else
+			{
+				
+			}
+		} finally {
+			em.close();
+		}
+		return userResult;
 	}
 }

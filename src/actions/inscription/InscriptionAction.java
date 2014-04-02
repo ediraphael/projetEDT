@@ -8,7 +8,7 @@ import model.dao.UserDAO;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import bean.UserBean;
+import transitionObject.bean.UserBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 
