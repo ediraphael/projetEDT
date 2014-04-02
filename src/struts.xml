@@ -32,7 +32,7 @@
 	<action name="Horaire">
 		<result>pages/backOffice/newSchedule.jsp</result>
 	</action>
-	<action name="HoraireInscription" class="action.horaire.HoraireAction">
+	<action name="HoraireInscription" class="actions.horaire.HoraireAction">
 		
 	</action>
 	
