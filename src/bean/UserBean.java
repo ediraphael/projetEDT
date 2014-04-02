@@ -1,6 +1,7 @@
-package transitionObject.motherObject;
+package bean;
 
-public class User 
+
+public class UserBean
 {
 	private String email;
 	private String password;

@@ -1,8 +1,10 @@
 package unitCase.model.dao;
 
 import model.dao.UserDAO;
+import model.org.persistence.UserEntity;
 
 import org.junit.Test;
+
 
 /**
  * Classe de test du dao des users
@@ -21,7 +23,37 @@ public class UserDAOTest
 	@Test
 	public void testAddUser() 
 	{
-		udao.addUser("test@gmail.com", "pwd",200);
+		udao.addUser("micka@gmail.com", "test",1);
 	}
-
+	
+	/**
+	 * Test de la méthode du DAO permettant de trouver un user pour l'authentification
+	 */
+	@Test
+	public void testGetUserByEmailAndPwd() 
+	{
+		UserEntity u= udao.getUserByEmailAndPwd("micka@gmail.com", "test");
+		u.getEmail();
+	}
+	
+	/**
+	 * Test de la méthode du DAO permetant supprimer un user
+	 */
+	@Test
+	public void testDeleteUser() 
+	{
+		UserEntity u= udao.getUserByEmailAndPwd("test@gmail.com", "pwd");
+		udao.deleteUser(u);
+	}
+	
+	/**
+	 * Test de la méthode du DAO permetant de faire un update sur un user
+	 */
+	@Test
+	public void testUpdateUser() 
+	{
+		UserEntity u= udao.getUserByEmailAndPwd("micka@gmail.com", "test");
+		u.setPassword("toto");
+		udao.updateUser(u);
+	}
 }

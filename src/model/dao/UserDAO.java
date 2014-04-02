@@ -1,13 +1,10 @@
 package model.dao;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import transitionObject.dto.UserDTO;
 import model.org.persistence.UserEntity;
 
 /**
@@ -18,12 +15,13 @@ import model.org.persistence.UserEntity;
  */
 public class UserDAO 
 {
-	//Mise en place de la factory pour savoir dans quel base nous allons taper
-	private final static  EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("ProjetEDT");
+	//nom de la database
+	private final static String JPA_DATABASE = "ProjetEDT";
 	//Cette entité permet d'acceder aux tables
 	@PersistenceContext
 	private EntityManager em;
 	
+
 	/**
 	 * Methode permetant de sauvegarder un user
 	 * @param email
@@ -31,50 +29,94 @@ public class UserDAO
 	 */
 	public void addUser(String email, String password, long idGroupe)
 	{
-		em=FACTORY.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
+		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		UserEntity user = new UserEntity();
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setIdGroupe(idGroupe);
 		try 
 		{
-			tx.begin();
-			em.persist(user);
-			tx.commit();
-		} finally {
-			em.close();
+			getEntityManager().getTransaction().begin();
+			getEntityManager().persist(user);
+			getEntityManager().getTransaction().commit();
+		} finally 
+		{
+			getEntityManager().close();
 		}
 	}
 	
 	/**
-	 * Methode permetant de sauvegarder un user
+	 * Methode permetant de récupérer un user avec email et password 
+	 * Utile pour la connexion
 	 * @param email
 	 * @param password
 	 */
-	public UserDTO getUser(String email, String password)
+	public UserEntity getUserByEmailAndPwd(String email, String password)
 	{
-		UserDTO userResult = null;
-		em=FACTORY.createEntityManager();
 		UserEntity user = new UserEntity();
 		user.setEmail(email);
 		user.setPassword(password);
 		try 
 		{
-			Query q=em.createNamedQuery("UserEntity.findByEmailAndPwd")
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q=getEntityManager().createNamedQuery("UserEntity.findByEmailAndPwd")
 					.setParameter("email", email).setParameter("pwd", password);
-			
-			if(q.getResultList().get(0) !=null)
-			{
-
-			}
-			else
-			{
-				
-			}
-		} finally {
-			em.close();
+			user= q.getResultList()!= null ? (UserEntity) q.getResultList().get(0) : null ;
+		} finally 
+		{
+			getEntityManager().close();
 		}
-		return userResult;
+		return user;
+	}
+	
+	
+	/**
+	 * Permet de supprimer un user
+	 * @param user 
+	 */
+	public void deleteUser(UserEntity user) 
+	{
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			getEntityManager().getTransaction().begin();
+			user = getEntityManager().merge(user);
+			getEntityManager().remove(user);
+			getEntityManager().getTransaction().commit();
+		} finally 
+		{
+			getEntityManager().close();
+		}
+	}
+		
+	/**
+	 * Permet d'update un user
+	 * @param user
+	 */
+	public void updateUser(UserEntity user) 
+	{
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			getEntityManager().getTransaction().begin();
+			user = getEntityManager().merge(user);
+			getEntityManager().getTransaction().commit();
+		} finally 
+		{
+			getEntityManager().close();
+		}
+	}
+
+	/**
+	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
+	 * @return
+	 */
+	protected EntityManager getEntityManager() 
+	{
+		if (em == null) 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+		}
+		return em;
 	}
 }

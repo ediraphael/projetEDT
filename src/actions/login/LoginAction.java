@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import transitionObject.bean.UserBean;
+import bean.UserBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 

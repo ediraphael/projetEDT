@@ -6,7 +6,7 @@ import model.dao.ClassroomDAO;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import transitionObject.bean.ClassroomBean;
+import bean.ClassroomBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 
