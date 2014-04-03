@@ -48,21 +48,21 @@ INSERT INTO `classroom` (`id_classroom`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group`
+-- Structure de la table `group_user`
 --
 
-DROP TABLE IF EXISTS `group`;
-CREATE TABLE IF NOT EXISTS `group` (
-  `id_group` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `group_user`;
+CREATE TABLE IF NOT EXISTS `group_user` (
+  `id_group_user` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
-  PRIMARY KEY (`id_group`)
+  PRIMARY KEY (`id_group_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `group`
+-- Contenu de la table `group_user`
 --
 
-INSERT INTO `group` (`id_group`, `name`) VALUES
+INSERT INTO `group_user` (`id_group_user`, `name`) VALUES
 (1, 'Enseignant'),
 (2, 'Etudiant'),
 (3, 'Invité'),
@@ -104,11 +104,11 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `id_user_teacher` int(11) NOT NULL,
   `id_subject` int(11) NOT NULL,
   `id_classroom` int(11) NOT NULL,
-  `id_group` int(11) NOT NULL,
+  `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_schedule`),
   KEY `id_subject` (`id_subject`),
   KEY `id_classroom` (`id_classroom`),
-  KEY `id_group` (`id_group`),
+  KEY `id_group_user` (`id_group_user`),
   KEY `id_user_teacher` (`id_user_teacher`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 -- Contenu de la table `schedule`
 --
 
-INSERT INTO `schedule` (`id_schedule`, `day_start`, `day_end`, `name`, `comment`, `id_user_teacher`, `id_subject`, `id_classroom`, `id_group`) VALUES
+INSERT INTO `schedule` (`id_schedule`, `day_start`, `day_end`, `name`, `comment`, `id_user_teacher`, `id_subject`, `id_classroom`, `id_group_user`) VALUES
 (1, '2014-04-14 13:50:00', '2014-04-14 16:40:00', 'Compilation', '', 1, 1, 1, 4),
 (2, '2014-04-15 13:50:00', '2014-04-15 16:40:00', 'Web', '', 2, 2, 1, 4);
 
@@ -158,16 +158,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(256) NOT NULL,
   `first_name` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
-  `id_group` int(11) NOT NULL,
+  `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `id_group` (`id_group`)
+  KEY `id_group_user` (`id_group_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group`) VALUES
+INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group_user`) VALUES
 (1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire', 'Lefevre', 1),
 (2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
 (3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 2),
@@ -184,7 +184,7 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_gr
 -- Contraintes pour la table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `fk_schedule_group` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_schedule_group_user` FOREIGN KEY (`id_group_user`) REFERENCES `group_user` (`id_group_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_schedule_classroom` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_schedule_subject` FOREIGN KEY (`id_subject`) REFERENCES `subject` (`id_subject`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_schedule_user_teacher` FOREIGN KEY (`id_user_teacher`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -193,7 +193,7 @@ ALTER TABLE `schedule`
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `fk_group_user` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_group_user` FOREIGN KEY (`id_group_user`) REFERENCES `group_user` (`id_group_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

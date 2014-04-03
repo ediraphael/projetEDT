@@ -19,6 +19,8 @@
 		<tr>
 			<td><s:property value="id"/></td>
 			<td><s:property value="name"/></td>
+			<td><a href="<s:url action='' />"><s:property value="getText('action.update')"/></a></td>
+			<td><a href="<s:url action='' />"><s:property value="getText('action.delete')"/></a></td>
 		</tr>
 	</s:iterator>
 	</table>

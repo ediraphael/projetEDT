@@ -9,9 +9,9 @@
 <p>Bienvenue sur l'appli EDT avec Struts 2 =) </p>
 <s:property value="#session.user.email" />
 
-<s:form action="Inscription">
-    <s:submit/>
-</s:form>
+<a href="<s:url action='Login'/>"><s:property value="getText('label.login')"/></a>
+<a href="<s:url action='Inscription'/>"><s:property value="getText('label.register')"/></a>
+<a href="<s:url action='AfficherCalendrier'/>"><s:property value="getText('label.view_calendar')"/></a>
 
 </body>
 </html>
