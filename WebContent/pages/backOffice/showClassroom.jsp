@@ -8,8 +8,19 @@
 </head>
 <body>
 	<h2>Struts 2 - Classroom show</h2>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nom</th>
+			<th></th>
+			<th></th>
+		</tr>
 	<s:iterator value="listClassroomBean" id="classroom">
-		<s:property value="name"/><br />
+		<tr>
+			<td><s:property value="id"/></td>
+			<td><s:property value="name"/></td>
+		</tr>
 	</s:iterator>
+	</table>
 </body>
 </html>

@@ -64,7 +64,13 @@ public class ClassroomAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		
+		if (classroomBean != null)
+		{
+			if ("".equals(classroomBean.getName()))
+			{
+				addFieldError("error.name", getText("validator.field.empty"));
+			}
+		}
 	}
 
 	@Override
