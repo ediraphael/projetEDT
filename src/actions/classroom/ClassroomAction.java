@@ -55,6 +55,7 @@ public class ClassroomAction extends AbstractAction
 		{
 			forward = FORWARD_ERROR;
 		}
+		this.classroomBean = this.listClassroomBean.get(0);
 		return forward;
 	}
 
@@ -63,11 +64,7 @@ public class ClassroomAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		// test si le mail est renseigné
-		if ("".equals(classroomBean.getName()))
-		{
-			addFieldError("error.name", getText("validator.field.empty"));
-		}
+		
 	}
 
 	@Override
