@@ -51,6 +51,11 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
+	<action name="getClassroom" class="actions.classroom.ClassroomAction" method="getClassroom">
+		<result name="SUCCESS">pages/backOffice/updateClassroom.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
 	<action name="Group">
 		<result>pages/backOffice/newGroup.jsp</result>
 	</action>

@@ -13,6 +13,7 @@ public class ClassroomAction extends AbstractAction
 {
 	private static final long serialVersionUID = 1L;
 	// bean de formulaire permettant le transfere des informations
+	private long id;
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
 
@@ -64,7 +65,8 @@ public class ClassroomAction extends AbstractAction
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			ClassroomEntity classroomEntity = classroomDao.getClassroom(0);
+			System.out.println(this.id);
+			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
 			this.classroomBean.setName(classroomEntity.getName());
@@ -125,4 +127,14 @@ public class ClassroomAction extends AbstractAction
 		this.listClassroomBean = listClassroomBean;
 	}
 
+	public long getId()
+	{
+		return id;
+	}
+
+	public void setId(long id)
+	{
+		this.id = id;
+	}
+	
 }
