@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 01 Avril 2014 à 13:22
+-- Généré le: Jeu 03 Avril 2014 à 08:56
 -- Version du serveur: 5.5.35-0ubuntu0.13.10.2
 -- Version de PHP: 5.5.3-1ubuntu2.2
 
@@ -30,7 +30,16 @@ CREATE TABLE IF NOT EXISTS `classroom` (
   `id_classroom` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   PRIMARY KEY (`id_classroom`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `classroom`
+--
+
+INSERT INTO `classroom` (`id_classroom`, `name`) VALUES
+(1, 'H006'),
+(2, 'L201'),
+(3, 'A005');
 
 -- --------------------------------------------------------
 
@@ -42,7 +51,17 @@ CREATE TABLE IF NOT EXISTS `group` (
   `id_group` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   PRIMARY KEY (`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `group`
+--
+
+INSERT INTO `group` (`id_group`, `name`) VALUES
+(1, 'Enseignant'),
+(2, 'Etudiant'),
+(3, 'Invité'),
+(4, 'M1 Informatique');
 
 -- --------------------------------------------------------
 
@@ -65,7 +84,15 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   KEY `id_classroom` (`id_classroom`),
   KEY `id_group` (`id_group`),
   KEY `id_user_teacher` (`id_user_teacher`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `schedule`
+--
+
+INSERT INTO `schedule` (`id_schedule`, `day_start`, `day_end`, `name`, `comment`, `id_user_teacher`, `id_subject`, `id_classroom`, `id_group`) VALUES
+(1, '2014-04-14 13:50:00', '2014-04-14 16:40:00', 'Compilation', '', 1, 1, 1, 4),
+(2, '2014-04-15 13:50:00', '2014-04-15 16:40:00', 'Web', '', 2, 2, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -79,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `short_name` varchar(256) NOT NULL,
   `color` varchar(256) NOT NULL,
   PRIMARY KEY (`id_subject`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `subject`
@@ -101,10 +128,25 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
+  `first_name` varchar(256) NOT NULL,
+  `name` varchar(256) NOT NULL,
   `id_group` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
   KEY `id_group` (`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group`) VALUES
+(1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire', 'Lefevre', 1),
+(2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
+(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 2),
+(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël', 'Fardilha', 2),
+(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault', 'Gauthier', 2),
+(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël', 'Pillié', 2),
+(7, 'noname@univ-angers.fr', 'noname', 'No', 'Name', 3);
 
 --
 -- Contraintes pour les tables exportées

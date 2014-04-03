@@ -1,6 +1,6 @@
 package actions.horaire;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import model.dao.ScheduleDAO;
@@ -35,8 +35,7 @@ public class HoraireAction extends ActionSupport implements SessionAware {
 		try
 		{
 			ScheduleDAO scheduleDAO = new ScheduleDAO();
-			ArrayList<ScheduleEntity> schedules = scheduleDAO.getAllSchedule();
-			
+			List<ScheduleEntity> schedules = scheduleDAO.getAllSchedule();
 		}
 		catch(Exception e)
 		{
