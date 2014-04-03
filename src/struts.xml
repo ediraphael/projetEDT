@@ -57,7 +57,7 @@
 	</action>
 	
 	<action name="ClassroomUpdate" class="actions.classroom.ClassroomAction" method="update">
-		<result name="SUCCESS">ShowClassroom</result>
+		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="input">pages/backOffice/updateClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
