@@ -6,20 +6,12 @@ import java.util.Map;
 
 import model.dao.ClassroomDAO;
 import model.org.persistence.ClassroomEntity;
-
-import org.apache.struts2.interceptor.SessionAware;
-
+import actions.abstractAction.AbstractAction;
 import bean.ClassroomBean;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-public class ClassroomAction extends ActionSupport implements SessionAware
+public class ClassroomAction extends AbstractAction
 {
 	private static final long serialVersionUID = 1L;
-	// forward pour rediriger vers la bonne page
-	private String forward;
-	// variable de session
-	private Map<String, Object> session;
 	// bean de formulaire permettant le transfere des informations
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
@@ -31,7 +23,7 @@ public class ClassroomAction extends ActionSupport implements SessionAware
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès
-		forward = "SUCCESS";
+		forward = FORWARD_SUCCESS;
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
@@ -39,14 +31,14 @@ public class ClassroomAction extends ActionSupport implements SessionAware
 			classroomDao.addClassroom(classroomBean.getName());
 		} catch (Exception e)
 		{
-			forward = "ERROR";
+			forward = FORWARD_ERROR;
 		}
 		return forward;
 	}
 
 	public String showClassroom()
 	{
-		forward = "SUCCESS";
+		forward = FORWARD_SUCCESS;
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		this.listClassroomBean = new ArrayList<ClassroomBean>();
 		try
@@ -61,7 +53,7 @@ public class ClassroomAction extends ActionSupport implements SessionAware
 			}
 		} catch (Exception e)
 		{
-			forward = "ERROR";
+			forward = FORWARD_ERROR;
 		}
 		return forward;
 	}
