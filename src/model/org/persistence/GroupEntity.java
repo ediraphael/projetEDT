@@ -9,9 +9,9 @@ import javax.persistence.*;
 @NamedQueries
 ({
 	//définition de requêtes
-	@NamedQuery(name = "GroupEntity.findAll", query = "Select group From GroupEntity group"),
-	@NamedQuery(name = "GroupEntity.findById", query= "Select group FROM GroupEntity group WHERE group.id = :id"),
-	@NamedQuery(name = "GroupEntity.findByName", query= "Select group FROM GroupEntity group WHERE group.name = :name")
+	@NamedQuery(name = "GroupEntity.findAll", query = "Select g From GroupEntity g"),
+	@NamedQuery(name = "GroupEntity.findById", query= "Select g FROM GroupEntity g WHERE g.id = :id"),
+	@NamedQuery(name = "GroupEntity.findByName", query= "Select g FROM GroupEntity g WHERE g.name = :name")
 })
 public class GroupEntity implements Serializable
 {
