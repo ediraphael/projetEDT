@@ -46,12 +46,8 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="ShowClassroom">
-		<result>pages/backOffice/showClassroom.jsp</result>
-	</action>
-	<action name="ShowClassroomAction" class="actions.classroom.ClassroomAction" method="showClassroom">
-		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
-		<result name="input">pages/backOffice/showClassroom.jsp</result>
+	<action name="ShowClassroom" class="actions.classroom.ClassroomAction" method="showClassroom">
+		<result name="SUCCESS">pages/backOffice/showClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
