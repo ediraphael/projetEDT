@@ -3,16 +3,12 @@ package model.dao;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import bean.ClassroomBean;
-
 import model.org.persistence.ClassroomEntity;
-import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base Cette classe DAO
@@ -85,6 +81,7 @@ public class ClassroomDAO
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<ClassroomEntity> getAllClassroom()
 	{
 		ArrayList<ClassroomEntity> listClassroomEntity = new ArrayList<ClassroomEntity>();
