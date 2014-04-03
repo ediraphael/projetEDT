@@ -9,10 +9,6 @@
 <body>
 	<h1>R&eacute;server un horaire</h1>
 	<s:form action="AjouterHoraire" method="post">
-		<s:textfield name="userBean.email" key="label.email" size="20" />
-		<s:fielderror theme="simple" fieldName="error.email"/>
-		<s:password name="userBean.password" key="label.password" size="20" />
-		<s:fielderror theme="simple" fieldName="error.password"/>
 		<s:submit method="execute" key="label.valide" align="center" />
 	</s:form>
 </body>
