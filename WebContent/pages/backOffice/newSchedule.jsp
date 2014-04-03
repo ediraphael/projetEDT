@@ -7,6 +7,7 @@
 	<title><s:property value="getText('title.schedule')"/></title>
 </head>
 <body>
+	<h1>R&eacute;server un horaire</h1>
 	<s:form action="AjouterHoraire" method="post">
 		<s:textfield name="userBean.email" key="label.email" size="20" />
 		<s:fielderror theme="simple" fieldName="error.email"/>
