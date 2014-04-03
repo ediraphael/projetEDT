@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -82,14 +83,14 @@ public class ClassroomDAO
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<ClassroomEntity> getAllClassroom()
+	public List<ClassroomEntity> getAllClassroom()
 	{
-		ArrayList<ClassroomEntity> listClassroomEntity = new ArrayList<ClassroomEntity>();
+		List<ClassroomEntity> listClassroomEntity;
 		try
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q = em.createNamedQuery("ClassroomEntity.findAll");
-			listClassroomEntity = q.getResultList() != null ? (ArrayList<ClassroomEntity>) q.getResultList() : null;
+			listClassroomEntity = q.getResultList() != null ? (List<ClassroomEntity>) q.getResultList() : null;
 		} finally
 		{
 			em.close();

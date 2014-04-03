@@ -1,6 +1,7 @@
 package actions.classroom;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import model.dao.ClassroomDAO;
@@ -50,8 +51,7 @@ public class ClassroomAction extends ActionSupport implements SessionAware
 		this.listClassroomBean = new ArrayList<ClassroomBean>();
 		try
 		{
-			ArrayList<ClassroomEntity> listClassroomEntity = new ArrayList<ClassroomEntity>();
-			listClassroomEntity = classroomDao.getAllClassroom();
+			List<ClassroomEntity> listClassroomEntity = classroomDao.getAllClassroom();
 			for (ClassroomEntity classroomEntity : listClassroomEntity)
 			{
 				ClassroomBean classroomBean = new ClassroomBean();
