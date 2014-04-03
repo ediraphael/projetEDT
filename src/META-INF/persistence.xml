@@ -6,6 +6,7 @@
 		<class>model.org.persistence.UserEntity</class>
 		<class>model.org.persistence.ClassroomEntity</class>
 		<class>model.org.persistence.ScheduleEntity</class>
+		<class>model.org.persistence.GroupEntity</class>
 		<properties>
         	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
         	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projetEDT"/>
