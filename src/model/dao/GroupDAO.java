@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
+import model.org.persistence.GroupEntity;
+
 public class GroupDAO {
 
 	//nom de la database
@@ -14,16 +16,19 @@ public class GroupDAO {
 	
 	
 	/**
-	 * Methode permetant de sauvegarder un user
+	 * Methode permetant de sauvegarder un groupe
 	 * @param name
 	 */
 	public void addGroup(String name)
 	{
 		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-
+		GroupEntity group = new GroupEntity();
+		group.setName(name);
 		try 
 		{
-
+			getEntityManager().getTransaction().begin();
+			getEntityManager().persist(group);
+			getEntityManager().getTransaction().commit();
 		} finally 
 		{
 			getEntityManager().close();
