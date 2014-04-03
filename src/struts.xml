@@ -45,6 +45,19 @@
 		<result name="input">pages/backOffice/newClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	
+	<action name="Group">
+		<result>pages/backOffice/newGroup.jsp</result>
+	</action>
+	
+	<action name="GroupAction" class="actions.group.GroupAction" method="execute">
+		
+	</action>
+	
+	
+	<action name="HoraireInscription" class="actions.horaire.HoraireAction">
+		
+	</action>
 
    </package>
    
