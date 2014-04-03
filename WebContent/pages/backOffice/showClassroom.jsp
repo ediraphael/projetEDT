@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h2>Struts 2 - Classroom show</h2>
-	
+	<%
+		
+	%>
 </body>
 </html>

@@ -16,9 +16,36 @@ import javax.persistence.*;
 public class GroupEntity implements Serializable
 {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Constructeur de la classe groupEntity
+	 */
+	public GroupEntity()
+	{
+		
+	}
+	
+	//Définition des colonnes de la table
+	@Id
+	@Column(name="id_group")
+	private long id;
+	@Column(name="name")
+	private String name;
+	
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 
 }

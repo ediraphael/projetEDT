@@ -42,7 +42,16 @@
 	
 	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/index.jsp</result>
-		<result name="input">pages/backOffice/newClassroom.jsp</result>
+		<result name="input">pages/backOffice/showClassroom.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
+	<action name="ShowClassroom">
+		<result>pages/backOffice/showClassroom.jsp</result>
+	</action>
+	<action name="ShowClassroomAction" class="actions.classroom.ClassroomAction" method="showClassroom">
+		<result name="SUCCESS">pages/index.jsp</result>
+		<result name="input">pages/backOffice/showClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
