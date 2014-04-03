@@ -1,7 +1,6 @@
 package actions.group;
 
-import java.util.Map;
-
+import bean.GroupBean;
 import actions.abstractAction.AbstractAction;
 
 public class GroupAction extends AbstractAction{
@@ -11,17 +10,15 @@ public class GroupAction extends AbstractAction{
 	 */
 	private static final long serialVersionUID = 1L;
 
-
-	//forward pour rediriger vers la bonne page
-	private String forward;
-
+	//bean de formulaire permettant le transfere des informations
+	private GroupBean groupBean;
 	/**
 	 * Execution de l'ajout d'un groupe
 	 */
 	public String execute()
 	{
 		//Sauf si il y a erreur, le traitement est considéré comme étant un succès
-		forward = "SUCCESS";
+		forward = FORWARD_SUCCESS;
 		try
 		{
 
@@ -33,14 +30,5 @@ public class GroupAction extends AbstractAction{
 		return forward;
 	}
 
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
-
-	public Map<String, Object> getSession() 
-	{
-		return session;
-	}
 
 }
