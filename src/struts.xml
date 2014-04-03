@@ -7,25 +7,25 @@
  
   <package name="home" namespace="/"  extends="struts-default">
     <action name="">
-		<result>pages/index.jsp</result>
+		<result>pages/frontOffice/index.jsp</result>
 	</action>
 	<action name="Index">
-		<result>pages/index.jsp</result>
+		<result>pages/frontOffice/index.jsp</result>
 	</action>
 	<action name="Inscription">
-		<result>pages/inscription.jsp</result>
+		<result>pages/frontOffice/inscription.jsp</result>
 	</action>
 
 	
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
-		<result name="SUCCESS">pages/index.jsp</result>
-		<result name="input">pages/inscription.jsp</result>
+		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
+		<result name="input">pages/frontOffice/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
 	<action name="LoginAction" class="actions.login.LoginAction" method="execute">
-		<result name="SUCCESS">pages/index.jsp</result>
-		<result name="input">pages/login.jsp</result>
+		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
+		<result name="input">pages/frontOffice/login.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
@@ -42,7 +42,16 @@
 	
 	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/index.jsp</result>
-		<result name="input">pages/backOffice/newClassroom.jsp</result>
+		<result name="input">pages/backOffice/showClassroom.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
+	<action name="ShowClassroom">
+		<result>pages/backOffice/showClassroom.jsp</result>
+	</action>
+	<action name="ShowClassroomAction" class="actions.classroom.ClassroomAction" method="showClassroom">
+		<result name="SUCCESS">pages/index.jsp</result>
+		<result name="input">pages/backOffice/showClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
