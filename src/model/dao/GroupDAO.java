@@ -4,8 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
-import model.org.persistence.UserEntity;
-
 public class GroupDAO {
 
 	//nom de la database
