@@ -6,14 +6,10 @@ import java.util.regex.Pattern;
 
 import model.dao.UserDAO;
 
-import org.apache.struts2.interceptor.SessionAware;
-
+import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-
-public class InscriptionAction extends ActionSupport implements SessionAware
+public class InscriptionAction extends AbstractAction
 {
 	private static final long serialVersionUID = 1L;
 	//forward pour rediriger vers la bonne page
@@ -22,8 +18,6 @@ public class InscriptionAction extends ActionSupport implements SessionAware
 	private Map<String, Object> session;
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
-	//pattern de vérification d'un email
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
 	
 	/**
@@ -31,17 +25,18 @@ public class InscriptionAction extends ActionSupport implements SessionAware
 	 */
 	public String execute()
 	{
-		//Sauf si il y a erreur, le traitement est considéré comme étant un succès
-		forward="SUCCESS";
+		forward=FORWARD_SUCCESS;
 		UserDAO udao = new UserDAO();
 		try
 		{
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.addUser(userBean.getEmail(), userBean.getPassword(), 1);
+			
+			session.put("user", userBean);
 		}
 		catch(Exception e)
 		{
-			forward="ERROR";
+			forward=FORWARD_ERROR;
 		}
 		return forward;
 	}
