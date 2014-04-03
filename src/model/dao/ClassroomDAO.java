@@ -64,17 +64,14 @@ public class ClassroomDAO
 		}
 	}
 
-	public void updateClassroom(long id)
+	public void updateClassroom(ClassroomEntity classroom)
 	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		ClassroomEntity classroom = new ClassroomEntity();
-		classroom.setId(id);
 		try
 		{
-			tx.begin();
-			em.refresh(classroom);
-			tx.commit();
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			classroom = em.merge(classroom);
+			em.getTransaction().commit();
 		} finally
 		{
 			em.close();
@@ -96,7 +93,7 @@ public class ClassroomDAO
 		}
 		return listClassroomEntity;
 	}
-	
+
 	public ClassroomEntity getClassroom(long id)
 	{
 		ClassroomEntity classroomEntity;

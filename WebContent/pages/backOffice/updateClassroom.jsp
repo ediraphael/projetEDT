@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Struts 2 - Classroom Update </h2>
-	<s:form action="ClassroomAction" method="post">
+	<s:form action="ClassroomUpdate" method="post">
 		<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
 		<s:textfield name="classroomBean.name" value="%{classroomBean.name}" key="label.name" size="20" />
 		<s:fielderror theme="simple" fieldName="error.name"/>

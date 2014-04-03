@@ -36,6 +36,25 @@ public class ClassroomAction extends AbstractAction
 		}
 		return forward;
 	}
+	
+	public String update()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		ClassroomDAO classroomDao = new ClassroomDAO();
+		try
+		{
+			ClassroomEntity classroomEntity = new ClassroomEntity();
+			classroomEntity.setId(this.classroomBean.getId());
+			classroomEntity.setName(this.classroomBean.getName());
+			classroomDao.updateClassroom(classroomEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
 
 	public String showClassroom()
 	{
@@ -65,7 +84,6 @@ public class ClassroomAction extends AbstractAction
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			System.out.println(this.id);
 			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
