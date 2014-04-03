@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `group` (
 
 CREATE TABLE IF NOT EXISTS `schedule` (
   `id_schedule` int(11) NOT NULL AUTO_INCREMENT,
-  `day_start` date NOT NULL,
-  `day_end` date NOT NULL,
+  `day_start` datetime NOT NULL,
+  `day_end` datetime NOT NULL,
   `name` varchar(256) NOT NULL,
   `comment` text NOT NULL,
   `id_user_teacher` int(11) NOT NULL,

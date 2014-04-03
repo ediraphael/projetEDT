@@ -7,9 +7,7 @@
 	<title><s:property value="getText('title.schedule')"/></title>
 </head>
 <body>
-	<h1>R&eacute;server un horaire</h1>
-	<s:form action="AjouterHoraire" method="post">
-		<s:submit method="execute" key="label.valide" align="center" />
-	</s:form>
+	<h2>Struts 2 - Classroom show</h2>
+	
 </body>
 </html>
