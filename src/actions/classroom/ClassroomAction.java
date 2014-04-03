@@ -55,7 +55,6 @@ public class ClassroomAction extends AbstractAction
 		{
 			forward = FORWARD_ERROR;
 		}
-		this.classroomBean = this.listClassroomBean.get(0);
 		return forward;
 	}
 
