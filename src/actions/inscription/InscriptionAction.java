@@ -1,6 +1,5 @@
 package actions.inscription;
 
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,8 +13,6 @@ public class InscriptionAction extends AbstractAction
 	private static final long serialVersionUID = 1L;
 	//forward pour rediriger vers la bonne page
 	private String forward;
-	//variable de session
-	private Map<String, Object> session;
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
 	
@@ -71,20 +68,6 @@ public class InscriptionAction extends AbstractAction
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
-
-
-	
-	@Override
-	public void setSession(Map<String, Object> session) 
-	{
-		this.session=session;
-	}
-
-	public Map<String, Object> getSession() 
-	{
-		return session;
-	}
-
 
 	/**
 	 * Getters and setters
