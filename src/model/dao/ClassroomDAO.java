@@ -47,18 +47,16 @@ public class ClassroomDAO
 		}
 	}
 
-	public void removeClassroom(long id)
+	public void removeClassroom(ClassroomEntity classroomEntity)
 	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		ClassroomEntity classroom = new ClassroomEntity();
-		classroom.setId(id);
-		try
+		try 
 		{
-			tx.begin();
-			em.remove(classroom);
-			tx.commit();
-		} finally
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			classroomEntity = em.merge(classroomEntity);
+			em.remove(classroomEntity);
+			em.getTransaction().commit();
+		} finally 
 		{
 			em.close();
 		}

@@ -62,6 +62,11 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
+	<action name="ClassroomDelete" class="actions.classroom.ClassroomAction" method="delete">
+		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
 	<action name="Group">
 		<result>pages/backOffice/newGroup.jsp</result>
 	</action>

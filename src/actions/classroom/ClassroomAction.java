@@ -55,6 +55,25 @@ public class ClassroomAction extends AbstractAction
 		}
 		return forward;
 	}
+	
+	public String delete()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		ClassroomDAO classroomDao = new ClassroomDAO();
+		try
+		{
+			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
+			classroomDao.removeClassroom(classroomEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	
 
 	public String showClassroom()
 	{
