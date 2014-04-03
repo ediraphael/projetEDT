@@ -59,6 +59,23 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 
+	public String getClassroom()
+	{
+		forward = FORWARD_SUCCESS;
+		ClassroomDAO classroomDao = new ClassroomDAO();
+		try
+		{
+			ClassroomEntity classroomEntity = classroomDao.getClassroom(0);
+			this.classroomBean = new ClassroomBean();
+			this.classroomBean.setId(classroomEntity.getId());
+			this.classroomBean.setName(classroomEntity.getName());
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+
 	/**
 	 * Méthode permetant la validation des champs
 	 */
