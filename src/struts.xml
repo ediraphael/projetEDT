@@ -62,11 +62,6 @@
 	<action name="GroupAction" class="actions.group.GroupAction" method="execute">
 		
 	</action>
-	
-	
-	<action name="HoraireInscription" class="actions.horaire.HoraireAction">
-		
-	</action>
 
    </package>
    

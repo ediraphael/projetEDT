@@ -2,11 +2,9 @@ package actions.group;
 
 import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
+import actions.abstractAction.AbstractAction;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-public class GroupAction extends ActionSupport implements SessionAware{
+public class GroupAction extends AbstractAction{
 
 	/**
 	 * 
@@ -16,8 +14,6 @@ public class GroupAction extends ActionSupport implements SessionAware{
 
 	//forward pour rediriger vers la bonne page
 	private String forward;
-	//variable de session
-	private Map<String, Object> session;
 
 	/**
 	 * Execution de l'ajout d'un groupe
