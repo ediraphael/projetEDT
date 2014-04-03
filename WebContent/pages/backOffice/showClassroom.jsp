@@ -8,8 +8,8 @@
 </head>
 <body>
 	<h2>Struts 2 - Classroom show</h2>
-	<%
-		
-	%>
+	<s:iterator value="listClassroomBean" id="classromm">
+            <s:property value="classromm.name"/><br />
+	</s:iterator>
 </body>
 </html>
