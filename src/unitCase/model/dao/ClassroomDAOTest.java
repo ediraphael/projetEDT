@@ -5,6 +5,7 @@ import java.util.List;
 import model.dao.ClassroomDAO;
 import model.org.persistence.ClassroomEntity;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ClassroomDAOTest {
@@ -15,8 +16,10 @@ public class ClassroomDAOTest {
 	@Test
 	public void testGetAllClassroom() {
 		List<ClassroomEntity> listeClassroom = classroomDAO.getAllClassroom();
+		Assert.assertNotNull(listeClassroom);
 		for (ClassroomEntity classroomEntity : listeClassroom)
 		{
+			Assert.assertNotNull(classroomEntity);
 			System.out.println(classroomEntity.getId());
 			System.out.println(classroomEntity.getName());
 		}
