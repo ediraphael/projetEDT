@@ -24,12 +24,8 @@ public class LoginAction extends AbstractAction
 		UserDAO udao = new UserDAO();
 		UserEntity user=udao.getUserByEmailAndPwd(userBean.getEmail(), userBean.getPassword());
 		
-		if(user!=null)
-		{
-			//TODO mettre en session
-		}
-		//sinon on indique au user qu'il s'est trompé d'identifiant ou de mot de passe
-		else
+		//Si le user n'existe pas c'est qu'il y a une erreur d'authentification
+		if(user==null)
 		{
 			addActionError(getText("validator.not.register"));
 			forward=FORWARD_INPUT;
