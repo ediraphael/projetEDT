@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 03 Avril 2014 à 08:56
+-- Généré le: Jeu 03 Avril 2014 à 09:49
 -- Version du serveur: 5.5.35-0ubuntu0.13.10.2
 -- Version de PHP: 5.5.3-1ubuntu2.2
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `projetEDT`
 --
+CREATE DATABASE IF NOT EXISTS `projetEDT` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `projetEDT`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +29,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `classroom`
 --
 
+DROP TABLE IF EXISTS `classroom`;
 CREATE TABLE IF NOT EXISTS `classroom` (
   `id_classroom` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -47,6 +51,7 @@ INSERT INTO `classroom` (`id_classroom`, `name`) VALUES
 -- Structure de la table `group`
 --
 
+DROP TABLE IF EXISTS `group`;
 CREATE TABLE IF NOT EXISTS `group` (
   `id_group` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -66,9 +71,30 @@ INSERT INTO `group` (`id_group`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `passwordTeacher`
+--
+
+DROP TABLE IF EXISTS `passwordTeacher`;
+CREATE TABLE IF NOT EXISTS `passwordTeacher` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(256) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `passwordTeacher`
+--
+
+INSERT INTO `passwordTeacher` (`id`, `password`) VALUES
+(1, 'passTeach');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `schedule`
 --
 
+DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE IF NOT EXISTS `schedule` (
   `id_schedule` int(11) NOT NULL AUTO_INCREMENT,
   `day_start` datetime NOT NULL,
@@ -100,6 +126,7 @@ INSERT INTO `schedule` (`id_schedule`, `day_start`, `day_end`, `name`, `comment`
 -- Structure de la table `subject`
 --
 
+DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
   `id_subject` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -124,6 +151,7 @@ INSERT INTO `subject` (`id_subject`, `name`, `short_name`, `color`) VALUES
 -- Structure de la table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(256) NOT NULL,
@@ -166,6 +194,7 @@ ALTER TABLE `schedule`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_group_user` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
