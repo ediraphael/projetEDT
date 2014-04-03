@@ -2,10 +2,9 @@ package unitCase.model.dao;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.dao.ScheduleDAO;
-import model.dao.UserDAO;
 import model.org.persistence.ScheduleEntity;
 
 import org.junit.Test;
@@ -14,17 +13,18 @@ public class ScheduleDAOTest {
 
 	//déclaration de l'objet DAO afin d'appeler les méthodes à tester
 	private ScheduleDAO scheduleDAO = new ScheduleDAO();
-	
+
 	@Test
 	public void test() {
 		fail("Not yet implemented");
 	}
 	
+	@Test
 	public void testGetAllSchedule() {
-		ArrayList<ScheduleEntity> schedules = scheduleDAO.getAllSchedule();
+		List<ScheduleEntity> schedules = scheduleDAO.getAllSchedule();
 		for (ScheduleEntity scheduleEntity : schedules) {
-			System.out.println(scheduleEntity.getId());
-			System.out.println(scheduleEntity.getName());
+			scheduleEntity.getId();
+			scheduleEntity.getName();
 		}
 	}
 
