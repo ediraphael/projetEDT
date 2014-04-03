@@ -7,6 +7,7 @@
 
 <body>
 <p>Bienvenue sur l'appli EDT avec Struts 2 =) </p>
+<s:property value="#session.user.email" />
 
 <s:form action="Inscription">
     <s:submit/>

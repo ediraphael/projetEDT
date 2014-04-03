@@ -1,24 +1,17 @@
 package actions.login;
 
-import java.util.Map;
 
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
 
-import org.apache.struts2.interceptor.SessionAware;
-
+import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
-import com.opensymphony.xwork2.ActionSupport;
 
-
-public class LoginAction extends ActionSupport implements SessionAware
+public class LoginAction extends AbstractAction
 {
 	private static final long serialVersionUID = 1L;
-	//forward pour rediriger vers la bonne page
-	private String forward;
-	//variable de session
-	private Map<String, Object> session;
+
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
 
@@ -27,7 +20,7 @@ public class LoginAction extends ActionSupport implements SessionAware
 	 */
 	public String execute()
 	{
-		forward="SUCCESS";
+		forward=FORWARD_SUCCESS;
 		UserDAO udao = new UserDAO();
 		UserEntity user=udao.getUserByEmailAndPwd(userBean.getEmail(), userBean.getPassword());
 		
@@ -39,9 +32,8 @@ public class LoginAction extends ActionSupport implements SessionAware
 		else
 		{
 			addActionError(getText("validator.not.register"));
-			forward="input";
+			forward=FORWARD_INPUT;
 		}
-		
 		
 		return forward;
 	}
@@ -61,18 +53,6 @@ public class LoginAction extends ActionSupport implements SessionAware
 		{
 			addFieldError("error.password", getText("validator.field.empty"));
 		}
-	}
-
-
-	@Override
-	public void setSession(Map<String, Object> session) 
-	{
-		this.session=session;
-	}
-
-	public Map<String, Object> getSession() 
-	{
-		return session;
 	}
 
 
