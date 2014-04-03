@@ -1,76 +1,102 @@
 package model.dao;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import bean.ClassroomBean;
 
 import model.org.persistence.ClassroomEntity;
+import model.org.persistence.UserEntity;
 
 /**
- * Surcouche afin de rendre plus propre les accès en base
- * Cette classe DAO concerne les transaction pour classroom
+ * Surcouche afin de rendre plus propre les accès en base Cette classe DAO
+ * concerne les transaction pour classroom
+ * 
  * @author raphael
- *
+ * 
  */
-public class ClassroomDAO 
+public class ClassroomDAO
 {
-	//Mise en place de la factory pour savoir dans quel base nous allons taper
-	private final static  EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("ProjetEDT");
-	//Cette entité permet d'acceder aux tables
+	// Mise en place de la factory pour savoir dans quel base nous allons taper
+	private final static String JPA_DATABASE = "ProjetEDT";
+	// Cette entité permet d'acceder aux tables
 	@PersistenceContext
 	private EntityManager em;
 
 	/**
 	 * Methode permetant de sauvegarder une classe
+	 * 
 	 * @param name
 	 */
 	public void addClassroom(String name)
 	{
-		em=FACTORY.createEntityManager();
+		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		ClassroomEntity classroom = new ClassroomEntity();
 		classroom.setName(name);
-		try 
+		try
 		{
 			tx.begin();
 			em.persist(classroom);
 			tx.commit();
-		} finally {
+		} finally
+		{
 			em.close();
 		}
 	}
-	
+
 	public void removeClassroom(long id)
 	{
-		em=FACTORY.createEntityManager();
+		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		ClassroomEntity classroom = new ClassroomEntity();
 		classroom.setId(id);
-		try 
+		try
 		{
 			tx.begin();
 			em.remove(classroom);
 			tx.commit();
-		} finally {
+		} finally
+		{
 			em.close();
 		}
 	}
-	
+
 	public void updateClassroom(long id)
 	{
-		em=FACTORY.createEntityManager();
+		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		ClassroomEntity classroom = new ClassroomEntity();
 		classroom.setId(id);
-		try 
+		try
 		{
 			tx.begin();
 			em.refresh(classroom);
 			tx.commit();
-		} finally {
+		} finally
+		{
 			em.close();
 		}
+	}
+
+	public ArrayList<ClassroomEntity> getAllClassroom()
+	{
+		ArrayList<ClassroomEntity> listClassroomEntity = new ArrayList<ClassroomEntity>();
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("ClassroomEntity.findAll");
+			listClassroomEntity = q.getResultList() != null ? (ArrayList<ClassroomEntity>) q.getResultList() : null;
+		} finally
+		{
+			em.close();
+		}
+		return listClassroomEntity;
 	}
 }

@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
@@ -24,20 +26,20 @@ public class ScheduleDAO
 		// TODO Auto-generated constructor stub
 	}
 
-	public ScheduleEntity getAllSchedule() 
+	public ArrayList<ScheduleEntity> getAllSchedule() 
 	{
-		ScheduleEntity schedule = new ScheduleEntity();
+		ArrayList<ScheduleEntity> schedules;
 		try 
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q = getEntityManager().createNamedQuery("ScheduleEntity.findAll");
-			schedule = q.getResultList() != null ? (ScheduleEntity) q.getResultList().get(0) : null;
-		} 
+			schedules = q.getResultList() != null ? (ArrayList<ScheduleEntity>) q.getResultList() : null;
+		}
 		finally 
 		{
 			getEntityManager().close();
 		}
-		return schedule;
+		return schedules;
 	}
 
 	/**
