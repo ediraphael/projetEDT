@@ -51,12 +51,29 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
+	<action name="getClassroom" class="actions.classroom.ClassroomAction" method="getClassroom">
+		<result name="SUCCESS">pages/backOffice/updateClassroom.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
+	<action name="ClassroomUpdate" class="actions.classroom.ClassroomAction" method="update">
+		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
+		<result name="input">pages/backOffice/updateClassroom.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
+	<action name="ClassroomDelete" class="actions.classroom.ClassroomAction" method="delete">
+		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
 	<action name="Group">
 		<result>pages/backOffice/newGroup.jsp</result>
 	</action>
 	
 	<action name="GroupAction" class="actions.group.GroupAction" method="execute">
-		
+		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
    </package>

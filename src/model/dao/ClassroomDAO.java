@@ -47,34 +47,29 @@ public class ClassroomDAO
 		}
 	}
 
-	public void removeClassroom(long id)
+	public void removeClassroom(ClassroomEntity classroomEntity)
 	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		ClassroomEntity classroom = new ClassroomEntity();
-		classroom.setId(id);
-		try
+		try 
 		{
-			tx.begin();
-			em.remove(classroom);
-			tx.commit();
-		} finally
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			classroomEntity = em.merge(classroomEntity);
+			em.remove(classroomEntity);
+			em.getTransaction().commit();
+		} finally 
 		{
 			em.close();
 		}
 	}
 
-	public void updateClassroom(long id)
+	public void updateClassroom(ClassroomEntity classroom)
 	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		ClassroomEntity classroom = new ClassroomEntity();
-		classroom.setId(id);
 		try
 		{
-			tx.begin();
-			em.refresh(classroom);
-			tx.commit();
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			classroom = em.merge(classroom);
+			em.getTransaction().commit();
 		} finally
 		{
 			em.close();
@@ -95,5 +90,20 @@ public class ClassroomDAO
 			em.close();
 		}
 		return listClassroomEntity;
+	}
+
+	public ClassroomEntity getClassroom(long id)
+	{
+		ClassroomEntity classroomEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("ClassroomEntity.findById").setParameter("id", id);
+			classroomEntity = q.getResultList() != null ? (ClassroomEntity) q.getResultList().get(0) : null;
+		} finally
+		{
+			em.close();
+		}
+		return classroomEntity;
 	}
 }

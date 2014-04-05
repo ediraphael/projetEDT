@@ -13,6 +13,7 @@ public class ClassroomAction extends AbstractAction
 {
 	private static final long serialVersionUID = 1L;
 	// bean de formulaire permettant le transfere des informations
+	private long id;
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
 
@@ -35,6 +36,44 @@ public class ClassroomAction extends AbstractAction
 		}
 		return forward;
 	}
+	
+	public String update()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		ClassroomDAO classroomDao = new ClassroomDAO();
+		try
+		{
+			ClassroomEntity classroomEntity = new ClassroomEntity();
+			classroomEntity.setId(this.classroomBean.getId());
+			classroomEntity.setName(this.classroomBean.getName());
+			classroomDao.updateClassroom(classroomEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	public String delete()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		ClassroomDAO classroomDao = new ClassroomDAO();
+		try
+		{
+			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
+			classroomDao.removeClassroom(classroomEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	
 
 	public String showClassroom()
 	{
@@ -55,7 +94,23 @@ public class ClassroomAction extends AbstractAction
 		{
 			forward = FORWARD_ERROR;
 		}
-		this.classroomBean = this.listClassroomBean.get(0);
+		return forward;
+	}
+
+	public String getClassroom()
+	{
+		forward = FORWARD_SUCCESS;
+		ClassroomDAO classroomDao = new ClassroomDAO();
+		try
+		{
+			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
+			this.classroomBean = new ClassroomBean();
+			this.classroomBean.setId(classroomEntity.getId());
+			this.classroomBean.setName(classroomEntity.getName());
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
 		return forward;
 	}
 
@@ -109,4 +164,14 @@ public class ClassroomAction extends AbstractAction
 		this.listClassroomBean = listClassroomBean;
 	}
 
+	public long getId()
+	{
+		return id;
+	}
+
+	public void setId(long id)
+	{
+		this.id = id;
+	}
+	
 }
