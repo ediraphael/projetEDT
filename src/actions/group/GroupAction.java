@@ -21,6 +21,7 @@ public class GroupAction extends AbstractAction{
 	//bean de formulaire permettant le transfere des informations
 	private GroupBean groupBean;
 	GroupDAO groupDAO = new GroupDAO();
+	private ArrayList<GroupBean> listGroupBean;
 	/**
 	 * Execution de l'ajout d'un groupe
 	 */
@@ -45,7 +46,7 @@ public class GroupAction extends AbstractAction{
 	public String showGroups()
 	{
 		forward = FORWARD_SUCCESS;
-		ArrayList<GroupBean> listGroupBean = new ArrayList<GroupBean>();
+		listGroupBean = new ArrayList<GroupBean>();
 		try
 		{
 			List<GroupEntity> listGroupEntity = groupDAO.getAllGroup();
@@ -77,6 +78,14 @@ public class GroupAction extends AbstractAction{
 
 	public void setGroupDAO(GroupDAO groupDAO) {
 		this.groupDAO = groupDAO;
+	}
+
+	public ArrayList<GroupBean> getListGroupBean() {
+		return listGroupBean;
+	}
+
+	public void setListGroupBean(ArrayList<GroupBean> listGroupBean) {
+		this.listGroupBean = listGroupBean;
 	}
 
 
