@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import model.org.persistence.ClassroomEntity;
 import model.org.persistence.GroupEntity;
 
 public class GroupDAO {
@@ -53,6 +52,22 @@ public class GroupDAO {
 			em.close();
 		}
 		return listGroupEntity;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getAllGroupName()
+	{
+		List<String> listGroupName;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("GroupEntity.findAllName");
+			listGroupName = q.getResultList() != null ? (List<String>) q.getResultList() : null;
+		} finally
+		{
+			em.close();
+		}
+		return listGroupName;
 	}
 	
 	/**

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
+import model.dao.GroupDAO;
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
@@ -52,6 +53,8 @@ public class InscriptionAction extends AbstractAction
 	public String openInscriptionForm()
 	{
 		forward=FORWARD_SUCCESS;
+		GroupDAO gdao = new GroupDAO();
+		//toto=gdao.getAllGroup();
 		toto =new ArrayList<String>();
 		toto.add("toto");
 		toto.add("tutu");
