@@ -138,6 +138,9 @@
         eventComment: function(calEvent, calendar) {
             return calEvent.comment;
         },
+        eventColor: function(calEvent, calendar) {
+            return calEvent.color;
+        },
         shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         longMonths: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         shortDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -1505,7 +1508,8 @@
           eventClass = calEvent.id ? 'wc-cal-event' : 'wc-cal-event wc-new-cal-event';
           eventHtml = '<div class=\"' + eventClass + ' ui-corner-all\">';
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>';
-          eventHtml += '<div class=\"wc-title\"></div><div class=\"wc-comment\"></div></div>';
+          eventHtml += '<div class=\"wc-title\">';
+          eventHtml += '</div><div class=\"wc-comment\"></div></div>';
 
           $weekDay.each(function() {
             var $calEvent = $(eventHtml);
@@ -1915,6 +1919,7 @@
           $calEvent.find('.wc-time').html(this.options.eventHeader(calEvent, this.element) + suffix);
           $calEvent.find('.wc-title').html(this.options.eventBody(calEvent, this.element));
           $calEvent.find('.wc-comment').html(this.options.eventComment(calEvent, this.element));
+          $calEvent.css('background',this.options.eventColor(calEvent, this.element));
           $calEvent.data('calEvent', calEvent);
           this.options.eventRefresh(calEvent, $calEvent);
       },

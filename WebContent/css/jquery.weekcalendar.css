@@ -229,8 +229,8 @@ table.wc-time-slots {
 }
 
 .wc-cal-event .wc-time {
-    background-color: #2b72d0;
-    border: 1px solid #1b62c0;
+    background-color: rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.2);
     color: #fff;
     padding: 0;
     font-weight: bold;
