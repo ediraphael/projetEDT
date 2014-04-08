@@ -28,7 +28,7 @@ public class GroupEntity implements Serializable
 	
 	//Définition des colonnes de la table
 	@Id
-	@Column(name="id_group")
+	@Column(name="id_group_user")
 	private long id;
 	@Column(name="name")
 	private String name;
