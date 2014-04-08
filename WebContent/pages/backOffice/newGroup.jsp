@@ -10,7 +10,7 @@
 	<p> Ajout d'un nouveau groupe</p>
 	
 
-<s:form action="GroupAction" method="post">
+<s:form action="GroupNew" method="post">
 	<s:textfield name="groupBean.name" key="label.name" size="20" />
 	<s:submit method="execute" key="label.valide" align="center" />
 </s:form>

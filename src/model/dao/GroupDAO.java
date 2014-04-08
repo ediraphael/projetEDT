@@ -1,9 +1,13 @@
 package model.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import model.org.persistence.ClassroomEntity;
 import model.org.persistence.GroupEntity;
 
 public class GroupDAO {
@@ -33,6 +37,22 @@ public class GroupDAO {
 		{
 			getEntityManager().close();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<GroupEntity> getAllGroup()
+	{
+		List<GroupEntity> listGroupEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("GroupEntity.findAll");
+			listGroupEntity = q.getResultList() != null ? (List<GroupEntity>) q.getResultList() : null;
+		} finally
+		{
+			em.close();
+		}
+		return listGroupEntity;
 	}
 	
 	/**

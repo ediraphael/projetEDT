@@ -75,7 +75,12 @@
 		<result>pages/backOffice/newGroup.jsp</result>
 	</action>
 	
-	<action name="GroupAction" class="actions.group.GroupAction" method="execute">
+	<action name="GroupNew" class="actions.group.GroupAction" method="execute">
+		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
+	<action name="GroupShow" class="actions.group.GroupAction" method="showGroups">
 		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>

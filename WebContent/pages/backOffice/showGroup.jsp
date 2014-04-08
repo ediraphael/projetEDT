@@ -7,6 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Le groupe est bien créé
+<table>
+		<tr>
+			<th>Nom</th>
+		</tr>
+	<s:iterator value="listGroupBean" id="group">
+		<tr>
+			<td><s:property value="name"/></td>
+		</tr>
+	</s:iterator>
+	</table>
 </body>
 </html>
