@@ -24,7 +24,6 @@ public class GroupAction extends AbstractAction{
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			System.out.println("toto : " + groupBean.toString());
 			//Sauvegarde du user renseigné dans le formulaire
 			groupDAO.addGroup(groupBean.getName());
 
