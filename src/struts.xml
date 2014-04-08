@@ -80,7 +80,7 @@
 	</action>
 	
 	<action name="GroupShow" class="actions.group.GroupAction" method="showGroups">
-		<result name="SUCCESS">pages/backOffice/showClassroom.jsp</result>
+		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
