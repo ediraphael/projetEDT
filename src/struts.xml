@@ -12,14 +12,15 @@
 	<action name="Index">
 		<result>pages/frontOffice/index.jsp</result>
 	</action>
-	<action name="Inscription">
-		<result>pages/frontOffice/inscription.jsp</result>
-	</action>
 	<action name="Login">
 		<result>pages/frontOffice/login.jsp</result>
 	</action>
 
 	
+	<action name="Inscription" class="actions.inscription.InscriptionAction" method="openInscriptionForm">
+		<result name="SUCCESS">pages/frontOffice/inscription.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
 		<result name="input">pages/frontOffice/inscription.jsp</result>

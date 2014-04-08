@@ -54,6 +54,22 @@ public class GroupDAO {
 		return listGroupEntity;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<String> getAllGroupName()
+	{
+		List<String> listGroupName;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("GroupEntity.findAllName");
+			listGroupName = q.getResultList() != null ? (List<String>) q.getResultList() : null;
+		} finally
+		{
+			em.close();
+		}
+		return listGroupName;
+	}
+	
 	/**
 	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
 	 * @return

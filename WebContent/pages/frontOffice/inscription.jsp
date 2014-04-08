@@ -12,10 +12,14 @@
 	<s:fielderror theme="simple" fieldName="error.name"/>
 	<s:textfield name="userBean.name" key="label.name" size="20" />
 	<s:fielderror theme="simple" fieldName="error.name"/>
+	<s:select label="Groupe " list="arrayGroupName"/>
+	<s:fielderror theme="simple" fieldName="error.group"/>
 	<s:textfield name="userBean.email" key="label.email" size="20" />
 	<s:fielderror theme="simple" fieldName="error.email"/>
 	<s:password name="userBean.password" key="label.password" size="20" />
 	<s:fielderror theme="simple" fieldName="error.password"/>
+	<s:password name="userBean.confirmPassword" key="label.confirmpassword" size="20" />
+	<s:fielderror theme="simple" fieldName="error.confirmpassword"/>
 	<s:submit method="execute" key="label.valide" align="center" />
 </s:form>
 </body>

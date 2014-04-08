@@ -1,5 +1,10 @@
 package actions.inscription;
 
+import java.util.List;
+
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
+import model.dao.GroupDAO;
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
@@ -12,6 +17,8 @@ public class InscriptionAction extends AbstractAction
 	private String forward;
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
+	
+	private List<String> arrayGroupName;
 	
 	
 	/**
@@ -28,7 +35,7 @@ public class InscriptionAction extends AbstractAction
 			userToSave.setName(userBean.getName());
 			userToSave.setEmail(userBean.getEmail());
 			userToSave.setPassword(userBean.getPassword());
-			userToSave.setIdGroupe(1);
+			//userToSave.setIdGroupe(1);
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.addUser(userToSave);
 			
@@ -41,6 +48,14 @@ public class InscriptionAction extends AbstractAction
 		return forward;
 	}
 
+	@SkipValidation 
+	public String openInscriptionForm()
+	{
+		forward=FORWARD_SUCCESS;
+		GroupDAO gdao = new GroupDAO();
+		arrayGroupName=gdao.getAllGroupName();
+		return forward;
+	}
 
 	/**
 	 * Méthode permetant la validation des champs 
@@ -70,6 +85,12 @@ public class InscriptionAction extends AbstractAction
 		{
 			addFieldError("error.password", getText("validator.mail.false"));
 		}
+
+		//test si la confirmation est correcte
+		if(!userBean.getPassword().equals(userBean.getConfirmPassword()))
+		{
+			addFieldError("error.confirmpassword", getText("validator.mail.false"));
+		}
 	}
 
 
@@ -88,4 +109,13 @@ public class InscriptionAction extends AbstractAction
 		this.userBean = userBean;
 	}
 
+	public List<String> getArrayGroupName() 
+	{
+		return arrayGroupName;
+	}
+
+	public void setArrayGroupName(List<String> arrayGroupName) 
+	{
+		this.arrayGroupName = arrayGroupName;
+	}
 }
