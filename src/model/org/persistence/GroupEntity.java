@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="group")
+@Table(name="group_user")
 @NamedQueries
 ({
 	//définition de requêtes
