@@ -38,22 +38,19 @@ public class UserEntity implements Serializable
 	private String email;
 	@Column(name="password")
 	private String password;
-	@Column(name="id_group_user")
-	private long idGroupe;
-//	  @ManyToOne
-//	  @JoinColumn(name="id_group_user")
-//	private GroupEntity groupe;
+	@ManyToOne
+	@JoinColumn(name="id_group_user")
+	private GroupEntity groupe;
 
 
 
-	public UserEntity(String firstName, String name, String email,	String password, long idGroupe) 
+	public UserEntity(String firstName, String name, String email,	String password) 
 	{
 		super();
 		this.firstName = firstName;
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.idGroupe = idGroupe;
 	}
 	
 	
@@ -91,16 +88,6 @@ public class UserEntity implements Serializable
 		this.password = password;
 	}
 
-	public long getIdGroupe() 
-	{
-		return idGroupe;
-	}
-
-	public void setIdGroupe(long idGroupe) 
-	{
-		this.idGroupe = idGroupe;
-	}
-
 	public String getName() 
 	{
 		return name;
@@ -119,5 +106,17 @@ public class UserEntity implements Serializable
 	public void setFirstName(String firstName) 
 	{
 		this.firstName = firstName;
+	}
+
+
+	public GroupEntity getGroupe()
+	{
+		return groupe;
+	}
+
+
+	public void setGroupe(GroupEntity groupe)
+	{
+		this.groupe = groupe;
 	}
 }
