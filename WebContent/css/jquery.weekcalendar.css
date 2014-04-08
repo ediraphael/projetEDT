@@ -240,8 +240,12 @@ table.wc-time-slots {
     cursor: move;
 }
 
-.wc-cal-event .wc-title {
+.wc-cal-event .wc-title, .wc-cal-event .wc-comment {
     position: relative;
+}
+
+.wc-cal-event .wc-comment {
+	color : #333333;
 }
 
 .wc-container .ui-resizable-s {
