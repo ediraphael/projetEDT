@@ -32,7 +32,7 @@ public class UserDAOTest
 	@Test
 	public void testGetUserByEmailAndPwd() 
 	{
-		UserEntity u= udao.getUserByEmailAndPwd("micka@gmail.com", "test");
+		UserEntity u= udao.getUserByEmailAndPwd("noname@univ-angers.fr", "noname");
 		u.getEmail();
 	}
 	
