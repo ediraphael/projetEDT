@@ -30,6 +30,10 @@ public class UserEntity implements Serializable
 	@Id
 	@Column(name="id_user")
 	private long id;
+	@Column(name="first_name")
+	private String firstName;
+	@Column(name="name")
+	private String name;
 	@Column(name="email")
 	private String email;
 	@Column(name="password")
@@ -41,6 +45,17 @@ public class UserEntity implements Serializable
 //	private GroupEntity groupe;
 
 
+
+	public UserEntity(String firstName, String name, String email,	String password, long idGroupe) 
+	{
+		super();
+		this.firstName = firstName;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.idGroupe = idGroupe;
+	}
+	
 	
 	/**
 	 * Getters et setters de cette entité user
@@ -86,4 +101,23 @@ public class UserEntity implements Serializable
 		this.idGroupe = idGroupe;
 	}
 
+	public String getName() 
+	{
+		return name;
+	}
+
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+
+	public String getFirstName() 
+	{
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) 
+	{
+		this.firstName = firstName;
+	}
 }

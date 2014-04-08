@@ -8,6 +8,10 @@
 <h2>Struts 2 - Inscription </h2>
 <s:actionerror />
 <s:form action="InscriptionAction" method="post">
+	<s:textfield name="userBean.firstName" key="label.firstname" size="20" />
+	<s:fielderror theme="simple" fieldName="error.name"/>
+	<s:textfield name="userBean.name" key="label.name" size="20" />
+	<s:fielderror theme="simple" fieldName="error.name"/>
 	<s:textfield name="userBean.email" key="label.email" size="20" />
 	<s:fielderror theme="simple" fieldName="error.email"/>
 	<s:password name="userBean.password" key="label.password" size="20" />

@@ -27,13 +27,10 @@ public class UserDAO
 	 * @param email
 	 * @param password
 	 */
-	public void addUser(String email, String password, long idGroupe)
+	public void addUser(UserEntity user)
 	{
 		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		UserEntity user = new UserEntity();
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setIdGroupe(idGroupe);
+		
 		try 
 		{
 			getEntityManager().getTransaction().begin();
