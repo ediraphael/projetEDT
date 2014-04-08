@@ -1,8 +1,5 @@
 package actions.inscription;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import model.dao.UserDAO;
 
 import actions.abstractAction.AbstractAction;
@@ -62,12 +59,7 @@ public class InscriptionAction extends AbstractAction
 		}
 	}
 
-	private boolean emailValidator(String email) 
-	{
-		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
-	}
+
 
 	/**
 	 * Getters and setters

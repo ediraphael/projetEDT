@@ -34,8 +34,11 @@ public class UserEntity implements Serializable
 	private String email;
 	@Column(name="password")
 	private String password;
-	@Column(name="id_group")
+	@Column(name="id_group_user")
 	private long idGroupe;
+//	  @ManyToOne
+//	  @JoinColumn(name="id_group_user")
+//	private GroupEntity groupe;
 
 
 	

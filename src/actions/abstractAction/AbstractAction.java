@@ -1,9 +1,10 @@
 package actions.abstractAction;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.struts2.interceptor.SessionAware;
-
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -35,6 +36,12 @@ public class AbstractAction extends ActionSupport implements SessionAware
 
 	}
 	
+	protected boolean emailValidator(String email) 
+	{
+		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
+	}
 	
 	@Override
 	public void setSession(Map<String, Object> session) 
