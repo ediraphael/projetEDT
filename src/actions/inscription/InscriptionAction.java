@@ -1,6 +1,5 @@
 package actions.inscription;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.struts2.interceptor.validation.SkipValidation;
@@ -19,7 +18,7 @@ public class InscriptionAction extends AbstractAction
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
 	
-	private List<String> toto;
+	private List<String> arrayGroupName;
 	
 	
 	/**
@@ -54,10 +53,7 @@ public class InscriptionAction extends AbstractAction
 	{
 		forward=FORWARD_SUCCESS;
 		GroupDAO gdao = new GroupDAO();
-		//toto=gdao.getAllGroup();
-		toto =new ArrayList<String>();
-		toto.add("toto");
-		toto.add("tutu");
+		arrayGroupName=gdao.getAllGroupName();
 		return forward;
 	}
 
@@ -112,18 +108,14 @@ public class InscriptionAction extends AbstractAction
 	{
 		this.userBean = userBean;
 	}
-	
-	public List<String> getToto() 
+
+	public List<String> getArrayGroupName() 
 	{
-		return toto;
+		return arrayGroupName;
 	}
 
-	public void setToto(List<String> toto) 
+	public void setArrayGroupName(List<String> arrayGroupName) 
 	{
-		this.toto = toto;
+		this.arrayGroupName = arrayGroupName;
 	}
-
-
-
-
 }

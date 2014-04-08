@@ -10,7 +10,7 @@ import javax.persistence.*;
 ({
 	//définition de requêtes
 	@NamedQuery(name = "GroupEntity.findAll", query = "Select g From GroupEntity g"),
-	@NamedQuery(name = "GroupEntity.findAllName", query = "Select g.name From GroupEntity g"),
+	@NamedQuery(name = "GroupEntity.findAllName", query = "Select g.name From GroupEntity g order by g.name"),
 	@NamedQuery(name = "GroupEntity.findById", query= "Select g FROM GroupEntity g WHERE g.id = :id"),
 	@NamedQuery(name = "GroupEntity.findByName", query= "Select g FROM GroupEntity g WHERE g.name = :name")
 })
