@@ -14,7 +14,6 @@
 	var year = new Date().getFullYear();
 	var month = new Date().getMonth();
 	var day = new Date().getDate();
-	
 	var eventData = {
 	  events : [
 	    {'id':1, 'start': new Date(year, month, day, 12), 'end': new Date(year, month, day, 13, 35),'title':'Lunch with Mike'},
