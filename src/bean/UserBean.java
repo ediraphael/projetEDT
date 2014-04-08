@@ -7,7 +7,8 @@ public class UserBean
 	private String name;
 	private String email;
 	private String password;
-	private long idGroupe;
+	private String confirmPassword;
+	private String idGroupe;
 
 	public String getEmail() 
 	{
@@ -28,17 +29,7 @@ public class UserBean
 	{
 		this.password = password;
 	}
-
-	public long getIdGroupe() 
-	{
-		return idGroupe;
-	}
-
-	public void setIdGroupe(long idGroupe) 
-	{
-		this.idGroupe = idGroupe;
-	}
-
+	
 	public String getName() 
 	{
 		return name;
@@ -57,5 +48,25 @@ public class UserBean
 	public void setFirstName(String firstName) 
 	{
 		this.firstName = firstName;
+	}
+
+	public String getConfirmPassword() 
+	{
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) 
+	{
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getIdGroupe() 
+	{
+		return idGroupe;
+	}
+
+	public void setIdGroupe(String idGroupe) 
+	{
+		this.idGroupe = idGroupe;
 	}
 }

@@ -1,5 +1,10 @@
 package actions.inscription;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
@@ -12,6 +17,8 @@ public class InscriptionAction extends AbstractAction
 	private String forward;
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
+	
+	private List<String> toto;
 	
 	
 	/**
@@ -28,7 +35,7 @@ public class InscriptionAction extends AbstractAction
 			userToSave.setName(userBean.getName());
 			userToSave.setEmail(userBean.getEmail());
 			userToSave.setPassword(userBean.getPassword());
-			userToSave.setIdGroupe(1);
+			//userToSave.setIdGroupe(1);
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.addUser(userToSave);
 			
@@ -41,6 +48,15 @@ public class InscriptionAction extends AbstractAction
 		return forward;
 	}
 
+	@SkipValidation 
+	public String openInscriptionForm()
+	{
+		forward=FORWARD_SUCCESS;
+		toto =new ArrayList<String>();
+		toto.add("toto");
+		toto.add("tutu");
+		return forward;
+	}
 
 	/**
 	 * Méthode permetant la validation des champs 
@@ -70,6 +86,12 @@ public class InscriptionAction extends AbstractAction
 		{
 			addFieldError("error.password", getText("validator.mail.false"));
 		}
+
+		//test si la confirmation est correcte
+		if(!userBean.getPassword().equals(userBean.getConfirmPassword()))
+		{
+			addFieldError("error.confirmpassword", getText("validator.mail.false"));
+		}
 	}
 
 
@@ -87,5 +109,18 @@ public class InscriptionAction extends AbstractAction
 	{
 		this.userBean = userBean;
 	}
+	
+	public List<String> getToto() 
+	{
+		return toto;
+	}
+
+	public void setToto(List<String> toto) 
+	{
+		this.toto = toto;
+	}
+
+
+
 
 }
