@@ -3,11 +3,8 @@ package actions.group;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.ClassroomDAO;
 import model.dao.GroupDAO;
-import model.org.persistence.ClassroomEntity;
 import model.org.persistence.GroupEntity;
-import bean.ClassroomBean;
 import bean.GroupBean;
 import actions.abstractAction.AbstractAction;
 
@@ -20,6 +17,7 @@ public class GroupAction extends AbstractAction{
 
 	//bean de formulaire permettant le transfere des informations
 	private GroupBean groupBean;
+	private long id;
 	GroupDAO groupDAO = new GroupDAO();
 	private ArrayList<GroupBean> listGroupBean;
 	/**
@@ -53,6 +51,7 @@ public class GroupAction extends AbstractAction{
 			for (GroupEntity groupEntity : listGroupEntity)
 			{
 				GroupBean groupBean = new GroupBean();
+				groupBean.setId(groupEntity.getId());
 				groupBean.setName(groupEntity.getName());
 				listGroupBean.add(groupBean);
 			}
@@ -63,7 +62,22 @@ public class GroupAction extends AbstractAction{
 		return forward;
 	}
 	
-	
+	public String deleteGroup()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		try
+		{
+			GroupEntity groupEntity = groupDAO.getGroup(id);
+			groupDAO.removeGroup(groupEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+
 	public GroupBean getGroupBean() {
 		return groupBean;
 	}
@@ -88,5 +102,11 @@ public class GroupAction extends AbstractAction{
 		this.listGroupBean = listGroupBean;
 	}
 
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 }

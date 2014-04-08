@@ -75,7 +75,7 @@
 	</action>
 	
 	<action name="GroupNew" class="actions.group.GroupAction" method="execute">
-		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
+		<result name="SUCCESS" type="redirectAction">GroupShow</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
@@ -84,6 +84,10 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
+	<action name="GroupDelete" class="actions.group.GroupAction" method="deleteGroup">
+		<result name="SUCCESS" type="redirectAction">GroupShow</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
    </package>
    
    <constant name="struts.action.excludePattern" value="/_ah/.*"/> 

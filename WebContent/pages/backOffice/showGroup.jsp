@@ -9,11 +9,20 @@
 <body>
 <table>
 		<tr>
+			<th>Id</th>
 			<th>Nom</th>
+			<th>Delete</th>
 		</tr>
 	<s:iterator value="listGroupBean" id="group">
 		<tr>
+			<td><s:property value="id"/></td>
 			<td><s:property value="name"/></td>
+			<td>
+				<s:url id="url" action="GroupDelete">
+					<s:param name="id"><s:property value="id"/></s:param>
+			    </s:url>
+			    <s:a href="%{url}"><s:property value="getText('action.delete')"/></s:a>
+		    </td>
 		</tr>
 	</s:iterator>
 	</table>

@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import model.org.persistence.ClassroomEntity;
 import model.org.persistence.GroupEntity;
 
 public class GroupDAO {
@@ -66,5 +65,33 @@ public class GroupDAO {
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		}
 		return em;
+	}
+
+	public GroupEntity getGroup(long id) {
+		GroupEntity groupEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query query = em.createNamedQuery("GroupEntity.findById").setParameter("id", id);
+			groupEntity = query.getResultList() != null ? (GroupEntity) query.getResultList().get(0) : null;
+		} finally
+		{
+			em.close();
+		}
+		return groupEntity;
+	}
+
+	public void removeGroup(GroupEntity groupEntity) {
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			groupEntity = em.merge(groupEntity);
+			em.remove(groupEntity);
+			em.getTransaction().commit();
+		} finally 
+		{
+			em.close();
+		}
 	}
 }
