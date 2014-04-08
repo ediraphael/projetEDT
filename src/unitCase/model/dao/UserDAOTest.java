@@ -23,7 +23,8 @@ public class UserDAOTest
 	@Test
 	public void testAddUser() 
 	{
-		udao.addUser("micka@gmail.com", "test",1);
+		UserEntity u = new UserEntity("micka@gmail.com", "test", "micka", "FARDILHA",1) ;
+		udao.addUser(u);
 	}
 	
 	/**

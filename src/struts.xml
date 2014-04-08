@@ -15,6 +15,9 @@
 	<action name="Inscription">
 		<result>pages/frontOffice/inscription.jsp</result>
 	</action>
+	<action name="Login">
+		<result>pages/frontOffice/login.jsp</result>
+	</action>
 
 	
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">

@@ -1,7 +1,7 @@
 package actions.inscription;
 
 import model.dao.UserDAO;
-
+import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
@@ -23,8 +23,14 @@ public class InscriptionAction extends AbstractAction
 		UserDAO udao = new UserDAO();
 		try
 		{
+			UserEntity userToSave = new UserEntity();
+			userToSave.setFirstName(userBean.getFirstName());
+			userToSave.setName(userBean.getName());
+			userToSave.setEmail(userBean.getEmail());
+			userToSave.setPassword(userBean.getPassword());
+			userToSave.setIdGroupe(1);
 			//Sauvegarde du user renseigné dans le formulaire
-			udao.addUser(userBean.getEmail(), userBean.getPassword(), 1);
+			udao.addUser(userToSave);
 			
 			session.put("user", userBean);
 		}
@@ -41,18 +47,25 @@ public class InscriptionAction extends AbstractAction
 	 */
 	public void validate()
 	{
+		//test si le nom est renseigné
+		if("".equals(userBean.getName()))
+		{
+			addFieldError("error.name", getText("validator.field.empty"));
+		}
+		
 		//test si le mail est renseigné
 		if("".equals(userBean.getEmail()))
 		{
 			addFieldError("error.email", getText("validator.field.empty"));
 		}
 		
-		//test si le user est renseigné
+		//test si le password est renseigné
 		if("".equals(userBean.getPassword()))
 		{
 			addFieldError("error.password", getText("validator.field.empty"));
 		}
 		
+		//test si l'email est correctement renseigné
 		if(!emailValidator(userBean.getEmail()))
 		{
 			addFieldError("error.password", getText("validator.mail.false"));
