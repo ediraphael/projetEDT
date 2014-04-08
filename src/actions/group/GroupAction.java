@@ -24,8 +24,9 @@ public class GroupAction extends AbstractAction{
 		forward = FORWARD_SUCCESS;
 		try
 		{
+			System.out.println("toto : " + groupBean.toString());
 			//Sauvegarde du user renseigné dans le formulaire
-			groupDAO.addGroup(groupBean.getName());;
+			groupDAO.addGroup(groupBean.getName());
 
 			session.put("group", groupBean);
 		}
@@ -34,6 +35,22 @@ public class GroupAction extends AbstractAction{
 			forward = FORWARD_ERROR;
 		}
 		return forward;
+	}
+
+	public GroupBean getGroupBean() {
+		return groupBean;
+	}
+
+	public void setGroupBean(GroupBean groupBean) {
+		this.groupBean = groupBean;
+	}
+
+	public GroupDAO getGroupDAO() {
+		return groupDAO;
+	}
+
+	public void setGroupDAO(GroupDAO groupDAO) {
+		this.groupDAO = groupDAO;
 	}
 
 
