@@ -38,6 +38,21 @@ public class GroupDAO {
 		}
 	}
 	
+	public GroupEntity getGroupByName(String name)
+	{
+		GroupEntity groupEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("GroupEntity.findByName").setParameter("name", name);
+			groupEntity = q.getResultList() != null ? (GroupEntity) q.getResultList().get(0) : null;
+		} finally
+		{
+			em.close();
+		}
+		return groupEntity;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<GroupEntity> getAllGroup()
 	{
@@ -70,20 +85,9 @@ public class GroupDAO {
 		return listGroupName;
 	}
 	
-	/**
-	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
-	 * @return
-	 */
-	protected EntityManager getEntityManager() 
-	{
-		if (em == null) 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		}
-		return em;
-	}
 
-	public GroupEntity getGroup(long id) {
+	public GroupEntity getGroup(long id) 
+	{
 		GroupEntity groupEntity;
 		try
 		{
@@ -97,7 +101,8 @@ public class GroupDAO {
 		return groupEntity;
 	}
 
-	public void removeGroup(GroupEntity groupEntity) {
+	public void removeGroup(GroupEntity groupEntity) 
+	{
 		try 
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
@@ -109,5 +114,19 @@ public class GroupDAO {
 		{
 			em.close();
 		}
+	}
+	
+	
+	/**
+	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
+	 * @return
+	 */
+	protected EntityManager getEntityManager() 
+	{
+		if (em == null) 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+		}
+		return em;
 	}
 }

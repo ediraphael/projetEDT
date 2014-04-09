@@ -1,15 +1,27 @@
 package bean;
 
-
+/**
+ * Bean User
+ * @author mickael
+ *
+ */
 public class UserBean
 {
+	/**
+	 * champs du formulaire
+	 */
 	private String firstName;
 	private String name;
 	private String email;
 	private String password;
 	private String confirmPassword;
-	private String idGroupe;
+	private String nameGroup;
+	private String passwordTeacher;
 
+	/**
+	 * Getters and Setters
+	 * @return
+	 */
 	public String getEmail() 
 	{
 		return email;
@@ -60,13 +72,23 @@ public class UserBean
 		this.confirmPassword = confirmPassword;
 	}
 
-	public String getIdGroupe() 
+	public String getNameGroup() 
 	{
-		return idGroupe;
+		return nameGroup;
 	}
 
-	public void setIdGroupe(String idGroupe) 
+	public void setNameGroup(String nameGroup) 
 	{
-		this.idGroupe = idGroupe;
+		this.nameGroup = nameGroup;
+	}
+
+	public String getPasswordTeacher()
+	{
+		return passwordTeacher;
+	}
+
+	public void setPasswordTeacher(String passwordTeacher)
+	{
+		this.passwordTeacher = passwordTeacher;
 	}
 }

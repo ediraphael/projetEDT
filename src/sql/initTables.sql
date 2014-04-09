@@ -55,7 +55,8 @@ DROP TABLE IF EXISTS `group_user`;
 CREATE TABLE IF NOT EXISTS `group_user` (
   `id_group_user` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
-  PRIMARY KEY (`id_group_user`)
+  PRIMARY KEY (`id_group_user`),
+  UNIQUE (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -76,16 +77,16 @@ INSERT INTO `group_user` (`id_group_user`, `name`) VALUES
 
 DROP TABLE IF EXISTS `passwordTeacher`;
 CREATE TABLE IF NOT EXISTS `passwordTeacher` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_password_teacher` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_password_teacher`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `passwordTeacher`
 --
 
-INSERT INTO `passwordTeacher` (`id`, `password`) VALUES
+INSERT INTO `passwordTeacher` (`id_password_teacher`, `password`) VALUES
 (1, 'passTeach');
 
 -- --------------------------------------------------------
@@ -160,7 +161,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(256) NOT NULL,
   `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `id_group_user` (`id_group_user`)
+  KEY `id_group_user` (`id_group_user`),
+  UNIQUE (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --

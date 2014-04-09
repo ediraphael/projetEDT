@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import model.dao.GroupDAO;
+import model.dao.PasswordTeacherDAO;
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
@@ -18,7 +19,15 @@ public class InscriptionAction extends AbstractAction
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
 	
+	//déclaration et initialisation des DAO
+	private GroupDAO gdao = new GroupDAO();
+	private UserDAO udao = new UserDAO();
+	private PasswordTeacherDAO pdao = new PasswordTeacherDAO();
+	
+	//list des noms des groupes pour l'affichage dans la liste déroulante
 	private List<String> arrayGroupName;
+	
+	private String pwdTeacher;
 	
 	
 	/**
@@ -27,15 +36,15 @@ public class InscriptionAction extends AbstractAction
 	public String execute()
 	{
 		forward=FORWARD_SUCCESS;
-		UserDAO udao = new UserDAO();
 		try
 		{
+			//On prépare l'enregistrement en reprenant les informations bean
 			UserEntity userToSave = new UserEntity();
 			userToSave.setFirstName(userBean.getFirstName());
 			userToSave.setName(userBean.getName());
 			userToSave.setEmail(userBean.getEmail());
 			userToSave.setPassword(userBean.getPassword());
-			//userToSave.setIdGroupe(1);
+			userToSave.setGroupe(gdao.getGroupByName(userBean.getNameGroup()));
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.addUser(userToSave);
 			
@@ -48,34 +57,38 @@ public class InscriptionAction extends AbstractAction
 		return forward;
 	}
 
+	/**
+	 * Méthode permettant de lancer la page d'inscription en initialisant la liste des groupes
+	 * @return
+	 */
 	@SkipValidation 
 	public String openInscriptionForm()
 	{
 		forward=FORWARD_SUCCESS;
-		GroupDAO gdao = new GroupDAO();
 		arrayGroupName=gdao.getAllGroupName();
+		pwdTeacher=pdao.getPasswordTeacher();
 		return forward;
 	}
 
 	/**
-	 * Méthode permetant la validation des champs 
+	 * Méthode permettant la validation des champs 
 	 */
 	public void validate()
 	{
 		//test si le nom est renseigné
-		if("".equals(userBean.getName()))
+		if(userBean.getName().isEmpty())
 		{
 			addFieldError("error.name", getText("validator.field.empty"));
 		}
 		
 		//test si le mail est renseigné
-		if("".equals(userBean.getEmail()))
+		if(userBean.getEmail().isEmpty())
 		{
 			addFieldError("error.email", getText("validator.field.empty"));
 		}
 		
 		//test si le password est renseigné
-		if("".equals(userBean.getPassword()))
+		if(userBean.getPassword().isEmpty())
 		{
 			addFieldError("error.password", getText("validator.field.empty"));
 		}
@@ -89,7 +102,21 @@ public class InscriptionAction extends AbstractAction
 		//test si la confirmation est correcte
 		if(!userBean.getPassword().equals(userBean.getConfirmPassword()))
 		{
-			addFieldError("error.confirmpassword", getText("validator.mail.false"));
+			addFieldError("error.confirmpassword", getText("validator.pwd.confirm"));
+		}
+		
+		//test si le groupe choisi est Enseignant, alors il faut le mot de passe d'inscription
+		if(GROUP_NAME_TEACHER.equals(userBean.getNameGroup()))
+		{
+			//pwdTeacher
+			if(userBean.getPasswordTeacher().isEmpty())
+			{
+				addFieldError("error.teacherpassword", getText("validator.field.empty"));
+			}
+			else if(!userBean.getPasswordTeacher().equals(pwdTeacher))
+			{
+				addFieldError("error.teacherpassword", getText("validator.pwd.false"));
+			}
 		}
 	}
 

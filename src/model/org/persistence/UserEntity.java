@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/**
+ * Entity correspondant à la table user
+ * @author mickael
+ *
+ */
 @Entity
 @Table(name = "user")
 @NamedQueries
@@ -16,15 +21,8 @@ import javax.persistence.*;
 })
 public class UserEntity implements Serializable 
 {
-
+	//Serialization
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Constructeur de la classe
-	 */
-	public UserEntity() 
-	{
-	}
 
 	//Définition des colonnes de la table 
 	@Id
@@ -42,8 +40,21 @@ public class UserEntity implements Serializable
 	@JoinColumn(name="id_group_user")
 	private GroupEntity groupe;
 
+	/**
+	 * Constructeur par defaut
+	 */
+	public UserEntity() 
+	{
+		super();
+	}
 
-
+	/**
+	 * Constructeur avec params
+	 * @param firstName
+	 * @param name
+	 * @param email
+	 * @param password
+	 */
 	public UserEntity(String firstName, String name, String email,	String password) 
 	{
 		super();
@@ -113,7 +124,6 @@ public class UserEntity implements Serializable
 	{
 		return groupe;
 	}
-
 
 	public void setGroupe(GroupEntity groupe)
 	{

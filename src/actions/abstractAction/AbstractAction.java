@@ -18,6 +18,8 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	protected Map<String, Object> session;
 	//pattern de vérification d'un email
 	protected static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	//nom du groupe enseignant 
+	protected static final String GROUP_NAME_TEACHER="Enseignant";
 	//valeurs de forward
 	protected static final String FORWARD_SUCCESS = "SUCCESS";
 	protected static final String FORWARD_ERROR = "ERROR";
@@ -36,6 +38,11 @@ public class AbstractAction extends ActionSupport implements SessionAware
 
 	}
 	
+	/**
+	 * Permet de valider un email selon la regex officiel
+	 * @param email
+	 * @return
+	 */
 	protected boolean emailValidator(String email) 
 	{
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -43,6 +50,10 @@ public class AbstractAction extends ActionSupport implements SessionAware
 		return matcher.matches();
 	}
 	
+	
+	/**
+	 * Objet de session
+	 */
 	@Override
 	public void setSession(Map<String, Object> session) 
 	{
