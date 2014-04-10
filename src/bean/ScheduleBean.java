@@ -10,7 +10,7 @@ public class ScheduleBean {
 	private String name;
 	private String comment;
 	private String nameUserTeacher;
-	private long idSubject;
+	private String nameSubject;
 	private String nameClassroom;
 	private String nameGroup;
 	
@@ -50,11 +50,11 @@ public class ScheduleBean {
 	public void setNameUserTeacher(String nameUserTeacher) {
 		this.nameUserTeacher = nameUserTeacher;
 	}
-	public long getIdSubject() {
-		return idSubject;
+	public String getNameSubject() {
+		return nameSubject;
 	}
-	public void setIdSubject(long idSubject) {
-		this.idSubject = idSubject;
+	public void setSubject(String nameSubject) {
+		this.nameSubject = nameSubject;
 	}
 	public String getNameClassroom() {
 		return nameClassroom;

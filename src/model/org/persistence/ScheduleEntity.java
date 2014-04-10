@@ -49,8 +49,9 @@ public class ScheduleEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_user_teacher")
 	private UserEntity userTeacher;
-	@Column(name="id_subject")
-	private long idSubject;
+	@ManyToOne
+	@JoinColumn(name="id_subject")
+	private SubjectEntity subject;
 	@ManyToOne
 	@JoinColumn(name="id_classroom")
 	private ClassroomEntity classroom;
@@ -97,11 +98,11 @@ public class ScheduleEntity implements Serializable {
 	public void setUserTeacher(UserEntity userTeacher) {
 		this.userTeacher = userTeacher;
 	}
-	public long getIdSubject() {
-		return idSubject;
+	public SubjectEntity getSubject() {
+		return subject;
 	}
-	public void setIdSubject(long idSubject) {
-		this.idSubject = idSubject;
+	public void setSubject(SubjectEntity subject) {
+		this.subject = subject;
 	}
 	public ClassroomEntity getClassroom() {
 		return classroom;
