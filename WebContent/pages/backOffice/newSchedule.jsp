@@ -19,7 +19,8 @@
 		<s:fielderror theme="simple" fieldName="error.group"/>
 		<s:select name="scheduleBean.nameClassroom" label="Classroom" list="arrayClassroomName" />
 		<s:fielderror theme="simple" fieldName="error.classroom"/>
-
+		<s:select name="scheduleBean.nameUserTeacher" label="UserTeacher" list="arrayUserTeacherName" />
+		<s:fielderror theme="simple" fieldName="error.userTeacher"/>
 		<s:fielderror theme="simple" fieldName="error.confirmpassword"/>
 		<s:submit method="execute" key="label.valide" align="center" />
 	</s:form>

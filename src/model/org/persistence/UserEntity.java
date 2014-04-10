@@ -19,7 +19,7 @@ import javax.persistence.*;
     @NamedQuery(name = "UserEntity.findByName", query = "SELECT u FROM UserEntity u WHERE u.name = :name"),
     @NamedQuery(name = "UserEntity.findByEmail", query = "SELECT u FROM UserEntity u WHERE u.email = :email"),
     @NamedQuery(name = "UserEntity.findByEmailAndPwd", query = "SELECT u FROM UserEntity u WHERE u.email = :email and u.password = :pwd"),
-    @NamedQuery(name = "UserEntity.findAllByGroup", query = "SELECT u FROM UserEntity u WHERE u.groupe = :group")
+    @NamedQuery(name = "UserEntity.findAllNameByGroup", query = "SELECT u.name FROM UserEntity u WHERE u.groupe = :group")
 })
 public class UserEntity implements Serializable 
 {

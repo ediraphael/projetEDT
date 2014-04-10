@@ -97,7 +97,7 @@ public class UserDAO
 		try 
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q=getEntityManager().createNamedQuery("UserEntity.findAllByGroup")
+			Query q=getEntityManager().createNamedQuery("UserEntity.findAllNameByGroup")
 					.setParameter("group", group);
 			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList() : null ;
 		} finally 
