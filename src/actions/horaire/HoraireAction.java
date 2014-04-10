@@ -139,6 +139,7 @@ public class HoraireAction extends AbstractAction
 	{
 		forward=FORWARD_SUCCESS;
 		this.arrayGroupName=this.groupDao.getAllGroupName();
+		this.arrayClassroomName=this.classroomDao.getAllClassroomName();
 		return forward;
 	}
 
