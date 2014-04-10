@@ -47,7 +47,7 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			scheduleEntity.setNameUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
+			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getNameUserTeacher()));
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
@@ -74,7 +74,7 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			scheduleEntity.setNameUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
+			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getNameUserTeacher()));
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
@@ -143,7 +143,7 @@ public class HoraireAction extends AbstractAction
 		forward=FORWARD_SUCCESS;
 		this.arrayGroupName=this.groupDao.getAllGroupName();
 		this.arrayClassroomName=this.classroomDao.getAllClassroomName();
-		//this.arrayUserTeacherName
+		//this.arrayUserTeacherName=this.userDao.get
 		return forward;
 	}
 
