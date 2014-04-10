@@ -9,8 +9,8 @@ public class ScheduleBean {
 	private Date dayEnd;
 	private String name;
 	private String comment;
-	private long idUserTeacher;
-	private long idSubject;
+	private String nameUserTeacher;
+	private String nameSubject;
 	private String nameClassroom;
 	private String nameGroup;
 	
@@ -44,22 +44,22 @@ public class ScheduleBean {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public long getIdUserTeacher() {
-		return idUserTeacher;
+	public String getNameUserTeacher() {
+		return nameUserTeacher;
 	}
-	public void setIdUserTeacher(long idUserTeacher) {
-		this.idUserTeacher = idUserTeacher;
+	public void setNameUserTeacher(String nameUserTeacher) {
+		this.nameUserTeacher = nameUserTeacher;
 	}
-	public long getIdSubject() {
-		return idSubject;
+	public String getNameSubject() {
+		return nameSubject;
 	}
-	public void setIdSubject(long idSubject) {
-		this.idSubject = idSubject;
+	public void setSubject(String nameSubject) {
+		this.nameSubject = nameSubject;
 	}
 	public String getNameClassroom() {
 		return nameClassroom;
 	}
-	public void setIdClassroom(String nameClassroom) {
+	public void setClassroom(String nameClassroom) {
 		this.nameClassroom = nameClassroom;
 	}
 	public String getNameGroup() {

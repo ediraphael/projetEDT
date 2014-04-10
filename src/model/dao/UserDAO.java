@@ -1,10 +1,13 @@
 package model.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.org.persistence.GroupEntity;
 import model.org.persistence.UserEntity;
 
 /**
@@ -64,6 +67,44 @@ public class UserDAO
 			getEntityManager().close();
 		}
 		return user;
+	}
+	
+	/**
+	 * Methode permetant de récupérer un user avec son nom 
+	 * @param name
+	 */
+	public UserEntity getUserByName(String name)
+	{
+		UserEntity user = new UserEntity();
+		user.setName(name);
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q=getEntityManager().createNamedQuery("UserEntity.findByName")
+					.setParameter("name", name);
+			user= q.getResultList()!= null ? (UserEntity) q.getResultList().get(0) : null ;
+		} finally 
+		{
+			getEntityManager().close();
+		}
+		return user;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getAllUserNameByGroup(GroupEntity group)
+	{
+		List<String> listGroupName;
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q=getEntityManager().createNamedQuery("UserEntity.findAllNameByGroup")
+					.setParameter("group", group);
+			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList() : null ;
+		} finally 
+		{
+			getEntityManager().close();
+		}
+		return listGroupName;
 	}
 	
 	

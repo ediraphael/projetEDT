@@ -19,6 +19,7 @@ import javax.persistence.Table;
 	//définition de requetes simple appelable dans le DAO
     @NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"),
     @NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"),
+    @NamedQuery(name = "ScheduleEntity.findAllTeacher", query = "SELECT u FROM ScheduleEntity u "),
 })
 public class ScheduleEntity implements Serializable {
 
@@ -45,10 +46,12 @@ public class ScheduleEntity implements Serializable {
 	private String name;
 	@Column(name="comment")
 	private String comment;
-	@Column(name="id_user_teacher")
-	private long idUserTeacher;
-	@Column(name="id_subject")
-	private long idSubject;
+	@ManyToOne
+	@JoinColumn(name="id_user_teacher")
+	private UserEntity userTeacher;
+	@ManyToOne
+	@JoinColumn(name="id_subject")
+	private SubjectEntity subject;
 	@ManyToOne
 	@JoinColumn(name="id_classroom")
 	private ClassroomEntity classroom;
@@ -89,22 +92,22 @@ public class ScheduleEntity implements Serializable {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public long getIdUserTeacher() {
-		return idUserTeacher;
+	public UserEntity getUserTeacher() {
+		return userTeacher;
 	}
-	public void setIdUserTeacher(long idUserTeacher) {
-		this.idUserTeacher = idUserTeacher;
+	public void setUserTeacher(UserEntity userTeacher) {
+		this.userTeacher = userTeacher;
 	}
-	public long getIdSubject() {
-		return idSubject;
+	public SubjectEntity getSubject() {
+		return subject;
 	}
-	public void setIdSubject(long idSubject) {
-		this.idSubject = idSubject;
+	public void setSubject(SubjectEntity subject) {
+		this.subject = subject;
 	}
 	public ClassroomEntity getClassroom() {
 		return classroom;
 	}
-	public void setIdClassroom(ClassroomEntity classroom) {
+	public void setClassroom(ClassroomEntity classroom) {
 		this.classroom = classroom;
 	}
 	public GroupEntity getGroup() {
