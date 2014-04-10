@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.org.persistence.ClassroomEntity;
+import model.org.persistence.GroupEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base Cette classe DAO
@@ -115,6 +116,21 @@ public class ClassroomDAO
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q = em.createNamedQuery("ClassroomEntity.findById").setParameter("id", id);
+			classroomEntity = q.getResultList() != null ? (ClassroomEntity) q.getResultList().get(0) : null;
+		} finally
+		{
+			em.close();
+		}
+		return classroomEntity;
+	}
+	
+	public ClassroomEntity getGroupByName(String name)
+	{
+		ClassroomEntity classroomEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("ClassroomEntity.findByName").setParameter("name", name);
 			classroomEntity = q.getResultList() != null ? (ClassroomEntity) q.getResultList().get(0) : null;
 		} finally
 		{
