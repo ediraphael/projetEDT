@@ -8,7 +8,17 @@
 </head>
 <body>
 	<h1>R&eacute;server un horaire</h1>
-	<s:form action="AjouterHoraire" method="post">
+	<s:form action="HoraireAction" method="post">
+		<s:textfield name="scheduleBean.dayStar" key="label.dayStart" size="20" />
+		<s:fielderror theme="simple" fieldName="error.dayStart"/>
+		<s:textfield name="scheduleBean.dayEnd" key="label.dayEnd" size="20" />
+		<s:fielderror theme="simple" fieldName="error.dayEnd"/>
+		<s:select name="scheduleBean.nameGroup" label="Group" list="arrayGroupName" />
+		<s:fielderror theme="simple" fieldName="error.group"/>
+		<s:textfield name="scheduleBean.comment" key="label.comment" size="20" />
+		<s:fielderror theme="simple" fieldName="error.comment"/>
+
+		<s:fielderror theme="simple" fieldName="error.confirmpassword"/>
 		<s:submit method="execute" key="label.valide" align="center" />
 	</s:form>
 </body>
