@@ -41,7 +41,7 @@ public class GroupAction extends AbstractAction{
 		return forward;
 	}
 
-	public String showGroups()
+	public String showGroup()
 	{
 		forward = FORWARD_SUCCESS;
 		listGroupBean = new ArrayList<GroupBean>();

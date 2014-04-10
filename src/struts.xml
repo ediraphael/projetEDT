@@ -6,39 +6,62 @@
 <struts>
  
   <package name="home" namespace="/"  extends="struts-default">
+
+
+ 	<!-- DEBUT ACTIONS SIMPLES -->
     <action name="">
 		<result>pages/frontOffice/index.jsp</result>
 	</action>
+
 	<action name="Index">
 		<result>pages/frontOffice/index.jsp</result>
 	</action>
+
 	<action name="Login">
 		<result>pages/frontOffice/login.jsp</result>
 	</action>
-
 	
-	<action name="Inscription" class="actions.inscription.InscriptionAction" method="openInscriptionForm">
+	<action name="Classroom">
+		<result>pages/backOffice/newClassroom.jsp</result>
+	</action>
+	
+	<action name="Group">
+		<result>pages/backOffice/newGroup.jsp</result>
+	</action>
+	<!-- FIN ACTIONS SIMPLES -->
+	
+	
+	<!-- DEBUT ACTION INSCRIPTION -->
+	<action name="InscriptionForm" class="actions.inscription.InscriptionAction" method="openInscriptionForm">
 		<result name="SUCCESS">pages/frontOffice/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
-	
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/administration.jsp</result>
 		<result name="input">pages/frontOffice/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
-
+	<!-- FIN ACTION INSCRIPTION -->
+	
+	
+	<!-- DEBUT ACTION LOGIN -->
 	<action name="LoginAction" class="actions.login.LoginAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/administration.jsp</result>
 		<result name="input">pages/frontOffice/login.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<!-- FIN ACTION LOGIN -->
 	
+	
+	<!-- DEBUT ACTION USER -->
 	<action name="ShowUser" class="actions.user.UserAction" method="showUser">
 		<result name="SUCCESS">pages/backOffice/showUser.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<!-- FIN ACTION USER -->
 	
+	
+	<!-- TODO EN FRANCAIS PLZZZ DEBUT ACTION SCHEDULE -->
 	<action name="Horaire" class="actions.horaire.HoraireAction" method="openHoraireForm">
 		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
@@ -49,11 +72,10 @@
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<!-- FIN ACTION SCHEDULE -->
 	
-	<action name="Classroom">
-		<result>pages/backOffice/newClassroom.jsp</result>
-	</action>
 	
+	<!-- DEBUT ACTION CLASSROOM -->
 	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
 		<result name="input">pages/backOffice/showClassroom.jsp</result>
@@ -65,41 +87,42 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="getClassroom" class="actions.classroom.ClassroomAction" method="getClassroom">
+	<action name="GetClassroom" class="actions.classroom.ClassroomAction" method="getClassroom">
 		<result name="SUCCESS">pages/backOffice/updateClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="ClassroomUpdate" class="actions.classroom.ClassroomAction" method="updateClassroom">
+	<action name="UpdateClassroom" class="actions.classroom.ClassroomAction" method="updateClassroom">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="input">pages/backOffice/updateClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="ClassroomDelete" class="actions.classroom.ClassroomAction" method="deleteClassroom">
+	<action name="DeleteClassroom" class="actions.classroom.ClassroomAction" method="deleteClassroom">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<!-- FIN ACTION CLASSROOM -->
 	
-	<action name="Group">
-		<result>pages/backOffice/newGroup.jsp</result>
-	</action>
 	
-	<action name="GroupNew" class="actions.group.GroupAction" method="execute">
+	<!-- DEBUT ACTION GROUPE -->
+	<action name="NewGroup" class="actions.group.GroupAction" method="execute">
 		<result name="SUCCESS" type="redirectAction">GroupShow</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="GroupShow" class="actions.group.GroupAction" method="showGroups">
+	<action name="ShowGroup" class="actions.group.GroupAction" method="showGroup">
 		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
-	<action name="GroupDelete" class="actions.group.GroupAction" method="deleteGroup">
+	<action name="DeleteGroup" class="actions.group.GroupAction" method="deleteGroup">
 		<result name="SUCCESS" type="redirectAction">GroupShow</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
    </package>
+   <!-- FIN ACTION CLASSROOM -->
+   
    
    <constant name="struts.action.excludePattern" value="/_ah/.*"/> 
    <constant name="struts.custom.i18n.resources" value="resources/package"/>
