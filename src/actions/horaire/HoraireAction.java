@@ -201,4 +201,14 @@ public class HoraireAction extends AbstractAction
 	{
 		this.arrayClassroomName = arrayClassroomName;
 	}
+	
+	public List<String> getArrayUserTeacherName() 
+	{
+		return arrayUserTeacherName;
+	}
+
+	public void setArrayUserTeacherName(List<String> arrayUserTeacherName) 
+	{
+		this.arrayUserTeacherName = arrayUserTeacherName;
+	}
 }
