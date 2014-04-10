@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.org.persistence.GroupEntity;
 import model.org.persistence.UserEntity;
 
 /**
@@ -90,15 +91,15 @@ public class UserDAO
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<String> getAllUserNameByGroup(long idGroupUser)
+	public List<String> getAllUserNameByGroup(GroupEntity group)
 	{
 		List<String> listGroupName;
 		try 
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q=getEntityManager().createNamedQuery("UserEntity.findAllByGroup")
-					.setParameter("idGroupUser", idGroupUser);
-			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList().get(0) : null ;
+					.setParameter("group", group);
+			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList() : null ;
 		} finally 
 		{
 			getEntityManager().close();
