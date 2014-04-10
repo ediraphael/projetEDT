@@ -1,6 +1,7 @@
 package bean;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ScheduleBean {
 
@@ -13,6 +14,10 @@ public class ScheduleBean {
 	private String nameSubject;
 	private String nameClassroom;
 	private String nameGroup;
+	private List<String> arrayGroupName;
+	private List<String> arrayClassroomName;
+	private List<String> arraySubjectName;
+	private List<String> arrayUserTeacher;
 	
 	public long getId() {
 		return id;
@@ -67,6 +72,46 @@ public class ScheduleBean {
 	}
 	public void setNameGroup(String nameGroup) {
 		this.nameGroup = nameGroup;
+	}
+	public List<String> getArrayGroupName()
+	{
+		return arrayGroupName;
+	}
+	public void setArrayGroupName(List<String> arrayGroupName)
+	{
+		this.arrayGroupName = arrayGroupName;
+	}
+	public void setNameSubject(String nameSubject)
+	{
+		this.nameSubject = nameSubject;
+	}
+	public void setNameClassroom(String nameClassroom)
+	{
+		this.nameClassroom = nameClassroom;
+	}
+	public List<String> getArrayClassroomName()
+	{
+		return arrayClassroomName;
+	}
+	public void setArrayClassroomName(List<String> arrayClassroomName)
+	{
+		this.arrayClassroomName = arrayClassroomName;
+	}
+	public List<String> getArraySubjectName()
+	{
+		return arraySubjectName;
+	}
+	public void setArraySubjectName(List<String> arraySubjectName)
+	{
+		this.arraySubjectName = arraySubjectName;
+	}
+	public List<String> getArrayUserTeacher()
+	{
+		return arrayUserTeacher;
+	}
+	public void setArrayUserTeacher(List<String> arrayUserTeacher)
+	{
+		this.arrayUserTeacher = arrayUserTeacher;
 	}
 	
 }

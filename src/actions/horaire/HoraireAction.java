@@ -160,6 +160,10 @@ public class HoraireAction extends AbstractAction
 		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
 		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
 		this.arraySubjectName = this.subjectDao.getAllSubject();
+		scheduleBean.setArrayGroupName(groupDao.getAllGroupName());
+		scheduleBean.setArrayClassroomName(classroomDao.getAllClassroomName());
+		scheduleBean.setArraySubjectName(subjectDao.getAllSubject());
+		scheduleBean.setArrayUserTeacher(userDao.getAllUserNameByGroup(groupDao.getGroupByName("Enseignant")));
 	}
 
 	/**
