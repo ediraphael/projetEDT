@@ -3,14 +3,12 @@ package model.dao;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import model.org.persistence.ClassroomEntity;
 import model.org.persistence.ScheduleEntity;
 
 /**

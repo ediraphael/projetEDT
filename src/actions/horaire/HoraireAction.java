@@ -3,14 +3,10 @@ package actions.horaire;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.ClassroomDAO;
 import model.dao.ScheduleDAO;
-import model.org.persistence.ClassroomEntity;
 import model.org.persistence.ScheduleEntity;
-
-import bean.ClassroomBean;
-import bean.ScheduleBean;
 import actions.abstractAction.AbstractAction;
+import bean.ScheduleBean;
 
 public class HoraireAction extends AbstractAction
 {
