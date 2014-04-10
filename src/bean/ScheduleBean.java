@@ -9,7 +9,7 @@ public class ScheduleBean {
 	private Date dayEnd;
 	private String name;
 	private String comment;
-	private long idUserTeacher;
+	private String nameUserTeacher;
 	private long idSubject;
 	private String nameClassroom;
 	private String nameGroup;
@@ -44,11 +44,11 @@ public class ScheduleBean {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public long getIdUserTeacher() {
-		return idUserTeacher;
+	public String getIdUserTeacher() {
+		return nameUserTeacher;
 	}
-	public void setIdUserTeacher(long idUserTeacher) {
-		this.idUserTeacher = idUserTeacher;
+	public void setIdUserTeacher(String nameUserTeacher) {
+		this.nameUserTeacher = nameUserTeacher;
 	}
 	public long getIdSubject() {
 		return idSubject;
