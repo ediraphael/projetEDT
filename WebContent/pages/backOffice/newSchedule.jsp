@@ -8,10 +8,10 @@
 </head>
 <body>
 	<h1>R&eacute;server un horaire</h1>
-	<s:form action="HoraireAction" method="post">
+	<s:form action="HoraireAjout" method="post">
 		<s:textfield name="scheduleBean.name" key="label.name" size="20" />
 		<s:fielderror theme="simple" fieldName="error.name"/>
-		<s:textfield name="scheduleBean.dayStar" key="label.dayStart" size="20" />
+		<s:textfield name="scheduleBean.dayStart" key="label.dayStart" size="20" />
 		<s:fielderror theme="simple" fieldName="error.dayStart"/>
 		<s:textfield name="scheduleBean.dayEnd" key="label.dayEnd" size="20" />
 		<s:fielderror theme="simple" fieldName="error.dayEnd"/>

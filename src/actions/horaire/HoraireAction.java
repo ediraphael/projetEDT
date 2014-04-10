@@ -153,6 +153,14 @@ public class HoraireAction extends AbstractAction
 		this.arraySubjectName = this.subjectDao.getAllSubject();
 		return forward;
 	}
+	
+	public void validate()
+	{
+		this.arrayGroupName = this.groupDao.getAllGroupName();
+		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
+		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
+		this.arraySubjectName = this.subjectDao.getAllSubject();
+	}
 
 	/**
 	 * Getters and setters

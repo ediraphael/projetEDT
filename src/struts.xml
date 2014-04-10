@@ -37,8 +37,10 @@
 		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
-	<action name="HoraireInscription" class="actions.horaire.HoraireAction">
-		
+	<action name="HoraireAjout" class="actions.horaire.HoraireAction" method="execute">
+		<result name="SUCCESS">pages/backOffice/administration.jsp</result>
+		<result name="input">pages/backOffice/newSchedule.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
 	<action name="Classroom">
