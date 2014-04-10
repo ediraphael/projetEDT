@@ -17,7 +17,8 @@ import javax.persistence.*;
 	@NamedQuery(name = "GroupEntity.findAll", query = "Select g From GroupEntity g"),
 	@NamedQuery(name = "GroupEntity.findAllName", query = "Select g.name From GroupEntity g order by g.name"),
 	@NamedQuery(name = "GroupEntity.findById", query= "Select g FROM GroupEntity g WHERE g.id = :id"),
-	@NamedQuery(name = "GroupEntity.findByName", query= "Select g FROM GroupEntity g WHERE g.name = :name")
+	@NamedQuery(name = "GroupEntity.findByName", query= "Select g FROM GroupEntity g WHERE g.name = :name"),
+	@NamedQuery(name = "GroupEntity.findAllByGroup", query= "Select g FROM GroupEntity g WHERE g.id_group_user = :idGroupUser")
 })
 public class GroupEntity implements Serializable
 {
