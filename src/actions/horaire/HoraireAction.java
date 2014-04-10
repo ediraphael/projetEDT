@@ -2,11 +2,14 @@ package actions.horaire;
 
 import java.util.ArrayList;
 
-import bean.ClassroomBean;
+import model.dao.ClassroomDAO;
+import model.dao.ScheduleDAO;
+
 import bean.ScheduleBean;
 import actions.abstractAction.AbstractAction;
 
-public class HoraireAction extends AbstractAction {
+public class HoraireAction extends AbstractAction
+{
 
 	/**
 	 * 
@@ -15,19 +18,21 @@ public class HoraireAction extends AbstractAction {
 	private long id;
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
-	
+
 	/**
 	 * Execution de l'ajout d'un horaire
 	 */
 	public String execute()
 	{
-		//Sauf si il y a erreur, le traitement est considéré comme étant un succès
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
 		forward = FORWARD_SUCCESS;
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		try
 		{
-
-		}
-		catch(Exception e)
+			// Sauvegarde du user renseigné dans le formulaire
+			scheduleDAO.addSchedule(scheduleBean.getDayStart(), scheduleBean.getDayEnd(), scheduleBean.getName(), scheduleBean.getComment(), scheduleBean.getIdUserTeacher(), scheduleBean.getIdSubject(), scheduleBean.getIdClassroom(), scheduleBean.getIdGroup());
+		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
 		}

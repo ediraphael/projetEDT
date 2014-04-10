@@ -1,12 +1,16 @@
 package model.dao;
 
+import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.org.persistence.ClassroomEntity;
 import model.org.persistence.ScheduleEntity;
 
 /**
@@ -24,6 +28,35 @@ public class ScheduleDAO
 	public ScheduleDAO() 
 	{
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Methode permetant de sauvegarder un horaire
+	 * 
+	 * @param name
+	 */
+	public void addSchedule(Date dayStart, Date dayEnd,String name,String comment,long idUserTeacher,long idSubject,long idClassroom,long idGroup)
+	{
+		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		ScheduleEntity schedule = new ScheduleEntity();
+		schedule.setDayStart(dayStart);
+		schedule.setDayEnd(dayEnd);
+		schedule.setName(name);
+		schedule.setComment(comment);
+		schedule.setIdUserTeacher(idUserTeacher);
+		schedule.setIdSubject(idSubject);
+		schedule.setIdClassroom(idClassroom);
+		schedule.setIdGroup(idGroup);
+		try
+		{
+			tx.begin();
+			em.persist(schedule);
+			tx.commit();
+		} finally
+		{
+			em.close();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
