@@ -3,10 +3,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
+<title><s:property value="getText('title.home')"/></title>
 </head>
 
 <body>
-<p>Bienvenue sur l'appli EDT avec Struts 2 =) </p>
+<h1><s:property value="getText('title.home')"/></h1>
 <s:property value="#session.user.email" />
 
 <a href="<s:url action='Login'/>"><s:property value="getText('label.login')"/></a>
