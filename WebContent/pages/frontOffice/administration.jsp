@@ -2,10 +2,10 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<title><s:property value="getText('title.login')"/></title>
+<title><s:property value="getText('title.admin')"/></title>
 </head>
 <body>
-<h1><s:property value="getText('title.login')"/></h1>
+<h1><s:property value="getText('title.admin')"/></h1>
 <s:actionerror />
 <s:form action="LoginAction" method="post">
 	<s:textfield name="userBean.email" key="label.email" size="20" />

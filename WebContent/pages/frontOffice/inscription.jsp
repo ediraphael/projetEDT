@@ -3,11 +3,11 @@
 <html>
 <head>
 <script type='text/javascript' src='./javascript/utils/form.js'></script>
-<title>Struts 2 - Inscription </title>
+<title><s:property value="getText('title.register')"/></title>
 </head>
 
 <body>
-<h2>Struts 2 - Inscription </h2>
+<h1><s:property value="getText('title.register')"/></h1>
 <s:actionerror />
 
 
