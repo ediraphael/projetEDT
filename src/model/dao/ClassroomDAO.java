@@ -123,7 +123,7 @@ public class ClassroomDAO
 		return classroomEntity;
 	}
 	
-	public ClassroomEntity getGroupByName(String name)
+	public ClassroomEntity getClassroomByName(String name)
 	{
 		ClassroomEntity classroomEntity;
 		try
