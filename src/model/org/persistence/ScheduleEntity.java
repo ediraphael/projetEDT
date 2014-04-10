@@ -106,7 +106,7 @@ public class ScheduleEntity implements Serializable {
 	public ClassroomEntity getClassroom() {
 		return classroom;
 	}
-	public void setIdClassroom(ClassroomEntity classroom) {
+	public void setClassroom(ClassroomEntity classroom) {
 		this.classroom = classroom;
 	}
 	public GroupEntity getGroup() {

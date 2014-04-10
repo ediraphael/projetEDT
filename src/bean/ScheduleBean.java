@@ -47,7 +47,7 @@ public class ScheduleBean {
 	public String getIdUserTeacher() {
 		return nameUserTeacher;
 	}
-	public void setIdUserTeacher(String nameUserTeacher) {
+	public void setUserTeacher(String nameUserTeacher) {
 		this.nameUserTeacher = nameUserTeacher;
 	}
 	public long getIdSubject() {
@@ -59,7 +59,7 @@ public class ScheduleBean {
 	public String getNameClassroom() {
 		return nameClassroom;
 	}
-	public void setIdClassroom(String nameClassroom) {
+	public void setClassroom(String nameClassroom) {
 		this.nameClassroom = nameClassroom;
 	}
 	public String getNameGroup() {

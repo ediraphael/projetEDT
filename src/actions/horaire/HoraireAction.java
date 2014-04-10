@@ -47,9 +47,9 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			//scheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
+			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
-			scheduleEntity.setIdClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
+			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
 			
 			scheduleDAO.addSchedule(scheduleEntity);
@@ -74,9 +74,9 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			//scheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
+			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
-			scheduleEntity.setIdClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
+			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
 			
 			scheduleDAO.updateSchedule(scheduleEntity);
@@ -120,9 +120,9 @@ public class HoraireAction extends AbstractAction
 				scheduleBean.setDayEnd(scheduleEntity.getDayEnd());
 				scheduleBean.setName(scheduleEntity.getName());
 				scheduleBean.setComment(scheduleEntity.getComment());
-				//scheduleBean.setIdUserTeacher(scheduleEntity.getIdUserTeacher());
+				scheduleBean.setUserTeacher(scheduleEntity.getUserTeacher().getName());
 				scheduleBean.setIdSubject(scheduleEntity.getIdSubject());
-				scheduleBean.setIdClassroom(scheduleEntity.getClassroom().getName());
+				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
 				this.listScheduleBean.add(scheduleBean);
 			}
