@@ -15,11 +15,11 @@
 		<s:fielderror theme="simple" fieldName="error.dayEnd"/>
 		<s:textfield name="scheduleBean.comment" key="label.comment" size="20" />
 		<s:fielderror theme="simple" fieldName="error.comment"/>
-		<s:select name="scheduleBean.nameGroup" label="Group" list="arrayGroupName" />
+		<s:select name="scheduleBean.nameGroup" key="label.group" list="arrayGroupName" />
 		<s:fielderror theme="simple" fieldName="error.group"/>
-		<s:select name="scheduleBean.nameClassroom" label="Classroom" list="arrayClassroomName" />
+		<s:select name="scheduleBean.nameClassroom" key="label.classroom" list="arrayClassroomName" />
 		<s:fielderror theme="simple" fieldName="error.classroom"/>
-		<s:select name="scheduleBean.nameUserTeacher" label="UserTeacher" list="arrayUserTeacherName" />
+		<s:select name="scheduleBean.nameUserTeacher" key="label.userTeacher" list="arrayUserTeacherName" />
 		<s:fielderror theme="simple" fieldName="error.userTeacher"/>
 		<s:fielderror theme="simple" fieldName="error.confirmpassword"/>
 		<s:submit method="execute" key="label.valide" align="center" />
