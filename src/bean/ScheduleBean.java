@@ -11,7 +11,7 @@ public class ScheduleBean {
 	private String comment;
 	private long idUserTeacher;
 	private long idSubject;
-	private long idClassroom;
+	private String nameClassroom;
 	private String nameGroup;
 	
 	public long getId() {
@@ -56,11 +56,11 @@ public class ScheduleBean {
 	public void setIdSubject(long idSubject) {
 		this.idSubject = idSubject;
 	}
-	public long getIdClassroom() {
-		return idClassroom;
+	public String getNameClassroom() {
+		return nameClassroom;
 	}
-	public void setIdClassroom(long idClassroom) {
-		this.idClassroom = idClassroom;
+	public void setIdClassroom(String nameClassroom) {
+		this.nameClassroom = nameClassroom;
 	}
 	public String getNameGroup() {
 		return nameGroup;
