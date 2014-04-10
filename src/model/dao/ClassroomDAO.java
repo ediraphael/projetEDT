@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.org.persistence.ClassroomEntity;
-import model.org.persistence.GroupEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base Cette classe DAO
