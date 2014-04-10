@@ -3,6 +3,8 @@ package actions.horaire;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.org.persistence.ScheduleEntity;
@@ -21,6 +23,7 @@ public class HoraireAction extends AbstractAction
 	private ArrayList<ScheduleBean> listScheduleBean;
 	//déclaration et initialisation des DAO
 	private GroupDAO groupDao = new GroupDAO();
+	private List<String> arrayGroupName;
 	/**
 	 * Execution de l'ajout d'un horaire
 	 */
@@ -123,6 +126,18 @@ public class HoraireAction extends AbstractAction
 		}
 		return forward;
 	}
+	
+	/**
+	 * Méthode permettant de lancer la page d'ajout d'horaire en initialisant la liste des groupes
+	 * @return
+	 */
+	@SkipValidation 
+	public String openHoraireForm()
+	{
+		forward=FORWARD_SUCCESS;
+		this.arrayGroupName=this.groupDao.getAllGroupName();
+		return forward;
+	}
 
 	/**
 	 * Getters and setters
@@ -157,5 +172,15 @@ public class HoraireAction extends AbstractAction
 	public void setId(long id)
 	{
 		this.id = id;
+	}
+	
+	public List<String> getArrayGroupName() 
+	{
+		return arrayGroupName;
+	}
+
+	public void setArrayGroupName(List<String> arrayGroupName) 
+	{
+		this.arrayGroupName = arrayGroupName;
 	}
 }
