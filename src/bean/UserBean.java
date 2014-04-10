@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 /**
  * Bean User
  * @author mickael
@@ -17,6 +19,19 @@ public class UserBean
 	private String confirmPassword;
 	private String nameGroup;
 	private String passwordTeacher;
+	private List<String> arrayGroupName;
+
+	public UserBean() 
+	{
+		super();
+		this.firstName="";
+		this.name="";
+		this.email="";
+		this.password="";
+		this.confirmPassword="";
+		this.nameGroup="";
+		this.passwordTeacher="";
+	}
 
 	/**
 	 * Getters and Setters
@@ -90,5 +105,15 @@ public class UserBean
 	public void setPasswordTeacher(String passwordTeacher)
 	{
 		this.passwordTeacher = passwordTeacher;
+	}
+
+	public List<String> getArrayGroupName() 
+	{
+		return arrayGroupName;
+	}
+
+	public void setArrayGroupName(List<String> arrayGroupName) 
+	{
+		this.arrayGroupName = arrayGroupName;
 	}
 }

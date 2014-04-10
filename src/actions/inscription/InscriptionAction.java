@@ -1,7 +1,5 @@
 package actions.inscription;
 
-import java.util.List;
-
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import model.dao.GroupDAO;
@@ -23,9 +21,6 @@ public class InscriptionAction extends AbstractAction
 	private GroupDAO gdao = new GroupDAO();
 	private UserDAO udao = new UserDAO();
 	private PasswordTeacherDAO pdao = new PasswordTeacherDAO();
-	
-	//list des noms des groupes pour l'affichage dans la liste déroulante
-	private List<String> arrayGroupName;
 	
 	private String pwdTeacher;
 	
@@ -65,7 +60,8 @@ public class InscriptionAction extends AbstractAction
 	public String openInscriptionForm()
 	{
 		forward=FORWARD_SUCCESS;
-		arrayGroupName=gdao.getAllGroupName();
+		userBean=new UserBean();
+		userBean.setArrayGroupName(gdao.getAllGroupName());
 		pwdTeacher=pdao.getPasswordTeacher();
 		return forward;
 	}
@@ -75,6 +71,12 @@ public class InscriptionAction extends AbstractAction
 	 */
 	public void validate()
 	{
+		//test si le prénom est renseigné
+		if(userBean.getFirstName().isEmpty())
+		{
+			addFieldError("error.firstName", getText("validator.field.empty"));
+		}
+		
 		//test si le nom est renseigné
 		if(userBean.getName().isEmpty())
 		{
@@ -108,7 +110,6 @@ public class InscriptionAction extends AbstractAction
 		//test si le groupe choisi est Enseignant, alors il faut le mot de passe d'inscription
 		if(GROUP_NAME_TEACHER.equals(userBean.getNameGroup()))
 		{
-			//pwdTeacher
 			if(userBean.getPasswordTeacher().isEmpty())
 			{
 				addFieldError("error.teacherpassword", getText("validator.field.empty"));
@@ -118,6 +119,8 @@ public class InscriptionAction extends AbstractAction
 				addFieldError("error.teacherpassword", getText("validator.pwd.false"));
 			}
 		}
+		
+		userBean.setArrayGroupName(gdao.getAllGroupName());
 	}
 
 
@@ -134,15 +137,5 @@ public class InscriptionAction extends AbstractAction
 	public void setUserBean(UserBean userBean) 
 	{
 		this.userBean = userBean;
-	}
-
-	public List<String> getArrayGroupName() 
-	{
-		return arrayGroupName;
-	}
-
-	public void setArrayGroupName(List<String> arrayGroupName) 
-	{
-		this.arrayGroupName = arrayGroupName;
 	}
 }
