@@ -46,7 +46,7 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setComment(this.scheduleBean.getComment());
 			scheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
-			scheduleEntity.setIdClassroom(this.scheduleBean.getIdClassroom());
+			scheduleEntity.setIdClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
 			
 			scheduleDAO.addSchedule(scheduleEntity);
@@ -73,7 +73,7 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setComment(this.scheduleBean.getComment());
 			scheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
-			scheduleEntity.setIdClassroom(this.scheduleBean.getIdClassroom());
+			scheduleEntity.setIdClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
 			
 			scheduleDAO.updateSchedule(scheduleEntity);
@@ -119,7 +119,7 @@ public class HoraireAction extends AbstractAction
 				scheduleBean.setComment(scheduleEntity.getComment());
 				scheduleBean.setIdUserTeacher(scheduleEntity.getIdUserTeacher());
 				scheduleBean.setIdSubject(scheduleEntity.getIdSubject());
-				scheduleBean.setIdClassroom(scheduleEntity.getIdClassroom());
+				scheduleBean.setIdClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
 				this.listScheduleBean.add(scheduleBean);
 			}

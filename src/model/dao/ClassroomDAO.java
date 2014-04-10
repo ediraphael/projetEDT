@@ -122,4 +122,19 @@ public class ClassroomDAO
 		}
 		return classroomEntity;
 	}
+	
+	public ClassroomEntity getClassroomByName(String name)
+	{
+		ClassroomEntity classroomEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("ClassroomEntity.findByName").setParameter("name", name);
+			classroomEntity = q.getResultList() != null ? (ClassroomEntity) q.getResultList().get(0) : null;
+		} finally
+		{
+			em.close();
+		}
+		return classroomEntity;
+	}
 }
