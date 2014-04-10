@@ -2,7 +2,6 @@ package actions.classroom;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import model.dao.ClassroomDAO;
 import model.org.persistence.ClassroomEntity;
@@ -126,17 +125,6 @@ public class ClassroomAction extends AbstractAction
 				addFieldError("error.name", getText("validator.field.empty"));
 			}
 		}
-	}
-
-	@Override
-	public void setSession(Map<String, Object> session)
-	{
-		this.session = session;
-	}
-
-	public Map<String, Object> getSession()
-	{
-		return session;
 	}
 
 	/**

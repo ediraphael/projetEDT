@@ -22,13 +22,13 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
-		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
+		<result name="SUCCESS">pages/frontOffice/administration.jsp</result>
 		<result name="input">pages/frontOffice/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 
 	<action name="LoginAction" class="actions.login.LoginAction" method="execute">
-		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
+		<result name="SUCCESS">pages/frontOffice/administration.jsp</result>
 		<result name="input">pages/frontOffice/login.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>

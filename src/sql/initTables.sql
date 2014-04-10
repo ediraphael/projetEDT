@@ -33,7 +33,8 @@ DROP TABLE IF EXISTS `classroom`;
 CREATE TABLE IF NOT EXISTS `classroom` (
   `id_classroom` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
-  PRIMARY KEY (`id_classroom`)
+  PRIMARY KEY (`id_classroom`),
+   UNIQUE (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
