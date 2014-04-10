@@ -5,16 +5,16 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * Entity correspondant à la table password_teacher
- * @author mickael
+ * Entity correspondant à la table subject
+ * @author raphael
  *
  */
 @Entity
-@Table(name = "passwordTeacher")
+@Table(name = "subject")
 @NamedQueries
 ({
 	//définition de requetes simple appelable dans le DAO
-    @NamedQuery(name = "PasswordTeacherEntity.find", query = "SELECT p.password FROM PasswordTeacherEntity p"),
+    @NamedQuery(name = "SubjectEntity.findAll", query = "SELECT s FROM SubjectEntity s"),
 })
 public class SubjectEntity implements Serializable 
 {
@@ -23,10 +23,14 @@ public class SubjectEntity implements Serializable
 
 	//Définition des colonnes de la table 
 	@Id
-	@Column(name="id_password_teacher")
+	@Column(name="id_subject")
 	private long id;
-	@Column(name="password")
-	private String password;
+	@Column(name="name")
+	private String name;
+	@Column(name="short_name")
+	private String shortName;
+	@Column(name="color")
+	private String color;
 	
 	
 	/**
@@ -42,14 +46,35 @@ public class SubjectEntity implements Serializable
 	{
 		this.id = id;
 	}
-	
-	public String getPassword() 
+
+	public String getName()
 	{
-		return password;
+		return name;
 	}
 
-	public void setPassword(String password) 
+	public void setName(String name)
 	{
-		this.password = password;
+		this.name = name;
 	}
+
+	public String getShortName()
+	{
+		return shortName;
+	}
+
+	public void setShortName(String shortName)
+	{
+		this.shortName = shortName;
+	}
+
+	public String getColor()
+	{
+		return color;
+	}
+
+	public void setColor(String color)
+	{
+		this.color = color;
+	}
+	
 }

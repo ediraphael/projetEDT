@@ -1,10 +1,12 @@
 package model.dao;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import model.org.persistence.GroupEntity;
 import model.org.persistence.PasswordTeacherEntity;
 
 
@@ -22,49 +24,22 @@ public class SubjectDAO
 	@PersistenceContext
 	private EntityManager em;
 	
-
-	
-	
-	/**
-	 * Methode permetant de le passwordTeacher
-	 * Utile enregistrer un user du groupe enseignant
-	 */
-	public String getPasswordTeacher()
+	@SuppressWarnings("unchecked")
+	public List<String> getAllSubject()
 	{
-		String pwd="";
+		List<String> listSubject;
 		try 
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q=getEntityManager().createNamedQuery("PasswordTeacherEntity.find");
-			pwd= q.getResultList()!= null ? (String) q.getResultList().get(0) : "" ;
+			listSubject= q.getResultList() != null ? (List<String>) q.getResultList().get(0) : null;
 		} finally 
 		{
 			getEntityManager().close();
 		}
-		return pwd;
+		return listSubject;
 	}
 	
-		
-	/**
-	 * Permet d'update le passwordTeacher
-	 * @param password
-	 */
-	public void updateUser(String pwd) 
-	{
-		PasswordTeacherEntity pEntity= new PasswordTeacherEntity();
-		pEntity.setPassword(pwd);
-		try 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			getEntityManager().getTransaction().begin();
-			getEntityManager().merge(pEntity);
-			getEntityManager().getTransaction().commit();
-		} finally 
-		{
-			getEntityManager().close();
-		}
-	}
-
 	/**
 	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
 	 * @return
