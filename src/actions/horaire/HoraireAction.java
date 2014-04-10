@@ -1,12 +1,14 @@
 package actions.horaire;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.dao.ClassroomDAO;
 import model.dao.ScheduleDAO;
 import model.org.persistence.ClassroomEntity;
 import model.org.persistence.ScheduleEntity;
 
+import bean.ClassroomBean;
 import bean.ScheduleBean;
 import actions.abstractAction.AbstractAction;
 
@@ -78,6 +80,35 @@ public class HoraireAction extends AbstractAction
 		{
 			ScheduleEntity scheduleEntity = scheduleDAO.getSchedule(this.id);
 			scheduleDAO.removeSchedule(scheduleEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	public String showSchedule()
+	{
+		forward = FORWARD_SUCCESS;
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
+		this.listScheduleBean = new ArrayList<ScheduleBean>();
+		try
+		{
+			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAllSchedule();
+			for (ScheduleEntity scheduleEntity : listScheduleEntity)
+			{
+				ScheduleBean scheduleBean = new ScheduleBean();
+				scheduleBean.setId(scheduleEntity.getId());
+				scheduleBean.setDayStart(scheduleEntity.getDayStart());
+				scheduleBean.setDayEnd(scheduleEntity.getDayEnd());
+				scheduleBean.setName(scheduleEntity.getName());
+				scheduleBean.setComment(scheduleEntity.getComment());
+				scheduleBean.setIdUserTeacher(scheduleEntity.getIdUserTeacher());
+				scheduleBean.setIdSubject(scheduleEntity.getIdSubject());
+				scheduleBean.setIdClassroom(scheduleEntity.getIdClassroom());
+				scheduleBean.setIdGroup(scheduleEntity.getIdGroup());
+				this.listScheduleBean.add(scheduleBean);
+			}
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
