@@ -72,7 +72,37 @@ public class ScheduleDAO
 			em.close();
 		}
 	}
+	
+	public ScheduleEntity getSchedule(long id)
+	{
+		ScheduleEntity scheduleEntity;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("ScheduleEntity.findById").setParameter("id", id);
+			scheduleEntity = q.getResultList() != null ? (ScheduleEntity) q.getResultList().get(0) : null;
+		} finally
+		{
+			em.close();
+		}
+		return scheduleEntity;
+	}
 
+	public void removeSchedule(ScheduleEntity scheduleEntity)
+	{
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			scheduleEntity = em.merge(scheduleEntity);
+			em.remove(scheduleEntity);
+			em.getTransaction().commit();
+		} finally 
+		{
+			em.close();
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<ScheduleEntity> getAllSchedule() 
 	{

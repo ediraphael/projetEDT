@@ -67,6 +67,23 @@ public class HoraireAction extends AbstractAction
 		}
 		return forward;
 	}
+	
+	public String delete()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
+		try
+		{
+			ScheduleEntity scheduleEntity = scheduleDAO.getSchedule(this.id);
+			scheduleDAO.removeSchedule(scheduleEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
 
 	/**
 	 * Getters and setters
