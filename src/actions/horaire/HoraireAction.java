@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.validation.SkipValidation;
 import model.dao.ClassroomDAO;
 import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
+import model.dao.UserDAO;
 import model.org.persistence.ScheduleEntity;
 import actions.abstractAction.AbstractAction;
 import bean.ScheduleBean;
@@ -25,8 +26,10 @@ public class HoraireAction extends AbstractAction
 	//déclaration et initialisation des DAO
 	private GroupDAO groupDao = new GroupDAO();
 	private ClassroomDAO classroomDao = new ClassroomDAO();
+	private UserDAO userDao = new UserDAO();
 	private List<String> arrayGroupName;
 	private List<String> arrayClassroomName;
+	private List<String> arrayUserTeacherName;
 	/**
 	 * Execution de l'ajout d'un horaire
 	 */
@@ -140,6 +143,7 @@ public class HoraireAction extends AbstractAction
 		forward=FORWARD_SUCCESS;
 		this.arrayGroupName=this.groupDao.getAllGroupName();
 		this.arrayClassroomName=this.classroomDao.getAllClassroomName();
+		//this.arrayUserTeacherName
 		return forward;
 	}
 

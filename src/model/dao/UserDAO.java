@@ -66,6 +66,27 @@ public class UserDAO
 		return user;
 	}
 	
+	/**
+	 * Methode permetant de récupérer un user avec son nom 
+	 * @param name
+	 */
+	public UserEntity getUserByName(String name)
+	{
+		UserEntity user = new UserEntity();
+		user.setName(name);
+		try 
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q=getEntityManager().createNamedQuery("UserEntity.findByName")
+					.setParameter("name", name);
+			user= q.getResultList()!= null ? (UserEntity) q.getResultList().get(0) : null ;
+		} finally 
+		{
+			getEntityManager().close();
+		}
+		return user;
+	}
+	
 	
 	/**
 	 * Permet de supprimer un user
