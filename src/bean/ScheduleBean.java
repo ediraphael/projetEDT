@@ -44,10 +44,10 @@ public class ScheduleBean {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getIdUserTeacher() {
+	public String getNameUserTeacher() {
 		return nameUserTeacher;
 	}
-	public void setUserTeacher(String nameUserTeacher) {
+	public void setNameUserTeacher(String nameUserTeacher) {
 		this.nameUserTeacher = nameUserTeacher;
 	}
 	public long getIdSubject() {

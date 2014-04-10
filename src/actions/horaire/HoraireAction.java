@@ -47,7 +47,7 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
+			scheduleEntity.setNameUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
@@ -74,7 +74,7 @@ public class HoraireAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
+			scheduleEntity.setNameUserTeacher(this.userDao.getUserByName(this.scheduleBean.getIdUserTeacher()));
 			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
@@ -120,7 +120,7 @@ public class HoraireAction extends AbstractAction
 				scheduleBean.setDayEnd(scheduleEntity.getDayEnd());
 				scheduleBean.setName(scheduleEntity.getName());
 				scheduleBean.setComment(scheduleEntity.getComment());
-				scheduleBean.setUserTeacher(scheduleEntity.getUserTeacher().getName());
+				scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
 				scheduleBean.setIdSubject(scheduleEntity.getIdSubject());
 				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
