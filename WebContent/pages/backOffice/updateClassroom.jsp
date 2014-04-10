@@ -8,11 +8,11 @@
 </head>
 <body>
 	<h2>Struts 2 - Classroom Update </h2>
-	<s:form action="ClassroomUpdate" method="post">
+	<s:form action="UpdateClassroom" method="post">
 		<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
 		<s:textfield name="classroomBean.name" value="%{classroomBean.name}" key="label.name" size="20" />
 		<s:fielderror theme="simple" fieldName="error.name"/>
-		<s:submit method="update" key="label.valide" align="center" />
+		<s:submit key="label.valide" />
 	</s:form>
 </body>
 </html>

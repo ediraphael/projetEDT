@@ -1,4 +1,4 @@
-package actions.horaire;
+package actions.schedule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +14,9 @@ import model.org.persistence.ScheduleEntity;
 import actions.abstractAction.AbstractAction;
 import bean.ScheduleBean;
 
-public class HoraireAction extends AbstractAction
+public class ScheduleAction extends AbstractAction
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private ScheduleBean scheduleBean;
@@ -64,7 +61,11 @@ public class HoraireAction extends AbstractAction
 		return forward;
 	}
 
-	public String update()
+	/**
+	 * Méthode permettant d'update une horaire
+	 * 
+	 */
+	public String updateSchedule()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès
@@ -91,7 +92,11 @@ public class HoraireAction extends AbstractAction
 		return forward;
 	}
 
-	public String delete()
+	/**
+	 * Méthode permettant de supprimer un horaire
+	 * 
+	 */
+	public String deleteSchedule()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès
@@ -108,6 +113,10 @@ public class HoraireAction extends AbstractAction
 		return forward;
 	}
 
+	/**
+	 * Méthode permettant d'afficher les horaires
+	 * @return
+	 */
 	public String showSchedule()
 	{
 		forward = FORWARD_SUCCESS;
@@ -144,7 +153,7 @@ public class HoraireAction extends AbstractAction
 	 * @return
 	 */
 	@SkipValidation
-	public String openHoraireForm()
+	public String openScheduleForm()
 	{
 		forward = FORWARD_SUCCESS;
 		this.arrayGroupName = this.groupDao.getAllGroupName();
@@ -154,6 +163,9 @@ public class HoraireAction extends AbstractAction
 		return forward;
 	}
 	
+	/**
+	 * Méthode permettant de valider les champs du formulaire
+	 */
 	public void validate()
 	{
 		this.arrayGroupName = this.groupDao.getAllGroupName();

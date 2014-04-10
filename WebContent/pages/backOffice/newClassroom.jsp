@@ -12,7 +12,7 @@
 		<s:form action="ClassroomAction" method="post">
 			<s:textfield name="classroomBean.name" key="label.name" size="20" />
 			<s:fielderror theme="simple" fieldName="error.name"/>
-			<s:submit method="execute" key="label.valide" align="center" />
+			<s:submit key="label.valide" />
 		</s:form>
 	</body>
 </html>

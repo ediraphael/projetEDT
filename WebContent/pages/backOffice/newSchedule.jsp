@@ -26,7 +26,7 @@
 			<s:fielderror theme="simple" fieldName="error.userTeacher"/>
 			<s:select name="scheduleBean.nameSubject" key="label.subject" list="arraySubjectName" />
 			<s:fielderror theme="simple" fieldName="error.userTeacher"/>
-			<s:submit method="execute" key="label.valide" align="center" />
+			<s:submit key="label.valide" />
 		</s:form>
 	</body>
 </html>

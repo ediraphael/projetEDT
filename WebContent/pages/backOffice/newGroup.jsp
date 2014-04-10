@@ -9,9 +9,9 @@
 	</head>
 	<body>
 		<h1><s:text name="title.new.group"/></h1>
-		<s:form action="GroupNew" method="post">
+		<s:form action="NewGroup" method="post">
 			<s:textfield name="groupBean.name" key="label.name" size="20" />
-			<s:submit method="execute" key="label.valide" align="center" />
+			<s:submit key="label.valide"/>
 		</s:form>
 	</body>
 </html>

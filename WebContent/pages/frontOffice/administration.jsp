@@ -11,11 +11,11 @@
 		<h1><s:text name="title.admin"/></h1>
 		<s:actionerror />
 		<div>
-			<s:a action="/"><s:text name="module.user"/></s:a>
-			<s:a action="/"><s:text name="module.group"/></s:a>
-			<s:a action="/"><s:text name="module.classroom"/></s:a>
-			<s:a action="/"><s:text name="module.schedule"/></s:a>
-			<s:a action="/"><s:text name="module.calendar"/></s:a>
+			<s:a action="ShowUser"><s:text name="module.user"/></s:a>
+			<s:a action="ShowGroup"><s:text name="module.group"/></s:a>
+			<s:a action="ShowClassroom"><s:text name="module.classroom"/></s:a>
+			<s:a action="ShowSchedule"><s:text name="module.schedule"/></s:a>
+			<s:a action="ShowCalendar"><s:text name="module.calendar"/></s:a>
 		</div>
 	</body>
 </html>

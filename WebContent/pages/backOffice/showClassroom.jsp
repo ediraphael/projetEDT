@@ -16,24 +16,24 @@
 				<th></th>
 				<th></th>
 			</tr>
-		<s:iterator value="listClassroomBean" id="classroom">
-			<tr>
-				<td><s:property value="id"/></td>
-				<td><s:property value="name"/></td>
-				<td>
-					<s:url id="url" action="getClassroom">
-						<s:param name="id"><s:property value="id"/></s:param>
-				    </s:url>
-				    <s:a href="%{url}"><s:property value="getText('action.update')"/></s:a>
-				</td>
-				<td>
-					<s:url id="url" action="ClassroomDelete">
-						<s:param name="id"><s:property value="id"/></s:param>
-				    </s:url>
-				    <s:a href="%{url}"><s:property value="getText('action.delete')"/></s:a>
-				</td>
-			</tr>
-		</s:iterator>
+			<s:iterator value="listClassroomBean" id="classroom">
+				<tr>
+					<td><s:property value="id"/></td>
+					<td><s:property value="name"/></td>
+					<td>
+						<s:url id="url" action="GetClassroom">
+							<s:param name="id"><s:property value="id"/></s:param>
+					    </s:url>
+					    <s:a href="%{url}"><s:text name="label.update"/></s:a>
+					</td>
+					<td>
+						<s:url id="url" action="DeleteClassroom">
+							<s:param name="id"><s:property value="id"/></s:param>
+					    </s:url>
+					    <s:a href="%{url}"><s:text name="label.delete"/></s:a>
+					</td>
+				</tr>
+			</s:iterator>
 		</table>
 	</body>
 </html>

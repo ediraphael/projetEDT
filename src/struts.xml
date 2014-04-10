@@ -58,16 +58,20 @@
 		<result name="SUCCESS">pages/backOffice/showUser.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<action name="DeleteUser" class="actions.user.UserAction" method="deleteUser">
+		<result name="SUCCESS" type="redirectAction">ShowUser</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
 	<!-- FIN ACTION USER -->
 	
 	
-	<!-- TODO EN FRANCAIS PLZZZ DEBUT ACTION SCHEDULE -->
-	<action name="Horaire" class="actions.horaire.HoraireAction" method="openHoraireForm">
+	<!-- DEBUT ACTION SCHEDULE -->
+	<action name="ScheduleForm" class="actions.schedule.ScheduleAction" method="openScheduleForm">
 		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="HoraireAjout" class="actions.horaire.HoraireAction" method="execute">
+	<action name="ScheduleAction" class="actions.schedule.ScheduleAction" method="execute">
 		<result name="SUCCESS">pages/backOffice/administration.jsp</result>
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>

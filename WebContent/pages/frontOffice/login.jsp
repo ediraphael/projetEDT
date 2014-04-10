@@ -11,9 +11,9 @@
 		<h1><s:text name="title.login"/></h1>
 		<s:actionerror />
 		<s:form action="LoginAction" method="post">
-			<s:textfield name="userBean.email" key="label.email" size="20" />
-			<s:password name="userBean.password" key="label.password" size="20" />
-			<s:submit method="execute" key="label.valide" align="center" />
+			<s:textfield name="userBean.email" key="label.email"/>
+			<s:password name="userBean.password" key="label.password"/>
+			<s:submit key="label.valide"/>
 		</s:form>
 	</body>
 </html>

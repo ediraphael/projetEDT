@@ -24,10 +24,10 @@
 				<td><s:property value="name"/></td>
 				<td><s:property value="nameGroup"/></td>
 				<td>
-					<s:url id="url" action="GroupDelete">
+					<s:url id="url" action="DeleteUser">
 						<s:param name="id"><s:property value="id"/></s:param>
 				    </s:url>
-				    <s:a href="%{url}"><s:property value="getText('label.delete')"/></s:a>
+				    <s:a href="%{url}"><s:text name="label.delete"/></s:a>
 			    </td>
 			</tr>
 		</s:iterator>
