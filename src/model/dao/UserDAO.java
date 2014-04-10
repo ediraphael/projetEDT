@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -25,24 +26,20 @@ public class UserDAO
 	private EntityManager em;
 	
 
-	/**
-	 * Methode permetant de sauvegarder un user
-	 * @param email
-	 * @param password
-	 */
-	public void addUser(UserEntity user)
+	@SuppressWarnings("unchecked")
+	public List<UserEntity> getAllUser()
 	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		
+		List<UserEntity> allUser = new ArrayList<UserEntity>();
 		try 
 		{
-			getEntityManager().getTransaction().begin();
-			getEntityManager().persist(user);
-			getEntityManager().getTransaction().commit();
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q=getEntityManager().createNamedQuery("UserEntity.findAll");
+			allUser= q.getResultList()!= null ? (List<UserEntity>) q.getResultList() : null ;
 		} finally 
 		{
 			getEntityManager().close();
 		}
+		return allUser;
 	}
 	
 	/**
@@ -105,6 +102,26 @@ public class UserDAO
 			getEntityManager().close();
 		}
 		return listGroupName;
+	}
+	
+	/**
+	 * Methode permetant de sauvegarder un user
+	 * @param email
+	 * @param password
+	 */
+	public void addUser(UserEntity user)
+	{
+		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+		
+		try 
+		{
+			getEntityManager().getTransaction().begin();
+			getEntityManager().persist(user);
+			getEntityManager().getTransaction().commit();
+		} finally 
+		{
+			getEntityManager().close();
+		}
 	}
 	
 	

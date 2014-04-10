@@ -16,15 +16,18 @@
 			<th><s:text name="label.name"/></th>
 			<th><s:text name="label.group"/></th>
 		</tr>
-		<s:iterator value="listGroupBean" id="group">
+		<s:iterator value="listUserBean" id="group">
 			<tr>
 				<td><s:property value="id"/></td>
+				<td><s:property value="email"/></td>
+				<td><s:property value="firstname"/></td>
 				<td><s:property value="name"/></td>
+				<td><s:property value="nameGroup"/></td>
 				<td>
 					<s:url id="url" action="GroupDelete">
 						<s:param name="id"><s:property value="id"/></s:param>
 				    </s:url>
-				    <s:a href="%{url}"><s:property value="getText('action.delete')"/></s:a>
+				    <s:a href="%{url}"><s:property value="getText('label.delete')"/></s:a>
 			    </td>
 			</tr>
 		</s:iterator>

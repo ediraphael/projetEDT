@@ -36,7 +36,7 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 	
-	public String update()
+	public String updateClassroom()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès
@@ -55,7 +55,7 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 	
-	public String delete()
+	public String deleteClassroom()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès

@@ -12,6 +12,7 @@ public class UserBean
 	/**
 	 * champs du formulaire
 	 */
+	private long id;
 	private String firstName;
 	private String name;
 	private String email;
@@ -24,6 +25,7 @@ public class UserBean
 	public UserBean() 
 	{
 		super();
+		this.id=0;
 		this.firstName="";
 		this.name="";
 		this.email="";
@@ -37,6 +39,16 @@ public class UserBean
 	 * Getters and Setters
 	 * @return
 	 */
+	public long getId() 
+	{
+		return id;
+	}
+	
+	public void setId(long id) 
+	{
+		this.id = id;
+	}
+	
 	public String getEmail() 
 	{
 		return email;

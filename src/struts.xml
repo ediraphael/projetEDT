@@ -21,6 +21,7 @@
 		<result name="SUCCESS">pages/frontOffice/inscription.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	
 	<action name="InscriptionAction" class="actions.inscription.InscriptionAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/administration.jsp</result>
 		<result name="input">pages/frontOffice/inscription.jsp</result>
@@ -33,10 +34,16 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
+	<action name="ShowUser" class="actions.user.UserAction" method="showUser">
+		<result name="SUCCESS">pages/backOffice/showUser.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	
 	<action name="Horaire" class="actions.horaire.HoraireAction" method="openHoraireForm">
 		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	
 	<action name="HoraireAjout" class="actions.horaire.HoraireAction" method="execute">
 		<result name="SUCCESS">pages/backOffice/administration.jsp</result>
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
@@ -63,13 +70,13 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="ClassroomUpdate" class="actions.classroom.ClassroomAction" method="update">
+	<action name="ClassroomUpdate" class="actions.classroom.ClassroomAction" method="updateClassroom">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="input">pages/backOffice/updateClassroom.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="ClassroomDelete" class="actions.classroom.ClassroomAction" method="delete">
+	<action name="ClassroomDelete" class="actions.classroom.ClassroomAction" method="deleteClassroom">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
