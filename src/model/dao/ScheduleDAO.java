@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,47 +15,38 @@ import model.org.persistence.ScheduleEntity;
  * @author thibault
  * 
  */
-public class ScheduleDAO 
+public class ScheduleDAO
 {
 	// nom de la database
 	private final static String JPA_DATABASE = "ProjetEDT";
 	@PersistenceContext
 	private EntityManager em;
 
-	public ScheduleDAO() 
+	public ScheduleDAO()
 	{
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Methode permetant de sauvegarder un horaire
 	 * 
 	 * @param name
 	 */
-	public void addSchedule(Date dayStart, Date dayEnd,String name,String comment,long idUserTeacher,long idSubject,long idClassroom,long idGroup)
+	public void addSchedule(ScheduleEntity scheduleEntity)
 	{
 		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		ScheduleEntity schedule = new ScheduleEntity();
-		schedule.setDayStart(dayStart);
-		schedule.setDayEnd(dayEnd);
-		schedule.setName(name);
-		schedule.setComment(comment);
-		schedule.setIdUserTeacher(idUserTeacher);
-		schedule.setIdSubject(idSubject);
-		schedule.setIdClassroom(idClassroom);
-		schedule.setIdGroup(idGroup);
 		try
 		{
 			tx.begin();
-			em.persist(schedule);
+			em.persist(scheduleEntity);
 			tx.commit();
 		} finally
 		{
 			em.close();
 		}
 	}
-	
+
 	public void updateSchedule(ScheduleEntity schedule)
 	{
 		try
@@ -70,7 +60,7 @@ public class ScheduleDAO
 			em.close();
 		}
 	}
-	
+
 	public ScheduleEntity getSchedule(long id)
 	{
 		ScheduleEntity scheduleEntity;
@@ -88,30 +78,29 @@ public class ScheduleDAO
 
 	public void removeSchedule(ScheduleEntity scheduleEntity)
 	{
-		try 
+		try
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			em.getTransaction().begin();
 			scheduleEntity = em.merge(scheduleEntity);
 			em.remove(scheduleEntity);
 			em.getTransaction().commit();
-		} finally 
+		} finally
 		{
 			em.close();
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<ScheduleEntity> getAllSchedule() 
+	public List<ScheduleEntity> getAllSchedule()
 	{
 		List<ScheduleEntity> schedules;
-		try 
+		try
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q = getEntityManager().createNamedQuery("ScheduleEntity.findAll");
 			schedules = q.getResultList();
-		}
-		finally 
+		} finally
 		{
 			getEntityManager().close();
 		}
@@ -124,9 +113,9 @@ public class ScheduleDAO
 	 * 
 	 * @return
 	 */
-	protected EntityManager getEntityManager() 
+	protected EntityManager getEntityManager()
 	{
-		if (em == null) 
+		if (em == null)
 		{
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 		}

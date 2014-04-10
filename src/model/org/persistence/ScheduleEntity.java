@@ -6,6 +6,8 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -49,8 +51,9 @@ public class ScheduleEntity implements Serializable {
 	private long idSubject;
 	@Column(name="id_classroom")
 	private long idClassroom;
-	@Column(name="id_group")
-	private long idGroup;
+	@ManyToOne
+	@JoinColumn(name="id_group_user")
+	private GroupEntity group;
 
 	
 	// Getters et Setters
@@ -103,11 +106,11 @@ public class ScheduleEntity implements Serializable {
 	public void setIdClassroom(long idClassroom) {
 		this.idClassroom = idClassroom;
 	}
-	public long getIdGroup() {
-		return idGroup;
+	public GroupEntity getGroup() {
+		return group;
 	}
-	public void setIdGroup(long idGroup) {
-		this.idGroup = idGroup;
+	public void setGroup(GroupEntity group) {
+		this.group = group;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

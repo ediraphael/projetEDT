@@ -3,6 +3,7 @@ package actions.horaire;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.org.persistence.ScheduleEntity;
 import actions.abstractAction.AbstractAction;
@@ -18,7 +19,8 @@ public class HoraireAction extends AbstractAction
 	private long id;
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
-
+	//déclaration et initialisation des DAO
+	private GroupDAO groupDao = new GroupDAO();
 	/**
 	 * Execution de l'ajout d'un horaire
 	 */
@@ -31,7 +33,17 @@ public class HoraireAction extends AbstractAction
 		try
 		{
 			// Sauvegarde du user renseigné dans le formulaire
-			scheduleDAO.addSchedule(scheduleBean.getDayStart(), scheduleBean.getDayEnd(), scheduleBean.getName(), scheduleBean.getComment(), scheduleBean.getIdUserTeacher(), scheduleBean.getIdSubject(), scheduleBean.getIdClassroom(), scheduleBean.getIdGroup());
+			ScheduleEntity scheduleEntity = new ScheduleEntity();
+			scheduleEntity.setDayStart(this.scheduleBean.getDayStart());
+			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
+			scheduleEntity.setName(this.scheduleBean.getName());
+			scheduleEntity.setComment(this.scheduleBean.getComment());
+			scheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
+			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
+			scheduleEntity.setIdClassroom(this.scheduleBean.getIdClassroom());
+			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
+			
+			scheduleDAO.addSchedule(scheduleEntity);
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
@@ -47,18 +59,18 @@ public class HoraireAction extends AbstractAction
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		try
 		{
-			ScheduleEntity ScheduleEntity = new ScheduleEntity();
-			ScheduleEntity.setId(this.scheduleBean.getId());
-			ScheduleEntity.setDayStart(this.scheduleBean.getDayStart());
-			ScheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
-			ScheduleEntity.setName(this.scheduleBean.getName());
-			ScheduleEntity.setComment(this.scheduleBean.getComment());
-			ScheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
-			ScheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
-			ScheduleEntity.setIdClassroom(this.scheduleBean.getIdClassroom());
-			ScheduleEntity.setIdGroup(this.scheduleBean.getIdGroup());
+			ScheduleEntity scheduleEntity = new ScheduleEntity();
+			scheduleEntity.setId(this.scheduleBean.getId());
+			scheduleEntity.setDayStart(this.scheduleBean.getDayStart());
+			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
+			scheduleEntity.setName(this.scheduleBean.getName());
+			scheduleEntity.setComment(this.scheduleBean.getComment());
+			scheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
+			scheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
+			scheduleEntity.setIdClassroom(this.scheduleBean.getIdClassroom());
+			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
 			
-			scheduleDAO.updateSchedule(ScheduleEntity);
+			scheduleDAO.updateSchedule(scheduleEntity);
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
@@ -102,7 +114,7 @@ public class HoraireAction extends AbstractAction
 				scheduleBean.setIdUserTeacher(scheduleEntity.getIdUserTeacher());
 				scheduleBean.setIdSubject(scheduleEntity.getIdSubject());
 				scheduleBean.setIdClassroom(scheduleEntity.getIdClassroom());
-				scheduleBean.setIdGroup(scheduleEntity.getIdGroup());
+				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
 				this.listScheduleBean.add(scheduleBean);
 			}
 		} catch (Exception e)

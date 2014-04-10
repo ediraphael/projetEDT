@@ -12,7 +12,7 @@ public class ScheduleBean {
 	private long idUserTeacher;
 	private long idSubject;
 	private long idClassroom;
-	private long idGroup;
+	private String nameGroup;
 	
 	public long getId() {
 		return id;
@@ -62,11 +62,11 @@ public class ScheduleBean {
 	public void setIdClassroom(long idClassroom) {
 		this.idClassroom = idClassroom;
 	}
-	public long getIdGroup() {
-		return idGroup;
+	public String getNameGroup() {
+		return nameGroup;
 	}
-	public void setIdGroup(long idGroup) {
-		this.idGroup = idGroup;
+	public void setNameGroup(String nameGroup) {
+		this.nameGroup = nameGroup;
 	}
 	
 }
