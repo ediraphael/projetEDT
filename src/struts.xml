@@ -33,8 +33,9 @@
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	
-	<action name="Horaire">
-		<result>pages/backOffice/newSchedule.jsp</result>
+	<action name="Horaire" class="actions.horaire.HoraireAction" method="openHoraireForm">
+		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
 	</action>
 	<action name="HoraireInscription" class="actions.horaire.HoraireAction">
 		
