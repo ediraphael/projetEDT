@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
+import model.dao.ClassroomDAO;
 import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.org.persistence.ScheduleEntity;
@@ -23,7 +24,9 @@ public class HoraireAction extends AbstractAction
 	private ArrayList<ScheduleBean> listScheduleBean;
 	//déclaration et initialisation des DAO
 	private GroupDAO groupDao = new GroupDAO();
+	private ClassroomDAO classroomDao = new ClassroomDAO();
 	private List<String> arrayGroupName;
+	private List<String> arrayClassroomName;
 	/**
 	 * Execution de l'ajout d'un horaire
 	 */
@@ -136,6 +139,7 @@ public class HoraireAction extends AbstractAction
 	{
 		forward=FORWARD_SUCCESS;
 		this.arrayGroupName=this.groupDao.getAllGroupName();
+		this.arrayClassroomName=this.classroomDao.getAllClassroomName();
 		return forward;
 	}
 
@@ -182,5 +186,15 @@ public class HoraireAction extends AbstractAction
 	public void setArrayGroupName(List<String> arrayGroupName) 
 	{
 		this.arrayGroupName = arrayGroupName;
+	}
+	
+	public List<String> getArrayClassroomName() 
+	{
+		return arrayClassroomName;
+	}
+
+	public void setArrayClassroomName(List<String> arrayClassroomName) 
+	{
+		this.arrayClassroomName = arrayClassroomName;
 	}
 }

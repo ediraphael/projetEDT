@@ -91,6 +91,22 @@ public class ClassroomDAO
 		}
 		return listClassroomEntity;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getAllClassroomName()
+	{
+		List<String> listClassroomName;
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			Query q = em.createNamedQuery("ClassroomEntity.findAllName");
+			listClassroomName = q.getResultList() != null ? (List<String>) q.getResultList() : null;
+		} finally
+		{
+			em.close();
+		}
+		return listClassroomName;
+	}
 
 	public ClassroomEntity getClassroom(long id)
 	{

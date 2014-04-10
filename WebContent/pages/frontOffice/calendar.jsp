@@ -5,11 +5,11 @@
 <head>
 	<link rel='stylesheet' type='text/css' href='../../css/jquery-ui-1.8.11.custom.css' />
 	<link rel='stylesheet' type='text/css' href='../../css/jquery.weekcalendar.css' />
-	<script type='text/javascript' src='../../javascript/jquery-1.4.4.min.js'></script>
-	<script type='text/javascript' src='../../javascript/jquery-ui-1.8.11.custom.min.js'></script>
+	<script type='text/javascript' src='../../javascript/jquery/jquery-1.4.4.min.js'></script>
+	<script type='text/javascript' src='../../javascript/jquery/jquery-ui-1.8.11.custom.min.js'></script>
 	
-	<script type="text/javascript" src="../../javascript/date.js"></script>
-	<script type='text/javascript' src='../../javascript/jquery.weekcalendar.js'></script>
+	<script type="text/javascript" src="../../javascript/calendar/date.js"></script>
+	<script type='text/javascript' src='../../javascript/calendar/jquery.weekcalendar.js'></script>
 	<script type='text/javascript'>
 	var year = new Date().getFullYear();
 	var month = new Date().getMonth();
