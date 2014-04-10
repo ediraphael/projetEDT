@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import model.dao.ClassroomDAO;
 import model.dao.ScheduleDAO;
+import model.org.persistence.ClassroomEntity;
+import model.org.persistence.ScheduleEntity;
 
 import bean.ScheduleBean;
 import actions.abstractAction.AbstractAction;
@@ -32,6 +34,33 @@ public class HoraireAction extends AbstractAction
 		{
 			// Sauvegarde du user renseigné dans le formulaire
 			scheduleDAO.addSchedule(scheduleBean.getDayStart(), scheduleBean.getDayEnd(), scheduleBean.getName(), scheduleBean.getComment(), scheduleBean.getIdUserTeacher(), scheduleBean.getIdSubject(), scheduleBean.getIdClassroom(), scheduleBean.getIdGroup());
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	public String update()
+	{
+		// Sauf si il y a erreur, le traitement est considéré comme étant un
+		// succès
+		forward = FORWARD_SUCCESS;
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
+		try
+		{
+			ScheduleEntity ScheduleEntity = new ScheduleEntity();
+			ScheduleEntity.setId(this.scheduleBean.getId());
+			ScheduleEntity.setDayStart(this.scheduleBean.getDayStart());
+			ScheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
+			ScheduleEntity.setName(this.scheduleBean.getName());
+			ScheduleEntity.setComment(this.scheduleBean.getComment());
+			ScheduleEntity.setIdUserTeacher(this.scheduleBean.getIdUserTeacher());
+			ScheduleEntity.setIdSubject(this.scheduleBean.getIdSubject());
+			ScheduleEntity.setIdClassroom(this.scheduleBean.getIdClassroom());
+			ScheduleEntity.setIdGroup(this.scheduleBean.getIdGroup());
+			
+			scheduleDAO.updateSchedule(ScheduleEntity);
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;

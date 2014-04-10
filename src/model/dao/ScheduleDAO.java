@@ -58,6 +58,20 @@ public class ScheduleDAO
 			em.close();
 		}
 	}
+	
+	public void updateSchedule(ScheduleEntity schedule)
+	{
+		try
+		{
+			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
+			em.getTransaction().begin();
+			schedule = em.merge(schedule);
+			em.getTransaction().commit();
+		} finally
+		{
+			em.close();
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<ScheduleEntity> getAllSchedule() 
