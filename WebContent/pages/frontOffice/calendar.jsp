@@ -66,7 +66,6 @@
 </head>
 
 <body>
-	<p>Bienvenue sur l'appli EDT avec Struts 2 =) </p>
 	<s:property value="#session.user.email" />
 	<div id='calendar'></div>
 </body>
