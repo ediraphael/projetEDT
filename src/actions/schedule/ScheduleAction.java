@@ -97,6 +97,7 @@ public class ScheduleAction extends AbstractAction
 	 * Méthode permettant de supprimer un horaire
 	 * 
 	 */
+	@SkipValidation
 	public String deleteSchedule()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un

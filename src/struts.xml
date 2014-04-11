@@ -89,6 +89,10 @@
 		<result name="input">pages/backOffice/updateSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<action name="DeleteSchedule" class="actions.schedule.ScheduleAction" method="deleteSchedule">
+		<result name="SUCCESS" type="redirectAction">ShowSchedule</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
 	<!-- FIN ACTION SCHEDULE -->
 	
 	
