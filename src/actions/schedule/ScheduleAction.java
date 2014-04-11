@@ -3,14 +3,15 @@ package actions.schedule;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.struts2.interceptor.validation.SkipValidation;
-
 import model.dao.ClassroomDAO;
 import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.dao.SubjectDAO;
 import model.dao.UserDAO;
 import model.org.persistence.ScheduleEntity;
+
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import actions.abstractAction.AbstractAction;
 import bean.ScheduleBean;
 
@@ -161,6 +162,39 @@ public class ScheduleAction extends AbstractAction
 		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
 		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
 		this.arraySubjectName = this.subjectDao.getAllSubject();
+		return forward;
+	}
+	
+	@SkipValidation
+	public String getSchedule()
+	{
+		forward = FORWARD_SUCCESS;
+		ScheduleDAO scheduleDAO = new ScheduleDAO();
+		try
+		{
+			ScheduleEntity scheduleEntity = scheduleDAO.getSchedule(this.id);
+			this.scheduleBean = new ScheduleBean();
+			this.scheduleBean.setId(scheduleEntity.getId());
+			this.scheduleBean.setName(scheduleEntity.getName());
+			this.scheduleBean.setDayStart(scheduleEntity.getDayStart());
+			this.scheduleBean.setDayEnd(scheduleEntity.getDayEnd());
+			this.scheduleBean.setComment(scheduleEntity.getComment());
+			this.scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
+			this.scheduleBean.setNameSubject(scheduleEntity.getSubject().getName());
+			this.scheduleBean.setNameClassroom(scheduleEntity.getClassroom().getName());
+			this.scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
+			this.scheduleBean.setArrayGroupName(groupDao.getAllGroupName());
+			this.scheduleBean.setArrayClassroomName(classroomDao.getAllClassroomName());
+			this.scheduleBean.setArraySubjectName(subjectDao.getAllSubject());
+			this.scheduleBean.setArrayUserTeacher(userDao.getAllUserNameByGroup(groupDao.getGroupByName("Enseignant")));
+			this.arrayGroupName = this.groupDao.getAllGroupName();
+			this.arrayClassroomName = this.classroomDao.getAllClassroomName();
+			this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
+			this.arraySubjectName = this.subjectDao.getAllSubject();
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
 		return forward;
 	}
 	

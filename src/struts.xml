@@ -80,6 +80,15 @@
 		<result name="SUCCESS">pages/backOffice/showSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<action name="GetSchedule" class="actions.schedule.ScheduleAction" method="getSchedule">
+		<result name="SUCCESS">pages/backOffice/updateSchedule.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
+	<action name="UpdateSchedule" class="actions.schedule.ScheduleAction" method="updateSchedule">
+		<result name="SUCCESS" type="redirectAction">ShowSchedule</result>
+		<result name="input">pages/backOffice/updateSchedule.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
 	<!-- FIN ACTION SCHEDULE -->
 	
 	
