@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<h1><s:text name="title.new.schedule"/></h1>
-		<s:form action="HoraireAjout" method="post">
+		<s:form action="ScheduleAction" method="post">
 			<s:textfield name="scheduleBean.name" key="label.name" size="20" />
 			<s:fielderror theme="simple" fieldName="error.name"/>
 			<s:textfield name="scheduleBean.dayStart" key="label.dayStart" size="20" />
