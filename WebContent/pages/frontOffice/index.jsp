@@ -13,7 +13,7 @@
 		<div>
 			<s:a action="Login"><s:text name="label.login"/></s:a>
 			<s:a action="Inscription"><s:text name="label.register"/></s:a>
-			<s:a action="AfficherCalendrier"><s:text name="label.view_calendar"/></s:a>
+			<s:a action="ShowCalendar"><s:text name="label.view_calendar"/></s:a>
 		</div>
 	</body>
 </html>

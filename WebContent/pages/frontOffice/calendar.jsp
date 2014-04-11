@@ -3,13 +3,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-	<link rel='stylesheet' type='text/css' href='../../css/jquery-ui-1.8.11.custom.css' />
-	<link rel='stylesheet' type='text/css' href='../../css/jquery.weekcalendar.css' />
-	<script type='text/javascript' src='../../javascript/jquery/jquery-1.4.4.min.js'></script>
-	<script type='text/javascript' src='../../javascript/jquery/jquery-ui-1.8.11.custom.min.js'></script>
+	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
+	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery.weekcalendar.css' />
+	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-1.4.4.min.js'></script>
+	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-ui-1.8.11.custom.min.js'></script>
 	
-	<script type="text/javascript" src="../../javascript/calendar/date.js"></script>
-	<script type='text/javascript' src='../../javascript/calendar/jquery.weekcalendar.js'></script>
+	<script type="text/javascript" src="/ProjetEDT/javascript/calendar/date.js"></script>
+	<script type='text/javascript' src='/ProjetEDT/javascript/calendar/jquery.weekcalendar.js'></script>
 	<script type='text/javascript'>
 	var year = new Date().getFullYear();
 	var month = new Date().getMonth();
