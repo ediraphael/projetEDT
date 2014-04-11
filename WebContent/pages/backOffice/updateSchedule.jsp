@@ -36,11 +36,11 @@
 	 $(function() {
 		$( "#heure_debut" ).datetimepicker({
 			dateFormat: "yy-mm-dd",
-			timeFormat:  "HH:mm:ss"
+			timeFormat:  "HH:mm"
 		});
 		$( "#heure_fin" ).datetimepicker({
 			dateFormat: "yy-mm-dd",
-			timeFormat:  "HH:mm:ss"
+			timeFormat:  "HH:mm"
 		});
 	 });
 	</script>

@@ -88,6 +88,8 @@ public class ScheduleAction extends AbstractAction
 			scheduleDAO.updateSchedule(scheduleEntity);
 		} catch (Exception e)
 		{
+			System.out.println(this.scheduleBean.getDayEnd());
+			e.printStackTrace();
 			forward = FORWARD_ERROR;
 		}
 		return forward;
@@ -132,8 +134,8 @@ public class ScheduleAction extends AbstractAction
 			{
 				ScheduleBean scheduleBean = new ScheduleBean();
 				scheduleBean.setId(scheduleEntity.getId());
-				scheduleBean.setDayStart(scheduleEntity.getDayStart());
-				scheduleBean.setDayEnd(scheduleEntity.getDayEnd());
+				scheduleBean.setDayStart(scheduleEntity.getDayStart().toString());
+				scheduleBean.setDayEnd(scheduleEntity.getDayEnd().toString());
 				scheduleBean.setName(scheduleEntity.getName());
 				scheduleBean.setComment(scheduleEntity.getComment());
 				scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
@@ -141,9 +143,11 @@ public class ScheduleAction extends AbstractAction
 				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
 				this.listScheduleBean.add(scheduleBean);
+				System.out.println("tt"+scheduleEntity.getDayEnd());
 			}
 		} catch (Exception e)
 		{
+			System.err.println(e);
 			forward = FORWARD_ERROR;
 		}
 		return forward;
@@ -177,8 +181,8 @@ public class ScheduleAction extends AbstractAction
 			this.scheduleBean = new ScheduleBean();
 			this.scheduleBean.setId(scheduleEntity.getId());
 			this.scheduleBean.setName(scheduleEntity.getName());
-			this.scheduleBean.setDayStart(scheduleEntity.getDayStart());
-			this.scheduleBean.setDayEnd(scheduleEntity.getDayEnd());
+			this.scheduleBean.setDayStart(scheduleEntity.getDayStart().toString());
+			this.scheduleBean.setDayEnd(scheduleEntity.getDayEnd().toString());
 			this.scheduleBean.setComment(scheduleEntity.getComment());
 			this.scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
 			this.scheduleBean.setNameSubject(scheduleEntity.getSubject().getName());

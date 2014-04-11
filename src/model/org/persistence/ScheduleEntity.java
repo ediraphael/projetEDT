@@ -1,6 +1,9 @@
 package model.org.persistence;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,110 +16,160 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "schedule")
-@NamedQueries
-({
-	//définition de requetes simple appelable dans le DAO
-    @NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"),
-    @NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"),
-    @NamedQuery(name = "ScheduleEntity.findAllTeacher", query = "SELECT u FROM ScheduleEntity u "),
-})
-public class ScheduleEntity implements Serializable {
+@NamedQueries({
+// définition de requetes simple appelable dans le DAO
+		@NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"), @NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"), @NamedQuery(name = "ScheduleEntity.findAllTeacher", query = "SELECT u FROM ScheduleEntity u "), })
+public class ScheduleEntity implements Serializable
+{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ScheduleEntity() 
+	public ScheduleEntity()
 	{
-		
+
 	}
-	
-	//Définition des colonnes de la table
-	
+
+	// Définition des colonnes de la table
+
 	@Id
-	@Column(name="id_schedule")
+	@Column(name = "id_schedule")
 	private long id;
-	@Column(name="day_start")
-	private String dayStart;
-	@Column(name="day_end")
-	private String dayEnd;
-	@Column(name="name")
+	@Column(name = "day_start")
+	private Date dayStart;
+	@Column(name = "day_end")
+	private Date dayEnd;
+	@Column(name = "name")
 	private String name;
-	@Column(name="comment")
+	@Column(name = "comment")
 	private String comment;
 	@ManyToOne
-	@JoinColumn(name="id_user_teacher")
+	@JoinColumn(name = "id_user_teacher")
 	private UserEntity userTeacher;
 	@ManyToOne
-	@JoinColumn(name="id_subject")
+	@JoinColumn(name = "id_subject")
 	private SubjectEntity subject;
 	@ManyToOne
-	@JoinColumn(name="id_classroom")
+	@JoinColumn(name = "id_classroom")
 	private ClassroomEntity classroom;
 	@ManyToOne
-	@JoinColumn(name="id_group_user")
+	@JoinColumn(name = "id_group_user")
 	private GroupEntity group;
 
-	
 	// Getters et Setters
-	
-	public long getId() {
+
+	public long getId()
+	{
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(long id)
+	{
 		this.id = id;
 	}
-	public String getDayStart() {
+
+	public Date getDayStart()
+	{
 		return dayStart;
 	}
-	public void setDayStart(String dayStart) {
-		this.dayStart = dayStart;
+
+	public void setDayStart(String dayStart)
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		try
+		{
+			java.util.Date day = simpleDateFormat.parse(dayStart);
+			this.dayStart = new Date(day.getTime());
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	public String getDayEnd() {
+
+	public Date getDayEnd()
+	{
 		return dayEnd;
 	}
+
 	public void setDayEnd(String dayEnd) {
-		this.dayEnd = dayEnd;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		try
+		{
+			java.util.Date day = simpleDateFormat.parse(dayEnd);
+			this.dayEnd = new Date(day.getTime());
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	public String getName() {
+
+	public String getName()
+	{
 		return name;
 	}
-	public void setName(String name) {
+
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	public String getComment() {
+
+	public String getComment()
+	{
 		return comment;
 	}
-	public void setComment(String comment) {
+
+	public void setComment(String comment)
+	{
 		this.comment = comment;
 	}
-	public UserEntity getUserTeacher() {
+
+	public UserEntity getUserTeacher()
+	{
 		return userTeacher;
 	}
-	public void setUserTeacher(UserEntity userTeacher) {
+
+	public void setUserTeacher(UserEntity userTeacher)
+	{
 		this.userTeacher = userTeacher;
 	}
-	public SubjectEntity getSubject() {
+
+	public SubjectEntity getSubject()
+	{
 		return subject;
 	}
-	public void setSubject(SubjectEntity subject) {
+
+	public void setSubject(SubjectEntity subject)
+	{
 		this.subject = subject;
 	}
-	public ClassroomEntity getClassroom() {
+
+	public ClassroomEntity getClassroom()
+	{
 		return classroom;
 	}
-	public void setClassroom(ClassroomEntity classroom) {
+
+	public void setClassroom(ClassroomEntity classroom)
+	{
 		this.classroom = classroom;
 	}
-	public GroupEntity getGroup() {
+
+	public GroupEntity getGroup()
+	{
 		return group;
 	}
-	public void setGroup(GroupEntity group) {
+
+	public void setGroup(GroupEntity group)
+	{
 		this.group = group;
 	}
-	public static long getSerialversionuid() {
+
+	public static long getSerialversionuid()
+	{
 		return serialVersionUID;
 	}
-	
+
 }

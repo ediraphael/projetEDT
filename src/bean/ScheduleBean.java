@@ -1,12 +1,15 @@
 package bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ScheduleBean {
 
 	private long id;
-	private String dayStart;
-	private String dayEnd;
+	private Date dayStart;
+	private Date dayEnd;
 	private String name;
 	private String comment;
 	private String nameUserTeacher;
@@ -25,16 +28,34 @@ public class ScheduleBean {
 		this.id = id;
 	}
 	public String getDayStart() {
-		return dayStart;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		return simpleDateFormat.format(dayStart);
 	}
 	public void setDayStart(String dayStart) {
-		this.dayStart = dayStart;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try
+		{
+			this.dayStart = simpleDateFormat.parse(dayStart);
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public String getDayEnd() {
-		return dayEnd;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		return simpleDateFormat.format(dayEnd);
 	}
 	public void setDayEnd(String dayEnd) {
-		this.dayEnd = dayEnd;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try
+		{
+			this.dayEnd = simpleDateFormat.parse(dayEnd);
+		} catch (ParseException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public String getName() {
 		return name;

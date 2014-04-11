@@ -5,7 +5,7 @@
 <head><title>Simple jsp page</title></head>
 <body>
     <h3>Exception:</h3>
-    <s:property value="exception"/>
+    <s:property value="exception.message"/>
 
     <h3>Stack trace:</h3>
     <pre>
