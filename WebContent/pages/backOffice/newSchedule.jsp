@@ -31,7 +31,6 @@
 			<s:fielderror theme="simple" fieldName="error.userTeacher"/>
 			<s:submit key="label.valide" />
 		</s:form>
-	</body>
 	<script>
 	 $(function() {
 		$( "#heure_debut" ).datetimepicker({
@@ -44,4 +43,5 @@
 		});
 	 });
 	</script>
+	</body>
 </html>
