@@ -1,7 +1,6 @@
 package model.org.persistence;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,9 +38,9 @@ public class ScheduleEntity implements Serializable {
 	@Column(name="id_schedule")
 	private long id;
 	@Column(name="day_start")
-	private Date dayStart;
+	private String dayStart;
 	@Column(name="day_end")
-	private Date dayEnd;
+	private String dayEnd;
 	@Column(name="name")
 	private String name;
 	@Column(name="comment")
@@ -68,16 +67,16 @@ public class ScheduleEntity implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Date getDayStart() {
+	public String getDayStart() {
 		return dayStart;
 	}
-	public void setDayStart(Date dayStart) {
+	public void setDayStart(String dayStart) {
 		this.dayStart = dayStart;
 	}
-	public Date getDayEnd() {
+	public String getDayEnd() {
 		return dayEnd;
 	}
-	public void setDayEnd(Date dayEnd) {
+	public void setDayEnd(String dayEnd) {
 		this.dayEnd = dayEnd;
 	}
 	public String getName() {

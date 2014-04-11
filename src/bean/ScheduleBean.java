@@ -1,13 +1,12 @@
 package bean;
 
-import java.sql.Date;
 import java.util.List;
 
 public class ScheduleBean {
 
 	private long id;
-	private Date dayStart;
-	private Date dayEnd;
+	private String dayStart;
+	private String dayEnd;
 	private String name;
 	private String comment;
 	private String nameUserTeacher;
@@ -25,16 +24,16 @@ public class ScheduleBean {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Date getDayStart() {
+	public String getDayStart() {
 		return dayStart;
 	}
-	public void setDayStart(Date dayStart) {
+	public void setDayStart(String dayStart) {
 		this.dayStart = dayStart;
 	}
-	public Date getDayEnd() {
+	public String getDayEnd() {
 		return dayEnd;
 	}
-	public void setDayEnd(Date dayEnd) {
+	public void setDayEnd(String dayEnd) {
 		this.dayEnd = dayEnd;
 	}
 	public String getName() {
