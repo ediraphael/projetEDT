@@ -6,15 +6,18 @@
 		<s:head theme="simple" />
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title><s:text name="title.new.schedule"/></title>
+		<link rel="stylesheet" href="/ProjetEDT/css/smoothness/jquery-ui-1.10.4.custom.css"/>
+		<script type='text/javascript' src="/ProjetEDT/javascript/jquery/jquery-1.10.2.js"></script>
+		<script type='text/javascript' src="/ProjetEDT/javascript/jquery/jquery-ui-1.10.4.custom.js"></script>
 	</head>
 	<body>
 		<h1><s:text name="title.new.schedule"/></h1>
 		<s:form action="ScheduleAction" method="post">
 			<s:textfield name="scheduleBean.name" key="label.name" size="20" />
 			<s:fielderror theme="simple" fieldName="error.name"/>
-			<s:textfield name="scheduleBean.dayStart" key="label.dayStart" size="20" />
+			<s:textfield id="heure_debut" name="scheduleBean.dayStart" key="label.dayStart" size="20" />
 			<s:fielderror theme="simple" fieldName="error.dayStart"/>
-			<s:textfield name="scheduleBean.dayEnd" key="label.dayEnd" size="20" />
+			<s:textfield id="heure_fin" name="scheduleBean.dayEnd" key="label.dayEnd" size="20" />
 			<s:fielderror theme="simple" fieldName="error.dayEnd"/>
 			<s:textfield name="scheduleBean.comment" key="label.comment" size="20" />
 			<s:fielderror theme="simple" fieldName="error.comment"/>
@@ -29,4 +32,16 @@
 			<s:submit key="label.valide" />
 		</s:form>
 	</body>
+	<script>
+	 $(function() {
+		$( "#heure_debut" ).datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat:  "HH:mm"
+		});
+		$( "#heure_fin" ).datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat:  "HH:mm"
+		});
+	 });
+	</script>
 </html>
