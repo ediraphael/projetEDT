@@ -16,7 +16,7 @@
 				<th><s:text name="label.dayStart"/></th>
 				<th><s:text name="label.dayEnd"/></th>
 				<th><s:text name="label.comment"/></th>
-				<th><s:text name="label.teacher"/></th>
+				<th><s:text name="label.userTeacher"/></th>
 				<th><s:text name="label.subject"/></th>
 				<th><s:text name="label.classroom"/></th>
 				<th><s:text name="label.group"/></th>
