@@ -13,11 +13,12 @@
 	<body>
 		<h1><s:text name="title.new.schedule"/></h1>
 		<s:form action="UpdateSchedule" method="post">
+			<s:hidden name="scheduleBean.id" value="%{scheduleBean.id}"/>
 			<s:textfield name="scheduleBean.name" key="label.name" size="20" />
 			<s:fielderror theme="simple" fieldName="error.name"/>
-			<s:textfield id="heure_debut" name="scheduleBean.dayStart" key="label.dayStart" size="20" />
+			<s:textfield id="heure_debut" name="scheduleBean.dayStart" key="label.dayStart" />
 			<s:fielderror theme="simple" fieldName="error.dayStart"/>
-			<s:textfield id="heure_fin" name="scheduleBean.dayEnd" key="label.dayEnd" size="20" />
+			<s:textfield id="heure_fin" name="scheduleBean.dayEnd" key="label.dayEnd" />
 			<s:fielderror theme="simple" fieldName="error.dayEnd"/>
 			<s:textfield name="scheduleBean.comment" key="label.comment" size="20" />
 			<s:fielderror theme="simple" fieldName="error.comment"/>
