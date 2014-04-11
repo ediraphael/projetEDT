@@ -76,6 +76,10 @@
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/error.jsp</result>
 	</action>
+	<action name="ShowSchedule" class="actions.schedule.ScheduleAction" method="showSchedule">
+		<result name="SUCCESS">pages/backOffice/showSchedule.jsp</result>
+		<result name="ERROR">pages/error.jsp</result>
+	</action>
 	<!-- FIN ACTION SCHEDULE -->
 	
 	

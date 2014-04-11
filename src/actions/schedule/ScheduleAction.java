@@ -117,6 +117,7 @@ public class ScheduleAction extends AbstractAction
 	 * Méthode permettant d'afficher les horaires
 	 * @return
 	 */
+	@SkipValidation
 	public String showSchedule()
 	{
 		forward = FORWARD_SUCCESS;
