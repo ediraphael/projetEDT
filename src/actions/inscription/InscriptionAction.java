@@ -9,11 +9,16 @@ import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
+
+/**
+ * Action d'inscription
+ * @author mickael
+ *
+ */
 public class InscriptionAction extends AbstractAction
 {
+	//Serialization
 	private static final long serialVersionUID = 1L;
-	//forward pour rediriger vers la bonne page
-	private String forward;
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
 	
@@ -22,6 +27,7 @@ public class InscriptionAction extends AbstractAction
 	private UserDAO udao = new UserDAO();
 	private PasswordTeacherDAO pdao = new PasswordTeacherDAO();
 	
+	//mot de passe pour les enregistrement directement en groupe prof
 	private String pwdTeacher;
 	
 	
@@ -54,14 +60,16 @@ public class InscriptionAction extends AbstractAction
 
 	/**
 	 * Méthode permettant de lancer la page d'inscription en initialisant la liste des groupes
-	 * @return
+	 * 
 	 */
 	@SkipValidation 
 	public String openInscriptionForm()
 	{
 		forward=FORWARD_SUCCESS;
 		userBean=new UserBean();
+		//pour ouvrir le formulaire d'inscription il faut charger la liste des groupes existant
 		userBean.setArrayGroupName(gdao.getAllGroupName());
+		//De meme, il faut récupérer le password prof pour le test lors de l'inscription
 		pwdTeacher=pdao.getPasswordTeacher();
 		return forward;
 	}
@@ -119,7 +127,7 @@ public class InscriptionAction extends AbstractAction
 				addFieldError("error.teacherpassword", getText("validator.pwd.false"));
 			}
 		}
-		
+		//rechargement de la liste des groupe pour réafficher la page des inscriptions
 		userBean.setArrayGroupName(gdao.getAllGroupName());
 	}
 

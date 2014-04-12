@@ -7,13 +7,19 @@ import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
-
+/**
+ * Action de connexion
+ * @author mickael
+ *
+ */
 public class LoginAction extends AbstractAction
 {
+	//Serialization
 	private static final long serialVersionUID = 1L;
-
 	//bean de formulaire permettant le transfere des informations
 	private UserBean userBean;
+	//déclaration et initialisation du DAO
+	private UserDAO udao = new UserDAO();
 
 	/**
 	 * Execution l'inscription en sauvegardant le user
@@ -21,7 +27,6 @@ public class LoginAction extends AbstractAction
 	public String execute()
 	{
 		forward=FORWARD_SUCCESS;
-		UserDAO udao = new UserDAO();
 		UserEntity user=udao.getUserByEmailAndPwd(userBean.getEmail(), userBean.getPassword());
 		
 		//Si le user n'existe pas c'est qu'il y a une erreur d'authentification
@@ -30,7 +35,6 @@ public class LoginAction extends AbstractAction
 			addActionError(getText("validator.not.register"));
 			forward=FORWARD_INPUT;
 		}
-		
 		return forward;
 	}
 

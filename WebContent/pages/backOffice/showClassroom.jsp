@@ -8,6 +8,7 @@
 		<title><s:text name="title.show.classroom"/></title>
 	</head>
 	<body>
+		<%@ include file="../other/menuAdmin.jsp" %>
 		<h1><s:text name="title.show.classroom"/></h1>
 		<table>
 			<tr>

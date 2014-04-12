@@ -1,10 +1,19 @@
 package bean;
 
+
+/**
+ * Bean Classroom
+ * @author mickael
+ *
+ */
 public class ClassroomBean
 {
 	private long id;
 	private String name;
 
+	/**
+	 * Getters and Setters
+	 */
 	public long getId()
 	{
 		return id;
