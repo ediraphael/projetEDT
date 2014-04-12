@@ -12,7 +12,9 @@
 		<s:actionerror />
 		<s:form action="LoginAction" method="post">
 			<s:textfield name="userBean.email" key="label.email"/>
+			<s:fielderror fieldName="error.email" />
 			<s:password name="userBean.password" key="label.password"/>
+			<s:fielderror fieldName="error.password" />
 			<s:submit key="label.valide"/>
 		</s:form>
 	</body>
