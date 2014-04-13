@@ -3,31 +3,39 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<s:head theme="simple" />
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
 		<title><s:text name="title.show.group"/></title>
 	</head>
 	<body>
-		<%@ include file="../other/menuAdmin.jsp" %>
-		<h1><s:text name="title.show.group"/></h1>
-		<table>
-				<tr>
-					<th><s:text name="label.id"/></th>
-					<th><s:text name="label.name"/></th>
-					<th><s:text name="label.delete"/></th>
-				</tr>
-			<s:iterator value="listGroupBean" id="group">
-				<tr>
-					<td><s:property value="id"/></td>
-					<td><s:property value="name"/></td>
-					<td>
-						<s:url id="url" action="DeleteGroup">
-							<s:param name="id"><s:property value="id"/></s:param>
-					    </s:url>
-					    <s:a href="%{url}"><s:text name="label.delete"/></s:a>
-				    </td>
-				</tr>
-			</s:iterator>
-		</table>
+		<div id="wrap">
+			<%@ include file="../other/applicationName.jsp" %>
+			<%@ include file="../other/menuAdmin.jsp" %>
+			<div id="content-top"></div>
+			<div id="content-middle">
+				<h1><s:text name="title.show.group"/></h1>
+				<table>
+					<tr>
+						<th><s:text name="label.id"/></th>
+						<th><s:text name="label.name"/></th>
+						<th></th>
+					</tr>
+					<s:iterator value="listGroupBean" id="group">
+						<tr>
+							<td><s:property value="id"/></td>
+							<td><s:property value="name"/></td>
+							<td>
+								<s:url id="url" action="DeleteGroup">
+									<s:param name="id"><s:property value="id"/></s:param>
+							    </s:url>
+							    <s:a href="%{url}"><s:text name="label.delete"/></s:a>
+						    </td>
+						</tr>
+					</s:iterator>
+				</table>
+			<div class="clear"></div>
+			</div>
+			<div id="content-bottom"></div>
+		</div>
 	</body>
 </html>
