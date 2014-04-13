@@ -77,7 +77,7 @@ public class ScheduleEntity implements Serializable
 
 	public void setDayStart(String dayStart)
 	{
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
 			java.util.Date day = simpleDateFormat.parse(dayStart);
@@ -95,7 +95,7 @@ public class ScheduleEntity implements Serializable
 	}
 
 	public void setDayEnd(String dayEnd) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
 			java.util.Date day = simpleDateFormat.parse(dayEnd);

@@ -28,11 +28,11 @@ public class ScheduleBean {
 		this.id = id;
 	}
 	public String getDayStart() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return simpleDateFormat.format(dayStart);
 	}
 	public void setDayStart(String dayStart) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
 			this.dayStart = simpleDateFormat.parse(dayStart);
@@ -43,11 +43,11 @@ public class ScheduleBean {
 		}
 	}
 	public String getDayEnd() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return simpleDateFormat.format(dayEnd);
 	}
 	public void setDayEnd(String dayEnd) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
 			this.dayEnd = simpleDateFormat.parse(dayEnd);
