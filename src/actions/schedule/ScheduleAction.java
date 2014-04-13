@@ -19,11 +19,14 @@ import bean.ScheduleBean;
 
 public class ScheduleAction extends AbstractAction
 {
-
+	//Serialization
 	private static final long serialVersionUID = 1L;
 	private long id;
+	
+	//bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
+	
 	// déclaration et initialisation des DAO
 	private GroupDAO groupDao = new GroupDAO();
 	private ClassroomDAO classroomDao = new ClassroomDAO();

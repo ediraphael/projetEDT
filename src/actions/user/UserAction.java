@@ -10,9 +10,14 @@ import model.org.persistence.UserEntity;
 import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
-
+/**
+ * Action sur les users
+ * @author mickael
+ *
+ */
 public class UserAction extends AbstractAction
 {
+	//Serialization
 	private static final long serialVersionUID = 1L;
 
 	//bean de formulaire permettant le transfere des informations

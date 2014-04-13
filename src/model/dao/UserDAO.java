@@ -35,7 +35,8 @@ public class UserDAO
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q=getEntityManager().createNamedQuery("UserEntity.findAll");
 			allUser= q.getResultList()!= null ? (List<UserEntity>) q.getResultList() : null ;
-		} finally 
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}
@@ -58,8 +59,9 @@ public class UserDAO
 			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q=getEntityManager().createNamedQuery("UserEntity.findByEmailAndPwd")
 					.setParameter("email", email).setParameter("pwd", password);
-			user= q.getResultList()!= null ? (UserEntity) q.getResultList().get(0) : null ;
-		} finally 
+			user= (q.getResultList().size()!=0) ? (UserEntity) q.getSingleResult() : null ;
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}
@@ -80,7 +82,8 @@ public class UserDAO
 			Query q=getEntityManager().createNamedQuery("UserEntity.findByName")
 					.setParameter("name", name);
 			user= q.getResultList()!= null ? (UserEntity) q.getResultList().get(0) : null ;
-		} finally 
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}
@@ -97,7 +100,8 @@ public class UserDAO
 			Query q=getEntityManager().createNamedQuery("UserEntity.findAllNameByGroup")
 					.setParameter("group", group);
 			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList() : null ;
-		} finally 
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}
@@ -118,7 +122,8 @@ public class UserDAO
 			getEntityManager().getTransaction().begin();
 			getEntityManager().persist(user);
 			getEntityManager().getTransaction().commit();
-		} finally 
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}
@@ -138,7 +143,8 @@ public class UserDAO
 			user = getEntityManager().merge(user);
 			getEntityManager().remove(user);
 			getEntityManager().getTransaction().commit();
-		} finally 
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}
@@ -156,7 +162,8 @@ public class UserDAO
 			getEntityManager().getTransaction().begin();
 			user = getEntityManager().merge(user);
 			getEntityManager().getTransaction().commit();
-		} finally 
+		} 
+		finally 
 		{
 			getEntityManager().close();
 		}

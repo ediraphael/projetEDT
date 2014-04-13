@@ -9,9 +9,6 @@ import java.util.List;
  */
 public class UserBean
 {
-	/**
-	 * champs du formulaire
-	 */
 	private long id;
 	private String firstName;
 	private String name;
@@ -37,7 +34,6 @@ public class UserBean
 
 	/**
 	 * Getters and Setters
-	 * @return
 	 */
 	public long getId() 
 	{

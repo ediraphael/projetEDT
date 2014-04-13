@@ -9,8 +9,14 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 
+/**
+ * Encapsulation des actions 
+ * @author mickael
+ *
+ */
 public class AbstractAction extends ActionSupport implements SessionAware
 {
+	//Serialization
 	private static final long serialVersionUID = 1L;
 	//forward pour rediriger vers la bonne page
 	protected String forward;
@@ -33,10 +39,7 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	}
 
 
-	public void validate()
-	{
-
-	}
+	public void validate(){}
 	
 	/**
 	 * Permet de valider un email selon la regex officiel

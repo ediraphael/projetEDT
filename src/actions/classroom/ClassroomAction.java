@@ -8,21 +8,28 @@ import model.org.persistence.ClassroomEntity;
 import actions.abstractAction.AbstractAction;
 import bean.ClassroomBean;
 
+
+/**
+ * Action sur les salles
+ * @author mickael
+ *
+ */
 public class ClassroomAction extends AbstractAction
 {
+	//Serialization
 	private static final long serialVersionUID = 1L;
 	// bean de formulaire permettant le transfere des informations
 	private long id;
+	
+	//déclaration et initialisation des DAO
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
 
 	/**
-	 * Execution l'inscription en sauvegardant le user
+	 * Execution la sauvegarde d'une salle 
 	 */
 	public String execute()
 	{
-		// Sauf si il y a erreur, le traitement est considéré comme étant un
-		// succès
 		forward = FORWARD_SUCCESS;
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
@@ -36,6 +43,9 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 	
+	/**
+	 * Méthode permettant d'update une salle 
+	 */
 	public String updateClassroom()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
@@ -55,6 +65,10 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 	
+	
+	/**
+	 * Méthode permettant de supprimer une salle
+	 */
 	public String deleteClassroom()
 	{
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
@@ -72,8 +86,11 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 	
-	
-
+		
+	/**
+	 * Méthode permettant d'afficher la liste des salles 
+	 * @return
+	 */
 	public String showClassroom()
 	{
 		forward = FORWARD_SUCCESS;
@@ -96,6 +113,7 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 
+	
 	public String getClassroom()
 	{
 		forward = FORWARD_SUCCESS;

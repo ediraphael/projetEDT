@@ -5,8 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class ScheduleBean {
 
+/**
+ * Bean Schedule
+ * @author mickael
+ *
+ */
+public class ScheduleBean 
+{
 	private long id;
 	private Date dayStart;
 	private Date dayEnd;
@@ -21,6 +27,7 @@ public class ScheduleBean {
 	private List<String> arraySubjectName;
 	private List<String> arrayUserTeacher;
 	
+<<<<<<< HEAD
 	public long getId() {
 		return id;
 	}
@@ -33,6 +40,22 @@ public class ScheduleBean {
 	}
 	public void setDayStart(String dayStart) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+=======
+	
+	/**
+	 * Getters and Setters
+	 */
+	
+	public String getDayStart() 
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		return simpleDateFormat.format(dayStart);
+	}
+	
+	public void setDayStart(String dayStart) 
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+>>>>>>> 96d80642b96df994c9afc28e4e3f7568974a6348
 		try
 		{
 			this.dayStart = simpleDateFormat.parse(dayStart);
@@ -42,12 +65,25 @@ public class ScheduleBean {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	public String getDayEnd() {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return simpleDateFormat.format(dayEnd);
 	}
 	public void setDayEnd(String dayEnd) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+=======
+	
+	public String getDayEnd() 
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		return simpleDateFormat.format(dayEnd);
+	}
+	
+	public void setDayEnd(String dayEnd) 
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+>>>>>>> 96d80642b96df994c9afc28e4e3f7568974a6348
 		try
 		{
 			this.dayEnd = simpleDateFormat.parse(dayEnd);
@@ -57,40 +93,63 @@ public class ScheduleBean {
 			e.printStackTrace();
 		}
 	}
-	public String getName() {
+	
+	public long getId() 
+	{
+		return id;
+	}
+	
+	public void setId(long id) 
+	{
+		this.id = id;
+	}
+	
+	public String getName() 
+	{
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(String name) 
+	{
 		this.name = name;
 	}
-	public String getComment() {
+	public String getComment()
+	{
 		return comment;
 	}
-	public void setComment(String comment) {
+	public void setComment(String comment) 
+	{
 		this.comment = comment;
 	}
-	public String getNameUserTeacher() {
+	public String getNameUserTeacher() 
+	{
 		return nameUserTeacher;
 	}
-	public void setNameUserTeacher(String nameUserTeacher) {
+	public void setNameUserTeacher(String nameUserTeacher) 
+	{
 		this.nameUserTeacher = nameUserTeacher;
 	}
-	public String getNameSubject() {
+	public String getNameSubject() 
+	{
 		return nameSubject;
 	}
-	public void setSubject(String nameSubject) {
+	public void setSubject(String nameSubject) 
+	{
 		this.nameSubject = nameSubject;
 	}
-	public String getNameClassroom() {
+	public String getNameClassroom()
+	{
 		return nameClassroom;
 	}
-	public void setClassroom(String nameClassroom) {
+	public void setClassroom(String nameClassroom) 
+	{
 		this.nameClassroom = nameClassroom;
 	}
-	public String getNameGroup() {
+	public String getNameGroup() 
+	{
 		return nameGroup;
 	}
-	public void setNameGroup(String nameGroup) {
+	public void setNameGroup(String nameGroup)
+	{
 		this.nameGroup = nameGroup;
 	}
 	public List<String> getArrayGroupName()

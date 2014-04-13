@@ -8,9 +8,14 @@ import model.org.persistence.GroupEntity;
 import bean.GroupBean;
 import actions.abstractAction.AbstractAction;
 
+/**
+ * Action sur les groupes
+ * @author mickael
+ *
+ */
 public class GroupAction extends AbstractAction
 {
-
+	//Serialization
 	private static final long serialVersionUID = 1L;
 
 	//bean de formulaire permettant le transfere des informations

@@ -5,13 +5,12 @@
 	<head>
 		<s:head theme="simple" />
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<script type='text/javascript' src='./javascript/utils/form.js'></script>
 		<title><s:text name="title.register"/></title>
 	</head>
 	<body>
 		<h1><s:text name="title.register"/></h1>
 		<s:actionerror />
-		
-		
 		<s:form action="InscriptionAction" method="post">
 			<s:textfield name="userBean.firstName" key="label.firstname" size="20" />
 			<s:fielderror fieldName="error.name" />
@@ -31,4 +30,7 @@
 		</s:form>
 	</body>
 </html>
+
+
+
 
