@@ -136,11 +136,13 @@ public class ScheduleAction extends AbstractAction
 			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAllSchedule();
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
+				System.out.println("ici");
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				System.out.println(scheduleEntity.getDayStart());
 				ScheduleBean scheduleBean = new ScheduleBean();
 				scheduleBean.setId(scheduleEntity.getId());
-				scheduleBean.setDayStart(simpleDateFormat.format(scheduleEntity.getDayStart()));
-				scheduleBean.setDayEnd(simpleDateFormat.format(scheduleEntity.getDayEnd()));
+				scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
+				scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
 				scheduleBean.setName(scheduleEntity.getName());
 				scheduleBean.setComment(scheduleEntity.getComment());
 				scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
@@ -187,8 +189,8 @@ public class ScheduleAction extends AbstractAction
 			this.scheduleBean = new ScheduleBean();
 			this.scheduleBean.setId(scheduleEntity.getId());
 			this.scheduleBean.setName(scheduleEntity.getName());
-			this.scheduleBean.setDayStart(simpleDateFormat.format(scheduleEntity.getDayStart()));
-			this.scheduleBean.setDayEnd(simpleDateFormat.format(scheduleEntity.getDayEnd()));
+			this.scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
+			this.scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
 			this.scheduleBean.setComment(scheduleEntity.getComment());
 			this.scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
 			this.scheduleBean.setNameSubject(scheduleEntity.getSubject().getName());
