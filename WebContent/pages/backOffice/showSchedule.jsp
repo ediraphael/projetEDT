@@ -41,7 +41,7 @@
 							<td><s:a href="%{url}"><s:property value="nameSubject"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="nameClassroom"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="nameGroup"/></s:a></td>
-							<td style="width:25px;">
+							<td class="bine">
 								<s:url id="url" action="DeleteSchedule">
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>

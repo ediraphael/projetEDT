@@ -3,31 +3,66 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<s:head theme="simple" />
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<script type='text/javascript' src='./javascript/utils/form.js'></script>
+		<script type="text/javascript" src="./javascript/utils/form.js"></script>
+		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
 		<title><s:text name="title.register"/></title>
 	</head>
-	<body>
-		<h1><s:text name="title.register"/></h1>
-		<s:actionerror />
-		<s:form action="InscriptionAction" method="post">
-			<s:textfield name="userBean.firstName" key="label.firstname" size="20" />
-			<s:fielderror fieldName="error.name" />
-			<s:textfield name="userBean.name" key="label.name" size="20" />
-			<s:fielderror fieldName="error.name"/>
-			<s:select id="inscriptionGroup" label="Groupe" list="userBean.arrayGroupName" name="userBean.nameGroup" onchange="showPwdTeach()"/>
-			<s:fielderror fieldName="error.group"/>
-			<s:password   id="pwdTeach" name="userBean.teacherPassword" key="label.password.teacher" size="20" />
-			<s:fielderror id="pwdTeachErr" fieldName="error.teacherpassword"/>
-			<s:textfield name="userBean.email" key="label.email" size="20" />
-			<s:fielderror fieldName="error.email"/>
-			<s:password name="userBean.password" key="label.password" size="20" />
-			<s:fielderror fieldName="error.password"/>
-			<s:password name="userBean.confirmPassword" key="label.password.confirm" size="20" />
-			<s:fielderror fieldName="error.confirmpassword"/>
-			<s:submit method="execute" key="label.valide" align="center" />
-		</s:form>
+	<body onload="showPwdTeach();">
+		<div id="wrap">
+			<%@ include file="../other/applicationName.jsp" %>
+			<div id="content-top"></div>
+			<div id="content-middle">
+				<s:form action="InscriptionAction" method="post">	
+					<h1><s:text name="title.register"/></h1>
+					<s:actionerror cssClass="errorCenter" />
+					<table>
+						<tr><td> </td></tr>
+						<tr>
+							<td><s:text name="label.firstname"/></td>
+							<td><s:textfield name="userBean.firstName"/></td>
+							<td class="error"><s:fielderror fieldName="error.firstName" /></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.name"/></td>
+							<td><s:textfield name="userBean.name"/></td>
+							<td class="error"><s:fielderror fieldName="error.name"/></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.group"/></td>
+							<td>
+								<s:select id="groupList" list="userBean.arrayGroupName" name="userBean.nameGroup" onchange="showPwdTeach()" />
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.email"/></td>
+							<td><s:textfield name="userBean.email" /></td>
+							<td class="error"><s:fielderror fieldName="error.email"/></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.password"/></td>
+							<td><s:password name="userBean.password"/></td>
+							<td class="error"><s:fielderror fieldName="error.password"/></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.password.confirm"/></td>
+							<td><s:password name="userBean.confirmPassword"/></td>
+							<td class="error"><s:fielderror fieldName="error.confirmpassword"/></td>
+						</tr>
+						<tr id="pwdTeacher">
+							<td><s:text name="label.password.teacher"/></td>
+							<td><s:password name="userBean.teacherPassword" /></td>
+							<td class="error"><s:fielderror fieldName="error.teacherpassword"/></td>
+						</tr>
+					</table>
+					<br/>
+					<s:submit key="label.valide"  cssClass="user_button"/>	
+				</s:form>
+				<div class="clear"></div>
+			</div>
+			<div id="content-bottom"></div>
+		</div>
 	</body>
 </html>
 

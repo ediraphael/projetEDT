@@ -23,46 +23,47 @@
 						<tr><td></td></tr>
 						<tr>
 							<td><s:text name="label.name"/></td>
-							<td><s:textfield name="scheduleBean.name" size="20" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.name"/></td>
+							<td><s:textfield name="scheduleBean.name" cssClass="text"/></td>
+							<td class="white"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayStart"/></td>
 							<td><s:textfield id="heure_debut" name="scheduleBean.dayStart" key="label.dayStart" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.dayStart"/></td>
+							<td class="white"><s:fielderror fieldName="error.dayStart"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayEnd"/></td>
 							<td><s:textfield id="heure_fin" name="scheduleBean.dayEnd" key="label.dayEnd" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.dayEnd"/></td>
+							<td class="white"><s:fielderror fieldName="error.dayEnd"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.comment"/></td>
 							<td><s:textfield name="scheduleBean.comment" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.comment"/></td>
+							<td class="white"><s:fielderror fieldName="error.comment"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.group"/></td>				
 							<td><s:select name="scheduleBean.nameGroup" list="arrayGroupName" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.group"/></td>
+							<td class="white"><s:fielderror fieldName="error.group"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.classroom"/></td>		
 							<td><s:select name="scheduleBean.nameClassroom" list="arrayClassroomName" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.classroom"/></td>
+							<td class="white"><s:fielderror fieldName="error.classroom"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.userTeacher"/></td>
 							<td><s:select name="scheduleBean.nameUserTeacher" list="arrayUserTeacherName" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.userTeacher"/></td>
+							<td class="white"><s:fielderror fieldName="error.userTeacher"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.subject"/></td>
 							<td><s:select name="scheduleBean.nameSubject" list="arraySubjectName" /></td>
-							<td class="white"><s:fielderror theme="simple" fieldName="error.userTeacher"/></td>
+							<td class="white"><s:fielderror fieldName="error.userTeacher"/></td>
 						</tr>
 					</table>
-					<s:submit key="label.valide" />
+					<br/>
+					<s:submit key="label.valide"  cssClass="user_button"/>
 				</s:form>
 				<div class="clear"></div>
 			</div>

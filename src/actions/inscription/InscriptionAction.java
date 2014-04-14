@@ -96,21 +96,24 @@ public class InscriptionAction extends AbstractAction
 		{
 			addFieldError("error.email", getText("validator.field.empty"));
 		}
+		//test si l'email est correctement renseigné
+		else if(!emailValidator(userBean.getEmail()))
+		{
+			addFieldError("error.email", getText("validator.mail.false"));
+		}
 		
 		//test si le password est renseigné
 		if(userBean.getPassword().isEmpty())
 		{
-			addFieldError("error.password", getText("validator.field.empty"));
+			addFieldError("error.confirmpassword", getText("validator.field.empty"));
 		}
 		
-		//test si l'email est correctement renseigné
-		if(!emailValidator(userBean.getEmail()))
+		if(userBean.getConfirmPassword().isEmpty())
 		{
-			addFieldError("error.password", getText("validator.mail.false"));
+			addFieldError("error.password", getText("validator.field.empty"));
 		}
-
 		//test si la confirmation est correcte
-		if(!userBean.getPassword().equals(userBean.getConfirmPassword()))
+		else if(!userBean.getPassword().equals(userBean.getConfirmPassword()))
 		{
 			addFieldError("error.confirmpassword", getText("validator.pwd.confirm"));
 		}

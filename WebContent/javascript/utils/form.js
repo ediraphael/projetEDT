@@ -1,20 +1,23 @@
-function hideOrShowField(id,showOrHide)
+function hideField(id)
 {
-	document.getElementById(id).style.display = showOrHide;
+	document.getElementById(id).style.visibility="hidden";
+}
+
+function showField(id)
+{
+	document.getElementById(id).style.visibility="visible";
 }
 
 function showPwdTeach() 
 {
-	var groupIndex= document.getElementById('inscriptionGroup').selectedIndex ;
-	var groupValue= document.getElementById('inscriptionGroup').options[groupIndex].value;
+	var groupIndex= document.getElementById('groupList').selectedIndex ;
+	var groupValue= document.getElementById('groupList').options[groupIndex].value;
 	if(groupValue!='Enseignant')
 	{
-		hideOrShowField('pwdTeach','none');
-		hideOrShowField('pwdTeachErr','none');
+		hideField('pwdTeacher');
 	}
 	else
 	{
-		hideOrShowField('pwdTeach','block');
-		hideOrShowField('pwdTeachErr','block');
+		showField('pwdTeacher');
 	}
 }

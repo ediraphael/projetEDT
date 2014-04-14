@@ -68,6 +68,15 @@
 		<result name="SUCCESS" type="redirectAction">ShowUser</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
+	<action name="GetUser" class="actions.user.UserAction" method="getUser">
+		<result name="SUCCESS">pages/backOffice/updateUser.jsp</result>
+		<result name="ERROR">pages/other/error.jsp</result>
+	</action>
+	<action name="UpdateUser" class="actions.user.UserAction" method="updateUser">
+		<result name="SUCCESS" type="redirectAction">ShowUser</result>
+		<result name="input">pages/backOffice/updateUser.jsp</result>
+		<result name="ERROR">pages/other/error.jsp</result>
+	</action>
 	<!-- FIN ACTION USER -->
 	
 	
