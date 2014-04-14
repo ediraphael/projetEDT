@@ -38,9 +38,9 @@ public class ScheduleEntity implements Serializable
 	@Column(name = "id_schedule")
 	private long id;
 	@Column(name = "day_start")
-	private Date dayStart;
+	private String dayStart;
 	@Column(name = "day_end")
-	private Date dayEnd;
+	private String dayEnd;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "comment")
@@ -70,18 +70,18 @@ public class ScheduleEntity implements Serializable
 		this.id = id;
 	}
 
-	public Date getDayStart()
+	public String getDayStart() throws ParseException
 	{
-		return dayStart;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return simpleDateFormat.format(simpleDateFormat.parse(dayStart));
 	}
 
 	public void setDayStart(String dayStart)
 	{
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
-			java.util.Date day = simpleDateFormat.parse(dayStart);
-			this.dayStart = new Date(day.getTime());
+			this.dayStart = simpleDateFormat.format(simpleDateFormat.parse(dayStart));
 		} catch (ParseException e)
 		{
 			// TODO Auto-generated catch block
@@ -89,17 +89,17 @@ public class ScheduleEntity implements Serializable
 		}
 	}
 
-	public Date getDayEnd()
+	public String getDayEnd() throws ParseException
 	{
-		return dayEnd;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return simpleDateFormat.format(simpleDateFormat.parse(dayEnd));
 	}
 
 	public void setDayEnd(String dayEnd) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
-			java.util.Date day = simpleDateFormat.parse(dayEnd);
-			this.dayEnd = new Date(day.getTime());
+			this.dayEnd = simpleDateFormat.format(simpleDateFormat.parse(dayEnd));
 		} catch (ParseException e)
 		{
 			// TODO Auto-generated catch block

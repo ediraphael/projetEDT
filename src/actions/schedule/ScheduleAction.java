@@ -1,6 +1,8 @@
 package actions.schedule;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.dao.ClassroomDAO;
@@ -91,7 +93,6 @@ public class ScheduleAction extends AbstractAction
 			scheduleDAO.updateSchedule(scheduleEntity);
 		} catch (Exception e)
 		{
-			System.out.println(this.scheduleBean.getDayEnd());
 			e.printStackTrace();
 			forward = FORWARD_ERROR;
 		}
@@ -135,10 +136,13 @@ public class ScheduleAction extends AbstractAction
 			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAllSchedule();
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
+				System.out.println("ici");
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				System.out.println(scheduleEntity.getDayStart());
 				ScheduleBean scheduleBean = new ScheduleBean();
 				scheduleBean.setId(scheduleEntity.getId());
-				scheduleBean.setDayStart(scheduleEntity.getDayStart().toString());
-				scheduleBean.setDayEnd(scheduleEntity.getDayEnd().toString());
+				scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
+				scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
 				scheduleBean.setName(scheduleEntity.getName());
 				scheduleBean.setComment(scheduleEntity.getComment());
 				scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
@@ -146,7 +150,6 @@ public class ScheduleAction extends AbstractAction
 				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
 				this.listScheduleBean.add(scheduleBean);
-				System.out.println("tt"+scheduleEntity.getDayEnd());
 			}
 		} catch (Exception e)
 		{
@@ -181,11 +184,13 @@ public class ScheduleAction extends AbstractAction
 		try
 		{
 			ScheduleEntity scheduleEntity = scheduleDAO.getSchedule(this.id);
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 			this.scheduleBean = new ScheduleBean();
 			this.scheduleBean.setId(scheduleEntity.getId());
 			this.scheduleBean.setName(scheduleEntity.getName());
-			this.scheduleBean.setDayStart(scheduleEntity.getDayStart().toString());
-			this.scheduleBean.setDayEnd(scheduleEntity.getDayEnd().toString());
+			this.scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
+			this.scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
 			this.scheduleBean.setComment(scheduleEntity.getComment());
 			this.scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
 			this.scheduleBean.setNameSubject(scheduleEntity.getSubject().getName());
