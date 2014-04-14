@@ -27,7 +27,7 @@
 						    </s:url>
 							<td><s:a href="%{url}"><s:property value="id"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="name"/></s:a></td>
-							<td>
+							<td style="width:25px;">
 								<s:url id="url" action="DeleteClassroom">
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>

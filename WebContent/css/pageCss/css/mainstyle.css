@@ -51,4 +51,9 @@ thead th {background:#c3d9ff;}
 th, td, caption {padding:4px 10px 4px 5px; text-align: center;}
 tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
 td { text-shadow: 1px 1px 1px #FFF;  color: #A19A9A;  }
+
+.white
+{
+  background: #fff !important;
+}
 		

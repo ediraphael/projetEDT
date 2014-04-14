@@ -22,13 +22,16 @@
 					</tr>
 					<s:iterator value="listGroupBean" id="group">
 						<tr>
-							<td><s:property value="id"/></td>
-							<td><s:property value="name"/></td>
-							<td>
+							<s:url id="url" action="GetUser">
+								<s:param name="id"><s:property value="id"/></s:param>
+						    </s:url>
+							<td><s:a href="%{url}"><s:property value="id"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="name"/></s:a></td>
+							<td style="width:25px;">
 								<s:url id="url" action="DeleteGroup">
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>
-							    <s:a href="%{url}"><s:text name="label.delete"/></s:a>
+							    <s:a href="%{url}"><img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px" /></s:a>
 						    </td>
 						</tr>
 					</s:iterator>
