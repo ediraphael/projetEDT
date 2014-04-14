@@ -2,7 +2,6 @@ package actions.schedule;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import model.dao.ClassroomDAO;
@@ -136,9 +135,7 @@ public class ScheduleAction extends AbstractAction
 			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAllSchedule();
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
-				System.out.println("ici");
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				System.out.println(scheduleEntity.getDayStart());
 				ScheduleBean scheduleBean = new ScheduleBean();
 				scheduleBean.setId(scheduleEntity.getId());
 				scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
@@ -153,7 +150,6 @@ public class ScheduleAction extends AbstractAction
 			}
 		} catch (Exception e)
 		{
-			System.err.println(e);
 			forward = FORWARD_ERROR;
 		}
 		return forward;
