@@ -44,7 +44,7 @@
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>
 							    <s:a href="%{url}">
-								    	<img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px"  title="<s:text name="label.delete"/>" />
+								    <img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px"  title="<s:text name="label.delete"/>" />
 								</s:a>
 							</td>
 						</tr>
@@ -52,7 +52,7 @@
 				</table>
 				<s:url id="url" action="ScheduleForm">
 			    </s:url>
-			    <h3><s:a href="%{url}" cssClass="user_button"><s:text name="label.add"/></s:a></h3>
+			    <br/><s:a href="%{url}" cssClass="user_button"><s:text name="label.add"/></s:a>
 				<div class="clear"></div>
 				
 			</div>
