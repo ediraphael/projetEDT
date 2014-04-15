@@ -1,9 +1,13 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-<head>
-	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
+		<title><s:text name="title.new.schedule"/></title>
+		<link rel="stylesheet" href="/ProjetEDT/css/smoothness/jquery-ui-1.10.4.custom.css"/>
+		<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
 	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery.weekcalendar.css' />
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-1.4.4.min.js'></script>
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-ui-1.8.11.custom.min.js'></script>
@@ -35,7 +39,7 @@
 			use24Hour: true,
 			hourLine: true,
 			allowEventCreation:false,
-			timeSeparator: ' Ã  ',
+			timeSeparator: ' à ',
 			data: eventData,
 			businessHours: {start: 0, end: 0, limitDisplay: false},
 			height: function($calendar) {
@@ -54,7 +58,7 @@
 				return 1;
 			},
 			shortMonths: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-			longMonths: ['Janvier', 'FÃ©vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'DÃ©cembre'],
+			longMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
 			shortDays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
 			longDays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
 		});
@@ -66,10 +70,18 @@
 		$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
 	});
 	</script>
-</head>
+	</head>
+	<body>
+		<div id="wrap">
+			<%@ include file="../other/applicationName.jsp" %>
+			<%@ include file="../other/menuAdmin.jsp" %>
+			<div id="content-top"></div>
+			<div id="content-middle">
 
-<body>
-	<s:property value="#session.user.email" />
-	<div id='calendar'></div>
-</body>
+				<s:property value="#session.user.email" />
+				<div id='calendar'></div>
+			</div>
+			<div id="content-bottom"></div>
+		</div>
+	</body>
 </html>
