@@ -19,7 +19,8 @@ import javax.persistence.Table;
 ({
 	// définition de requetes simple appelable dans le DAO
 	@NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"), 
-	@NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id")
+	@NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"),
+	@NamedQuery(name = "ScheduleEntity.findByGroup", query = "SELECT u FROM ScheduleEntity u WHERE u.group = :group")
 })
 public class ScheduleEntity implements Serializable
 {
