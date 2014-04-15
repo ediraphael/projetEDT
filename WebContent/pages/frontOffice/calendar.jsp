@@ -77,8 +77,6 @@
 			<%@ include file="../other/menuAdmin.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
-
-				<s:property value="#session.user.email" />
 				<div id='calendar'></div>
 			</div>
 			<div id="content-bottom"></div>

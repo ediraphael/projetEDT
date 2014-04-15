@@ -95,10 +95,6 @@
 		<result name="SUCCESS">pages/backOffice/showSchedule.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	<action name="ShowCalendar" class="actions.schedule.ScheduleAction" method="showSchedule">
-		<result name="SUCCESS">pages/frontOffice/calendar.jsp</result>
-		<result name="ERROR">pages/other/error.jsp</result>
-	</action>
 	<action name="GetSchedule" class="actions.schedule.ScheduleAction" method="getSchedule">
 		<result name="SUCCESS">pages/backOffice/updateSchedule.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
@@ -114,7 +110,12 @@
 	</action>
 	<!-- FIN ACTION SCHEDULE -->
 	
-	
+	<!-- DEBUT ACTION CALENDAR -->
+	<action name="ShowCalendar" class="actions.calendar.CalendarAction" method="showSchedule">
+		<result name="SUCCESS">pages/frontOffice/calendar.jsp</result>
+		<result name="ERROR">pages/other/error.jsp</result>
+	</action>
+	<!-- FIN ACTION CALENDAR -->
 	<!-- DEBUT ACTION CLASSROOM -->
 	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
