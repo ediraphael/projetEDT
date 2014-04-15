@@ -23,6 +23,8 @@ public class CalendarAction extends AbstractAction
 	// Serialization
 	private static final long serialVersionUID = 1L;
 	private long id;
+	private String dayMin;
+	private String dayMax;
 
 	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
@@ -197,4 +199,25 @@ public class CalendarAction extends AbstractAction
 	{
 		this.arraySubjectName = arraySubjectName;
 	}
+
+	public String getDayMin()
+	{
+		return dayMin;
+	}
+
+	public void setDayMin(String dayMin)
+	{
+		this.dayMin = dayMin;
+	}
+
+	public String getDayMax()
+	{
+		return dayMax;
+	}
+
+	public void setDayMax(String dayMax)
+	{
+		this.dayMax = dayMax;
+	}
+	
 }

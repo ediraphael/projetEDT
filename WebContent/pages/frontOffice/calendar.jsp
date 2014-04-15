@@ -10,8 +10,8 @@
 		<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
 	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery.weekcalendar.css' />
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-1.4.4.min.js'></script>
+	<script type='text/javascript' src="/ProjetEDT/javascript/jquery/jquery-ui-1.10.4.custom.js"></script>
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-ui-1.8.11.custom.min.js'></script>
-	
 	<script type="text/javascript" src="/ProjetEDT/javascript/calendar/date.js"></script>
 	<script type='text/javascript' src='/ProjetEDT/javascript/calendar/jquery.weekcalendar.js'></script>
 	<script type='text/javascript'>
@@ -57,6 +57,8 @@
 			firstDayOfWeek: function(calendar) {
 				return 1;
 			},
+			minDate: '<s:property value="dayMin"/>',
+		    maxDate: '<s:property value="dayMax"/>',
 			shortMonths: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
 			longMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
 			shortDays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
@@ -78,14 +80,37 @@
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<s:form action="ShowCalendar" method="post">
-					<s:text name="label.group"/>				
-					<s:select name="scheduleBean.nameGroup" list="arrayGroupName" />
+					<table>
+						<tr>
+							<td><s:text name="label.group"/></td>				
+							<td><s:select name="scheduleBean.nameGroup" list="arrayGroupName" /></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.dayStart"/></td>
+							<td><s:textfield id="heure_debut" name="dayMin" key="label.dayStart" /></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.dayEnd"/></td>
+							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd" /></td>
+						</tr>
+					</table>
 					<s:submit key="label.valide"  cssClass="user_button"/>
 				</s:form>
 				<div id='calendar'></div>
 			</div>
 			<div id="content-bottom"></div>
 		</div>
-
+	<script>
+	 $(function() {
+		$( "#heure_debut" ).datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat:  "HH:mm:ss"
+		});
+		$( "#heure_fin" ).datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat:  "HH:mm:ss"
+		});
+	 });
+	</script>
 	</body>
 </html>
