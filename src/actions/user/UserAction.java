@@ -109,6 +109,7 @@ public class UserAction extends AbstractAction
 			uDao.update(userEntity);
 		} catch (Exception e)
 		{
+			System.err.println(e);
 			forward = FORWARD_ERROR;
 		}
 		return forward;

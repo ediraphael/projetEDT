@@ -15,7 +15,7 @@
 			<div id="content-middle">
 				<h1><s:text name="title.new.user"/></h1>
 				<s:form action="UpdateUser" method="post">
-					<s:hidden name="id" value="%{id}"/>
+					<s:hidden name="id" value="%{userBean.id}"/>
 					<table>
 						<tr><td> </td></tr>
 						<tr>
