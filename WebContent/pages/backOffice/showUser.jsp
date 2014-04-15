@@ -35,7 +35,7 @@
 								<s:url id="url" action="DeleteUser">
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>
-							    <s:a href="%{url}"><img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px" /></s:a>
+							    <s:a href="%{url}" title="Supprimer"><img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px" /></s:a>
 							</td>
 						</tr>
 					</s:iterator>

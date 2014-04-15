@@ -59,7 +59,7 @@ public class UserAction extends AbstractAction
 	}
 
 	/**
-	 * Méthode permettant de récupérer la salle selectionné pour l'afficher en mode modification
+	 * Méthode permettant de récupérer le user selectionné pour l'afficher en mode modification
 	 * 
 	 */
 	@SkipValidation 
@@ -97,7 +97,7 @@ public class UserAction extends AbstractAction
 	}
 	
 	/**
-	 * Méthode permettant d'update une salle 
+	 * Méthode permettant d'update un user
 	 */
 	public String updateUser()
 	{

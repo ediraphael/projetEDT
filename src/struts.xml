@@ -52,12 +52,14 @@
 	</action>
 	<!-- FIN ACTION LOGIN -->
 	
+	
 	<!-- DEBUT ACTION LOGOUT -->
 	<action name="LogoutAction" class="actions.logout.LogoutAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
 	<!-- FIN ACTION LOGOUT -->
+	
 	
 	<!-- DEBUT ACTION USER -->
 	<action name="ShowUser" class="actions.user.UserAction" method="showUser">
@@ -85,7 +87,6 @@
 		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	
 	<action name="ScheduleAction" class="actions.schedule.ScheduleAction" method="execute">
 		<result name="SUCCESS" type="redirectAction">ShowSchedule</result>
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
@@ -110,35 +111,34 @@
 	</action>
 	<!-- FIN ACTION SCHEDULE -->
 	
+	
 	<!-- DEBUT ACTION CALENDAR -->
 	<action name="ShowCalendar" class="actions.calendar.CalendarAction" method="showSchedule">
 		<result name="SUCCESS">pages/frontOffice/calendar.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
 	<!-- FIN ACTION CALENDAR -->
+	
+	
 	<!-- DEBUT ACTION CLASSROOM -->
 	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
 		<result name="input">pages/backOffice/showClassroom.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	
 	<action name="ShowClassroom" class="actions.classroom.ClassroomAction" method="showClassroom">
 		<result name="SUCCESS">pages/backOffice/showClassroom.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	
 	<action name="GetClassroom" class="actions.classroom.ClassroomAction" method="getClassroom">
 		<result name="SUCCESS">pages/backOffice/updateClassroom.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	
 	<action name="UpdateClassroom" class="actions.classroom.ClassroomAction" method="updateClassroom">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="input">pages/backOffice/updateClassroom.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	
 	<action name="DeleteClassroom" class="actions.classroom.ClassroomAction" method="deleteClassroom">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="ERROR">pages/other/error.jsp</result>
@@ -151,12 +151,14 @@
 		<result name="SUCCESS" type="redirectAction">GroupShow</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	
 	<action name="ShowGroup" class="actions.group.GroupAction" method="showGroup">
 		<result name="SUCCESS">pages/backOffice/showGroup.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-
+	<action name="GetGroup" class="actions.group.GroupAction" method="getGroup">
+		<result name="SUCCESS">pages/backOffice/updateGroup.jsp</result>
+		<result name="ERROR">pages/other/error.jsp</result>
+	</action>
 	<action name="DeleteGroup" class="actions.group.GroupAction" method="deleteGroup">
 		<result name="SUCCESS" type="redirectAction">GroupShow</result>
 		<result name="ERROR">pages/other/error.jsp</result>

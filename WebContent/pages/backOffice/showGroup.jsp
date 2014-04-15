@@ -21,7 +21,7 @@
 					</tr>
 					<s:iterator value="listGroupBean" id="group">
 						<tr>
-							<s:url id="url" action="GetUser">
+							<s:url id="url" action="GetGroup">
 								<s:param name="id"><s:property value="id"/></s:param>
 						    </s:url>
 							<td><s:a href="%{url}"><s:property value="name"/></s:a></td>
@@ -29,7 +29,7 @@
 								<s:url id="url" action="DeleteGroup">
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>
-							    <s:a href="%{url}"><img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px" /></s:a>
+							    <s:a href="%{url}" title="Supprimer"><img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px" /></s:a>
 						    </td>
 						</tr>
 					</s:iterator>

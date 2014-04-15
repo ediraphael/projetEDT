@@ -311,6 +311,7 @@ input,select {
 	font-size: 1.0em;
 	font-weight: bold;
 	padding: 3px;
+	cursor: pointer;
 }
 
 .error {
