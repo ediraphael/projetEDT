@@ -24,11 +24,14 @@ public class UserAction extends AbstractAction
 
 	//bean de formulaire permettant le transfere des informations
 	private ArrayList<UserBean> listUserBean;
+	private UserBean userBean;
+
 	//déclaration et initialisation des DAO
 	private UserDAO userDao = new UserDAO();
 	private GroupDAO gdao = new GroupDAO();
 	
-	private UserBean userBean;
+	//récupération de l'id pour afficher en mode modification un user
+	private long id;
 
 	
 	/**
@@ -65,7 +68,7 @@ public class UserAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			UserEntity userEntity = (UserEntity) userDao.getById(userBean.getId());
+			UserEntity userEntity = (UserEntity) userDao.getById(this.id);
 			this.userBean = convertEntityToBean(userEntity);
 			this.userBean.setArrayGroupName(gdao.getAllGroupName());
 		} catch (Exception e)
@@ -81,9 +84,46 @@ public class UserAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		
+		//test si le prénom est renseigné
+		if(userBean.getFirstName().isEmpty())
+		{
+			addFieldError("error.firstName", getText("validator.field.empty"));
+		}
+
+		//test si le nom est renseigné
+		if(userBean.getName().isEmpty())
+		{
+			addFieldError("error.name", getText("validator.field.empty"));
+		}
+
+		//test si le mail est renseigné
+		if(userBean.getEmail().isEmpty())
+		{
+			addFieldError("error.email", getText("validator.field.empty"));
+		}
+		//test si l'email est correctement renseigné
+		else if(!emailValidator(userBean.getEmail()))
+		{
+			addFieldError("error.email", getText("validator.mail.false"));
+		}
+
+		//test du changement de mot de passe
+		if(!userBean.getNewPassword().isEmpty())
+		{
+			if(userBean.getConfirmPassword().isEmpty())
+			{
+				addFieldError("error.password", getText("validator.field.empty"));
+			}
+			else if(!userBean.getNewPassword().equals(userBean.getConfirmPassword()))
+			{
+				addFieldError("error.confirmpassword", getText("validator.pwd.false"));
+			}
+		}
+
+		//rechargement de la liste des groupe pour réafficher la page des inscriptions
+		userBean.setArrayGroupName(gdao.getAllGroupName());
 	}
-	
+
 	
 	/**
 	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
@@ -126,5 +166,15 @@ public class UserAction extends AbstractAction
 	public void setUserBean(UserBean userBean) 
 	{
 		this.userBean = userBean;
+	}
+
+	public long getId() 
+	{
+		return id;
+	}
+
+	public void setId(long id) 
+	{
+		this.id = id;
 	}
 }

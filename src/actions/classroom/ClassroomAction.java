@@ -18,12 +18,13 @@ public class ClassroomAction extends AbstractAction
 {
 	//Serialization
 	private static final long serialVersionUID = 1L;
-	// bean de formulaire permettant le transfere des informations
-	private long id;
-	
 	//déclaration et initialisation des DAO
+	ClassroomDAO classroomDao = new ClassroomDAO();
+	// bean de formulaire permettant le transfere des informations
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
+	//récupération de l'id pour afficher en mode modification une salle
+	private long id;
 
 	/**
 	 * Execution la sauvegarde d'une salle 
@@ -31,7 +32,6 @@ public class ClassroomAction extends AbstractAction
 	public String execute()
 	{
 		forward = FORWARD_SUCCESS;
-		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
 			ClassroomEntity c = new ClassroomEntity();
