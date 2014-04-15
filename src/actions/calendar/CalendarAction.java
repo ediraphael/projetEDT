@@ -35,6 +35,8 @@ public class CalendarAction extends AbstractAction
 	private ClassroomDAO classroomDao = new ClassroomDAO();
 	private UserDAO userDao = new UserDAO();
 	private SubjectDAO subjectDao = new SubjectDAO();
+	
+	// déclaration des liste a afficher dans les liste déroulantes
 	private List<String> arrayGroupName;
 	private List<String> arrayClassroomName;
 	private List<String> arrayUserTeacherName;
@@ -70,7 +72,8 @@ public class CalendarAction extends AbstractAction
 				{
 					listScheduleEntity = new ArrayList<>();
 				}
-			} else
+			} 
+			else
 			{
 				GroupEntity group = this.groupDao.getById(1);
 				UserBean user = (UserBean) session.get("user");
@@ -102,10 +105,10 @@ public class CalendarAction extends AbstractAction
 				this.listScheduleBean.add(scheduleBean);
 			}
 			this.arrayGroupName = this.groupDao.getAllGroupName();
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
-			System.err.println(e);
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}

@@ -21,13 +21,9 @@
 		<result>pages/frontOffice/login.jsp</result>
 	</action>
 	
-	<action name="Classroom">
-		<result>pages/backOffice/newClassroom.jsp</result>
-	</action>
+
 	
-	<action name="Group">
-		<result>pages/backOffice/newGroup.jsp</result>
-	</action>
+
 	<!-- FIN ACTIONS SIMPLES -->
 	
 	
@@ -87,7 +83,7 @@
 		<result name="SUCCESS">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
-	<action name="ScheduleAction" class="actions.schedule.ScheduleAction" method="execute">
+	<action name="NewSchedule" class="actions.schedule.ScheduleAction" method="execute">
 		<result name="SUCCESS" type="redirectAction">ShowSchedule</result>
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
@@ -121,8 +117,8 @@
 	
 	
 	<!-- DEBUT ACTION CLASSROOM -->
-	<action name="ClassroomAction" class="actions.classroom.ClassroomAction" method="execute">
-		<result name="SUCCESS">pages/frontOffice/index.jsp</result>
+	<action name="NewClassroom" class="actions.classroom.ClassroomAction" method="execute">
+		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="input">pages/backOffice/showClassroom.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
@@ -143,12 +139,15 @@
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
+	<action name="ClassroomForm">
+		<result>pages/backOffice/newClassroom.jsp</result>
+	</action>
 	<!-- FIN ACTION CLASSROOM -->
 	
 	
 	<!-- DEBUT ACTION GROUPE -->
 	<action name="NewGroup" class="actions.group.GroupAction" method="execute">
-		<result name="SUCCESS" type="redirectAction">GroupShow</result>
+		<result name="SUCCESS" type="redirectAction">ShowGroup</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
 	<action name="ShowGroup" class="actions.group.GroupAction" method="showGroup">
@@ -167,6 +166,9 @@
 		<result name="SUCCESS" type="redirectAction">ShowGroup</result>
 		<result name="input">pages/backOffice/updateGroup.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
+	</action>
+	<action name="GroupForm">
+		<result>pages/backOffice/newGroup.jsp</result>
 	</action>
    </package>
    <!-- FIN ACTION CLASSROOM -->

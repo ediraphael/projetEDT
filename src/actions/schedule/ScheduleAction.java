@@ -61,7 +61,7 @@ public class ScheduleAction extends AbstractAction
 			scheduleDAO.save(scheduleEntity);
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -93,8 +93,7 @@ public class ScheduleAction extends AbstractAction
 			scheduleDAO.update(scheduleEntity);
 		} catch (Exception e)
 		{
-			e.printStackTrace();
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -116,7 +115,7 @@ public class ScheduleAction extends AbstractAction
 			scheduleDAO.delete(scheduleEntity);
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -151,7 +150,7 @@ public class ScheduleAction extends AbstractAction
 			}
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -200,10 +199,10 @@ public class ScheduleAction extends AbstractAction
 			this.arrayClassroomName = this.classroomDao.getAllClassroomName();
 			this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
 			this.arraySubjectName = this.subjectDao.getAllSubjectName();
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
-			System.err.println(e);
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}

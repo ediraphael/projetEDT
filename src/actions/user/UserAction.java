@@ -53,7 +53,7 @@ public class UserAction extends AbstractAction
 			}
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}
@@ -73,7 +73,7 @@ public class UserAction extends AbstractAction
 			this.userBean.setArrayGroupName(gdao.getAllGroupName());
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}
@@ -91,7 +91,7 @@ public class UserAction extends AbstractAction
 			uDao.delete(userEntity);
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}
@@ -109,8 +109,7 @@ public class UserAction extends AbstractAction
 			uDao.update(userEntity);
 		} catch (Exception e)
 		{
-			System.err.println(e);
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}

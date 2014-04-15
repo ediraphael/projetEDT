@@ -1,77 +1,93 @@
-* {
+* 
+{
 	margin: 0;
 	padding: 0;
 }
 
-:focus,:active {
+:focus,:active 
+{
 	outline: 0
 }
 
-ul,ol {
+ul,ol 
+{
 	list-style: none
 }
 
-h2,h3,h4,h5,h6,pre,code {
+h2,h3,h4,h5,h6,pre,code 
+{
 	font-size: 1em;
 }
 
-a img {
+a img 
+{
 	border: 0
 }
 
-body {
+body 
+{
 	font: .7em "Trebuchet MS", Tahoma, Arial, Sans-Serif;
 	background: #eee url(../images/bg.gif) repeat-x;
 	color: #777;
 }
 
-a {
+a 
+{
 	text-decoration: none;
 	color: #6796CE;
 }
 
-a:hover {
+a:hover 
+{
 	color: #45134A;
 }
 
-p {
+p 
+{
 	margin: 0 0 15px;
 	line-height: 1.64em;
 }
 
-#wrap {
+#wrap 
+{
 	margin: 20px auto 0;
 	width: 979px;
 }
 
-.clear {
+.clear
+{
 	clear: both;
 }
 
-#logo {
+#logo 
+{
 	color: #fff;
 	text-align: center;
 	position: absolut;
 	height: 124px;
 }
 
-#logo a:hover {
+#logo a:hover 
+{
 	border-bottom: 1px solid #222;
 }
 
-#logo p {
+#logo p 
+{
 	padding: 2px 0 0 4px;
 	font-size: .9em;
 	color: #555;
 }
 
-#logo h1 {
+#logo h1 
+{
 	font-size: 2.6em;
 	margin: 0;
 	text-shadow: 1px 1px 1px #000;
 }
 
-#menu {
+#menu 
+{
 	text-align: center;
 	margin: 0px auto;
 	text-shadow: none;
@@ -83,7 +99,8 @@ p {
 	color: #777;
 }
 
-#menu-left {
+#menu-left 
+{
 	background: url(../images/menu-corners.gif) no-repeat left top;
 	float: left;
 	width: 9px;
@@ -92,7 +109,8 @@ p {
 	padding:0;
 }
 
-#menu-right {
+#menu-right 
+{
 	background: url(../images/menu-corners.gif) no-repeat left bottom;
 	float: right;
 	width: 9px;
@@ -100,14 +118,16 @@ p {
 	margin:0;
 	padding:0;
 }
-#menu ul {
+#menu ul 
+{
 	text-transform: uppercase;
 	float: left;
 	margin: 0px auto;
 	width: calc(100% - 22px);
 }
 
-#menu li {
+#menu li 
+{
 	display: inline;
 	text-transform: uppercase;
 	margin: 10px;
@@ -116,31 +136,37 @@ p {
 	
 }
 
-#menu li a {
+#menu li a 
+{
 	margin: 0px auto;
 	color: #777;
 	position: relative;
 	text-align: center;
 }
 
-#menu li a span {
+#menu li a span 
+{
 }
 
-#menu li a:hover,#menu li a:focus {
+#menu li a:hover,#menu li a:focus 
+{
 	color: #1295E4;
 }
 
-#menu li a.current {
+#menu li a.current 
+{
 	background: url(../images/tableft.gif) no-repeat;
 	color: #000;
 	font-weight: bold;
 }
 
-#menu li a.current span {
+#menu li a.current span 
+{
 	background: url(../images/tabright.gif) no-repeat right top;
 }
 
-#content-top {
+#content-top 
+{
 	clear: both;
 	height: 26px;
 	background: url(../images/content-top.gif) no-repeat;
@@ -149,18 +175,21 @@ p {
 	margin: -14px 0 0;
 }
 
-#content-middle {
+#content-middle 
+{
 	padding: 0 25px 25px;
 	background: url(../images/content-middle.gif) repeat-y;
 }
 
-#content-bottom {
+#content-bottom 
+{
 	clear: both;
 	padding: 6px 0 7px;
 	background: url(../images/content-bottom.gif) no-repeat left bottom;
 }
 
-#pitch {
+#pitch 
+{
 	text-shadow: 1px 1px 1px #3F6AA2;
 	height: 159px;
 	padding: 50px 40px 0 30px;
@@ -171,14 +200,16 @@ p {
 	color: #fff;
 }
 
-h3 {
+h3 
+{
 	font-size: 1.3em;
 	font: bold 1.3em Arial;
 	color: #222;
 	margin: 0 0 10px;
 }
 
-h1 {
+h1 
+{
 	font-size: 2em;
 	font: bold;
 	color: #999;
@@ -187,24 +218,28 @@ h1 {
 	margin-top: 0px;
 }
 
-.column {
+.column 
+{
 	float: left;
 	width: 283px;
 	margin: 0 40px 0 0;
 	line-height: 2.2em;
 }
 
-.column.last {
+.column.last 
+{
 	margin-right: 0;
 }
 
-.column img {
+.column img 
+{
 	padding: 10px;
 	border: 1px solid #ddd;
 	margin: 0 0 5px;
 }
 
-.more a {
+.more a 
+{
 	background: url(../images/bullet.gif) no-repeat 0 7px;
 	padding: 0 0 0 8px;
 	color: #672A6D;
@@ -212,26 +247,31 @@ h1 {
 	font-size: .9em;
 }
 
-#footer {
+#footer 
+{
 	padding: 20px;
 	color: #999;
 }
 
-#links {
+#links 
+{
 	float: right;
 }
 
-#links a {
+#links a 
+{
 	margin: 0 0 0 15px;
 }
 
-th {
+th 
+{
 	text-align: center;
 	font-weight: bold;
 	background: #CED8F6;
 }
 
-table {
+table 
+{
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -240,51 +280,62 @@ table {
 	vertical-align: baseline;
 }
 
-table {
+table 
+{
 	border-collapse: separate;
 	border-spacing: 3;
 }
 
-table,th,td {
+table,th,td 
+{
 	vertical-align: middle;
 }
 
-table {
+table 
+{
 	margin-bottom: 1.4em;
 	width: 100%;
 }
 
-th {
+th 
+{
 	font-weight: bold;
 }
 
-thead th {
+thead th 
+{
 	background: #c3d9ff;
 }
 
-th,td,caption {
+th,td,caption 
+{
 	padding: 4px 10px 4px 5px;
 	text-align: center;
 }
 
-tbody tr:nth-child(even) td,tbody tr.even td {
+tbody tr:nth-child(even) td,tbody tr.even td 
+{
 	background: #e5ecf9;
 }
 
-td {
+td 
+{
 	text-shadow: 1px 1px 1px #FFF;
 	color: #797171;
 }
 
-.white {
+.white 
+{
 	background: #fff !important;
 }
 
-.bine {
+.bine 
+{
 	width: 25px;
 }
 
-input,select {
+input,select 
+{
 	background-color: white;
 	color: black;
 	width: 40%;
@@ -297,7 +348,8 @@ input,select {
 	text-align: center;
 }
 
-.user_button {
+.user_button 
+{
 	text-shadow: none;
 	border: 1px groove;
 	border-radius: 8px;
@@ -314,16 +366,40 @@ input,select {
 	cursor: pointer;
 }
 
-.error {
+.error 
+{
 	color: red;
 	font-weight: bold;
 	font-size: 1.2em;
 	width: 100px;
 }
 
-.errorCenter {
+.errorCenter 
+{
 	text-align: center;
 	color: red;
 	font-weight: bold;
 	font-size: 1.2em;
+}
+
+.errorBigCenter
+{
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+.errorSmallCenter
+{
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	font-size: 1.0em;
+}
+
+.mailError 
+{
+	text-align: center;
+	font-size: 1.0em;
 }

@@ -47,7 +47,7 @@ public class GroupAction extends AbstractAction
 		}
 		catch(Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -75,7 +75,7 @@ public class GroupAction extends AbstractAction
 		} 
 		catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -96,7 +96,7 @@ public class GroupAction extends AbstractAction
 		} 
 		catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -115,9 +115,10 @@ public class GroupAction extends AbstractAction
 			this.groupBean = new GroupBean();
 			this.groupBean.setId(groupEntity.getId());
 			this.groupBean.setName(groupEntity.getName());
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -133,9 +134,10 @@ public class GroupAction extends AbstractAction
 			GroupEntity groupEntity=gdao.getById(id);
 			groupEntity.setName(groupBean.getName());
 			gdao.update(groupEntity);
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}

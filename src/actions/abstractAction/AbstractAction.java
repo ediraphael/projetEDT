@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import bean.ErrorBean;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -30,6 +32,8 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	protected static final String FORWARD_SUCCESS = "SUCCESS";
 	protected static final String FORWARD_ERROR = "ERROR";
 	protected static final String FORWARD_INPUT = "input";
+	//permet de remonter l'erreur
+	protected ErrorBean error; 
 	
 	
 	public String execute()
@@ -53,6 +57,20 @@ public class AbstractAction extends ActionSupport implements SessionAware
 		return matcher.matches();
 	}
 	
+	protected String generateError(Exception e)
+	{
+		error = new ErrorBean();
+		String traceTmp="";
+		for (int i = 0; i < e.getStackTrace().length; i++)
+		{
+			traceTmp+=e.getStackTrace()[i];
+			traceTmp+="\n";
+		}
+		error.setErrorTraces(traceTmp);
+		error.setErrorMessage(e.getMessage());
+		
+		return FORWARD_ERROR;
+	}
 	
 	/**
 	 * Objet de session
@@ -66,5 +84,17 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	public Map<String, Object> getSession() 
 	{
 		return session;
+	}
+
+
+	public ErrorBean getError() 
+	{
+		return error;
+	}
+
+
+	public void setError(ErrorBean error) 
+	{
+		this.error = error;
 	}
 }

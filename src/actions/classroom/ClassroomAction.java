@@ -19,7 +19,7 @@ public class ClassroomAction extends AbstractAction
 	//Serialization
 	private static final long serialVersionUID = 1L;
 	//déclaration et initialisation des DAO
-	ClassroomDAO classroomDao = new ClassroomDAO();
+	private ClassroomDAO cdao = new ClassroomDAO();
 	// bean de formulaire permettant le transfere des informations
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
@@ -37,10 +37,10 @@ public class ClassroomAction extends AbstractAction
 			ClassroomEntity c = new ClassroomEntity();
 			c.setName(classroomBean.getName());
 			// Sauvegarde du user renseigné dans le formulaire
-			classroomDao.save(c);
+			cdao.save(c);
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}
@@ -53,16 +53,14 @@ public class ClassroomAction extends AbstractAction
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès
 		forward = FORWARD_SUCCESS;
-		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			ClassroomEntity classroomEntity = new ClassroomEntity();
-			classroomEntity.setId(this.classroomBean.getId());
+			ClassroomEntity classroomEntity = cdao.getById(this.id);
 			classroomEntity.setName(this.classroomBean.getName());
-			classroomDao.update(classroomEntity);
+			cdao.update(classroomEntity);
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward = generateError(e);
 		}
 		return forward;
 	}
@@ -76,14 +74,13 @@ public class ClassroomAction extends AbstractAction
 		// Sauf si il y a erreur, le traitement est considéré comme étant un
 		// succès
 		forward = FORWARD_SUCCESS;
-		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			ClassroomEntity classroomEntity = classroomDao.getById(this.id);
-			classroomDao.delete(classroomEntity);
+			ClassroomEntity classroomEntity = cdao.getById(this.id);
+			cdao.delete(classroomEntity);
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}
@@ -96,11 +93,10 @@ public class ClassroomAction extends AbstractAction
 	public String showClassroom()
 	{
 		forward = FORWARD_SUCCESS;
-		ClassroomDAO classroomDao = new ClassroomDAO();
 		this.listClassroomBean = new ArrayList<ClassroomBean>();
 		try
 		{
-			List<ClassroomEntity> listClassroomEntity = classroomDao.getAll();
+			List<ClassroomEntity> listClassroomEntity = cdao.getAll();
 			for (ClassroomEntity classroomEntity : listClassroomEntity)
 			{
 				ClassroomBean classroomBean = new ClassroomBean();
@@ -110,7 +106,7 @@ public class ClassroomAction extends AbstractAction
 			}
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}
@@ -122,16 +118,15 @@ public class ClassroomAction extends AbstractAction
 	public String getClassroom()
 	{
 		forward = FORWARD_SUCCESS;
-		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			ClassroomEntity classroomEntity = classroomDao.getById(this.id);
+			ClassroomEntity classroomEntity = cdao.getById(this.id);
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
 			this.classroomBean.setName(classroomEntity.getName());
 		} catch (Exception e)
 		{
-			forward = FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}

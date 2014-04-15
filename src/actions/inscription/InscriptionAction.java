@@ -53,7 +53,7 @@ public class InscriptionAction extends AbstractAction
 		}
 		catch(Exception e)
 		{
-			forward=FORWARD_ERROR;
+			forward=generateError(e);
 		}
 		return forward;
 	}

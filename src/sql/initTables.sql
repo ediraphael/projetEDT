@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `projetEDT`
 --
-CREATE DATABASE IF NOT EXISTS `projetEDT` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `projetEDT` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `projetEDT`;
 
 -- --------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `classroom` (
   `name` varchar(256) NOT NULL,
   PRIMARY KEY (`id_classroom`),
    UNIQUE (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `classroom`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `group_user` (
   `name` varchar(256) NOT NULL,
   PRIMARY KEY (`id_group_user`),
   UNIQUE (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `group_user`
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `passwordTeacher` (
   `id_password_teacher` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(256) NOT NULL,
   PRIMARY KEY (`id_password_teacher`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `passwordTeacher`
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   KEY `id_classroom` (`id_classroom`),
   KEY `id_group_user` (`id_group_user`),
   KEY `id_user_teacher` (`id_user_teacher`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `schedule`
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `short_name` varchar(256) NOT NULL,
   `color` varchar(256) NOT NULL,
   PRIMARY KEY (`id_subject`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `subject`
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`),
   KEY `id_group_user` (`id_group_user`),
   UNIQUE (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `user`
