@@ -8,7 +8,6 @@
 		<title><s:text name="title.new.user"/></title>
 	</head>
 	<body>
-		<s:hidden name="userBean.id" value="%{userBean.id}"/>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
 			<%@ include file="../other/menuAdmin.jsp" %>
@@ -16,6 +15,7 @@
 			<div id="content-middle">
 				<h1><s:text name="title.new.user"/></h1>
 				<s:form action="UpdateUser" method="post">
+					<s:hidden name="id" value="%{id}"/>
 					<table>
 						<tr><td> </td></tr>
 						<tr>
