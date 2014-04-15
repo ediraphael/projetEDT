@@ -15,7 +15,7 @@
 			<div id="content-middle">
 				<h1><s:text name="title.new.group"/></h1>
 				<s:form action="UpdateGroup" method="post">
-					<s:hidden name="id" value="%{id}"/>
+					<s:hidden name="id" value="%{groupBean.id}"/>
 					<table>
 						<tr><td> </td></tr>
 						<tr>

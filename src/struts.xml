@@ -163,6 +163,11 @@
 		<result name="SUCCESS" type="redirectAction">GroupShow</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
+	<action name="UpdateGroup" class="actions.user.UserAction" method="updateGroup">
+		<result name="SUCCESS" type="redirectAction">ShowGroup</result>
+		<result name="input">pages/backOffice/updateGroup.jsp</result>
+		<result name="ERROR">pages/other/error.jsp</result>
+	</action>
    </package>
    <!-- FIN ACTION CLASSROOM -->
    
