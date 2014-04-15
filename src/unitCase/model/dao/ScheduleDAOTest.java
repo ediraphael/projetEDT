@@ -32,6 +32,7 @@ public class ScheduleDAOTest
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		ScheduleEntity s = new ScheduleEntity();
+		s.setId(0);
 		s.setName("test");
 		s.setComment("junit test save");
 		s.setDayStart(simpleDateFormat.format(new Date()));
@@ -78,7 +79,8 @@ public class ScheduleDAOTest
 	@Test
 	public void testDelete()
 	{
-		ScheduleEntity s = scheduleDAO.getById(0);
+		List<ScheduleEntity> list = scheduleDAO.getAll();
+		ScheduleEntity s = scheduleDAO.getById(list.get(list.size()-1).getId());
 		scheduleDAO.delete(s);
 	}
 
@@ -90,6 +92,7 @@ public class ScheduleDAOTest
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		ScheduleEntity s = new ScheduleEntity();
+		s.setId(0);
 		s.setName("test");
 		s.setComment("junit test save");
 		s.setDayStart(simpleDateFormat.format(new Date()));
@@ -107,6 +110,7 @@ public class ScheduleDAOTest
 		user.setId(1);
 		s.setUserTeacher(user);
 		scheduleDAO.save(s);
+		testDelete();
 	}
 
 	/**
@@ -135,6 +139,6 @@ public class ScheduleDAOTest
 	@After
 	public void rollBackFunction()
 	{
-		scheduleDAO.getEntityManager();
+		testDelete();
 	}
 }

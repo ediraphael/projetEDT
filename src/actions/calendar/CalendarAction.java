@@ -9,23 +9,25 @@ import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.dao.SubjectDAO;
 import model.dao.UserDAO;
+import model.org.persistence.GroupEntity;
 import model.org.persistence.ScheduleEntity;
 
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import actions.abstractAction.AbstractAction;
 import bean.ScheduleBean;
+import bean.UserBean;
 
 public class CalendarAction extends AbstractAction
 {
-	//Serialization
+	// Serialization
 	private static final long serialVersionUID = 1L;
 	private long id;
-	
-	//bean de formulaire permettant le transfere des informations
+
+	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
-	
+
 	// déclaration et initialisation des DAO
 	private GroupDAO groupDao = new GroupDAO();
 	private ClassroomDAO classroomDao = new ClassroomDAO();
@@ -46,6 +48,7 @@ public class CalendarAction extends AbstractAction
 
 	/**
 	 * Méthode permettant d'afficher les horaires
+	 * 
 	 * @return
 	 */
 	@SkipValidation
@@ -56,8 +59,30 @@ public class CalendarAction extends AbstractAction
 		this.listScheduleBean = new ArrayList<ScheduleBean>();
 		try
 		{
-			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAll();
-			
+			List<ScheduleEntity> listScheduleEntity;
+			if (this.scheduleBean != null && this.scheduleBean.getNameGroup() != null)
+			{
+				GroupEntity group = this.groupDao.getGroupByName(this.scheduleBean.getNameGroup());
+				listScheduleEntity = scheduleDAO.getAllByGroup(group);
+				if (listScheduleEntity == null)
+				{
+					listScheduleEntity = new ArrayList<>();
+				}
+			} else
+			{
+				GroupEntity group = this.groupDao.getById(1);
+				UserBean user = (UserBean) session.get("user");
+				if (user != null)
+				{
+					group = this.groupDao.getGroupByName(user.getNameGroup());
+					this.scheduleBean.setNameGroup(user.getNameGroup());
+				}
+				listScheduleEntity = scheduleDAO.getAllByGroup(group);
+				if (listScheduleEntity == null)
+				{
+					listScheduleEntity = new ArrayList<>();
+				}
+			}
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -73,8 +98,10 @@ public class CalendarAction extends AbstractAction
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
 				this.listScheduleBean.add(scheduleBean);
 			}
+			this.arrayGroupName = this.groupDao.getAllGroupName();
 		} catch (Exception e)
 		{
+			System.err.println(e);
 			forward = FORWARD_ERROR;
 		}
 		return forward;

@@ -39,13 +39,13 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 	 * @return List<ScheduleEntity>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ScheduleEntity> getAllByGroup(GroupEntity idGroup)
+	public List<ScheduleEntity> getAllByGroup(GroupEntity group)
 	{
 		initEntityManager();
 		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
 		try 
 		{
-			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findByGroup").setParameter("group",idGroup);
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findByGroup").setParameter("group",group);
 			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
 		} 
 		finally 

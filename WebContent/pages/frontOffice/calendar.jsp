@@ -77,9 +77,15 @@
 			<%@ include file="../other/menuAdmin.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
+				<s:form action="ShowCalendar" method="post">
+					<s:text name="label.group"/>				
+					<s:select name="scheduleBean.nameGroup" list="arrayGroupName" />
+					<s:submit key="label.valide"  cssClass="user_button"/>
+				</s:form>
 				<div id='calendar'></div>
 			</div>
 			<div id="content-bottom"></div>
 		</div>
+
 	</body>
 </html>
