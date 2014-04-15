@@ -18,7 +18,7 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 	 */
 	public ScheduleEntity getById(long id)
 	{
-		return getById(id, "ScheduleEntity.findAll");
+		return getById(id, "ScheduleEntity.findById");
 	}
 
 	/**

@@ -78,10 +78,11 @@ public class ScheduleAction extends AbstractAction
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		try
 		{
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			ScheduleEntity scheduleEntity = new ScheduleEntity();
 			scheduleEntity.setId(this.scheduleBean.getId());
-			scheduleEntity.setDayStart(this.scheduleBean.getDayStart());
-			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
+			scheduleEntity.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(this.scheduleBean.getDayStart())));
+			scheduleEntity.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(this.scheduleBean.getDayEnd())));
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
 			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getNameUserTeacher()));
@@ -179,9 +180,8 @@ public class ScheduleAction extends AbstractAction
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		try
 		{
-			ScheduleEntity scheduleEntity = scheduleDAO.getById(this.id);
+			ScheduleEntity scheduleEntity = scheduleDAO.getById(this.getId());
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 			this.scheduleBean = new ScheduleBean();
 			this.scheduleBean.setId(scheduleEntity.getId());
 			this.scheduleBean.setName(scheduleEntity.getName());
@@ -202,6 +202,7 @@ public class ScheduleAction extends AbstractAction
 			this.arraySubjectName = this.subjectDao.getAllSubjectName();
 		} catch (Exception e)
 		{
+			System.err.println(e);
 			forward = FORWARD_ERROR;
 		}
 		return forward;

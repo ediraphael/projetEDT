@@ -87,7 +87,7 @@
 	</action>
 	
 	<action name="ScheduleAction" class="actions.schedule.ScheduleAction" method="execute">
-		<result name="SUCCESS">pages/backOffice/showSchedule.jsp</result>
+		<result name="SUCCESS" type="redirectAction">ShowSchedule</result>
 		<result name="input">pages/backOffice/newSchedule.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>

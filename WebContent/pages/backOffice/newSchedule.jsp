@@ -35,11 +35,11 @@
 	 $(function() {
 		$( "#heure_debut" ).datetimepicker({
 			dateFormat: "yy-mm-dd",
-			timeFormat:  "HH:mm"
+			timeFormat:  "HH:mm:ss"
 		});
 		$( "#heure_fin" ).datetimepicker({
 			dateFormat: "yy-mm-dd",
-			timeFormat:  "HH:mm"
+			timeFormat:  "HH:mm:ss"
 		});
 	 });
 	</script>
