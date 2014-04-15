@@ -11,7 +11,6 @@
 		<script type='text/javascript' src="/ProjetEDT/javascript/jquery/jquery-ui-1.10.4.custom.js"></script>
 	</head>
 	<body>
-		<s:hidden name="scheduleBean.id" value="%{scheduleBean.id}"/>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
 			<%@ include file="../other/menuAdmin.jsp" %>
@@ -19,6 +18,7 @@
 			<div id="content-middle">
 				<h1><s:text name="title.new.schedule"/></h1>
 				<s:form action="UpdateSchedule" method="post">
+					<s:hidden name="scheduleBean.id" value="%{scheduleBean.id}"/>
 					<table>
 						<tr><td></td></tr>
 						<tr>

@@ -50,7 +50,11 @@
 						</tr>
 					</s:iterator>
 				</table>
+				<s:url id="url" action="ScheduleForm">
+			    </s:url>
+			    <h3><s:a href="%{url}" cssClass="user_button"><s:text name="label.add"/></s:a></h3>
 				<div class="clear"></div>
+				
 			</div>
 			<div id="content-bottom"></div>
 		</div>
