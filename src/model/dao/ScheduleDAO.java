@@ -1,7 +1,11 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
+import model.org.persistence.GroupEntity;
 import model.org.persistence.ScheduleEntity;
 
 /**
@@ -28,5 +32,26 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 	public List<ScheduleEntity> getAll()
 	{
 		return getAll("ScheduleEntity.findAll");
+	}
+	
+	/**
+	 * Methode getByGroup, permet de rechercher tout les schedules pour un group donnée
+	 * @return List<ScheduleEntity>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ScheduleEntity> getAllByGroup(GroupEntity idGroup)
+	{
+		initEntityManager();
+		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findByGroup").setParameter("group",idGroup);
+			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		return all;
 	}
 }

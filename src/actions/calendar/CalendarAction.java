@@ -57,6 +57,7 @@ public class CalendarAction extends AbstractAction
 		try
 		{
 			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAll();
+			
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
