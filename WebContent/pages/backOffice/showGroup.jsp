@@ -23,7 +23,7 @@
 						<tr>
 							<s:if test="%{id<=2 }">
 								<td><s:property value="name"/></td>
-								<td>
+								<td class="bine">
 									<a href="#">
 										<img src="./css/pageCss/images/btn_info.png" alt="<s:text name="label.info"/>" width="20px"  title="<s:text name="label.group.info"/>"/>
 									</a>
