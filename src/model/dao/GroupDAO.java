@@ -2,131 +2,72 @@ package model.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.org.persistence.GroupEntity;
 
-public class GroupDAO {
-
-	//nom de la database
-	private final static String JPA_DATABASE = "ProjetEDT";
-	//Cette entité permet d'acceder aux tables
-	@PersistenceContext
-	private EntityManager em;
-	
+/**
+ * Surcouche afin de rendre plus propre les accès en base
+ * Cette classe DAO concerne les transactions pour les groupes
+ * @author mickael
+ *
+ */
+public class GroupDAO extends AbstractDAO<GroupEntity>
+{
+	/**
+	 * Surchage de la méthode abstraite pour lui préciser dans quel table trouver l'info
+	 * @param id
+	 */
+	public GroupEntity getById(long id) 
+	{
+		return getById(id, "GroupEntity.findById");
+	}
 	
 	/**
-	 * Methode permetant de sauvegarder un groupe
+	 * Surchage de la méthode abstraite pour lui préciser dans quel table trouver l'info
+	 * 
+	 */
+	public List<GroupEntity> getAll()
+	{
+		return getAll("GroupEntity.findAll");
+	}
+	
+	/**
+	 * Methode permetant de récupérer un groupe avec son nom 
 	 * @param name
 	 */
-	public void addGroup(String name)
+	public GroupEntity getGroupByName(String name)
 	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		GroupEntity group = new GroupEntity();
-		group.setName(name);
-		try 
+		initEntityManager();
+		GroupEntity groupEntity;
+		try
 		{
-			getEntityManager().getTransaction().begin();
-			getEntityManager().persist(group);
-			getEntityManager().getTransaction().commit();
-		} finally 
+			Query q = getEntityManager().createNamedQuery("GroupEntity.findByName").setParameter("name", name);
+			groupEntity = (q.getResultList().size()!=0) ? (GroupEntity) q.getSingleResult() : null ;
+		} finally
 		{
 			getEntityManager().close();
 		}
-	}
-	
-	public GroupEntity getGroupByName(String name)
-	{
-		GroupEntity groupEntity;
-		try
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q = em.createNamedQuery("GroupEntity.findByName").setParameter("name", name);
-			groupEntity = q.getResultList() != null ? (GroupEntity) q.getResultList().get(0) : null;
-		} finally
-		{
-			em.close();
-		}
 		return groupEntity;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<GroupEntity> getAllGroup()
-	{
-		List<GroupEntity> listGroupEntity;
-		try
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q = em.createNamedQuery("GroupEntity.findAll");
-			listGroupEntity = q.getResultList() != null ? (List<GroupEntity>) q.getResultList() : null;
-		} finally
-		{
-			em.close();
-		}
-		return listGroupEntity;
-	}
-	
+	/**
+	 * Methode permetant de récupérer les noms de tous les groupes
+	 * @param name
+	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getAllGroupName()
 	{
+		initEntityManager();
 		List<String> listGroupName;
 		try
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q = em.createNamedQuery("GroupEntity.findAllName");
-			listGroupName = q.getResultList() != null ? (List<String>) q.getResultList() : null;
+			Query q = getEntityManager().createNamedQuery("GroupEntity.findAllName");
+			listGroupName = (q.getResultList().size()!=0) ? (List<String>) q.getResultList() : null;
 		} finally
 		{
-			em.close();
+			getEntityManager().close();
 		}
 		return listGroupName;
-	}
-	
-
-	public GroupEntity getGroup(long id) 
-	{
-		GroupEntity groupEntity;
-		try
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query query = em.createNamedQuery("GroupEntity.findById").setParameter("id", id);
-			groupEntity = query.getResultList() != null ? (GroupEntity) query.getResultList().get(0) : null;
-		} finally
-		{
-			em.close();
-		}
-		return groupEntity;
-	}
-
-	public void removeGroup(GroupEntity groupEntity) 
-	{
-		try 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			em.getTransaction().begin();
-			groupEntity = em.merge(groupEntity);
-			em.remove(groupEntity);
-			em.getTransaction().commit();
-		} finally 
-		{
-			em.close();
-		}
-	}
-	
-	
-	/**
-	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
-	 * @return
-	 */
-	protected EntityManager getEntityManager() 
-	{
-		if (em == null) 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		}
-		return em;
 	}
 }

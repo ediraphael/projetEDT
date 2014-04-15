@@ -52,18 +52,16 @@ public class UserEntity implements Serializable
 
 	/**
 	 * Constructeur avec params
-	 * @param firstName
-	 * @param name
-	 * @param email
-	 * @param password
+	 * @param u
 	 */
-	public UserEntity(String firstName, String name, String email,	String password) 
+	public UserEntity(UserEntity u) 
 	{
 		super();
-		this.firstName = firstName;
-		this.name = name;
-		this.email = email;
-		this.password = password;
+		this.firstName = u.getFirstName();
+		this.name = u.getName();
+		this.email = u.getEmail();
+		this.password = u.getPassword();
+		this.groupe=new GroupEntity(u.getGroupe());
 	}
 	
 	

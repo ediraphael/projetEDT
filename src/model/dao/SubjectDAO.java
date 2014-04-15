@@ -2,9 +2,6 @@ package model.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.org.persistence.SubjectEntity;
@@ -16,22 +13,38 @@ import model.org.persistence.SubjectEntity;
  * @author raphael
  * 
  */
-public class SubjectDAO
+public class SubjectDAO extends AbstractDAO<SubjectEntity>
 {
-	// nom de la database
-	private final static String JPA_DATABASE = "ProjetEDT";
-	// Cette entité permet d'acceder aux tables
-	@PersistenceContext
-	private EntityManager em;
-
+	/**
+	 * Surchage de la méthode abstraite pour lui préciser dans quel table trouver l'info
+	 * @param id
+	 */
+	public SubjectEntity getById(long id) 
+	{
+		return getById(id, "SubjectEntity.findById");
+	}
+	
+	/**
+	 * Surchage de la méthode abstraite pour lui préciser dans quel table trouver l'info
+	 * 
+	 */
+	public List<SubjectEntity> getAll()
+	{
+		return getAll("SubjectEntity.findAll");
+	}
+	
+	/**
+	 * Méthode permettant de récupérer un sujet par son nom
+	 * 
+	 */
 	public SubjectEntity getSubjectByName(String name)
 	{
 		SubjectEntity subjectEntity;
+		initEntityManager();
 		try
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q = getEntityManager().createNamedQuery("SubjectEntity.findById").setParameter("name", name);
-			subjectEntity = q.getResultList() != null ? (SubjectEntity) q.getResultList().get(0) : null;
+			Query q = getEntityManager().createNamedQuery("SubjectEntity.findByName").setParameter("name", name);
+			subjectEntity = (q.getResultList().size()!=0) ? (SubjectEntity) q.getSingleResult() : null;
 		} finally
 		{
 			getEntityManager().close();
@@ -39,34 +52,24 @@ public class SubjectDAO
 		return subjectEntity;
 	}
 
+	
+	/**
+	 * Méthode permettant de récupérer la liste des nom de sujets
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
-	public List<String> getAllSubject()
+	public List<String> getAllSubjectName()
 	{
 		List<String> listSubject;
+		initEntityManager();
 		try
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q = getEntityManager().createNamedQuery("SubjectEntity.findAllName");
-			listSubject = q.getResultList() != null ? (List<String>) q.getResultList() : null;
+			listSubject = (q.getResultList().size()!=0) ? (List<String>) q.getResultList() : null;
 		} finally
 		{
 			getEntityManager().close();
 		}
 		return listSubject;
-	}
-
-	/**
-	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est
-	 * null
-	 * 
-	 * @return
-	 */
-	protected EntityManager getEntityManager()
-	{
-		if (em == null)
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		}
-		return em;
 	}
 }

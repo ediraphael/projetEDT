@@ -47,7 +47,7 @@ public class InscriptionAction extends AbstractAction
 			userToSave.setPassword(userBean.getPassword());
 			userToSave.setGroupe(gdao.getGroupByName(userBean.getNameGroup()));
 			//Sauvegarde du user renseigné dans le formulaire
-			udao.addUser(userToSave);
+			udao.save(userToSave);
 			
 			session.put("user", userBean);
 		}

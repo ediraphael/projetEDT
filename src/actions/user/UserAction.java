@@ -4,6 +4,8 @@ package actions.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import model.dao.GroupDAO;
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
@@ -25,19 +27,22 @@ public class UserAction extends AbstractAction
 	//déclaration et initialisation des DAO
 	private UserDAO userDao = new UserDAO();
 	private GroupDAO gdao = new GroupDAO();
+	
+	private UserBean userBean;
 
 	
 	/**
 	 * Méthode permettant d'afficher la liste des users 
 	 * @return
 	 */
+	@SkipValidation 
 	public String showUser()
 	{
 		forward = FORWARD_SUCCESS;
 		this.listUserBean = new ArrayList<UserBean>();
 		try
 		{
-			List<UserEntity> listUserEntity = userDao.getAllUser();
+			List<UserEntity> listUserEntity = userDao.getAll();
 			for (UserEntity userEntity : listUserEntity)
 			{
 				UserBean userBean = convertEntityToBean(userEntity);
@@ -50,7 +55,36 @@ public class UserAction extends AbstractAction
 		return forward;
 	}
 
+	/**
+	 * Méthode permettant de récupérer la salle selectionné pour l'afficher en mode modification
+	 * 
+	 */
+	@SkipValidation 
+	public String getUser()
+	{
+		forward = FORWARD_SUCCESS;
+		try
+		{
+			UserEntity userEntity = (UserEntity) userDao.getById(userBean.getId());
+			this.userBean = convertEntityToBean(userEntity);
+			this.userBean.setArrayGroupName(gdao.getAllGroupName());
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
 
+	/**
+	 * Méthode permettant la validation des champs 
+	 */
+	public void validate()
+	{
+		
+	}
+	
+	
 	/**
 	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
 	 * @param UserEntity
@@ -82,5 +116,15 @@ public class UserAction extends AbstractAction
 	public void setListUserBean(ArrayList<UserBean> listUserBean) 
 	{
 		this.listUserBean = listUserBean;
+	}
+
+	public UserBean getUserBean() 
+	{
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) 
+	{
+		this.userBean = userBean;
 	}
 }

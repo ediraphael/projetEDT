@@ -1,33 +1,95 @@
 package unitCase.model.dao;
 
-import static org.junit.Assert.fail;
-
 import java.util.List;
 
 import model.dao.GroupDAO;
+import model.org.persistence.GroupEntity;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+
+/**
+ * Classe de test du dao des groupes
+ * @author mickael
+ *
+ */
 public class GroupDAOTest 
 {
-
-
 	//déclaration de l'objet DAO afin d'appeler les méthodes à tester
 	private GroupDAO groupDAO = new GroupDAO();
 
+	/**
+	 * Test de la méthode du DAO permetant de récupérer un groupe par son id
+	 */
 	@Test
-	public void test() 
+	public void testGetById() 
 	{
-		fail("Not yet implemented");
+		GroupEntity g= groupDAO.getById(1);
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (g==null));
 	}
+	
+	/**
+	 * Test de la méthode du DAO permetant de faire un update sur un groupe
+	 */
+	@Test
+	public void testUpdate() 
+	{
+		GroupEntity g= groupDAO.getById(4);
+		g.setName("M1 Info");
+		groupDAO.update(g);
+	}
+	
+	/**
+	 * Test de la méthode du DAO permetant supprimer un groupe
+	 */
+	@Test
+	public void testDelete() 
+	{
+		GroupEntity g= groupDAO.getById(3);
+		groupDAO.delete(g);
+	}
+	
+	
+	/**
+	 * Test de la méthode du DAO permettant d'enregstrer un groupe
+	 */
+	@Test
+	public void testSave() 
+	{
+		GroupEntity g = new GroupEntity() ;
+		g.setName("L3 info");
+		groupDAO.save(g);
+	}
+	
 
-
+	/**
+	 * Test de la méthode du DAO permettant de récupérer tous les users
+	 */
+	@Test
+	public void testGetAll()
+	{
+		List<GroupEntity> g= groupDAO.getAll();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (g==null));
+	}
+	
+	/**
+	 * Test de la méthode du DAO permettant de trouver un groupe par son nom
+	 */
+	@Test
+	public void testGetGroupByName() 
+	{
+		GroupEntity c= groupDAO.getGroupByName("Enseignant");
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (c==null || c.getId()<0));
+	}
+	
+	/**
+	 * Test de la méthode du DAO permettant de trouver tous les noms des groupes
+	 */
 	@Test
 	public void testGetAllGroupName() 
 	{
-		List<String> result = groupDAO.getAllGroupName();
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (result.size()==0 ));
+		List<String> u= groupDAO.getAllGroupName();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
 	}
-
 }

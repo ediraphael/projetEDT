@@ -14,6 +14,8 @@ public class UserBean
 	private String name;
 	private String email;
 	private String password;
+	private String currentPassword;
+	private String newPassword;
 	private String confirmPassword;
 	private String nameGroup;
 	private String passwordTeacher;
@@ -27,6 +29,8 @@ public class UserBean
 		this.name="";
 		this.email="";
 		this.password="";
+		this.currentPassword="";
+		this.newPassword="";
 		this.confirmPassword="";
 		this.nameGroup="";
 		this.passwordTeacher="";
@@ -123,5 +127,25 @@ public class UserBean
 	public void setArrayGroupName(List<String> arrayGroupName) 
 	{
 		this.arrayGroupName = arrayGroupName;
+	}
+
+	public String getCurrentPassword() 
+	{
+		return currentPassword;
+	}
+
+	public void setCurrentPassword(String currentPassword) 
+	{
+		this.currentPassword = currentPassword;
+	}
+
+	public String getNewPassword() 
+	{
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) 
+	{
+		this.newPassword = newPassword;
 	}
 }

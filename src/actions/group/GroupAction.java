@@ -36,7 +36,9 @@ public class GroupAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			groupDAO.addGroup(groupBean.getName());
+			GroupEntity g = new GroupEntity();
+			g.setName(groupBean.getName());
+			groupDAO.save(g);
 
 			session.put("group", groupBean);
 		}
@@ -58,7 +60,7 @@ public class GroupAction extends AbstractAction
 		listGroupBean = new ArrayList<GroupBean>();
 		try
 		{
-			List<GroupEntity> listGroupEntity = groupDAO.getAllGroup();
+			List<GroupEntity> listGroupEntity = groupDAO.getAll();
 			for (GroupEntity groupEntity : listGroupEntity)
 			{
 				GroupBean groupBean = new GroupBean();
@@ -84,8 +86,8 @@ public class GroupAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			GroupEntity groupEntity = groupDAO.getGroup(id);
-			groupDAO.removeGroup(groupEntity);
+			GroupEntity groupEntity = groupDAO.getById(id);
+			groupDAO.delete(groupEntity);
 		} 
 		catch (Exception e)
 		{

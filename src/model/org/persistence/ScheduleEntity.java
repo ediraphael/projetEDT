@@ -1,7 +1,6 @@
 package model.org.persistence;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -16,9 +15,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "schedule")
-@NamedQueries({
-// définition de requetes simple appelable dans le DAO
-		@NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"), @NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"), @NamedQuery(name = "ScheduleEntity.findAllTeacher", query = "SELECT u FROM ScheduleEntity u "), })
+@NamedQueries
+({
+	// définition de requetes simple appelable dans le DAO
+	@NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"), 
+	@NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id")
+})
 public class ScheduleEntity implements Serializable
 {
 

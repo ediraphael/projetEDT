@@ -1,8 +1,7 @@
 package model.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import model.org.persistence.PasswordTeacherEntity;
@@ -14,29 +13,20 @@ import model.org.persistence.PasswordTeacherEntity;
  * @author mickael
  *
  */
-public class PasswordTeacherDAO 
+public class PasswordTeacherDAO extends AbstractDAO<PasswordTeacherEntity>
 {
-	//nom de la database
-	private final static String JPA_DATABASE = "ProjetEDT";
-	//Cette entité permet d'acceder aux tables
-	@PersistenceContext
-	private EntityManager em;
-	
-
-	
-	
 	/**
-	 * Methode permetant de le passwordTeacher
+	 * Methode permetant de récupérer le passwordTeacher
 	 * Utile enregistrer un user du groupe enseignant
 	 */
 	public String getPasswordTeacher()
 	{
+		initEntityManager();
 		String pwd="";
 		try 
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q=getEntityManager().createNamedQuery("PasswordTeacherEntity.find");
-			pwd= q.getResultList()!= null ? (String) q.getResultList().get(0) : "" ;
+			Query q=getEntityManager().createNamedQuery("PasswordTeacherEntity.get");
+			pwd=  (q.getResultList().size()!=0) ? (String) q.getSingleResult() : null ;
 		} finally 
 		{
 			getEntityManager().close();
@@ -44,37 +34,27 @@ public class PasswordTeacherDAO
 		return pwd;
 	}
 	
-		
-	/**
-	 * Permet d'update le passwordTeacher
-	 * @param password
-	 */
-	public void updateUser(String pwd) 
+	public List<PasswordTeacherEntity>getAll()
 	{
-		PasswordTeacherEntity pEntity= new PasswordTeacherEntity();
-		pEntity.setPassword(pwd);
-		try 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			getEntityManager().getTransaction().begin();
-			getEntityManager().merge(pEntity);
-			getEntityManager().getTransaction().commit();
-		} finally 
-		{
-			getEntityManager().close();
-		}
+		return getAll("PasswordTeacherEntity.findAll");
 	}
-
+	
 	/**
-	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
-	 * @return
+	 * Methode permetant de récupérer le passwordTeacher
+	 * sous forme d'entity pour l'update
 	 */
-	protected EntityManager getEntityManager() 
+	public PasswordTeacherEntity get()
 	{
-		if (em == null) 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		}
-		return em;
+		return getAll().get(0);
 	}
+	
+	/**
+	 * redéfinition de la méthode delete pour eviter la suppression
+	 */
+	public void delete(PasswordTeacherEntity object) {}
+	
+	/**
+	 * redéfinition de la méthode save pour eviter la création
+	 */
+	public void save(PasswordTeacherEntity object){}
 }

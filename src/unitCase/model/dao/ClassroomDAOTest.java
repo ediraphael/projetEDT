@@ -8,21 +8,90 @@ import model.org.persistence.ClassroomEntity;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ClassroomDAOTest {
+
+/**
+ * Classe de test du dao des salles
+ * @author mickael
+ *
+ */
+public class ClassroomDAOTest 
+{
 
 	//déclaration de l'objet DAO afin d'appeler les méthodes à tester
 	private ClassroomDAO classroomDAO = new ClassroomDAO();
 	
+	/**
+	 * Test de la méthode du DAO permetant de récupérer un user par son id
+	 */
 	@Test
-	public void testGetAllClassroom() {
-		List<ClassroomEntity> listeClassroom = classroomDAO.getAllClassroom();
-		Assert.assertNotNull(listeClassroom);
-		for (ClassroomEntity classroomEntity : listeClassroom)
-		{
-			Assert.assertNotNull(classroomEntity);
-			System.out.println(classroomEntity.getId());
-			System.out.println(classroomEntity.getName());
-		}
+	public void testGetById() 
+	{
+		ClassroomEntity u= classroomDAO.getById(1);
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
 	}
+	
+	/**
+	 * Test de la méthode du DAO permetant de faire un update sur un user
+	 */
+	@Test
+	public void testUpdate() 
+	{
+		ClassroomEntity c= classroomDAO.getById(1);
+		c.setName("A009");
+		classroomDAO.update(c);
+	}
+	
+	/**
+	 * Test de la méthode du DAO permetant supprimer un user
+	 */
+	@Test
+	public void testDelete() 
+	{
+		ClassroomEntity c= classroomDAO.getById(2);
+		classroomDAO.delete(c);
+	}
+	
+	
+	/**
+	 * Test de la méthode du DAO permettant d'enregstrer un user
+	 */
+	@Test
+	public void testSave() 
+	{
+		ClassroomEntity c = new ClassroomEntity();
+		c.setName("C203");
+		classroomDAO.save(c);
+	}
+	
 
+	/**
+	 * Test de la méthode du DAO permettant de récupérer tous les users
+	 */
+	@Test
+	public void testGetAll()
+	{
+		List<ClassroomEntity> c= classroomDAO.getAll();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (c==null));
+	}
+	
+
+	/**
+	 * Test de la méthode du DAO permettant de trouver une salle par son nom
+	 */
+	@Test
+	public void testGetClassroomByName() 
+	{
+		ClassroomEntity c= classroomDAO.getClassroomByName("A005");
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (c==null || c.getId()<0));
+	}
+	
+	/**
+	 * Test de la méthode du DAO permettant de trouver tous les noms des salles
+	 */
+	@Test
+	public void testGetAllClassroomName() 
+	{
+		List<String> u= classroomDAO.getAllClassroomName();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
+	}
 }

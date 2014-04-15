@@ -14,8 +14,10 @@ import javax.persistence.*;
 @NamedQueries
 ({
 	//définition de requetes simple appelable dans le DAO
+    @NamedQuery(name = "SubjectEntity.findById", query = "SELECT s FROM SubjectEntity s where s.id = :id"),
     @NamedQuery(name = "SubjectEntity.findAllName", query = "SELECT s.name FROM SubjectEntity s"),
-    @NamedQuery(name = "SubjectEntity.findById", query = "SELECT s FROM SubjectEntity s where s.name = :name"),
+    @NamedQuery(name = "SubjectEntity.findByName", query = "SELECT s FROM SubjectEntity s where s.name = :name"),
+    @NamedQuery(name = "SubjectEntity.findAll", query = "SELECT s FROM SubjectEntity s ")
 })
 public class SubjectEntity implements Serializable 
 {
@@ -35,7 +37,7 @@ public class SubjectEntity implements Serializable
 	
 	
 	/**
-	 * Getters et setters de cette entité user
+	 * Getters and setters
 	 * 
 	 */
 	public long getId() 

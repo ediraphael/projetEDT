@@ -34,8 +34,10 @@ public class ClassroomAction extends AbstractAction
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
+			ClassroomEntity c = new ClassroomEntity();
+			c.setName(classroomBean.getName());
 			// Sauvegarde du user renseigné dans le formulaire
-			classroomDao.addClassroom(classroomBean.getName());
+			classroomDao.save(c);
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
@@ -57,7 +59,7 @@ public class ClassroomAction extends AbstractAction
 			ClassroomEntity classroomEntity = new ClassroomEntity();
 			classroomEntity.setId(this.classroomBean.getId());
 			classroomEntity.setName(this.classroomBean.getName());
-			classroomDao.updateClassroom(classroomEntity);
+			classroomDao.update(classroomEntity);
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
@@ -77,8 +79,8 @@ public class ClassroomAction extends AbstractAction
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
-			classroomDao.removeClassroom(classroomEntity);
+			ClassroomEntity classroomEntity = classroomDao.getById(this.id);
+			classroomDao.delete(classroomEntity);
 		} catch (Exception e)
 		{
 			forward = FORWARD_ERROR;
@@ -98,7 +100,7 @@ public class ClassroomAction extends AbstractAction
 		this.listClassroomBean = new ArrayList<ClassroomBean>();
 		try
 		{
-			List<ClassroomEntity> listClassroomEntity = classroomDao.getAllClassroom();
+			List<ClassroomEntity> listClassroomEntity = classroomDao.getAll();
 			for (ClassroomEntity classroomEntity : listClassroomEntity)
 			{
 				ClassroomBean classroomBean = new ClassroomBean();
@@ -113,14 +115,17 @@ public class ClassroomAction extends AbstractAction
 		return forward;
 	}
 
-	
+	/**
+	 * Méthode permettant de récupérer la salle selectionné pour l'afficher en mode modification
+	 * 
+	 */
 	public String getClassroom()
 	{
 		forward = FORWARD_SUCCESS;
 		ClassroomDAO classroomDao = new ClassroomDAO();
 		try
 		{
-			ClassroomEntity classroomEntity = classroomDao.getClassroom(this.id);
+			ClassroomEntity classroomEntity = classroomDao.getById(this.id);
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
 			this.classroomBean.setName(classroomEntity.getName());

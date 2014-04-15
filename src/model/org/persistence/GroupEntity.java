@@ -31,6 +31,25 @@ public class GroupEntity implements Serializable
 	@Column(name="name")
 	private String name;
 	
+	
+	/**
+	 * Constructeur par defaut
+	 */
+	public GroupEntity() 
+	{
+		super();
+	}
+
+	/**
+	 * Constructeur
+	 * @param g
+	 */
+	public GroupEntity(GroupEntity g) 
+	{
+		super();
+		this.name=g.getName();
+	}
+
 	/**
 	 * Getters and Setters
 	 */

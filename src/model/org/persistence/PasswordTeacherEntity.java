@@ -14,7 +14,9 @@ import javax.persistence.*;
 @NamedQueries
 ({
 	//définition de requetes simple appelable dans le DAO
-    @NamedQuery(name = "PasswordTeacherEntity.find", query = "SELECT p.password FROM PasswordTeacherEntity p"),
+	@NamedQuery(name = "PasswordTeacherEntity.findAll", query = "SELECT p FROM PasswordTeacherEntity p"),
+	@NamedQuery(name = "PasswordTeacherEntity.findById", query = "SELECT p FROM PasswordTeacherEntity p where p.id = :id"),
+    @NamedQuery(name = "PasswordTeacherEntity.get", query = "SELECT p.password FROM PasswordTeacherEntity p")
 })
 public class PasswordTeacherEntity implements Serializable 
 {

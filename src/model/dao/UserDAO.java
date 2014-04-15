@@ -1,11 +1,7 @@
 package model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.org.persistence.GroupEntity;
@@ -13,34 +9,28 @@ import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base
- * Cette classe DAO concerne les transaction pour les users
+ * Cette classe DAO concerne les transactions pour les users
  * @author mickael
  *
  */
-public class UserDAO 
+public class UserDAO extends AbstractDAO<UserEntity> 
 {
-	//nom de la database
-	private final static String JPA_DATABASE = "ProjetEDT";
-	//Cette entité permet d'acceder aux tables
-	@PersistenceContext
-	private EntityManager em;
-	
-
-	@SuppressWarnings("unchecked")
-	public List<UserEntity> getAllUser()
+	/**
+	 * Surchage de la méthode abstraite pour lui préciser dans quel table trouver l'info
+	 * @param id
+	 */
+	public UserEntity getById(long id) 
 	{
-		List<UserEntity> allUser = new ArrayList<UserEntity>();
-		try 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q=getEntityManager().createNamedQuery("UserEntity.findAll");
-			allUser= q.getResultList()!= null ? (List<UserEntity>) q.getResultList() : null ;
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-		return allUser;
+		return getById(id, "UserEntity.findById");
+	}
+	
+	/**
+	 * Surchage de la méthode abstraite pour lui préciser dans quel table trouver l'info
+	 * 
+	 */
+	public List<UserEntity> getAll()
+	{
+		return getAll("UserEntity.findAll");
 	}
 	
 	/**
@@ -51,12 +41,12 @@ public class UserDAO
 	 */
 	public UserEntity getUserByEmailAndPwd(String email, String password)
 	{
+		initEntityManager();
 		UserEntity user = new UserEntity();
 		user.setEmail(email);
 		user.setPassword(password);
 		try 
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q=getEntityManager().createNamedQuery("UserEntity.findByEmailAndPwd")
 					.setParameter("email", email).setParameter("pwd", password);
 			user= (q.getResultList().size()!=0) ? (UserEntity) q.getSingleResult() : null ;
@@ -74,14 +64,13 @@ public class UserDAO
 	 */
 	public UserEntity getUserByName(String name)
 	{
+		initEntityManager();
 		UserEntity user = new UserEntity();
 		user.setName(name);
 		try 
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q=getEntityManager().createNamedQuery("UserEntity.findByName")
-					.setParameter("name", name);
-			user= q.getResultList()!= null ? (UserEntity) q.getResultList().get(0) : null ;
+			Query q=getEntityManager().createNamedQuery("UserEntity.findByName").setParameter("name", name);
+			user= (q.getResultList().size()!=0) ? (UserEntity) q.getSingleResult() : null ;
 		} 
 		finally 
 		{
@@ -90,15 +79,18 @@ public class UserDAO
 		return user;
 	}
 	
+	/**
+	 * Méthode permettant de trouver tous les users appartenant au même groupe 
+	 * @param group
+	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getAllUserNameByGroup(GroupEntity group)
 	{
+		initEntityManager();
 		List<String> listGroupName;
 		try 
 		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			Query q=getEntityManager().createNamedQuery("UserEntity.findAllNameByGroup")
-					.setParameter("group", group);
+			Query q=getEntityManager().createNamedQuery("UserEntity.findAllNameByGroup").setParameter("group", group);
 			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList() : null ;
 		} 
 		finally 
@@ -106,79 +98,5 @@ public class UserDAO
 			getEntityManager().close();
 		}
 		return listGroupName;
-	}
-	
-	/**
-	 * Methode permetant de sauvegarder un user
-	 * @param email
-	 * @param password
-	 */
-	public void addUser(UserEntity user)
-	{
-		em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		
-		try 
-		{
-			getEntityManager().getTransaction().begin();
-			getEntityManager().persist(user);
-			getEntityManager().getTransaction().commit();
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-	}
-	
-	
-	/**
-	 * Permet de supprimer un user
-	 * @param user 
-	 */
-	public void deleteUser(UserEntity user) 
-	{
-		try 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			getEntityManager().getTransaction().begin();
-			user = getEntityManager().merge(user);
-			getEntityManager().remove(user);
-			getEntityManager().getTransaction().commit();
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-	}
-		
-	/**
-	 * Permet d'update un user
-	 * @param user
-	 */
-	public void updateUser(UserEntity user) 
-	{
-		try 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-			getEntityManager().getTransaction().begin();
-			user = getEntityManager().merge(user);
-			getEntityManager().getTransaction().commit();
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-	}
-
-	/**
-	 * Permet de récupérer et d'initialiser l'entity manager si celui ci est null
-	 * @return
-	 */
-	protected EntityManager getEntityManager() 
-	{
-		if (em == null) 
-		{
-			em = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
-		}
-		return em;
 	}
 }

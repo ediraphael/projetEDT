@@ -1,18 +1,35 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><s:property value="getText('title.schedule')"/></title>
-</head>
-<body>
-	<h2>Struts 2 - Classroom Update </h2>
-	<s:form action="UpdateClassroom" method="post">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
+		<title><s:text name="title.new.classroom"/></title>
+	</head>
+	<body>
 		<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
-		<s:textfield name="classroomBean.name" value="%{classroomBean.name}" key="label.name" size="20" />
-		<s:fielderror theme="simple" fieldName="error.name"/>
-		<s:submit key="label.valide" />
-	</s:form>
-</body>
+		<div id="wrap">
+			<%@ include file="../other/applicationName.jsp" %>
+			<%@ include file="../other/menuAdmin.jsp" %>
+			<div id="content-top"></div>
+			<div id="content-middle">
+				<h1><s:text name="title.new.classroom"/></h1>
+				<s:form action="UpdateClassroom" method="post">
+					<table>
+						<tr><td></td></tr>
+						<tr>
+							<td><s:text name="label.name"/></td>
+							<td><s:textfield name="classroomBean.name" cssClass="text"/></td>
+							<td class="error"><s:fielderror fieldName="error.name"/></td>
+						</tr>
+					</table>
+					<br/>
+					<s:submit key="label.valide"  cssClass="user_button"/>
+				</s:form>
+				<div class="clear"></div>
+			</div>
+			<div id="content-bottom"></div>
+		</div>
+	</body>
 </html>
