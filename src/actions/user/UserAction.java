@@ -27,7 +27,7 @@ public class UserAction extends AbstractAction
 	private UserBean userBean;
 
 	//déclaration et initialisation des DAO
-	private UserDAO userDao = new UserDAO();
+	private UserDAO uDao = new UserDAO();
 	private GroupDAO gdao = new GroupDAO();
 	
 	//récupération de l'id pour afficher en mode modification un user
@@ -45,7 +45,7 @@ public class UserAction extends AbstractAction
 		this.listUserBean = new ArrayList<UserBean>();
 		try
 		{
-			List<UserEntity> listUserEntity = userDao.getAll();
+			List<UserEntity> listUserEntity = uDao.getAll();
 			for (UserEntity userEntity : listUserEntity)
 			{
 				UserBean userBean = convertEntityToBean(userEntity);
@@ -68,7 +68,7 @@ public class UserAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			UserEntity userEntity = (UserEntity) userDao.getById(this.id);
+			UserEntity userEntity = (UserEntity) uDao.getById(this.id);
 			this.userBean = convertEntityToBean(userEntity);
 			this.userBean.setArrayGroupName(gdao.getAllGroupName());
 		} catch (Exception e)
@@ -78,7 +78,43 @@ public class UserAction extends AbstractAction
 		return forward;
 	}
 	
-
+	/**
+	 * Méthode permettant de supprimer un user
+	 */
+	@SkipValidation 
+	public String deleteUser()
+	{
+		forward = FORWARD_SUCCESS;
+		try
+		{
+			UserEntity userEntity=uDao.getById(id);
+			uDao.delete(userEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	/**
+	 * Méthode permettant d'update une salle 
+	 */
+	public String updateUser()
+	{
+		forward = FORWARD_SUCCESS;
+		try
+		{
+			UserEntity userEntity=uDao.getById(id);
+			convertBeanToEntity(userBean, userEntity);
+			uDao.update(userEntity);
+		} catch (Exception e)
+		{
+			forward = FORWARD_ERROR;
+		}
+		return forward;
+	}
+	
+	
 	/**
 	 * Méthode permettant la validation des champs 
 	 */
@@ -112,11 +148,21 @@ public class UserAction extends AbstractAction
 		{
 			if(userBean.getConfirmPassword().isEmpty())
 			{
-				addFieldError("error.password", getText("validator.field.empty"));
+				addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
+				addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
 			}
 			else if(!userBean.getNewPassword().equals(userBean.getConfirmPassword()))
 			{
-				addFieldError("error.confirmpassword", getText("validator.pwd.false"));
+				addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
+				addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+			}
+		}
+		else
+		{
+			if(!userBean.getConfirmPassword().isEmpty())
+			{
+				addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
+				addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
 			}
 		}
 
@@ -142,6 +188,21 @@ public class UserAction extends AbstractAction
 		userResult.setArrayGroupName(gdao.getAllGroupName());
 		
 		return userResult;
+	}
+	
+	/**
+	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
+	 * @param UserEntity
+	 * @return UserBean
+	 */
+	private void convertBeanToEntity(UserBean userToConvert, UserEntity userResult)
+	{
+		userResult.setFirstName(userToConvert.getFirstName());
+		userResult.setEmail(userToConvert.getEmail());
+		userResult.setName(userToConvert.getName());
+		userResult.setGroupe(gdao.getGroupByName(userToConvert.getNameGroup()));
+		if(!userToConvert.getConfirmPassword().isEmpty())
+			userResult.setPassword(userToConvert.getConfirmPassword());
 	}
 	
 	/**
