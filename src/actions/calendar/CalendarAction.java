@@ -75,6 +75,7 @@ public class CalendarAction extends AbstractAction
 				if (user != null)
 				{
 					group = this.groupDao.getGroupByName(user.getNameGroup());
+					this.scheduleBean = new ScheduleBean();
 					this.scheduleBean.setNameGroup(user.getNameGroup());
 				}
 				listScheduleEntity = scheduleDAO.getAllByGroup(group);
