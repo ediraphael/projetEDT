@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
-		<title><s:text name="title.new.classroom"/></title>
+		<title><s:text name="title.new.user"/></title>
 	</head>
 	<body>
 		<s:hidden name="userBean.id" value="%{userBean.id}"/>
@@ -39,11 +39,6 @@
 							<td><s:text name="label.email"/></td>
 							<td><s:textfield name="userBean.email" /></td>
 							<td class="error"><s:fielderror fieldName="error.email"/></td>
-						</tr>
-						<tr>
-							<td><s:text name="label.password.actu"/></td>
-							<td><s:password name="userBean.currentPassword"/></td>
-							<td class="error"><s:fielderror fieldName="error.currentpassword"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.password.new"/></td>

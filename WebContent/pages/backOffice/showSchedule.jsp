@@ -16,7 +16,6 @@
 				<h1><s:text name="title.show.schedule"/></h1>
 				<table>
 					<tr>
-						<th><s:text name="label.id"/></th>
 						<th><s:text name="label.name"/></th>
 						<th><s:text name="label.dayStart"/></th>
 						<th><s:text name="label.dayEnd"/></th>
@@ -32,7 +31,6 @@
 							<s:url id="url" action="GetSchedule">
 								<s:param name="id"><s:property value="id"/></s:param>
 						    </s:url>
-							<td><s:a href="%{url}"><s:property value="id"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="name"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="dayStart"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="dayEnd"/></s:a></td>
