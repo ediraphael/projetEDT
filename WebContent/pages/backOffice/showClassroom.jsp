@@ -10,12 +10,10 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
-				<%@ include file="../other/menuAdmin.jsp" %>
+			<s:if test="#session.user.nameGroup!='Enseignant'">
+				<% response.sendRedirect("AccessDenied");	%> 
 			</s:if>
-			<s:else>
-				<%@ include file="../other/menuEtu.jsp" %>
-			</s:else>
+			<%@ include file="../other/menuAdmin.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.show.classroom"/></h1>

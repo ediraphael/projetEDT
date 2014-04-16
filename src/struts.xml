@@ -21,6 +21,9 @@
 		<result>pages/frontOffice/login.jsp</result>
 	</action>
 	
+	<action name="AccessDenied">
+		<result>pages/other/errorDeniedAccess.jsp</result>
+	</action>
 
 	
 
