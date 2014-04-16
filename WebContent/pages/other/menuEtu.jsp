@@ -3,8 +3,8 @@
 <div id="menu">
 	<div id="menu-left"></div>
 		<ul>
-			<li><s:a action=""><span><s:text name="module.home"/></span></s:a></li>
 			<s:if test="#session.user==null">
+				<li><s:a action=""><span><s:text name="module.home"/></span></s:a></li>
 				<li><s:a action="Login"><span><s:text name="module.login"/></span></s:a></li>
 				<li><s:a action="InscriptionForm"><span><s:text name="module.register"/></span></s:a></li>
 			</s:if>

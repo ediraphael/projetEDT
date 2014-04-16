@@ -10,6 +10,9 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
+			<s:if test="#session.user!=null">
+				<% response.sendRedirect("ShowCalendar");	%> 
+			</s:if>
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.home"/></h1><br/>
