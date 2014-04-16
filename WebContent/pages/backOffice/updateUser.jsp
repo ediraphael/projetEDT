@@ -16,6 +16,8 @@
 				<h1><s:text name="title.user"/></h1>
 				<s:form action="UpdateUser" method="post">
 					<s:hidden name="id" value="%{userBean.id}"/>
+					<s:hidden name="userBean.id" value="%{userBean.id}"/>
+					<s:hidden name="userBean.oldEmail" value="%{userBean.email}"/>
 					<table>
 						<tr><td> </td></tr>
 						<tr>

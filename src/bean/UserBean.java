@@ -13,6 +13,7 @@ public class UserBean
 	private String firstName;
 	private String name;
 	private String email;
+	private String oldEmail;
 	private String password;
 	private String currentPassword;
 	private String newPassword;
@@ -147,5 +148,15 @@ public class UserBean
 	public void setNewPassword(String newPassword) 
 	{
 		this.newPassword = newPassword;
+	}
+
+	public String getOldEmail() 
+	{
+		return oldEmail;
+	}
+
+	public void setOldEmail(String oldEmail) 
+	{
+		this.oldEmail = oldEmail;
 	}
 }

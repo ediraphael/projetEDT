@@ -104,7 +104,7 @@ public class UserAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			UserEntity userEntity=uDao.getById(id);
+			UserEntity userEntity=uDao.getById(userBean.getId());
 			convertBeanToEntity(userBean, userEntity);
 			uDao.update(userEntity);
 		} catch (Exception e)
@@ -120,51 +120,60 @@ public class UserAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		//test si le prénom est renseigné
-		if(userBean.getFirstName().isEmpty())
+		if(userBean!=null)
 		{
-			addFieldError("error.firstName", getText("validator.field.empty"));
-		}
-
-		//test si le nom est renseigné
-		if(userBean.getName().isEmpty())
-		{
-			addFieldError("error.name", getText("validator.field.empty"));
-		}
-
-		//test si le mail est renseigné
-		if(userBean.getEmail().isEmpty())
-		{
-			addFieldError("error.email", getText("validator.field.empty"));
-		}
-		//test si l'email est correctement renseigné
-		else if(!emailValidator(userBean.getEmail()))
-		{
-			addFieldError("error.email", getText("validator.mail.false"));
-		}
-
-		//test du changement de mot de passe
-		if(!userBean.getNewPassword().isEmpty())
-		{
-			if(userBean.getConfirmPassword().isEmpty())
+			//test si le prénom est renseigné
+			if(userBean.getFirstName().isEmpty())
 			{
-				addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
-				addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+				addFieldError("error.firstName", getText("validator.field.empty"));
 			}
-			else if(!userBean.getNewPassword().equals(userBean.getConfirmPassword()))
+
+			//test si le nom est renseigné
+			if(userBean.getName().isEmpty())
 			{
-				addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
-				addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+				addFieldError("error.name", getText("validator.field.empty"));
 			}
-		}
-		else
-		{
-			if(!userBean.getConfirmPassword().isEmpty())
+
+			//test si le mail est renseigné
+			if(userBean.getEmail().isEmpty())
 			{
-				addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
-				addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+				addFieldError("error.email", getText("validator.field.empty"));
 			}
-		}
+			//test si l'email est correctement renseigné
+			else if(!emailValidator(userBean.getEmail()))
+			{
+				addFieldError("error.email", getText("validator.mail.false"));
+			}
+
+			//test du changement de mot de passe
+			if(!userBean.getNewPassword().isEmpty())
+			{
+				if(userBean.getConfirmPassword().isEmpty())
+				{
+					addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
+					addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+				}
+				else if(!userBean.getNewPassword().equals(userBean.getConfirmPassword()))
+				{
+					addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
+					addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+				}
+			}
+			else
+			{
+				if(!userBean.getConfirmPassword().isEmpty())
+				{
+					addFieldError("error.newpassword", getText("validator.pwd.confirm.part1"));
+					addFieldError("error.confirmpassword", getText("validator.pwd.confirm.part2"));
+				}
+			}
+
+			if(!userBean.getEmail().equals(userBean.getOldEmail()))
+			{
+				if(uDao.existEmailUser(userBean.getEmail()))
+					addFieldError("error.email",  getText("validator.user.exist"));
+			}
+		}		
 
 		//rechargement de la liste des groupe pour réafficher la page des inscriptions
 		userBean.setArrayGroupName(gdao.getAllGroupName());

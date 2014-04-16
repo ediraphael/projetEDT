@@ -162,8 +162,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(256) NOT NULL,
   `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `id_group_user` (`id_group_user`),
-  UNIQUE (`email`)
+  KEY `id_group_user` (`id_group_user`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
