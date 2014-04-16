@@ -10,7 +10,12 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<%@ include file="../other/menuAdmin.jsp" %>
+			<s:if test="#session.user.nameGroup=='Enseignant'">
+				<%@ include file="../other/menuAdmin.jsp" %>
+			</s:if>
+			<s:else>
+				<%@ include file="../other/menuEtu.jsp" %>
+			</s:else>
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.show.schedule"/></h1>

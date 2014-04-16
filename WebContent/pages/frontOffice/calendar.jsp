@@ -144,14 +144,19 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<%@ include file="../other/menuAdmin.jsp" %>
+			<s:if test="#session.user.nameGroup=='Enseignant'">
+				<%@ include file="../other/menuAdmin.jsp" %>
+			</s:if>
+			<s:else>
+				<%@ include file="../other/menuEtu.jsp" %>
+			</s:else>
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.calendar"/></h1>
 				<s:form action="ShowCalendar" method="post">
 					<table>
 						<tr>
-							<td>Type</td>
+							<td><s:text name="label.type"/></td>
 							<td><s:radio label="Type" name="view" list="listView" value="defaultViewValue" /></td>
 						</tr>
 						<tr>
