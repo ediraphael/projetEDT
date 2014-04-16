@@ -20,7 +20,6 @@
 			<div id="content-middle">
 				<h1><s:text name="title.show.group"/></h1>
 				<table>
-			<s:property value="#session.user"/>
 					<tr>
 						<th><s:text name="label.name"/></th>
 						<th></th>
