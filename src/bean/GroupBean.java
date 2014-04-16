@@ -10,6 +10,7 @@ public class GroupBean
 {
 	private long id;
 	private String name;
+	private String oldName;
 
 	/**
 	 * Getters and Setters
@@ -32,5 +33,15 @@ public class GroupBean
 	public void setId(long id) 
 	{
 		this.id = id;
+	}
+
+	public String getOldName() 
+	{
+		return oldName;
+	}
+
+	public void setOldName(String oldName) 
+	{
+		this.oldName = oldName;
 	}
 }

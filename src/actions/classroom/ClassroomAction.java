@@ -34,18 +34,11 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			if (cdao.getClassroomByName(classroomBean.getName())!=null) 
-			{
-				addActionError(getText("validator.classroom.exist"));
-				forward=FORWARD_INPUT;
-			}
-			else
-			{
-				ClassroomEntity c = new ClassroomEntity();
-				c.setName(classroomBean.getName());
-				cdao.save(c);
-			}
-		} catch (Exception e)
+			ClassroomEntity c = new ClassroomEntity();
+			c.setName(classroomBean.getName());
+			cdao.save(c);
+		} 
+		catch (Exception e)
 		{
 			forward=generateError(e);
 		}

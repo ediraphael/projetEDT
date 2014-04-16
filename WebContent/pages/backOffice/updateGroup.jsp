@@ -16,6 +16,8 @@
 				<h1><s:text name="title.group"/></h1>
 				<s:form action="UpdateGroup" method="post">
 					<s:hidden name="id" value="%{groupBean.id}"/>
+					<s:hidden name="groupBean.id" value="%{groupBean.id}"/>
+					<s:hidden name="groupBean.oldName" value="%{groupBean.name}"/>
 					<table>
 						<tr><td> </td></tr>
 						<tr>
