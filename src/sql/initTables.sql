@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
 INSERT INTO `subject` (`id_subject`, `name`, `short_name`, `color`) VALUES
 (1, 'Cours magistral', 'CM', '#FAF616'),
 (2, 'Travaux pratiques', 'TP', '#FF771C'),
-(3, 'Devoir surveillé', 'DS', '#FF0000'),
+(3, 'Devoir surveille', 'DS', '#FF0000'),
 (4, 'Cours annule', 'Annule', '#BF00E6');
 
 -- --------------------------------------------------------
