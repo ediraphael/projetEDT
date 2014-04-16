@@ -53,7 +53,7 @@
 						</tr>
 						<tr id="pwdTeacher">
 							<td><s:text name="label.password.teacher"/></td>
-							<td><s:password name="userBean.teacherPassword" /></td>
+							<td><s:password name="userBean.passwordTeacher" /></td>
 							<td class="error"><s:fielderror fieldName="error.teacherpassword"/></td>
 						</tr>
 					</table>
