@@ -138,6 +138,10 @@ public class ScheduleAction extends AbstractAction
 		try
 		{
 			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAll();
+			if (listScheduleEntity == null)
+			{
+				listScheduleEntity = new ArrayList<>();
+			}
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -268,9 +272,9 @@ public class ScheduleAction extends AbstractAction
 					ClassroomEntity classroom = classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom());
 					GroupEntity group = groupDao.getGroupByName(this.scheduleBean.getNameGroup());
 					UserEntity user = userDao.getUserByName(this.scheduleBean.getNameUserTeacher());
-					List<ScheduleEntity> listClassroom = scheduleDAO.findIfClassroomExist(classroom, dayStart, dayEnd);
-					List<ScheduleEntity> listGroup = scheduleDAO.findIfGroupExist(group, dayStart, dayEnd);
-					List<ScheduleEntity> listUser = scheduleDAO.findIfUserTeacherExist(user, dayStart, dayEnd);
+					List<ScheduleEntity> listClassroom = scheduleDAO.findIfClassroomExist(classroom, dayStart, dayEnd, this.scheduleBean.getId());
+					List<ScheduleEntity> listGroup = scheduleDAO.findIfGroupExist(group, dayStart, dayEnd, this.scheduleBean.getId());
+					List<ScheduleEntity> listUser = scheduleDAO.findIfUserTeacherExist(user, dayStart, dayEnd, this.scheduleBean.getId());
 					if (listClassroom != null && listClassroom.size() != 0)
 					{
 						addFieldError("error.classroom", getText("validator.classromm.already.use"));
