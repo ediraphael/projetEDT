@@ -58,7 +58,8 @@ public class ScheduleAction extends AbstractAction
 			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getNameUserTeacher()));
+			GroupEntity groupEnseignant = groupDao.getById(1);
+			scheduleEntity.setUserTeacher(this.userDao.getEnseignantByName(this.scheduleBean.getNameUserTeacher(), groupEnseignant));
 			scheduleEntity.setSubject(this.subjectDao.getSubjectByName(this.scheduleBean.getNameSubject()));
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
@@ -89,7 +90,8 @@ public class ScheduleAction extends AbstractAction
 			scheduleEntity.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(this.scheduleBean.getDayEnd())));
 			scheduleEntity.setName(this.scheduleBean.getName());
 			scheduleEntity.setComment(this.scheduleBean.getComment());
-			scheduleEntity.setUserTeacher(this.userDao.getUserByName(this.scheduleBean.getNameUserTeacher()));
+			GroupEntity groupEnseignant = groupDao.getById(1);
+			scheduleEntity.setUserTeacher(this.userDao.getEnseignantByName(this.scheduleBean.getNameUserTeacher(),groupEnseignant));
 			scheduleEntity.setSubject(this.subjectDao.getSubjectByName(this.scheduleBean.getNameSubject()));
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
@@ -271,7 +273,8 @@ public class ScheduleAction extends AbstractAction
 					ScheduleDAO scheduleDAO = new ScheduleDAO();
 					ClassroomEntity classroom = classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom());
 					GroupEntity group = groupDao.getGroupByName(this.scheduleBean.getNameGroup());
-					UserEntity user = userDao.getUserByName(this.scheduleBean.getNameUserTeacher());
+					GroupEntity groupEnseignant = groupDao.getById(1);
+					UserEntity user = userDao.getEnseignantByName(this.scheduleBean.getNameUserTeacher(), groupEnseignant);
 					List<ScheduleEntity> listClassroom = scheduleDAO.findIfClassroomExist(classroom, dayStart, dayEnd, this.scheduleBean.getId());
 					List<ScheduleEntity> listGroup = scheduleDAO.findIfGroupExist(group, dayStart, dayEnd, this.scheduleBean.getId());
 					List<ScheduleEntity> listUser = scheduleDAO.findIfUserTeacherExist(user, dayStart, dayEnd, this.scheduleBean.getId());

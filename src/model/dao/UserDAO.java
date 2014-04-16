@@ -80,6 +80,29 @@ public class UserDAO extends AbstractDAO<UserEntity>
 	}
 	
 	/**
+	 * Methode permetant de récupérer un enseignant avec son nom 
+	 * @param name
+	 */
+	public UserEntity getEnseignantByName(String name, GroupEntity g)
+	{
+		initEntityManager();
+		UserEntity user = new UserEntity();
+		user.setName(name);
+		user.setGroupe(g);
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("UserEntity.findEnseignantByName")
+					.setParameter("name", name).setParameter("group", g);
+			user= (q.getResultList().size()!=0) ? (UserEntity) q.getResultList().get(0) : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		return user;
+	}
+	
+	/**
 	 * Méthode permettant de trouver tous les users appartenant au même groupe 
 	 * @param group
 	 */
