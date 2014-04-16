@@ -408,3 +408,11 @@ input,select
 	text-align: center;
 	font-size: 1.0em;
 }
+
+.indexLink
+{
+	font-size: 1.3em;
+	width: 40%;
+	text-align: center;
+	margin : 10px auto auto auto; 
+}
