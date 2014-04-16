@@ -10,7 +10,6 @@ import java.util.List;
 public class UserBean
 {
 	private long id;
-	private String firstName;
 	private String name;
 	private String email;
 	private String oldEmail;
@@ -26,7 +25,6 @@ public class UserBean
 	{
 		super();
 		this.id=0;
-		this.firstName="";
 		this.name="";
 		this.email="";
 		this.oldEmail="";
@@ -79,16 +77,6 @@ public class UserBean
 	public void setName(String name) 
 	{
 		this.name = name;
-	}
-
-	public String getFirstName() 
-	{
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) 
-	{
-		this.firstName = firstName;
 	}
 
 	public String getConfirmPassword() 

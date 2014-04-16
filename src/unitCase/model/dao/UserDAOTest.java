@@ -62,7 +62,6 @@ public class UserDAOTest
 	{
 		UserEntity u = new UserEntity() ;
 		GroupEntity g = gdao.getById(1);
-		u.setFirstName("toto");
 		u.setName("Toto");
 		u.setEmail("Toto@univ-angers.fr");
 		u.setPassword("toto");

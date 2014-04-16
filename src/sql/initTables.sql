@@ -168,7 +168,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `first_name` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
@@ -179,14 +178,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group_user`) VALUES
-(1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire', 'Lefevre', 1),
-(2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
-(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 4),
-(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël', 'Fardilha', 4),
-(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault', 'Gauthier', 4),
-(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël', 'Pillié', 4),
-(7, 'noname@univ-angers.fr', 'noname', 'No', 'Name', 3);
+INSERT INTO `user` (`id_user`, `email`, `password`, `name`, `id_group_user`) VALUES
+(1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire Lefevre', 1),
+(2, 'chhel@univ-angers.fr', 'chhel', 'Fabien Chhel', 1),
+(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian Coffinet', 4),
+(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël Fardilha', 4),
+(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault Gauthier', 4),
+(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël Pillié', 4),
+(7, 'noname@univ-angers.fr', 'noname', 'No Name', 3);
 
 --
 -- Contraintes pour les tables exportées

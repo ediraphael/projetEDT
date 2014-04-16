@@ -28,11 +28,6 @@
 					<table>
 						<tr><td> </td></tr>
 						<tr>
-							<td><s:text name="label.firstname"/></td>
-							<td><s:textfield name="userBean.firstName"/></td>
-							<td class="error"><s:fielderror fieldName="error.firstName" /></td>
-						</tr>
-						<tr>
 							<td><s:text name="label.name"/></td>
 							<td><s:textfield name="userBean.name"/></td>
 							<td class="error"><s:fielderror fieldName="error.name"/></td>

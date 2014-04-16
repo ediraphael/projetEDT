@@ -22,7 +22,6 @@
 				<table>
 					<tr>
 						<th><s:text name="label.email"/></th>
-						<th><s:text name="label.firstname"/></th>
 						<th><s:text name="label.name"/></th>
 						<th><s:text name="label.group"/></th>
 						<th></th>
@@ -33,7 +32,6 @@
 								<s:param name="id"><s:property value="id"/></s:param>
 						    </s:url>
 							<td><s:a href="%{url}"><s:property value="email"/></s:a></td>
-							<td><s:a href="%{url}"><s:property value="firstName"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="name"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="nameGroup"/></s:a></td>
 							<td class="bine">

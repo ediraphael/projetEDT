@@ -38,7 +38,6 @@ public class InscriptionAction extends AbstractAction
 		{
 			//On prépare l'enregistrement en reprenant les informations bean
 			UserEntity userToSave = new UserEntity();
-			userToSave.setFirstName(userBean.getFirstName());
 			userToSave.setName(userBean.getName());
 			userToSave.setEmail(userBean.getEmail());
 			userToSave.setPassword(userBean.getPassword());
@@ -76,12 +75,6 @@ public class InscriptionAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		//test si le prénom est renseigné
-		if(userBean.getFirstName().isEmpty())
-		{
-			addFieldError("error.firstName", getText("validator.field.empty"));
-		}
-		
 		//test si le nom est renseigné
 		if(userBean.getName().isEmpty())
 		{

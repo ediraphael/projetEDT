@@ -30,8 +30,6 @@ public class UserEntity implements Serializable
 	@Id
 	@Column(name="id_user")
 	private long id;
-	@Column(name="first_name")
-	private String firstName;
 	@Column(name="name")
 	private String name;
 	@Column(name="email")
@@ -57,7 +55,6 @@ public class UserEntity implements Serializable
 	public UserEntity(UserEntity u) 
 	{
 		super();
-		this.firstName = u.getFirstName();
 		this.name = u.getName();
 		this.email = u.getEmail();
 		this.password = u.getPassword();
@@ -108,17 +105,6 @@ public class UserEntity implements Serializable
 	{
 		this.name = name;
 	}
-
-	public String getFirstName() 
-	{
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) 
-	{
-		this.firstName = firstName;
-	}
-
 
 	public GroupEntity getGroupe()
 	{

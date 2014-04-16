@@ -122,11 +122,6 @@ public class UserAction extends AbstractAction
 	{
 		if(userBean!=null)
 		{
-			//test si le prénom est renseigné
-			if(userBean.getFirstName().isEmpty())
-			{
-				addFieldError("error.firstName", getText("validator.field.empty"));
-			}
 
 			//test si le nom est renseigné
 			if(userBean.getName().isEmpty())
@@ -190,7 +185,6 @@ public class UserAction extends AbstractAction
 		UserBean userResult = new UserBean();
 		
 		userResult.setId(userToConvert.getId());
-		userResult.setFirstName(userToConvert.getFirstName());
 		userResult.setEmail(userToConvert.getEmail());
 		userResult.setName(userToConvert.getName());
 		userResult.setNameGroup(userToConvert.getGroupe().getName());
@@ -206,7 +200,6 @@ public class UserAction extends AbstractAction
 	 */
 	private void convertBeanToEntity(UserBean userToConvert, UserEntity userResult)
 	{
-		userResult.setFirstName(userToConvert.getFirstName());
 		userResult.setEmail(userToConvert.getEmail());
 		userResult.setName(userToConvert.getName());
 		userResult.setGroupe(gdao.getGroupByName(userToConvert.getNameGroup()));

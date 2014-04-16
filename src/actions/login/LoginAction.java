@@ -67,7 +67,6 @@ public class LoginAction extends AbstractAction
 	private void convertEntityToBean(UserEntity userToConvert, UserBean userResult)
 	{
 		userResult.setId(userToConvert.getId());
-		userResult.setFirstName(userToConvert.getFirstName());
 		userResult.setEmail(userToConvert.getEmail());
 		userResult.setName(userToConvert.getName());
 		userResult.setNameGroup(userToConvert.getGroupe().getName());
