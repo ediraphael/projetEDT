@@ -13,6 +13,9 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
+			<s:if test="#session.user.nameGroup!='Enseignant'">
+				<% response.sendRedirect("AccessDenied");	%> 
+			</s:if>
 			<%@ include file="../other/menuAdmin.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
