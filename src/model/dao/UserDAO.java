@@ -99,4 +99,33 @@ public class UserDAO extends AbstractDAO<UserEntity>
 		}
 		return listGroupName;
 	}
+	
+	/**
+	 * Méthode permettant de savoir si le nom de la classroom existe deja 
+	 * @param name
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean existEmailUser(String email)
+	{
+		boolean res = false;
+		
+		initEntityManager();
+		List<UserEntity> user;
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("UserEntity.findByEmail").setParameter("email", email);
+			user= (q.getResultList().size()!=0) ? (List<UserEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		
+		if(user!=null)
+		{
+			res=true;
+		}
+		return res;
+	}
 }
