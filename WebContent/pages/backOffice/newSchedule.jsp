@@ -58,7 +58,7 @@
 						<tr>
 							<td><s:text name="label.subject"/></td>
 							<td><s:select name="scheduleBean.nameSubject" list="arraySubjectName" /></td>
-							<td class="error"><s:fielderror fieldName="error.userTeacher"/></td>
+							<td class="error"><s:fielderror fieldName="error.subject"/></td>
 						</tr>
 					</table>
 					<br/>

@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import model.org.persistence.ClassroomEntity;
 import model.org.persistence.GroupEntity;
 import model.org.persistence.ScheduleEntity;
+import model.org.persistence.UserEntity;
 
 /**
  * Surcouche afin de rendre plus propre les accès en base
@@ -67,6 +69,69 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 		try 
 		{
 			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findByGroupAndDay").setParameter("group",group).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		return all;
+	}
+	
+	/**
+	 * Methode findIfClassroomExist, permet de rechercher tout les schedules pour un classroom donnée,date début et fin
+	 * @return List<ScheduleEntity>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ScheduleEntity> findIfClassroomExist(ClassroomEntity classroom, String dayStart, String dayEnd)
+	{
+		initEntityManager();
+		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfClassroomExist").setParameter("classroom",classroom).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		return all;
+	}
+	
+	/**
+	 * Methode findIfUserTeacherExist, permet de rechercher tout les schedules pour un user donnée,date début et fin
+	 * @return List<ScheduleEntity>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ScheduleEntity> findIfUserTeacherExist(UserEntity user, String dayStart, String dayEnd)
+	{
+		initEntityManager();
+		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfUserTeacherExist").setParameter("userTeacher",user).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		return all;
+	}
+	
+	/**
+	 * Methode findIfGroupExist, permet de rechercher tout les schedules pour un user donnée,date début et fin
+	 * @return List<ScheduleEntity>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ScheduleEntity> findIfGroupExist(GroupEntity group, String dayStart, String dayEnd)
+	{
+		initEntityManager();
+		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfGroupExist").setParameter("group",group).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
 			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
 		} 
 		finally 

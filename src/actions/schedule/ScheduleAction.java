@@ -11,7 +11,10 @@ import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.dao.SubjectDAO;
 import model.dao.UserDAO;
+import model.org.persistence.ClassroomEntity;
+import model.org.persistence.GroupEntity;
 import model.org.persistence.ScheduleEntity;
+import model.org.persistence.UserEntity;
 
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
@@ -259,8 +262,27 @@ public class ScheduleAction extends AbstractAction
 			{
 				if((scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())) && (scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())))
 				{
-					
-					
+					String dayStart = scheduleBean.getDayStart();
+					String dayEnd = scheduleBean.getDayEnd();
+					ScheduleDAO scheduleDAO = new ScheduleDAO();
+					ClassroomEntity classroom = classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom());
+					GroupEntity group = groupDao.getGroupByName(this.scheduleBean.getNameGroup());
+					UserEntity user = userDao.getUserByName(this.scheduleBean.getNameUserTeacher());
+					List<ScheduleEntity> listClassroom = scheduleDAO.findIfClassroomExist(classroom, dayStart, dayEnd);
+					List<ScheduleEntity> listGroup = scheduleDAO.findIfGroupExist(group, dayStart, dayEnd);
+					List<ScheduleEntity> listUser = scheduleDAO.findIfUserTeacherExist(user, dayStart, dayEnd);
+					if(listClassroom==null || listClassroom.size()==0)
+					{
+						addFieldError("error.classroom", getText("validator.classromm.already.use"));
+					}
+					if(listGroup==null || listGroup.size()==0)
+					{
+						addFieldError("error.group", getText("validator.group.already.use"));
+					}
+					if(listUser==null || listUser.size()==0)
+					{
+						addFieldError("error.userTeacher", getText("validator.userTeacher.already.use"));
+					}
 				}
 			} catch (ParseException e)
 			{
