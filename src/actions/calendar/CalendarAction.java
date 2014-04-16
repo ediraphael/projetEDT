@@ -143,6 +143,7 @@ public class CalendarAction extends AbstractAction
 				scheduleBean.setSubject(scheduleEntity.getSubject().getName());
 				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
+				scheduleBean.setColorSubject(scheduleEntity.getSubject().getColor());
 				this.listScheduleBean.add(scheduleBean);
 			}
 			this.arrayGroupName = this.groupDao.getAllGroupName();

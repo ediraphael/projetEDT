@@ -62,7 +62,6 @@ public class ScheduleAction extends AbstractAction
 			scheduleEntity.setSubject(this.subjectDao.getSubjectByName(this.scheduleBean.getNameSubject()));
 			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
 			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
-
 			scheduleDAO.save(scheduleEntity);
 		} catch (Exception e)
 		{
@@ -152,6 +151,7 @@ public class ScheduleAction extends AbstractAction
 				scheduleBean.setSubject(scheduleEntity.getSubject().getName());
 				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
 				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
+				scheduleBean.setColorSubject(scheduleEntity.getSubject().getColor());
 				this.listScheduleBean.add(scheduleBean);
 			}
 		} catch (Exception e)

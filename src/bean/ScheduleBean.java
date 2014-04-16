@@ -4,7 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class ScheduleBean {
+public class ScheduleBean
+{
 
 	private long id;
 	private String dayStart;
@@ -15,26 +16,34 @@ public class ScheduleBean {
 	private String nameSubject;
 	private String nameClassroom;
 	private String nameGroup;
+	private String colorSubject;
 	private List<String> arrayGroupName;
 	private List<String> arrayClassroomName;
 	private List<String> arraySubjectName;
 	private List<String> arrayUserTeacher;
-	
-	public long getId() {
+
+	public long getId()
+	{
 		return id;
 	}
-	public void setId(long id) {
+
+	public void setId(long id)
+	{
 		this.id = id;
 	}
-	public String getDayStart() throws ParseException {
+
+	public String getDayStart() throws ParseException
+	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		if(dayStart==null)
+		if (dayStart == null)
 		{
-			dayStart="";
+			dayStart = "";
 		}
 		return simpleDateFormat.format(simpleDateFormat.parse(dayStart));
 	}
-	public void setDayStart(String dayStart) {
+
+	public void setDayStart(String dayStart)
+	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
@@ -45,15 +54,19 @@ public class ScheduleBean {
 			e.printStackTrace();
 		}
 	}
-	public String getDayEnd() throws ParseException {
+
+	public String getDayEnd() throws ParseException
+	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		if(dayEnd==null)
+		if (dayEnd == null)
 		{
-			dayEnd="";
+			dayEnd = "";
 		}
 		return simpleDateFormat.format(simpleDateFormat.parse(dayEnd));
 	}
-	public void setDayEnd(String dayEnd) {
+
+	public void setDayEnd(String dayEnd)
+	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
@@ -64,81 +77,125 @@ public class ScheduleBean {
 			e.printStackTrace();
 		}
 	}
-	public String getName() {
+
+	public String getName()
+	{
 		return name;
 	}
-	public void setName(String name) {
+
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	public String getComment() {
+
+	public String getComment()
+	{
 		return comment;
 	}
-	public void setComment(String comment) {
+
+	public void setComment(String comment)
+	{
 		this.comment = comment;
 	}
-	public String getNameUserTeacher() {
+
+	public String getNameUserTeacher()
+	{
 		return nameUserTeacher;
 	}
-	public void setNameUserTeacher(String nameUserTeacher) {
+
+	public void setNameUserTeacher(String nameUserTeacher)
+	{
 		this.nameUserTeacher = nameUserTeacher;
 	}
-	public String getNameSubject() {
+
+	public String getNameSubject()
+	{
 		return nameSubject;
 	}
-	public void setSubject(String nameSubject) {
+
+	public void setSubject(String nameSubject)
+	{
 		this.nameSubject = nameSubject;
 	}
-	public String getNameClassroom() {
+
+	public String getNameClassroom()
+	{
 		return nameClassroom;
 	}
-	public void setClassroom(String nameClassroom) {
+
+	public void setClassroom(String nameClassroom)
+	{
 		this.nameClassroom = nameClassroom;
 	}
-	public String getNameGroup() {
+
+	public String getNameGroup()
+	{
 		return nameGroup;
 	}
-	public void setNameGroup(String nameGroup) {
+
+	public void setNameGroup(String nameGroup)
+	{
 		this.nameGroup = nameGroup;
 	}
+
 	public List<String> getArrayGroupName()
 	{
 		return arrayGroupName;
 	}
+
 	public void setArrayGroupName(List<String> arrayGroupName)
 	{
 		this.arrayGroupName = arrayGroupName;
 	}
+
 	public void setNameSubject(String nameSubject)
 	{
 		this.nameSubject = nameSubject;
 	}
+
 	public void setNameClassroom(String nameClassroom)
 	{
 		this.nameClassroom = nameClassroom;
 	}
+
 	public List<String> getArrayClassroomName()
 	{
 		return arrayClassroomName;
 	}
+
 	public void setArrayClassroomName(List<String> arrayClassroomName)
 	{
 		this.arrayClassroomName = arrayClassroomName;
 	}
+
 	public List<String> getArraySubjectName()
 	{
 		return arraySubjectName;
 	}
+
 	public void setArraySubjectName(List<String> arraySubjectName)
 	{
 		this.arraySubjectName = arraySubjectName;
 	}
+
 	public List<String> getArrayUserTeacher()
 	{
 		return arrayUserTeacher;
 	}
+
 	public void setArrayUserTeacher(List<String> arrayUserTeacher)
 	{
 		this.arrayUserTeacher = arrayUserTeacher;
 	}
-	
+
+	public String getColorSubject()
+	{
+		return colorSubject;
+	}
+
+	public void setColorSubject(String colorSubject)
+	{
+		this.colorSubject = colorSubject;
+	}
+
 }

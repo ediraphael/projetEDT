@@ -27,7 +27,8 @@
 				{ 	'id':'<s:property value="id"/>',
 					'title':'<s:property value="name"/>',
 					'start':'<s:property value="dayStart"/>',
-					'end':'<s:property value="dayEnd"/>'
+					'end':'<s:property value="dayEnd"/>',
+					'color':'<s:property value="colorSubject"/>'
 				},
 			</s:iterator>
 	    ]
@@ -90,7 +91,8 @@
 					'title':'<s:property value="name"/>',
 					'start':'<s:property value="dayStart"/>',
 					'end':'<s:property value="dayEnd"/>',
-					'comment':'<s:property value="comment"/><br /><s:property value="nameUserTeacher"/><br /><s:property value="nameSubject"/><br /><s:property value="nameClassroom"/><br /><s:property value="nameGroup"/>'
+					'comment':'<s:property value="comment"/><br /><s:property value="nameUserTeacher"/><br /><s:property value="nameSubject"/><br /><s:property value="nameClassroom"/><br /><s:property value="nameGroup"/>',
+					'color':'<s:property value="colorSubject"/>'
 				},
 			</s:iterator>
 	    ]
