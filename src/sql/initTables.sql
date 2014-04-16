@@ -182,10 +182,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group_user`) VALUES
 (1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire', 'Lefevre', 1),
 (2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
-(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 2),
-(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël', 'Fardilha', 2),
-(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault', 'Gauthier', 2),
-(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël', 'Pillié', 2),
+(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 4),
+(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël', 'Fardilha', 4),
+(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault', 'Gauthier', 4),
+(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël', 'Pillié', 4),
 (7, 'noname@univ-angers.fr', 'noname', 'No', 'Name', 3);
 
 --
