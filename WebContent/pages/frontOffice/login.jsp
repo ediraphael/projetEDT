@@ -30,8 +30,7 @@
 							<td class="error"><s:fielderror fieldName="error.password"/></td>
 						</tr>
 					</table>
-					<br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>	
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/>	</div>
 				</s:form>
 				<div class="clear"></div>
 			</div>

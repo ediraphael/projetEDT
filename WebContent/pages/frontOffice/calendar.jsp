@@ -97,6 +97,7 @@
 	};
 	</script>
 	<script type='text/javascript'>
+	//<![CDATA[ 
 	$(document).ready(function() {
 		$('#calendar').weekCalendar({
 			timeslotsPerHour: 4,
@@ -136,7 +137,7 @@
 		}
 	
 		$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
-	});
+	}); //]]>
 	</script>
 	</s:else>
 	</s:if>
@@ -173,7 +174,7 @@
 							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd" /></td>
 						</tr>
 					</table>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					<div><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div id='calendar'>
 					<s:if test="%{#view=='resume'}">
@@ -221,7 +222,7 @@
 			</div>
 			<div id="content-bottom"></div>
 		</div>
-	<script>
+	<script type='text/javascript'>
 	 $(function() {
 		$( "#heure_debut" ).datetimepicker({
 			dateFormat: "yy-mm-dd",
