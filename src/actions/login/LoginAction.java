@@ -34,7 +34,8 @@ public class LoginAction extends AbstractAction
 		{
 			addActionError(getText("validator.not.register"));
 			forward=FORWARD_INPUT;
-		}else
+		}
+		else
 		{
 			userBean.setNameGroup(user.getGroupe().getName());
 			session.put("user", userBean);

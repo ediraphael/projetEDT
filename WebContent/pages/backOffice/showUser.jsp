@@ -41,7 +41,6 @@
 						</tr>
 					</s:iterator>
 				</table>
-				<br/><s:url id="url" action="ScheduleForm"/><s:a href="%{url}" cssClass="user_button"><s:text name="label.add"/></s:a>
 				<div class="clear"></div>
 			</div>
 			<div id="content-bottom"></div>

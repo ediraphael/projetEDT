@@ -7,14 +7,15 @@
 		<title><s:text name="title.classroom"/></title>
 	</head>
 	<body>
-		<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
 			<%@ include file="../other/menuAdmin.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.classroom"/></h1>
+				<s:actionerror cssClass="errorCenter" />
 				<s:form action="UpdateClassroom" method="post">
+					<s:hidden name="id" value="%{classroomBean.id}"/>
 					<table>
 						<tr><td></td></tr>
 						<tr>

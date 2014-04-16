@@ -119,7 +119,7 @@
 	<!-- DEBUT ACTION CLASSROOM -->
 	<action name="NewClassroom" class="actions.classroom.ClassroomAction" method="execute">
 		<result name="SUCCESS" type="redirectAction">ShowClassroom</result>
-		<result name="input">pages/backOffice/showClassroom.jsp</result>
+		<result name="input">pages/backOffice/newClassroom.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
 	<action name="ShowClassroom" class="actions.classroom.ClassroomAction" method="showClassroom">
@@ -148,6 +148,7 @@
 	<!-- DEBUT ACTION GROUPE -->
 	<action name="NewGroup" class="actions.group.GroupAction" method="execute">
 		<result name="SUCCESS" type="redirectAction">ShowGroup</result>
+		<result name="input">pages/backOffice/newGroup.jsp</result>
 		<result name="ERROR">pages/other/error.jsp</result>
 	</action>
 	<action name="ShowGroup" class="actions.group.GroupAction" method="showGroup">

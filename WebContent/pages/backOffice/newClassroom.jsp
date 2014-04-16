@@ -13,6 +13,7 @@
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.new.classroom"/></h1>
+				<s:actionerror cssClass="errorCenter" />
 				<s:form action="NewClassroom" method="post">
 					<table>
 						<tr><td></td></tr>

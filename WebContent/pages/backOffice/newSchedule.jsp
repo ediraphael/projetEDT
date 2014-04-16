@@ -16,7 +16,7 @@
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<h1><s:text name="title.new.schedule"/></h1>
-				<s:form action="ScheduleAction" method="post">
+				<s:form action="NewSchedule" method="post">
 					<table>
 						<tr><td></td></tr>
 						<tr>

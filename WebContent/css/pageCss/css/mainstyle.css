@@ -366,6 +366,11 @@ input,select
 	cursor: pointer;
 }
 
+.user_button:hover 
+{
+	color: #CECEF6;
+}
+
 .error 
 {
 	color: red;

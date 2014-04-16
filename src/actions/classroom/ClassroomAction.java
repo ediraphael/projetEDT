@@ -34,10 +34,17 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			ClassroomEntity c = new ClassroomEntity();
-			c.setName(classroomBean.getName());
-			// Sauvegarde du user renseigné dans le formulaire
-			cdao.save(c);
+			if (cdao.getClassroomByName(classroomBean.getName())!=null) 
+			{
+				addActionError(getText("validator.classroom.exist"));
+				forward=FORWARD_INPUT;
+			}
+			else
+			{
+				ClassroomEntity c = new ClassroomEntity();
+				c.setName(classroomBean.getName());
+				cdao.save(c);
+			}
 		} catch (Exception e)
 		{
 			forward=generateError(e);
@@ -50,14 +57,30 @@ public class ClassroomAction extends AbstractAction
 	 */
 	public String updateClassroom()
 	{
-		// Sauf si il y a erreur, le traitement est considéré comme étant un
-		// succès
 		forward = FORWARD_SUCCESS;
 		try
 		{
+			if(this.id==0)
+			{
+				this.id=(long) session.get("idClassroom");
+				session.remove("idClassroom");
+			}
 			ClassroomEntity classroomEntity = cdao.getById(this.id);
-			classroomEntity.setName(this.classroomBean.getName());
-			cdao.update(classroomEntity);
+
+			if(!classroomEntity.getName().equals(classroomBean.getName()))
+			{
+				if (cdao.getClassroomByName(classroomBean.getName())!=null) 
+				{
+					addActionError(getText("validator.classroom.exist"));
+					forward=FORWARD_INPUT;
+					session.put("idClassroom", this.id);
+				}
+				else
+				{
+					classroomEntity.setName(this.classroomBean.getName());
+					cdao.update(classroomEntity);
+				}
+			}
 		} catch (Exception e)
 		{
 			forward = generateError(e);
@@ -71,8 +94,6 @@ public class ClassroomAction extends AbstractAction
 	 */
 	public String deleteClassroom()
 	{
-		// Sauf si il y a erreur, le traitement est considéré comme étant un
-		// succès
 		forward = FORWARD_SUCCESS;
 		try
 		{

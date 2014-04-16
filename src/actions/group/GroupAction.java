@@ -33,7 +33,6 @@ public class GroupAction extends AbstractAction
 	/**
 	 * Execution de l'ajout d'un groupe
 	 */
-	@SkipValidation 
 	public String execute()
 	{
 		forward = FORWARD_SUCCESS;
@@ -42,8 +41,6 @@ public class GroupAction extends AbstractAction
 			GroupEntity g = new GroupEntity();
 			g.setName(groupBean.getName());
 			gdao.save(g);
-
-			session.put("group", groupBean);
 		}
 		catch(Exception e)
 		{
