@@ -146,7 +146,7 @@
 			<%@ include file="../other/menuAdmin.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
-				<h1><s:text name="title.calendar"/><s:property value="view"/></h1>
+				<h1><s:text name="title.calendar"/></h1>
 				<s:form action="ShowCalendar" method="post">
 					<table>
 						<tr>
