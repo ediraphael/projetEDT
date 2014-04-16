@@ -23,7 +23,8 @@ public class ClassroomAction extends AbstractAction
 	// bean de formulaire permettant le transfere des informations
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
-	
+	//permet de récup l'id pour la suppression et l'affichage en modification
+	private long id;
 
 	/**
 	 * Execution la sauvegarde d'une salle 
@@ -79,7 +80,7 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			ClassroomEntity classroomEntity = cdao.getById(classroomBean.getId());
+			ClassroomEntity classroomEntity = cdao.getById(this.id);
 			cdao.delete(classroomEntity);
 		} catch (Exception e)
 		{
@@ -123,7 +124,7 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			ClassroomEntity classroomEntity = cdao.getById(classroomBean.getId());
+			ClassroomEntity classroomEntity = cdao.getById(this.id);
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
 			this.classroomBean.setName(classroomEntity.getName());
@@ -149,7 +150,7 @@ public class ClassroomAction extends AbstractAction
 			if(!classroomBean.getName().equals(classroomBean.getOldName()))
 			{
 				if(cdao.existNameClassroom(classroomBean.getName()))
-				addFieldError("error.name", "toto");
+				addFieldError("error.name",  getText("validator.classroom.exist"));
 			}
 			
 		}
@@ -178,5 +179,15 @@ public class ClassroomAction extends AbstractAction
 	public void setListClassroomBean(ArrayList<ClassroomBean> listClassroomBean)
 	{
 		this.listClassroomBean = listClassroomBean;
+	}
+
+	public long getId() 
+	{
+		return id;
+	}
+
+	public void setId(long id) 
+	{
+		this.id = id;
 	}
 }
