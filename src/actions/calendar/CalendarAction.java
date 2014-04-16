@@ -25,7 +25,9 @@ public class CalendarAction extends AbstractAction
 	private long id;
 	private String dayMin;
 	private String dayMax;
-
+	private String view;
+	private ArrayList<String> listView = new ArrayList<String>();
+	
 	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
@@ -35,7 +37,7 @@ public class CalendarAction extends AbstractAction
 	private ClassroomDAO classroomDao = new ClassroomDAO();
 	private UserDAO userDao = new UserDAO();
 	private SubjectDAO subjectDao = new SubjectDAO();
-	
+
 	// déclaration des liste a afficher dans les liste déroulantes
 	private List<String> arrayGroupName;
 	private List<String> arrayClassroomName;
@@ -59,6 +61,10 @@ public class CalendarAction extends AbstractAction
 	public String showSchedule()
 	{
 		forward = FORWARD_SUCCESS;
+		this.listView= new ArrayList<String>();
+		this.listView.add("normal");
+		this.listView.add("compact");
+		this.listView.add("resume");
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		this.listScheduleBean = new ArrayList<ScheduleBean>();
 		try
@@ -72,8 +78,7 @@ public class CalendarAction extends AbstractAction
 				{
 					listScheduleEntity = new ArrayList<>();
 				}
-			} 
-			else
+			} else
 			{
 				GroupEntity group = this.groupDao.getById(1);
 				UserBean user = (UserBean) session.get("user");
@@ -105,8 +110,7 @@ public class CalendarAction extends AbstractAction
 				this.listScheduleBean.add(scheduleBean);
 			}
 			this.arrayGroupName = this.groupDao.getAllGroupName();
-		} 
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			forward = generateError(e);
 		}
@@ -222,5 +226,28 @@ public class CalendarAction extends AbstractAction
 	{
 		this.dayMax = dayMax;
 	}
-	
+
+	public String getView()
+	{
+		return view;
+	}
+
+	public void setView(String view)
+	{
+		this.view = view;
+	}
+
+	public ArrayList<String> getListView()
+	{
+		return listView;
+	}
+
+	public void setListView(ArrayList<String> listView)
+	{
+		this.listView = listView;
+	}
+
+	public String getDefaultViewValue(){
+		return this.view;
+	}
 }

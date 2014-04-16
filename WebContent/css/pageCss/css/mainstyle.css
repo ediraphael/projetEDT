@@ -334,7 +334,7 @@ td
 	width: 25px;
 }
 
-input,select 
+input,select not:input.radio
 {
 	background-color: white;
 	color: black;
@@ -346,6 +346,10 @@ input,select
 	text-shadow: 1px 1px 1px #FFF;
 	color: #797171;
 	text-align: center;
+}
+
+input.radio {
+	margin-right:15px;
 }
 
 .user_button 
