@@ -64,9 +64,9 @@ public class CalendarAction extends AbstractAction
 	{
 		forward = FORWARD_SUCCESS;
 		this.listView = new ArrayList<String>();
-		this.listView.add("normal");
-		this.listView.add("compact");
-		this.listView.add("resume");
+		this.listView.add(getText("label.type.calendar.normal"));
+		this.listView.add(getText("label.type.calendar.compact"));
+		this.listView.add(getText("label.type.calendar.resume"));
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		this.listScheduleBean = new ArrayList<ScheduleBean>();
 		try
