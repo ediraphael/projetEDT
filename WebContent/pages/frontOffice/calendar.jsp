@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
 		<title><s:text name="title.calendar"/></title>
-		<link rel="stylesheet" href="/ProjetEDT/css/smoothness/jquery-ui-1.10.4.custom.css"/>
+		<link rel="stylesheet" type='text/css' href="/ProjetEDT/css/smoothness/jquery-ui-1.10.4.custom.css"/>
 		<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
 	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery.weekcalendar.css' />
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-1.4.4.min.js'></script>
@@ -75,7 +75,7 @@
 		  $('#message').html(message).fadeIn();
 		}
 	
-		$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
+		$('<div id="message" class="ui-corner-all"><\/div>').prependTo($('body'));
 	});
 	</script>
 	</s:if>
@@ -138,7 +138,7 @@
 		  $('#message').html(message).fadeIn();
 		}
 	
-		$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
+		$('<div id="message" class="ui-corner-all"><\/div>').prependTo($('body'));
 	}); //]]>
 	</script>
 	</s:else>
