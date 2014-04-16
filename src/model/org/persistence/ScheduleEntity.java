@@ -29,9 +29,6 @@ import javax.persistence.Table;
 public class ScheduleEntity implements Serializable
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public ScheduleEntity()
@@ -89,9 +86,9 @@ public class ScheduleEntity implements Serializable
 		try
 		{
 			this.dayStart = simpleDateFormat.format(simpleDateFormat.parse(dayStart));
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -102,14 +99,15 @@ public class ScheduleEntity implements Serializable
 		return simpleDateFormat.format(simpleDateFormat.parse(dayEnd));
 	}
 
-	public void setDayEnd(String dayEnd) {
+	public void setDayEnd(String dayEnd) 
+	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try
 		{
 			this.dayEnd = simpleDateFormat.format(simpleDateFormat.parse(dayEnd));
-		} catch (ParseException e)
+		} 
+		catch (ParseException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -173,10 +171,4 @@ public class ScheduleEntity implements Serializable
 	{
 		this.group = group;
 	}
-
-	public static long getSerialversionuid()
-	{
-		return serialVersionUID;
-	}
-
 }
