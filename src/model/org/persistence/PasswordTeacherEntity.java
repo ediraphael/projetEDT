@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name = "passwordTeacher")
 @NamedQueries
 ({
-	//définition de requetes simple appelable dans le DAO
 	@NamedQuery(name = "PasswordTeacherEntity.findAll", query = "SELECT p FROM PasswordTeacherEntity p"),
 	@NamedQuery(name = "PasswordTeacherEntity.findById", query = "SELECT p FROM PasswordTeacherEntity p where p.id = :id"),
     @NamedQuery(name = "PasswordTeacherEntity.get", query = "SELECT p.password FROM PasswordTeacherEntity p")

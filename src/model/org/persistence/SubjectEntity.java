@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name = "subject")
 @NamedQueries
 ({
-	//définition de requetes simple appelable dans le DAO
     @NamedQuery(name = "SubjectEntity.findById", query = "SELECT s FROM SubjectEntity s where s.id = :id"),
     @NamedQuery(name = "SubjectEntity.findAllName", query = "SELECT s.name FROM SubjectEntity s"),
     @NamedQuery(name = "SubjectEntity.findByName", query = "SELECT s FROM SubjectEntity s where s.name = :name"),

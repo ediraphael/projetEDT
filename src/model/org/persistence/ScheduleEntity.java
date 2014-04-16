@@ -17,7 +17,6 @@ import javax.persistence.Table;
 @Table(name = "schedule")
 @NamedQueries
 ({
-	// définition de requetes simple appelable dans le DAO
 	@NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"), 
 	@NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"),
 	@NamedQuery(name = "ScheduleEntity.findByGroup", query = "SELECT u FROM ScheduleEntity u WHERE u.group = :group"),
