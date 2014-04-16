@@ -2,17 +2,35 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<s:head theme="simple" />
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
 		<title><s:text name="title.home"/></title>
 	</head>
 	<body>
-		<h1><s:text name="title.home"/></h1>
-		<s:property value="#session.user.email" />
-		<div>
-			<s:a action="Login"><s:text name="label.login"/></s:a>
-			<s:a action="InscriptionForm"><s:text name="label.register"/></s:a>
-			<s:a action="ShowCalendar"><s:text name="label.view_calendar"/></s:a>
+		<div id="wrap">
+			<%@ include file="../other/applicationName.jsp" %>
+			<div id="content-top"></div>
+			<div id="content-middle">
+				<h1><s:text name="title.home"/></h1><br/>
+				<s:actionerror cssClass="errorCenter" />
+				<table  class="indexLink">
+					<tr><td> </td></tr>
+					<tr>
+						<td><s:a action="Login"><s:text name="label.login"/></s:a></td>
+					</tr>
+					<tr><td> </td></tr>
+					<tr>
+						<td><s:a action="InscriptionForm"><s:text name="label.register"/></s:a></td>
+					</tr>
+					<tr><td> </td></tr>
+					<tr>
+						<td><s:a action="ShowCalendar"><s:text name="label.view_calendar"/></s:a></td>
+					</tr>
+				</table>
+				<div class="clear"></div>
+			</div>
+			<div id="content-bottom"></div>
 		</div>
 	</body>
 </html>
+
