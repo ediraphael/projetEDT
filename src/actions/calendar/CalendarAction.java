@@ -2,6 +2,8 @@ package actions.calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import model.dao.ClassroomDAO;
@@ -27,7 +29,7 @@ public class CalendarAction extends AbstractAction
 	private String dayMax;
 	private String view;
 	private ArrayList<String> listView = new ArrayList<String>();
-	
+
 	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
@@ -61,7 +63,7 @@ public class CalendarAction extends AbstractAction
 	public String showSchedule()
 	{
 		forward = FORWARD_SUCCESS;
-		this.listView= new ArrayList<String>();
+		this.listView = new ArrayList<String>();
 		this.listView.add("normal");
 		this.listView.add("compact");
 		this.listView.add("resume");
@@ -70,17 +72,13 @@ public class CalendarAction extends AbstractAction
 		try
 		{
 			List<ScheduleEntity> listScheduleEntity;
+			GroupEntity group;
 			if (this.scheduleBean != null && this.scheduleBean.getNameGroup() != null)
 			{
-				GroupEntity group = this.groupDao.getGroupByName(this.scheduleBean.getNameGroup());
-				listScheduleEntity = scheduleDAO.getAllByGroup(group);
-				if (listScheduleEntity == null)
-				{
-					listScheduleEntity = new ArrayList<>();
-				}
+				group = this.groupDao.getGroupByName(this.scheduleBean.getNameGroup());
 			} else
 			{
-				GroupEntity group = this.groupDao.getById(1);
+				group = this.groupDao.getById(1);
 				UserBean user = (UserBean) session.get("user");
 				if (user != null)
 				{
@@ -88,11 +86,49 @@ public class CalendarAction extends AbstractAction
 					this.scheduleBean = new ScheduleBean();
 					this.scheduleBean.setNameGroup(user.getNameGroup());
 				}
-				listScheduleEntity = scheduleDAO.getAllByGroup(group);
-				if (listScheduleEntity == null)
-				{
-					listScheduleEntity = new ArrayList<>();
-				}
+
+			}
+
+			if (this.dayMin == null || "".equals(this.dayMin))
+			{
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(new Date());
+
+				int week = cal.get(Calendar.WEEK_OF_YEAR);
+				int year = cal.get(Calendar.YEAR);
+
+				// Get calendar, clear it and set week number and year.
+				Calendar calendar = Calendar.getInstance();
+				calendar.clear();
+				calendar.set(Calendar.WEEK_OF_YEAR, week);
+				calendar.set(Calendar.YEAR, year);
+				// Now get the first day of week.
+				Date date = calendar.getTime();
+				this.dayMin = simpleDateFormat.format(date);
+			}
+			if (this.dayMax == null || "".equals(this.dayMax))
+			{
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(new Date());
+
+				int week = cal.get(Calendar.WEEK_OF_YEAR);
+				int year = cal.get(Calendar.YEAR);
+
+				// Get calendar, clear it and set week number and year.
+				Calendar calendar = Calendar.getInstance();
+				calendar.clear();
+				calendar.set(Calendar.YEAR, year);
+				calendar.set(Calendar.WEEK_OF_YEAR, week);
+				calendar.set(Calendar.DAY_OF_WEEK, 8);
+				Date date = calendar.getTime();
+				this.dayMax = simpleDateFormat.format(date);
+			}
+			listScheduleEntity = scheduleDAO.getAllByGroupAndDay(group, this.dayMin, this.dayMax);
+			if (listScheduleEntity == null)
+			{
+				listScheduleEntity = new ArrayList<>();
 			}
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
@@ -247,7 +283,14 @@ public class CalendarAction extends AbstractAction
 		this.listView = listView;
 	}
 
-	public String getDefaultViewValue(){
-		return this.view;
+	public String getDefaultViewValue()
+	{
+		if (this.view != null && !"".equals(this.view))
+		{
+			return this.view;
+		} else
+		{
+			return this.listView.get(0);
+		}
 	}
 }

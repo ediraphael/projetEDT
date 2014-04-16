@@ -54,4 +54,25 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 		}
 		return all;
 	}
+	
+	/**
+	 * Methode getByGroup, permet de rechercher tout les schedules pour un group donnée,date début et fin
+	 * @return List<ScheduleEntity>
+	 */
+	@SuppressWarnings("unchecked")
+	public List<ScheduleEntity> getAllByGroupAndDay(GroupEntity group, String dayStart, String dayEnd)
+	{
+		initEntityManager();
+		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
+		try 
+		{
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findByGroupAndDay").setParameter("group",group).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
+		return all;
+	}
 }
