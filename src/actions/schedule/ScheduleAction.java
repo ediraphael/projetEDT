@@ -260,13 +260,10 @@ public class ScheduleAction extends AbstractAction
 			// findIfClassroomExist
 			try
 			{
-				System.out.println("ici");
 				if (!(scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())) && !(scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())))
 				{
-					System.out.println("la");
 					String dayStart = scheduleBean.getDayStart();
 					String dayEnd = scheduleBean.getDayEnd();
-					System.out.println(dayStart + " " + dayEnd);
 					ScheduleDAO scheduleDAO = new ScheduleDAO();
 					ClassroomEntity classroom = classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom());
 					GroupEntity group = groupDao.getGroupByName(this.scheduleBean.getNameGroup());
