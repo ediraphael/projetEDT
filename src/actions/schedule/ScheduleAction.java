@@ -138,6 +138,10 @@ public class ScheduleAction extends AbstractAction
 		try
 		{
 			List<ScheduleEntity> listScheduleEntity = scheduleDAO.getAll();
+			if (listScheduleEntity == null)
+			{
+				listScheduleEntity = new ArrayList<>();
+			}
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
