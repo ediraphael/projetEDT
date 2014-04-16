@@ -83,13 +83,13 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 	 * @return List<ScheduleEntity>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ScheduleEntity> findIfClassroomExist(ClassroomEntity classroom, String dayStart, String dayEnd)
+	public List<ScheduleEntity> findIfClassroomExist(ClassroomEntity classroom, String dayStart, String dayEnd, long id)
 	{
 		initEntityManager();
 		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
 		try 
 		{
-			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfClassroomExist").setParameter("classroom",classroom).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfClassroomExist").setParameter("classroom",classroom).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd).setParameter("id", id);
 			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
 		} 
 		finally 
@@ -104,13 +104,13 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 	 * @return List<ScheduleEntity>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ScheduleEntity> findIfUserTeacherExist(UserEntity user, String dayStart, String dayEnd)
+	public List<ScheduleEntity> findIfUserTeacherExist(UserEntity user, String dayStart, String dayEnd, long id)
 	{
 		initEntityManager();
 		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
 		try 
 		{
-			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfUserTeacherExist").setParameter("userTeacher",user).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfUserTeacherExist").setParameter("userTeacher",user).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd).setParameter("id", id);
 			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
 		} 
 		finally 
@@ -125,13 +125,13 @@ public class ScheduleDAO extends AbstractDAO<ScheduleEntity>
 	 * @return List<ScheduleEntity>
 	 */
 	@SuppressWarnings("unchecked")
-	public List<ScheduleEntity> findIfGroupExist(GroupEntity group, String dayStart, String dayEnd)
+	public List<ScheduleEntity> findIfGroupExist(GroupEntity group, String dayStart, String dayEnd, long id)
 	{
 		initEntityManager();
 		List<ScheduleEntity> all = new ArrayList<ScheduleEntity>();
 		try 
 		{
-			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfGroupExist").setParameter("group",group).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd);
+			Query q=getEntityManager().createNamedQuery("ScheduleEntity.findIfGroupExist").setParameter("group",group).setParameter("dayStart", dayStart).setParameter("dayEnd",dayEnd).setParameter("id", id);
 			all= (q.getResultList().size()!=0) ? (List<ScheduleEntity>) q.getResultList() : null ;
 		} 
 		finally 
