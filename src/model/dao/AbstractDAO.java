@@ -38,7 +38,7 @@ public class AbstractDAO<T>
 		{
 			entityManager = Persistence.createEntityManagerFactory(JPA_DATABASE).createEntityManager();
 			Query q = entityManager.createNamedQuery(tableMethode).setParameter("id", id);
-			entity = (q.getResultList().size()!=0) ? (T) q.getSingleResult() : null;
+			entity = (q.getResultList().size()!=0) ? (T) q.getResultList().get(0) : null;
 		} finally
 		{
 			entityManager.close();

@@ -26,7 +26,7 @@ public class PasswordTeacherDAO extends AbstractDAO<PasswordTeacherEntity>
 		try 
 		{
 			Query q=getEntityManager().createNamedQuery("PasswordTeacherEntity.get");
-			pwd=  (q.getResultList().size()!=0) ? (String) q.getSingleResult() : null ;
+			pwd=  (q.getResultList().size()!=0) ? (String) q.getResultList().get(0) : null ;
 		} finally 
 		{
 			getEntityManager().close();

@@ -43,7 +43,7 @@ public class GroupDAO extends AbstractDAO<GroupEntity>
 		try
 		{
 			Query q = getEntityManager().createNamedQuery("GroupEntity.findByName").setParameter("name", name);
-			groupEntity = (q.getResultList().size()!=0) ? (GroupEntity) q.getSingleResult() : null ;
+			groupEntity = (q.getResultList().size()!=0) ? (GroupEntity) q.getResultList().get(0) : null ;
 		} finally
 		{
 			getEntityManager().close();

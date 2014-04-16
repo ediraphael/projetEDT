@@ -65,7 +65,7 @@ public class ClassroomDAO extends AbstractDAO<ClassroomEntity>
 		try
 		{
 			Query q = getEntityManager().createNamedQuery("ClassroomEntity.findByName").setParameter("name", name);
-			classroomEntity = (q.getResultList().size()!=0) ? (ClassroomEntity) q.getSingleResult() : null ;
+			classroomEntity = (q.getResultList().size()!=0) ? (ClassroomEntity) q.getResultList().get(0) : null ;
 		} finally
 		{
 			getEntityManager().close();

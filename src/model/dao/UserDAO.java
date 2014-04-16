@@ -49,7 +49,7 @@ public class UserDAO extends AbstractDAO<UserEntity>
 		{
 			Query q=getEntityManager().createNamedQuery("UserEntity.findByEmailAndPwd")
 					.setParameter("email", email).setParameter("pwd", password);
-			user= (q.getResultList().size()!=0) ? (UserEntity) q.getSingleResult() : null ;
+			user= (q.getResultList().size()!=0) ? (UserEntity) q.getResultList().get(0) : null ;
 		} 
 		finally 
 		{
@@ -70,7 +70,7 @@ public class UserDAO extends AbstractDAO<UserEntity>
 		try 
 		{
 			Query q=getEntityManager().createNamedQuery("UserEntity.findByName").setParameter("name", name);
-			user= (q.getResultList().size()!=0) ? (UserEntity) q.getSingleResult() : null ;
+			user= (q.getResultList().size()!=0) ? (UserEntity) q.getResultList().get(0) : null ;
 		} 
 		finally 
 		{
