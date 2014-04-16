@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `group_user` (
 INSERT INTO `group_user` (`id_group_user`, `name`) VALUES
 (1, 'Enseignant'),
 (2, 'Etudiant'),
-(3, 'Invit'),
+(3, 'Invité'),
 (4, 'M1 Informatique');
 
 -- --------------------------------------------------------
@@ -156,6 +156,7 @@ INSERT INTO `subject` (`id_subject`, `name`, `short_name`, `color`) VALUES
 (3, 'Devoir surveille', 'DS', '#FF0000'),
 (4, 'Cours annule', 'Annule', '#BF00E6');
 
+
 -- --------------------------------------------------------
 
 --
@@ -182,9 +183,9 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_gr
 (1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire', 'Lefevre', 1),
 (2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
 (3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 2),
-(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickael', 'Fardilha', 2),
+(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël', 'Fardilha', 2),
 (5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault', 'Gauthier', 2),
-(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphael', 'Pillie', 2),
+(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël', 'Pillié', 2),
 (7, 'noname@univ-angers.fr', 'noname', 'No', 'Name', 3);
 
 --
