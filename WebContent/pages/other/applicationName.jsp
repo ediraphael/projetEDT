@@ -5,7 +5,9 @@
 		<p>
 			<s:text name="title.app.connect"/>
 			<s:property value="#session.user.firstName" />
-			<s:property value="#session.user.name" />
+			<s:property value="#session.user.name" /><br/>
+			-
+			<br/><s:property value="#session.user.nameGroup" />
 		</p>
 	</s:if>
 </div>

@@ -37,7 +37,7 @@ public class LoginAction extends AbstractAction
 		}
 		else
 		{
-			userBean.setNameGroup(user.getGroupe().getName());
+			convertEntityToBean(user, userBean);
 			session.put("user", userBean);
 		}
 		return forward;
@@ -60,6 +60,18 @@ public class LoginAction extends AbstractAction
 		}
 	}
 
+	/**
+	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
+	 * @param UserEntity, UserBean
+	 */
+	private void convertEntityToBean(UserEntity userToConvert, UserBean userResult)
+	{
+		userResult.setId(userToConvert.getId());
+		userResult.setFirstName(userToConvert.getFirstName());
+		userResult.setEmail(userToConvert.getEmail());
+		userResult.setName(userToConvert.getName());
+		userResult.setNameGroup(userToConvert.getGroupe().getName());
+	}
 
 	/**
 	 * Getters and setters
