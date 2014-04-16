@@ -1,27 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.6deb1
+-- version 3.5.8.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 03 Avril 2014 à 09:49
--- Version du serveur: 5.5.35-0ubuntu0.13.10.2
--- Version de PHP: 5.5.3-1ubuntu2.2
+-- Généré le: Mer 16 Avril 2014 à 15:03
+-- Version du serveur: 5.5.34-0ubuntu0.13.04.1
+-- Version de PHP: 5.4.9-4ubuntu2.4
 
 SET FOREIGN_KEY_CHECKS=0;
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de données: `projetEDT`
 --
-CREATE DATABASE IF NOT EXISTS `projetEDT` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `projetEDT`;
 
 -- --------------------------------------------------------
 
@@ -33,9 +25,8 @@ DROP TABLE IF EXISTS `classroom`;
 CREATE TABLE IF NOT EXISTS `classroom` (
   `id_classroom` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
-  PRIMARY KEY (`id_classroom`),
-   UNIQUE (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=4 ;
+  PRIMARY KEY (`id_classroom`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `classroom`
@@ -44,7 +35,9 @@ CREATE TABLE IF NOT EXISTS `classroom` (
 INSERT INTO `classroom` (`id_classroom`, `name`) VALUES
 (1, 'H006'),
 (2, 'L201'),
-(3, 'A005');
+(3, 'A005'),
+(4, 'A005z'),
+(5, 'A005ee');
 
 -- --------------------------------------------------------
 
@@ -57,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `group_user` (
   `id_group_user` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   PRIMARY KEY (`id_group_user`),
-  UNIQUE (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=5 ;
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `group_user`
@@ -81,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `passwordTeacher` (
   `id_password_teacher` int(11) NOT NULL AUTO_INCREMENT,
   `password` varchar(256) NOT NULL,
   PRIMARY KEY (`id_password_teacher`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `passwordTeacher`
@@ -112,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   KEY `id_classroom` (`id_classroom`),
   KEY `id_group_user` (`id_group_user`),
   KEY `id_user_teacher` (`id_user_teacher`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `schedule`
@@ -135,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `short_name` varchar(256) NOT NULL,
   `color` varchar(256) NOT NULL,
   PRIMARY KEY (`id_subject`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `subject`
@@ -162,9 +155,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(256) NOT NULL,
   `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `id_group_user` (`id_group_user`),
-  UNIQUE (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=8 ;
+  UNIQUE KEY `email` (`email`),
+  KEY `id_group_user` (`id_group_user`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `user`
@@ -176,7 +169,7 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_gr
 (3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian', 'Coffinet', 2),
 (4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël', 'Fardilha', 2),
 (5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault', 'Gauthier', 2),
-(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël', 'Pillié', 2),
+(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphael', 'Pillie', 4),
 (7, 'noname@univ-angers.fr', 'noname', 'No', 'Name', 3);
 
 --
@@ -187,8 +180,8 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_gr
 -- Contraintes pour la table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `fk_schedule_group_user` FOREIGN KEY (`id_group_user`) REFERENCES `group_user` (`id_group_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_schedule_classroom` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_schedule_group_user` FOREIGN KEY (`id_group_user`) REFERENCES `group_user` (`id_group_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_schedule_subject` FOREIGN KEY (`id_subject`) REFERENCES `subject` (`id_subject`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_schedule_user_teacher` FOREIGN KEY (`id_user_teacher`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -198,7 +191,3 @@ ALTER TABLE `schedule`
 ALTER TABLE `user`
   ADD CONSTRAINT `fk_group_user` FOREIGN KEY (`id_group_user`) REFERENCES `group_user` (`id_group_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
