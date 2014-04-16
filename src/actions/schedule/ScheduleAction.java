@@ -238,7 +238,7 @@ public class ScheduleAction extends AbstractAction
 				if (scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd()))
 				{
 					addFieldError("error.dayEnd", getText("validator.field.empty"));
-				}else
+				} else
 				{
 					if (scheduleBean.getDayStart() != null && !"".equals(scheduleBean.getDayStart()))
 					{
@@ -247,7 +247,7 @@ public class ScheduleAction extends AbstractAction
 						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 						Date dayStartDate = simpleDateFormat.parse(dayStart);
 						Date dayEndDate = simpleDateFormat.parse(dayEnd);
-						if(!dayStartDate.before(dayEndDate))
+						if (!dayStartDate.before(dayEndDate))
 						{
 							addFieldError("error.dayEnd", getText("validator.field.date.EndError"));
 						}
@@ -257,13 +257,16 @@ public class ScheduleAction extends AbstractAction
 			{
 				addFieldError("error.dayEnd", getText("validator.field.date.wrong"));
 			}
-			//findIfClassroomExist
+			// findIfClassroomExist
 			try
 			{
-				if((scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())) && (scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())))
+				System.out.println("ici");
+				if (!(scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())) && !(scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())))
 				{
+					System.out.println("la");
 					String dayStart = scheduleBean.getDayStart();
 					String dayEnd = scheduleBean.getDayEnd();
+					System.out.println(dayStart + " " + dayEnd);
 					ScheduleDAO scheduleDAO = new ScheduleDAO();
 					ClassroomEntity classroom = classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom());
 					GroupEntity group = groupDao.getGroupByName(this.scheduleBean.getNameGroup());
@@ -271,15 +274,15 @@ public class ScheduleAction extends AbstractAction
 					List<ScheduleEntity> listClassroom = scheduleDAO.findIfClassroomExist(classroom, dayStart, dayEnd);
 					List<ScheduleEntity> listGroup = scheduleDAO.findIfGroupExist(group, dayStart, dayEnd);
 					List<ScheduleEntity> listUser = scheduleDAO.findIfUserTeacherExist(user, dayStart, dayEnd);
-					if(listClassroom==null || listClassroom.size()==0)
+					if (listClassroom != null && listClassroom.size() != 0)
 					{
 						addFieldError("error.classroom", getText("validator.classromm.already.use"));
 					}
-					if(listGroup==null || listGroup.size()==0)
+					if (listGroup != null && listGroup.size() != 0)
 					{
 						addFieldError("error.group", getText("validator.group.already.use"));
 					}
-					if(listUser==null || listUser.size()==0)
+					if (listUser != null && listUser.size() != 0)
 					{
 						addFieldError("error.userTeacher", getText("validator.userTeacher.already.use"));
 					}
