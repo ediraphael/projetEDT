@@ -27,9 +27,6 @@ public class InscriptionAction extends AbstractAction
 	private UserDAO udao = new UserDAO();
 	private PasswordTeacherDAO pdao = new PasswordTeacherDAO();
 	
-	//mot de passe pour les enregistrement directement en groupe prof
-	private String pwdTeacher;
-	
 	
 	/**
 	 * Execution l'inscription en sauvegardant le user
@@ -48,7 +45,7 @@ public class InscriptionAction extends AbstractAction
 			userToSave.setGroupe(gdao.getGroupByName(userBean.getNameGroup()));
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.save(userToSave);
-			
+			session.remove("pwdTeacher");
 			session.put("user", userBean);
 		}
 		catch(Exception e)
@@ -70,7 +67,7 @@ public class InscriptionAction extends AbstractAction
 		//pour ouvrir le formulaire d'inscription il faut charger la liste des groupes existant
 		userBean.setArrayGroupName(gdao.getAllGroupName());
 		//De meme, il faut récupérer le password prof pour le test lors de l'inscription
-		pwdTeacher=pdao.getPasswordTeacher();
+		session.put("pwdTeacher",pdao.getPasswordTeacher());
 		return forward;
 	}
 
@@ -125,7 +122,7 @@ public class InscriptionAction extends AbstractAction
 			{
 				addFieldError("error.teacherpassword", getText("validator.field.empty"));
 			}
-			else if(!userBean.getPasswordTeacher().equals(pwdTeacher))
+			else if(!userBean.getPasswordTeacher().equals(session.get("pwdTeacher")))
 			{
 				addFieldError("error.teacherpassword", getText("validator.pwd.false"));
 			}

@@ -29,6 +29,7 @@ public class UserBean
 		this.firstName="";
 		this.name="";
 		this.email="";
+		this.oldEmail="";
 		this.password="";
 		this.currentPassword="";
 		this.newPassword="";
