@@ -350,6 +350,7 @@ input,select
 
 input[type="radio"] {
 	margin:10px;
+	width:25px;
 }
 
 .user_button 
