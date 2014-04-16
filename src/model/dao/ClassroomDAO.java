@@ -72,4 +72,20 @@ public class ClassroomDAO extends AbstractDAO<ClassroomEntity>
 		}
 		return classroomEntity;
 	}
+	
+	/**
+	 * Méthode permettant de savoir si le nom de la classroom existe deja 
+	 * @param name
+	 * @return
+	 */
+	public boolean existNameClassroom(String name)
+	{
+		boolean res = false;
+		
+		if(getClassroomByName(name)!=null)
+		{
+			res=true;
+		}
+		return res;
+	}
 }

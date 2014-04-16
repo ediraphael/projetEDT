@@ -15,7 +15,8 @@
 				<h1><s:text name="title.classroom"/></h1>
 				<s:actionerror cssClass="errorCenter" />
 				<s:form action="UpdateClassroom" method="post">
-					<s:hidden name="id" value="%{classroomBean.id}"/>
+					<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
+					<s:hidden name="classroomBean.oldName" value="%{classroomBean.name}"/>
 					<table>
 						<tr><td></td></tr>
 						<tr>

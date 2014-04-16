@@ -23,8 +23,7 @@ public class ClassroomAction extends AbstractAction
 	// bean de formulaire permettant le transfere des informations
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
-	//récupération de l'id pour afficher en mode modification une salle
-	private long id;
+	
 
 	/**
 	 * Execution la sauvegarde d'une salle 
@@ -60,35 +59,18 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			if(this.id==0)
-			{
-				this.id=(long) session.get("idClassroom");
-				session.remove("idClassroom");
-			}
-			ClassroomEntity classroomEntity = cdao.getById(this.id);
-
-			if(!classroomEntity.getName().equals(classroomBean.getName()))
-			{
-				if (cdao.getClassroomByName(classroomBean.getName())!=null) 
-				{
-					addActionError(getText("validator.classroom.exist"));
-					forward=FORWARD_INPUT;
-					session.put("idClassroom", this.id);
-				}
-				else
-				{
-					classroomEntity.setName(this.classroomBean.getName());
-					cdao.update(classroomEntity);
-				}
-			}
-		} catch (Exception e)
+			ClassroomEntity classroomEntity = cdao.getById(this.classroomBean.getId());
+			classroomEntity.setName(this.classroomBean.getName());
+			cdao.update(classroomEntity);
+		} 
+		catch (Exception e)
 		{
 			forward = generateError(e);
 		}
 		return forward;
 	}
-	
-	
+
+
 	/**
 	 * Méthode permettant de supprimer une salle
 	 */
@@ -97,7 +79,7 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			ClassroomEntity classroomEntity = cdao.getById(this.id);
+			ClassroomEntity classroomEntity = cdao.getById(classroomBean.getId());
 			cdao.delete(classroomEntity);
 		} catch (Exception e)
 		{
@@ -141,7 +123,7 @@ public class ClassroomAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			ClassroomEntity classroomEntity = cdao.getById(this.id);
+			ClassroomEntity classroomEntity = cdao.getById(classroomBean.getId());
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
 			this.classroomBean.setName(classroomEntity.getName());
@@ -163,6 +145,13 @@ public class ClassroomAction extends AbstractAction
 			{
 				addFieldError("error.name", getText("validator.field.empty"));
 			}
+			
+			if(!classroomBean.getName().equals(classroomBean.getOldName()))
+			{
+				if(cdao.existNameClassroom(classroomBean.getName()))
+				addFieldError("error.name", "toto");
+			}
+			
 		}
 	}
 
@@ -190,15 +179,4 @@ public class ClassroomAction extends AbstractAction
 	{
 		this.listClassroomBean = listClassroomBean;
 	}
-
-	public long getId()
-	{
-		return id;
-	}
-
-	public void setId(long id)
-	{
-		this.id = id;
-	}
-	
 }
