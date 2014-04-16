@@ -25,8 +25,8 @@
 							<td><s:textfield name="groupBean.name"/></td>
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
-					</table><br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					</table>
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div class="clear"></div>
 			</div>

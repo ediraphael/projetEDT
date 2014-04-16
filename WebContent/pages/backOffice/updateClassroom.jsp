@@ -18,9 +18,11 @@
 				<h1><s:text name="title.classroom"/></h1>
 				<s:actionerror cssClass="errorCenter" />
 				<s:form action="UpdateClassroom" method="post">
-					<s:hidden name="id" value="%{classroomBean.id}"/>
-					<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
-					<s:hidden name="classroomBean.oldName" value="%{classroomBean.name}"/>
+					<div>
+						<s:hidden name="id" value="%{classroomBean.id}"/>
+						<s:hidden name="classroomBean.id" value="%{classroomBean.id}"/>
+						<s:hidden name="classroomBean.oldName" value="%{classroomBean.name}"/>
+					</div>
 					<table>
 						<tr><td></td></tr>
 						<tr>
@@ -29,8 +31,7 @@
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 					</table>
-					<br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div class="clear"></div>
 			</div>

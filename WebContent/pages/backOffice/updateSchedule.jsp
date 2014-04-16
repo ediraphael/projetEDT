@@ -21,7 +21,7 @@
 			<div id="content-middle">
 				<h1><s:text name="title.schedule"/></h1>
 				<s:form action="UpdateSchedule" method="post">
-					<s:hidden name="scheduleBean.id" value="%{scheduleBean.id}"/>
+					<div><s:hidden name="scheduleBean.id" value="%{scheduleBean.id}"/></div>
 					<table>
 						<tr><td></td></tr>
 						<tr>
@@ -65,14 +65,13 @@
 							<td class="error"><s:fielderror fieldName="error.subject"/></td>
 						</tr>
 					</table>
-					<br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div class="clear"></div>
 			</div>
 			<div id="content-bottom"></div>
 		</div>
-	<script>
+	<script type='text/javascript'>
 	 $(function() {
 		$( "#heure_debut" ).datetimepicker({
 			dateFormat: "yy-mm-dd",

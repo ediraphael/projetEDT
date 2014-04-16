@@ -64,14 +64,13 @@
 							<td class="error"><s:fielderror fieldName="error.subject"/></td>
 						</tr>
 					</table>
-					<br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div class="clear"></div>
 			</div>
 			<div id="content-bottom"></div>
 		</div>
-	<script>
+	<script type='text/javascript'>
 	 $(function() {
 		$( "#heure_debut" ).datetimepicker({
 			dateFormat: "yy-mm-dd",
