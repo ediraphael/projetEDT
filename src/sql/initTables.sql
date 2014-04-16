@@ -118,9 +118,18 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 -- Contenu de la table `schedule`
 --
 
+
 INSERT INTO `schedule` (`id_schedule`, `day_start`, `day_end`, `name`, `comment`, `id_user_teacher`, `id_subject`, `id_classroom`, `id_group_user`) VALUES
-(1, '2014-04-14 13:50:00', '2014-04-14 16:40:00', 'Compilation', '', 1, 1, 1, 4),
-(2, '2014-04-15 13:50:00', '2014-04-15 16:40:00', 'Web', '', 2, 2, 1, 4);
+(3, '2014-04-14 09:00:00', '2014-04-14 11:30:00', 'Optimisation Lineaire', '', 1, 2, 1, 4),
+(4, '2014-04-14 14:00:00', '2014-04-14 16:00:00', 'langages et Compilation', '', 2, 2, 1, 4),
+(5, '2014-04-15 09:30:00', '2014-04-15 12:20:00', ' Resolution de problemes', '', 1, 1, 1, 4),
+(6, '2014-04-15 14:00:00', '2014-04-15 17:00:00', 'Developpement Web', '', 2, 1, 1, 4),
+(7, '2014-04-16 09:30:00', '2014-04-16 12:00:00', 'Resolution de problemes', '', 1, 1, 1, 4),
+(8, '2014-04-16 14:00:00', '2014-04-16 17:30:00', 'Optimisation combinatoire', '', 2, 2, 1, 4),
+(9, '2014-04-17 09:00:00', '2014-04-17 11:00:00', 'Frameworks et langages', '', 1, 3, 1, 4),
+(10, '2014-04-17 11:15:00', '2014-04-17 12:15:00', 'Presentation projets', '', 2, 3, 1, 4),
+(11, '2014-04-17 14:00:00', '2014-04-17 15:30:00', 'Optimisation', '', 1, 3, 1, 4),
+(12, '2014-04-17 16:00:00', '2014-04-17 17:00:00', 'Optimisation combinatoire', '', 2, 3, 1, 4);
 
 -- --------------------------------------------------------
 
