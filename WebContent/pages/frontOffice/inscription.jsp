@@ -11,6 +11,7 @@
 	<body onload="showPwdTeach();">
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
+			<%@ include file="../other/menuEtu.jsp" %>
 			<div id="content-top"></div>
 			<div id="content-middle">
 				<s:form action="InscriptionAction" method="post">	
