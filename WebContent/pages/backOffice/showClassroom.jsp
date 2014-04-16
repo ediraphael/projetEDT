@@ -35,7 +35,7 @@
 									<s:param name="id"><s:property value="id"/></s:param>
 							    </s:url>
 							    <s:a href="%{url}">
-								    <img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" width="20px"  title="<s:text name="label.delete"/>" />
+								    <img src="./css/pageCss/images/btn_corbeille.png" alt="<s:text name="label.delete"/>" style="width:20px"  title="<s:text name="label.delete"/>" />
 								</s:a>
 							</td>
 						</tr>
