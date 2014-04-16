@@ -21,7 +21,8 @@ import javax.persistence.Table;
 	@NamedQuery(name = "ScheduleEntity.findAll", query = "SELECT u FROM ScheduleEntity u"), 
 	@NamedQuery(name = "ScheduleEntity.findById", query = "SELECT u FROM ScheduleEntity u WHERE u.id = :id"),
 	@NamedQuery(name = "ScheduleEntity.findByGroup", query = "SELECT u FROM ScheduleEntity u WHERE u.group = :group"),
-	@NamedQuery(name = "ScheduleEntity.findByGroupAndDay", query = "SELECT u FROM ScheduleEntity u WHERE u.group = :group AND u.dayStart>=:dayStart AND u.dayStart<=:dayEnd ORDER BY u.dayStart, u.dayEnd DESC")
+	@NamedQuery(name = "ScheduleEntity.findByGroupAndDay", query = "SELECT u FROM ScheduleEntity u WHERE u.group = :group AND u.dayStart>=:dayStart AND u.dayStart<=:dayEnd ORDER BY u.dayStart, u.dayEnd DESC"),
+	@NamedQuery(name = "ScheduleEntity.findIfClassroomExist", query = "SELECT u.classroom FROM ScheduleEntity u WHERE u.classroom = :classroom AND ((u.dayStart>=:dayStart AND u.dayStart<=:dayEnd) OR (u.dayEnd>=:dayStart AND u.dayEnd<=:dayEnd))")
 })
 public class ScheduleEntity implements Serializable
 {
