@@ -18,9 +18,11 @@
 			<div id="content-middle">
 				<h1><s:text name="title.user"/></h1>
 				<s:form action="UpdateUser" method="post">
-					<s:hidden name="id" value="%{userBean.id}"/>
-					<s:hidden name="userBean.id" value="%{userBean.id}"/>
-					<s:hidden name="userBean.oldEmail" value="%{userBean.email}"/>
+					<div>
+						<s:hidden name="id" value="%{userBean.id}"/>
+						<s:hidden name="userBean.id" value="%{userBean.id}"/>
+						<s:hidden name="userBean.oldEmail" value="%{userBean.email}"/>
+					</div>
 					<table>
 						<tr><td> </td></tr>
 						<tr>
@@ -56,8 +58,7 @@
 							<td class="error"><s:fielderror fieldName="error.confirmpassword"/></td>
 						</tr>
 					</table>
-					<br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div class="clear"></div>
 			</div>

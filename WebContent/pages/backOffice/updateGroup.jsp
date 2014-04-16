@@ -18,9 +18,11 @@
 			<div id="content-middle">
 				<h1><s:text name="title.group"/></h1>
 				<s:form action="UpdateGroup" method="post">
-					<s:hidden name="id" value="%{groupBean.id}"/>
-					<s:hidden name="groupBean.id" value="%{groupBean.id}"/>
-					<s:hidden name="groupBean.oldName" value="%{groupBean.name}"/>
+					<div>
+						<s:hidden name="id" value="%{groupBean.id}"/>
+						<s:hidden name="groupBean.id" value="%{groupBean.id}"/>
+						<s:hidden name="groupBean.oldName" value="%{groupBean.name}"/>
+					</div>
 					<table>
 						<tr><td> </td></tr>
 						<tr>
@@ -29,8 +31,7 @@
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 					</table>
-					<br/>
-					<s:submit key="label.valide"  cssClass="user_button"/>
+					<div><br/><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div class="clear"></div>
 			</div>
