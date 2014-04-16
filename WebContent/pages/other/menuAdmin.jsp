@@ -3,6 +3,7 @@
 <div id="menu">
 	<div id="menu-left"></div>
 		<ul>
+			<li><s:a action=""><span><s:text name="module.home"/></span></s:a></li>
 			<li><s:a action="ShowUser"><span><s:text name="module.user"/></span></s:a></li>
 			<li><s:a action="ShowGroup"><span><s:text name="module.group"/></span></s:a></li>
 			<li><s:a action="ShowClassroom"><span><s:text name="module.classroom"/></span></s:a></li>

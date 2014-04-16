@@ -155,6 +155,7 @@
 				<h1><s:text name="title.calendar"/></h1>
 				<s:form action="ShowCalendar" method="post">
 					<table>
+						<tr><td></td></tr>
 						<tr>
 							<td><s:text name="label.type"/></td>
 							<td><s:radio label="Type" name="view" list="listView" value="defaultViewValue" /></td>
