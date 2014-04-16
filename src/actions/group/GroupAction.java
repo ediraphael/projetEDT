@@ -27,7 +27,7 @@ public class GroupAction extends AbstractAction
 	//déclaration et initialisation des DAO
 	private GroupDAO gdao = new GroupDAO();
 	
-	//récupération de l'id pour afficher en mode modification pour un groupe
+	//permet de récup l'id pour la suppression et l'affichage en modification
 	private long id;
 	
 	/**
@@ -128,7 +128,7 @@ public class GroupAction extends AbstractAction
 		forward = FORWARD_SUCCESS;
 		try
 		{
-			GroupEntity groupEntity=gdao.getById(id);
+			GroupEntity groupEntity=gdao.getById(this.groupBean.getId());
 			groupEntity.setName(groupBean.getName());
 			gdao.update(groupEntity);
 		} 
@@ -145,9 +145,18 @@ public class GroupAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		if(groupBean.getName().isEmpty())
+		if (groupBean != null)
 		{
-			addFieldError("error.name", getText("validator.field.empty"));
+			if(groupBean.getName().isEmpty())
+			{
+				addFieldError("error.name", getText("validator.field.empty"));
+			}
+
+			if(!groupBean.getName().equals(groupBean.getOldName()))
+			{
+				if(gdao.existNameClassroom(groupBean.getName()))
+					addFieldError("error.name",  getText("validator.group.exist"));
+			}
 		}
 	}
 	

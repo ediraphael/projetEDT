@@ -70,4 +70,20 @@ public class GroupDAO extends AbstractDAO<GroupEntity>
 		}
 		return listGroupName;
 	}
+	
+	/**
+	 * Méthode permettant de savoir si le nom du groupe existe deja 
+	 * @param name
+	 * @return
+	 */
+	public boolean existNameClassroom(String name)
+	{
+		boolean res = false;
+		
+		if(getGroupByName(name)!=null)
+		{
+			res=true;
+		}
+		return res;
+	}
 }
