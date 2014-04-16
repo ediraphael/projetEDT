@@ -1,7 +1,9 @@
 package actions.schedule;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.dao.ClassroomDAO;
@@ -18,14 +20,14 @@ import bean.ScheduleBean;
 
 public class ScheduleAction extends AbstractAction
 {
-	//Serialization
+	// Serialization
 	private static final long serialVersionUID = 1L;
 	private long id;
-	
-	//bean de formulaire permettant le transfere des informations
+
+	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
 	private ArrayList<ScheduleBean> listScheduleBean;
-	
+
 	// déclaration et initialisation des DAO
 	private GroupDAO groupDao = new GroupDAO();
 	private ClassroomDAO classroomDao = new ClassroomDAO();
@@ -122,6 +124,7 @@ public class ScheduleAction extends AbstractAction
 
 	/**
 	 * Méthode permettant d'afficher les horaires
+	 * 
 	 * @return
 	 */
 	@SkipValidation
@@ -171,7 +174,7 @@ public class ScheduleAction extends AbstractAction
 		this.arraySubjectName = this.subjectDao.getAllSubjectName();
 		return forward;
 	}
-	
+
 	@SkipValidation
 	public String getSchedule()
 	{
@@ -199,19 +202,72 @@ public class ScheduleAction extends AbstractAction
 			this.arrayClassroomName = this.classroomDao.getAllClassroomName();
 			this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
 			this.arraySubjectName = this.subjectDao.getAllSubjectName();
-		} 
-		catch (Exception e)
+		} catch (Exception e)
 		{
 			forward = generateError(e);
 		}
 		return forward;
 	}
-	
+
 	/**
 	 * Méthode permettant de valider les champs du formulaire
 	 */
 	public void validate()
 	{
+		if (scheduleBean != null)
+		{
+			if ("".equals(scheduleBean.getName()))
+			{
+				addFieldError("error.name", getText("validator.field.empty"));
+			}
+			try
+			{
+				if (scheduleBean.getDayStart() == null || "".equals(scheduleBean.getDayStart()))
+				{
+					addFieldError("error.dayStart", getText("validator.field.empty"));
+				}
+			} catch (ParseException e)
+			{
+				addFieldError("error.dayStart", getText("validator.field.date.wrong"));
+			}
+			try
+			{
+				if (scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd()))
+				{
+					addFieldError("error.dayEnd", getText("validator.field.empty"));
+				}else
+				{
+					if (scheduleBean.getDayStart() != null && !"".equals(scheduleBean.getDayStart()))
+					{
+						String dayStart = scheduleBean.getDayStart();
+						String dayEnd = scheduleBean.getDayEnd();
+						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						Date dayStartDate = simpleDateFormat.parse(dayStart);
+						Date dayEndDate = simpleDateFormat.parse(dayEnd);
+						if(!dayStartDate.before(dayEndDate))
+						{
+							addFieldError("error.dayEnd", getText("validator.field.date.EndError"));
+						}
+					}
+				}
+			} catch (ParseException e)
+			{
+				addFieldError("error.dayEnd", getText("validator.field.date.wrong"));
+			}
+			//findIfClassroomExist
+			try
+			{
+				if((scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())) && (scheduleBean.getDayEnd() == null || "".equals(scheduleBean.getDayEnd())))
+				{
+					
+					
+				}
+			} catch (ParseException e)
+			{
+			}
+
+		}
+
 		this.arrayGroupName = this.groupDao.getAllGroupName();
 		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
 		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));

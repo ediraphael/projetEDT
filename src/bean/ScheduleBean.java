@@ -28,6 +28,10 @@ public class ScheduleBean {
 	}
 	public String getDayStart() throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if(dayStart==null)
+		{
+			dayStart="";
+		}
 		return simpleDateFormat.format(simpleDateFormat.parse(dayStart));
 	}
 	public void setDayStart(String dayStart) {
@@ -43,6 +47,10 @@ public class ScheduleBean {
 	}
 	public String getDayEnd() throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if(dayEnd==null)
+		{
+			dayEnd="";
+		}
 		return simpleDateFormat.format(simpleDateFormat.parse(dayEnd));
 	}
 	public void setDayEnd(String dayEnd) {
