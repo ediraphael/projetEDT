@@ -168,7 +168,49 @@
 					</table>
 					<s:submit key="label.valide"  cssClass="user_button"/>
 				</s:form>
-				<div id='calendar'></div>
+				<div id='calendar'>
+					<s:if test="%{#view=='resume'}">
+						<table>
+						<tr>
+							<td><s:text name="label.dayStart"/></td>
+							<td><s:text name="label.dayEnd"/></td>
+							<td><s:text name="label.information"/></td>
+						</tr>
+						<s:iterator value="listScheduleBean" id="schedule">
+							<tr>
+								<td><s:property value="dayStart"/></td>
+								<td><s:property value="dayEnd"/></td>
+								<td><s:property value="name"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:property value="comment"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:property value="nameUserTeacher"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:property value="nameSubject"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:property value="nameClassroom"/></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:property value="nameGroup"/></td>
+							</tr>
+						</s:iterator>
+						</table>
+					</s:if>
+				</div>
 			</div>
 			<div id="content-bottom"></div>
 		</div>
