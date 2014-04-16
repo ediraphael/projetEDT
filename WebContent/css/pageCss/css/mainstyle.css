@@ -348,7 +348,9 @@ input,select
 	text-align: center;
 }
 
-
+input[type="radio"] {
+	margin:10px;
+}
 
 .user_button 
 {
