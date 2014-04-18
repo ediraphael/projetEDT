@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 import javax.persistence.Query;
 
+import model.org.persistence.GroupEntity;
 import model.org.persistence.UserEntity;
 
 /**
@@ -62,11 +63,23 @@ public class UserDAO extends AbstractDAO<UserEntity>
 	 * Méthode permettant de récupérer une map <idGroup,nameGroup>
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	public TreeMap<Long,String> getAllTeacherForMap()
 	{
 		initEntityManager();
 		TreeMap<Long,String> allGroupName = new TreeMap<Long,String>();
-		List<UserEntity> listAll = getAll();
+		List<UserEntity> listAll;
+		try 
+		{
+			GroupEntity group = new GroupEntity();
+			group.setId(1);
+			Query q=getEntityManager().createNamedQuery("UserEntity.findByGroup").setParameter("group", group);
+			listAll= (q.getResultList().size()!=0) ? (List<UserEntity>) q.getResultList() : null ;
+		} 
+		finally 
+		{
+			getEntityManager().close();
+		}
 		for (int i = 0; i < listAll.size(); i++) 
 		{
 			allGroupName.put(listAll.get(i).getId(), (listAll.get(i).getFirstName()+ " " +listAll.get(i).getName()));
