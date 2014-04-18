@@ -3,7 +3,6 @@ package actions.login;
 
 import model.dao.UserDAO;
 import model.org.persistence.UserEntity;
-
 import actions.abstractAction.AbstractAction;
 import bean.UserBean;
 
@@ -37,8 +36,9 @@ public class LoginAction extends AbstractAction
 		}
 		else
 		{
-			convertEntityToBean(user, userBean);
-			session.put("user", userBean);
+			this.userBean.convertEntityToBean(user);
+			session.put(USER, userBean);
+			session.put(USER_GROUP, user.getGroupe().getName());
 		}
 		return forward;
 	}
@@ -53,24 +53,19 @@ public class LoginAction extends AbstractAction
 		{
 			addFieldError("error.email", getText("validator.field.empty"));
 		}
+		else if(!emailValidator(userBean.getEmail()))
+		{
+			addFieldError("error.email", getText("validator.mail.false"));
+		}
 
 		if("".equals(userBean.getPassword()))
 		{
 			addFieldError("error.password", getText("validator.field.empty"));
 		}
+		
+		
 	}
 
-	/**
-	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
-	 * @param UserEntity, UserBean
-	 */
-	private void convertEntityToBean(UserEntity userToConvert, UserBean userResult)
-	{
-		userResult.setId(userToConvert.getId());
-		userResult.setEmail(userToConvert.getEmail());
-		userResult.setName(userToConvert.getName());
-		userResult.setNameGroup(userToConvert.getGroupe().getName());
-	}
 
 	/**
 	 * Getters and setters

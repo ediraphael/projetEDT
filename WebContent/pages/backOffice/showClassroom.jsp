@@ -10,7 +10,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 

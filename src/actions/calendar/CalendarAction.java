@@ -1,10 +1,10 @@
 package actions.calendar;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 import model.dao.ClassroomDAO;
 import model.dao.GroupDAO;
@@ -35,16 +35,18 @@ public class CalendarAction extends AbstractAction
 	private ArrayList<ScheduleBean> listScheduleBean;
 
 	// déclaration et initialisation des DAO
-	private GroupDAO groupDao = new GroupDAO();
-	private ClassroomDAO classroomDao = new ClassroomDAO();
-	private UserDAO userDao = new UserDAO();
-	private SubjectDAO subjectDao = new SubjectDAO();
+	private GroupDAO gdao = new GroupDAO();
+	private ClassroomDAO cdao = new ClassroomDAO();
+	private UserDAO udao = new UserDAO();
+	private SubjectDAO sdao = new SubjectDAO();
+	private ScheduleDAO scdao = new ScheduleDAO();
+
 
 	// déclaration des liste a afficher dans les liste déroulantes
-	private List<String> arrayGroupName;
-	private List<String> arrayClassroomName;
-	private List<String> arrayUserTeacherName;
-	private List<String> arraySubjectName;
+	private TreeMap<Long, String> mapGroup;
+	private TreeMap<Long, String> mapClassroom;
+	private TreeMap<Long, String> mapTeacher;
+	private TreeMap<Long, String> mapSubject;
 
 	/**
 	 * Execution de l'ajout d'un horaire
@@ -67,31 +69,29 @@ public class CalendarAction extends AbstractAction
 		this.listView.add(getText("label.type.calendar.normal"));
 		this.listView.add(getText("label.type.calendar.compact"));
 		this.listView.add(getText("label.type.calendar.resume"));
-		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		this.listScheduleBean = new ArrayList<ScheduleBean>();
 		try
 		{
 			List<ScheduleEntity> listScheduleEntity;
 			GroupEntity group;
-			if (this.scheduleBean != null && this.scheduleBean.getNameGroup() != null)
+			if (this.scheduleBean != null && this.scheduleBean.getIdGroup() != 0)
 			{
-				group = this.groupDao.getGroupByName(this.scheduleBean.getNameGroup());
+				group = this.gdao.getById(this.scheduleBean.getIdGroup());
 			} else
 			{
-				group = this.groupDao.getById(1);
-				UserBean user = (UserBean) session.get("user");
+				group = this.gdao.getById(1);
+				UserBean user = (UserBean) session.get(USER);
 				if (user != null)
 				{
-					group = this.groupDao.getGroupByName(user.getNameGroup());
+					group = this.gdao.getById(user.getIdGroup());
 					this.scheduleBean = new ScheduleBean();
-					this.scheduleBean.setNameGroup(user.getNameGroup());
+					this.scheduleBean.setIdGroup(user.getIdGroup());
 				}
 
 			}
 
 			if (this.dayMin == null || "".equals(this.dayMin))
 			{
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(new Date());
 
@@ -105,11 +105,10 @@ public class CalendarAction extends AbstractAction
 				calendar.set(Calendar.YEAR, year);
 				// Now get the first day of week.
 				Date date = calendar.getTime();
-				this.dayMin = simpleDateFormat.format(date);
+				this.dayMin = SIMPLE_DATE_FORMAT.format(date);
 			}
 			if (this.dayMax == null || "".equals(this.dayMax))
 			{
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(new Date());
 
@@ -123,31 +122,35 @@ public class CalendarAction extends AbstractAction
 				calendar.set(Calendar.WEEK_OF_YEAR, week);
 				calendar.set(Calendar.DAY_OF_WEEK, 8);
 				Date date = calendar.getTime();
-				this.dayMax = simpleDateFormat.format(date);
+				this.dayMax = SIMPLE_DATE_FORMAT.format(date);
 			}
-			listScheduleEntity = scheduleDAO.getAllByGroupAndDay(group, this.dayMin, this.dayMax);
+			if(group.getId()==GROUP_ID_TEACHER || group.getId()==GROUP_ID_ETU)
+			{
+				listScheduleEntity = scdao.getAllByGroupAndDay(group, this.dayMin, this.dayMax);
+			}
+			else
+			{
+				GroupEntity groupEtu=gdao.getById(GROUP_ID_ETU);
+				listScheduleEntity = scdao.getAllByGroupAndDayWithEtu(group,groupEtu, this.dayMin, this.dayMax);
+			}
+			
 			if (listScheduleEntity == null)
 			{
 				listScheduleEntity = new ArrayList<>();
 			}
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				ScheduleBean scheduleBean = new ScheduleBean();
-				scheduleBean.setId(scheduleEntity.getId());
-				scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
-				scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
-				scheduleBean.setName(scheduleEntity.getName());
-				scheduleBean.setComment(scheduleEntity.getComment());
-				scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
-				scheduleBean.setSubject(scheduleEntity.getSubject().getName());
-				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
-				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
-				scheduleBean.setColorSubject(scheduleEntity.getSubject().getColor());
+				scheduleBean.convertEntityToBean(scheduleEntity);
+				scheduleBean.setMapGroup(gdao.getAllGroupForMap());
+				scheduleBean.setMapClassroom(cdao.getAllClassroomForMap());
+				scheduleBean.setMapSubject(sdao.getAllSubjectForMap());
+				scheduleBean.setMapTeacher(udao.getAllTeacherForMap());
 				this.listScheduleBean.add(scheduleBean);
 			}
-			this.arrayGroupName = this.groupDao.getAllGroupName();
-		} catch (Exception e)
+			this.mapGroup = this.gdao.getAllGroupForMap();
+		} 
+		catch (Exception e)
 		{
 			forward = generateError(e);
 		}
@@ -159,20 +162,19 @@ public class CalendarAction extends AbstractAction
 	 */
 	public void validate()
 	{
-		this.arrayGroupName = this.groupDao.getAllGroupName();
-		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
-		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
-		this.arraySubjectName = this.subjectDao.getAllSubjectName();
-		scheduleBean.setArrayGroupName(groupDao.getAllGroupName());
-		scheduleBean.setArrayClassroomName(classroomDao.getAllClassroomName());
-		scheduleBean.setArraySubjectName(subjectDao.getAllSubjectName());
-		scheduleBean.setArrayUserTeacher(userDao.getAllUserNameByGroup(groupDao.getGroupByName("Enseignant")));
+		this.mapGroup = this.gdao.getAllGroupForMap();
+		this.mapClassroom = this.cdao.getAllClassroomForMap();
+		this.mapTeacher = this.udao.getAllTeacherForMap();
+		this.mapSubject = this.sdao.getAllSubjectForMap();
+		scheduleBean.setMapGroup(gdao.getAllGroupForMap());
+		scheduleBean.setMapClassroom(cdao.getAllClassroomForMap());
+		scheduleBean.setMapSubject(sdao.getAllSubjectForMap());
+		scheduleBean.setMapTeacher(udao.getAllTeacherForMap());
 	}
 
 	/**
 	 * Getters and setters
 	 * 
-	 * @return
 	 */
 	public ScheduleBean getScheduleBean()
 	{
@@ -202,46 +204,6 @@ public class CalendarAction extends AbstractAction
 	public void setId(long id)
 	{
 		this.id = id;
-	}
-
-	public List<String> getArrayGroupName()
-	{
-		return arrayGroupName;
-	}
-
-	public void setArrayGroupName(List<String> arrayGroupName)
-	{
-		this.arrayGroupName = arrayGroupName;
-	}
-
-	public List<String> getArrayClassroomName()
-	{
-		return arrayClassroomName;
-	}
-
-	public void setArrayClassroomName(List<String> arrayClassroomName)
-	{
-		this.arrayClassroomName = arrayClassroomName;
-	}
-
-	public List<String> getArrayUserTeacherName()
-	{
-		return arrayUserTeacherName;
-	}
-
-	public void setArrayUserTeacherName(List<String> arrayUserTeacherName)
-	{
-		this.arrayUserTeacherName = arrayUserTeacherName;
-	}
-
-	public List<String> getArraySubjectName()
-	{
-		return arraySubjectName;
-	}
-
-	public void setArraySubjectName(List<String> arraySubjectName)
-	{
-		this.arraySubjectName = arraySubjectName;
 	}
 
 	public String getDayMin()
@@ -293,5 +255,45 @@ public class CalendarAction extends AbstractAction
 		{
 			return this.listView.get(0);
 		}
+	}
+
+	public TreeMap<Long, String> getMapGroup() 
+	{
+		return mapGroup;
+	}
+
+	public void setMapGroup(TreeMap<Long, String> mapGroup) 
+	{
+		this.mapGroup = mapGroup;
+	}
+
+	public TreeMap<Long, String> getMapClassroom() 
+	{
+		return mapClassroom;
+	}
+
+	public void setMapClassroom(TreeMap<Long, String> mapClassroom) 
+	{
+		this.mapClassroom = mapClassroom;
+	}
+
+	public TreeMap<Long, String> getMapTeacher() 
+	{
+		return mapTeacher;
+	}
+
+	public void setMapTeacher(TreeMap<Long, String> mapTeacher) 
+	{
+		this.mapTeacher = mapTeacher;
+	}
+
+	public TreeMap<Long, String> getMapSubject() 
+	{
+		return mapSubject;
+	}
+
+	public void setMapSubject(TreeMap<Long, String> mapSubject)
+	{
+		this.mapSubject = mapSubject;
 	}
 }

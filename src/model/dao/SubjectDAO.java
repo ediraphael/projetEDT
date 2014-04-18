@@ -1,8 +1,7 @@
 package model.dao;
 
 import java.util.List;
-
-import javax.persistence.Query;
+import java.util.TreeMap;
 
 import model.org.persistence.SubjectEntity;
 
@@ -32,44 +31,21 @@ public class SubjectDAO extends AbstractDAO<SubjectEntity>
 	{
 		return getAll("SubjectEntity.findAll");
 	}
-	
-	/**
-	 * Méthode permettant de récupérer un sujet par son nom
-	 * 
-	 */
-	public SubjectEntity getSubjectByName(String name)
-	{
-		SubjectEntity subjectEntity;
-		initEntityManager();
-		try
-		{
-			Query q = getEntityManager().createNamedQuery("SubjectEntity.findByName").setParameter("name", name);
-			subjectEntity = (q.getResultList().size()!=0) ? (SubjectEntity) q.getSingleResult() : null;
-		} finally
-		{
-			getEntityManager().close();
-		}
-		return subjectEntity;
-	}
 
 	
 	/**
-	 * Méthode permettant de récupérer la liste des nom de sujets
+	 * Méthode permettant de récupérer une map <idSubject,nameSubject>
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
-	public List<String> getAllSubjectName()
+	public TreeMap<Long,String> getAllSubjectForMap()
 	{
-		List<String> listSubject;
 		initEntityManager();
-		try
+		TreeMap<Long,String> allGroupName = new TreeMap<Long,String>();
+		List<SubjectEntity> listAll = getAll();
+		for (int i = 0; i < listAll.size(); i++) 
 		{
-			Query q = getEntityManager().createNamedQuery("SubjectEntity.findAllName");
-			listSubject = (q.getResultList().size()!=0) ? (List<String>) q.getResultList() : null;
-		} finally
-		{
-			getEntityManager().close();
-		}
-		return listSubject;
+			allGroupName.put(listAll.get(i).getId(), listAll.get(i).getName());
+		}			
+		return allGroupName;
 	}
 }

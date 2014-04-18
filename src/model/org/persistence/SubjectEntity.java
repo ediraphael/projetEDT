@@ -15,7 +15,6 @@ import javax.persistence.*;
 ({
     @NamedQuery(name = "SubjectEntity.findById", query = "SELECT s FROM SubjectEntity s where s.id = :id"),
     @NamedQuery(name = "SubjectEntity.findAllName", query = "SELECT s.name FROM SubjectEntity s"),
-    @NamedQuery(name = "SubjectEntity.findByName", query = "SELECT s FROM SubjectEntity s where s.name = :name"),
     @NamedQuery(name = "SubjectEntity.findAll", query = "SELECT s FROM SubjectEntity s ")
 })
 public class SubjectEntity implements Serializable 

@@ -91,7 +91,7 @@
 					'title':'<s:property value="name"/>',
 					'start':'<s:property value="dayStart"/>',
 					'end':'<s:property value="dayEnd"/>',
-					'comment':'<s:property value="comment"/><br /><s:property value="nameUserTeacher"/><br /><s:property value="nameSubject"/><br /><s:property value="nameClassroom"/><br /><s:property value="nameGroup"/>',
+					'comment':'<s:property value="comment"/><br /><s:property value="mapTeacher[idTeacher]"/><br /><s:property value="mapSubject[idSubject]"/><br /><s:property value="mapClassroom[idClassroom]"/><br /><s:property value="mapGroup[idGroup]"/>',
 					'color':'<s:property value="colorSubject"/>'
 				},
 			</s:iterator>
@@ -147,7 +147,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 				<%@ include file="../other/menuAdmin.jsp" %>
 			</s:if>
 			<s:else>
@@ -165,15 +165,15 @@
 						</tr>
 						<tr>
 							<td><s:text name="label.group"/></td>				
-							<td><s:select name="scheduleBean.nameGroup" list="arrayGroupName" /></td>
+							<td><s:select name="scheduleBean.idGroup" list="mapGroup" /></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayStart"/></td>
-							<td><s:textfield id="heure_debut" name="dayMin" key="label.dayStart" /></td>
+							<td><s:textfield id="heure_debut" name="dayMin" key="label.dayStart"   maxlength="100"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayEnd"/></td>
-							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd" /></td>
+							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd"  maxlength="100" /></td>
 						</tr>
 					</table>
 					<div><s:submit key="label.valide"  cssClass="user_button"/></div>
@@ -200,22 +200,22 @@
 							<tr>
 								<td></td>
 								<td></td>
-								<td><s:property value="nameUserTeacher"/></td>
+								<td><s:property value="mapTeacher[idTeacher]"/></td>
 							</tr>
 							<tr>
 								<td></td>
 								<td></td>
-								<td><s:property value="nameSubject"/></td>
+								<td><s:property value="mapSubject[idSubject]"/></td>
 							</tr>
 							<tr>
 								<td></td>
 								<td></td>
-								<td><s:property value="nameClassroom"/></td>
+								<td><s:property value="mapClassroom[idClassroom]"/></td>
 							</tr>
 							<tr>
 								<td></td>
 								<td></td>
-								<td><s:property value="nameGroup"/></td>
+								<td><s:property value="mapGroup[idGroup]"/></td>
 							</tr>
 						</s:iterator>
 						</table>

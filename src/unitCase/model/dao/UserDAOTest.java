@@ -1,6 +1,7 @@
 package unitCase.model.dao;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import model.dao.GroupDAO;
 import model.dao.UserDAO;
@@ -62,9 +63,10 @@ public class UserDAOTest
 	{
 		UserEntity u = new UserEntity() ;
 		GroupEntity g = gdao.getById(1);
-		u.setName("Toto");
-		u.setEmail("Toto@univ-angers.fr");
-		u.setPassword("toto");
+		u.setFirstName("Florien");
+		u.setName("BESNARD");
+		u.setEmail("flo@univ-angers.fr");
+		u.setPassword("besnard");
 		u.setGroupe(g);
 		udao.save(u);
 	}
@@ -82,26 +84,25 @@ public class UserDAOTest
 	
 	
 	/**
-	 * Test de la méthode du DAO permettant de trouver un user par son nom
+	 * Test de la méthode du DAO permettant  de récupérer une map <idGroup,nameGroup>
 	 */
 	@Test
-	public void testGetUserByName() 
+	public void testGetAllTeacherForMap() 
 	{
-		UserEntity u= udao.getUserByName("Coffinet");
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null || u.getId()<0));
+		TreeMap<Long, String> res = udao.getAllTeacherForMap();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (res==null));
 	}
 	
 	/**
-	 * Test de la méthode du DAO permettant de trouver tous les users du meme groupe
+	 * Test de la méthode du DAO permettant  de récupérer une map <idGroup,nameGroup>
 	 */
 	@Test
-	public void testGetAllUserNameByGroup() 
+	public void testExistEmailUser() 
 	{
-		List<String> u= udao.getAllUserNameByGroup(gdao.getById(2));
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
+		boolean res = udao.existEmailUser("mickael.fardilha@univ-angers.fr");
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (!res));
 	}
 	
-
 	/**
 	 * Test de la méthode du DAO permettant de trouver un user pour l'authentification
 	 */

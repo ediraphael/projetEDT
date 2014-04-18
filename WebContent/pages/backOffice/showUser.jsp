@@ -10,7 +10,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 
@@ -22,6 +22,7 @@
 				<table>
 					<tr>
 						<th><s:text name="label.email"/></th>
+						<th><s:text name="label.firstname"/></th>
 						<th><s:text name="label.name"/></th>
 						<th><s:text name="label.group"/></th>
 						<th></th>
@@ -33,7 +34,8 @@
 						    </s:url>
 							<td><s:a href="%{url}"><s:property value="email"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="name"/></s:a></td>
-							<td><s:a href="%{url}"><s:property value="nameGroup"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="firstName"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="mapGroup[idGroup]"/></s:a></td>
 							<td class="bine">
 								<s:url id="url" action="DeleteUser">
 									<s:param name="id"><s:property value="id"/></s:param>

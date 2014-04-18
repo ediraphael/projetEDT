@@ -1,10 +1,10 @@
 package model.dao;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.persistence.Query;
 
-import model.org.persistence.GroupEntity;
 import model.org.persistence.UserEntity;
 
 /**
@@ -59,72 +59,24 @@ public class UserDAO extends AbstractDAO<UserEntity>
 	}
 	
 	/**
-	 * Methode permetant de récupérer un user avec son nom 
-	 * @param name
+	 * Méthode permettant de récupérer une map <idGroup,nameGroup>
+	 * 
 	 */
-	public UserEntity getUserByName(String name)
+	public TreeMap<Long,String> getAllTeacherForMap()
 	{
 		initEntityManager();
-		UserEntity user = new UserEntity();
-		user.setName(name);
-		try 
+		TreeMap<Long,String> allGroupName = new TreeMap<Long,String>();
+		List<UserEntity> listAll = getAll();
+		for (int i = 0; i < listAll.size(); i++) 
 		{
-			Query q=getEntityManager().createNamedQuery("UserEntity.findByName").setParameter("name", name);
-			user= (q.getResultList().size()!=0) ? (UserEntity) q.getResultList().get(0) : null ;
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-		return user;
+			allGroupName.put(listAll.get(i).getId(), (listAll.get(i).getFirstName()+ " " +listAll.get(i).getName()));
+		}			
+		return allGroupName;
 	}
 	
-	/**
-	 * Methode permetant de récupérer un enseignant avec son nom 
-	 * @param name
-	 */
-	public UserEntity getEnseignantByName(String name, GroupEntity g)
-	{
-		initEntityManager();
-		UserEntity user = new UserEntity();
-		user.setName(name);
-		user.setGroupe(g);
-		try 
-		{
-			Query q=getEntityManager().createNamedQuery("UserEntity.findEnseignantByName")
-					.setParameter("name", name).setParameter("group", g);
-			user= (q.getResultList().size()!=0) ? (UserEntity) q.getResultList().get(0) : null ;
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-		return user;
-	}
 	
 	/**
-	 * Méthode permettant de trouver tous les users appartenant au même groupe 
-	 * @param group
-	 */
-	@SuppressWarnings("unchecked")
-	public List<String> getAllUserNameByGroup(GroupEntity group)
-	{
-		initEntityManager();
-		List<String> listGroupName;
-		try 
-		{
-			Query q=getEntityManager().createNamedQuery("UserEntity.findAllNameByGroup").setParameter("group", group);
-			listGroupName= q.getResultList()!= null ? (List<String>) q.getResultList() : null ;
-		} 
-		finally 
-		{
-			getEntityManager().close();
-		}
-		return listGroupName;
-	}
-	
-	/**
-	 * Méthode permettant de savoir si le nom de la classroom existe deja 
+	 * Méthode permettant de savoir si l'email existe
 	 * @param name
 	 * @return
 	 */

@@ -1,6 +1,7 @@
 package unitCase.model.dao;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import model.dao.GroupDAO;
 import model.org.persistence.GroupEntity;
@@ -74,16 +75,6 @@ public class GroupDAOTest
 	}
 	
 	/**
-	 * Test de la méthode du DAO permettant de trouver un groupe par son nom
-	 */
-	@Test
-	public void testGetGroupByName() 
-	{
-		GroupEntity c= groupDAO.getGroupByName("Enseignant");
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (c==null || c.getId()<0));
-	}
-	
-	/**
 	 * Test de la méthode du DAO permettant de trouver tous les noms des groupes
 	 */
 	@Test
@@ -91,5 +82,25 @@ public class GroupDAOTest
 	{
 		List<String> u= groupDAO.getAllGroupName();
 		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
+	}
+	
+	/**
+	 * Test de la méthode du DAO permettant  de récupérer une map <idGroup,nameGroup>
+	 */
+	@Test
+	public void testExistNameGroup() 
+	{
+		boolean res = groupDAO.existNameGroup("Enseignant");
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (!res));
+	}
+	
+	/**
+	 * Test de la méthode du DAO permettant  de récupérer une map <idGroup,nameGroup>
+	 */
+	@Test
+	public void testGetAllGroupForMap() 
+	{
+		TreeMap<Long, String> res = groupDAO.getAllGroupForMap();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (res==null));
 	}
 }

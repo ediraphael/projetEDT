@@ -1,6 +1,8 @@
 package bean;
 
-import java.util.List;
+import java.util.TreeMap;
+
+import model.org.persistence.UserEntity;
 
 /**
  * Bean User
@@ -10,30 +12,46 @@ import java.util.List;
 public class UserBean
 {
 	private long id;
+	private long idGroup;
+	private String firstName;
 	private String name;
 	private String email;
-	private String oldEmail;
 	private String password;
 	private String currentPassword;
 	private String newPassword;
 	private String confirmPassword;
-	private String nameGroup;
 	private String passwordTeacher;
-	private List<String> arrayGroupName;
+	private TreeMap<Long, String> mapGroup;
 
+	/**
+	 * Contructeur
+	 */
 	public UserBean() 
 	{
 		super();
 		this.id=0;
+		this.idGroup=0;
+		this.firstName="";
 		this.name="";
 		this.email="";
-		this.oldEmail="";
 		this.password="";
 		this.currentPassword="";
 		this.newPassword="";
 		this.confirmPassword="";
-		this.nameGroup="";
 		this.passwordTeacher="";
+	}
+	
+	/**
+	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
+	 * @param UserEntity
+	 */
+	public void convertEntityToBean(UserEntity userToConvert)
+	{
+		setId(userToConvert.getId());
+		setEmail(userToConvert.getEmail());
+		setFirstName(userToConvert.getFirstName());
+		setName(userToConvert.getName());
+		setIdGroup(userToConvert.getGroupe().getId());
 	}
 
 	/**
@@ -89,16 +107,6 @@ public class UserBean
 		this.confirmPassword = confirmPassword;
 	}
 
-	public String getNameGroup() 
-	{
-		return nameGroup;
-	}
-
-	public void setNameGroup(String nameGroup) 
-	{
-		this.nameGroup = nameGroup;
-	}
-
 	public String getPasswordTeacher()
 	{
 		return passwordTeacher;
@@ -107,16 +115,6 @@ public class UserBean
 	public void setPasswordTeacher(String passwordTeacher)
 	{
 		this.passwordTeacher = passwordTeacher;
-	}
-
-	public List<String> getArrayGroupName() 
-	{
-		return arrayGroupName;
-	}
-
-	public void setArrayGroupName(List<String> arrayGroupName) 
-	{
-		this.arrayGroupName = arrayGroupName;
 	}
 
 	public String getCurrentPassword() 
@@ -139,13 +137,33 @@ public class UserBean
 		this.newPassword = newPassword;
 	}
 
-	public String getOldEmail() 
+	public long getIdGroup() 
 	{
-		return oldEmail;
+		return idGroup;
 	}
 
-	public void setOldEmail(String oldEmail) 
+	public void setIdGroup(long idGroup) 
 	{
-		this.oldEmail = oldEmail;
+		this.idGroup = idGroup;
+	}
+
+	public TreeMap<Long, String> getMapGroup() 
+	{
+		return mapGroup;
+	}
+
+	public void setMapGroup(TreeMap<Long, String> mapGroup) 
+	{
+		this.mapGroup = mapGroup;
+	}
+
+	public String getFirstName() 
+	{
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) 
+	{
+		this.firstName = firstName;
 	}
 }

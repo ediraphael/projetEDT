@@ -15,11 +15,8 @@ import javax.persistence.*;
 ({
     @NamedQuery(name = "UserEntity.findAll", query = "SELECT u FROM UserEntity u"),
     @NamedQuery(name = "UserEntity.findById", query = "SELECT u FROM UserEntity u WHERE u.id = :id"),
-    @NamedQuery(name = "UserEntity.findByName", query = "SELECT u FROM UserEntity u WHERE u.name = :name"),
-    @NamedQuery(name = "UserEntity.findEnseignantByName", query = "SELECT u FROM UserEntity u WHERE u.name = :name and u.groupe = :group"),
     @NamedQuery(name = "UserEntity.findByEmail", query = "SELECT u FROM UserEntity u WHERE u.email = :email"),
-    @NamedQuery(name = "UserEntity.findByEmailAndPwd", query = "SELECT u FROM UserEntity u WHERE u.email = :email and u.password = :pwd"),
-    @NamedQuery(name = "UserEntity.findAllNameByGroup", query = "SELECT u.name FROM UserEntity u WHERE u.groupe = :group")
+    @NamedQuery(name = "UserEntity.findByEmailAndPwd", query = "SELECT u FROM UserEntity u WHERE u.email = :email and u.password = :pwd")
 })
 public class UserEntity implements Serializable 
 {
@@ -32,6 +29,8 @@ public class UserEntity implements Serializable
 	private long id;
 	@Column(name="name")
 	private String name;
+	@Column(name="first_name")
+	private String firstName;
 	@Column(name="email")
 	private String email;
 	@Column(name="password")
@@ -56,6 +55,7 @@ public class UserEntity implements Serializable
 	{
 		super();
 		this.name = u.getName();
+		this.firstName = u.getFirstName();
 		this.email = u.getEmail();
 		this.password = u.getPassword();
 		this.groupe=new GroupEntity(u.getGroupe());
@@ -114,5 +114,15 @@ public class UserEntity implements Serializable
 	public void setGroupe(GroupEntity groupe)
 	{
 		this.groupe = groupe;
+	}
+
+	public String getFirstName() 
+	{
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) 
+	{
+		this.firstName = firstName;
 	}
 }

@@ -23,6 +23,7 @@ public class ClassroomAction extends AbstractAction
 	// bean de formulaire permettant le transfere des informations
 	private ClassroomBean classroomBean;
 	private ArrayList<ClassroomBean> listClassroomBean;
+	
 	//permet de récup l'id pour la suppression et l'affichage en modification
 	private long id;
 
@@ -121,7 +122,9 @@ public class ClassroomAction extends AbstractAction
 			this.classroomBean = new ClassroomBean();
 			this.classroomBean.setId(classroomEntity.getId());
 			this.classroomBean.setName(classroomEntity.getName());
-		} catch (Exception e)
+			session.put(OLD_VALUE, classroomEntity.getName());
+		} 
+		catch (Exception e)
 		{
 			forward=generateError(e);
 		}
@@ -135,15 +138,15 @@ public class ClassroomAction extends AbstractAction
 	{
 		if (classroomBean != null)
 		{
-			if ("".equals(classroomBean.getName()))
+			if (classroomBean.getName().isEmpty())
 			{
 				addFieldError("error.name", getText("validator.field.empty"));
 			}
-			
-			if(!classroomBean.getName().equals(classroomBean.getOldName()))
+
+			if(!classroomBean.getName().equals(session.get(OLD_VALUE)))
 			{
 				if(cdao.existNameClassroom(classroomBean.getName()))
-				addFieldError("error.name",  getText("validator.classroom.exist"));
+					addFieldError("error.name",  getText("validator.classroom.exist"));
 			}
 			
 		}

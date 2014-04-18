@@ -10,7 +10,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 
@@ -40,10 +40,10 @@
 							<td><s:a href="%{url}"><s:property value="dayStart"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="dayEnd"/></s:a></td>
 							<td><s:a href="%{url}"><s:property value="comment"/></s:a></td>
-							<td><s:a href="%{url}"><s:property value="nameUserTeacher"/></s:a></td>
-							<td><s:a href="%{url}"><s:property value="nameSubject"/></s:a></td>
-							<td><s:a href="%{url}"><s:property value="nameClassroom"/></s:a></td>
-							<td><s:a href="%{url}"><s:property value="nameGroup"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="mapTeacher[idTeacher]"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="mapSubject[idSubject]"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="mapClassroom[idClassroom]"/></s:a></td>
+							<td><s:a href="%{url}"><s:property value="mapGroup[idGroup]"/></s:a></td>
 							<td class="bine">
 								<s:url id="url" action="DeleteSchedule">
 									<s:param name="id"><s:property value="id"/></s:param>

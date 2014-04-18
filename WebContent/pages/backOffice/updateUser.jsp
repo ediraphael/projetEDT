@@ -10,7 +10,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 
@@ -23,35 +23,39 @@
 					<div>
 						<s:hidden name="id" value="%{userBean.id}"/>
 						<s:hidden name="userBean.id" value="%{userBean.id}"/>
-						<s:hidden name="userBean.oldEmail" value="%{userBean.email}"/>
 					</div>
 					<table>
 						<tr><td> </td></tr>
 						<tr>
+							<td><s:text name="label.firstname" /></td>
+							<td><s:textfield name="userBean.firstName"  maxlength="100"/></td>
+							<td class="error"><s:fielderror fieldName="error.firstname" /></td>
+						</tr>
+						<tr>
 							<td><s:text name="label.name"/></td>
-							<td><s:textfield name="userBean.name"/></td>
+							<td><s:textfield name="userBean.name"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.group"/></td>
 							<td>
-								<s:select id="groupList" list="userBean.arrayGroupName" name="userBean.nameGroup" />
+								<s:select id="groupList" list="userBean.mapGroup" name="userBean.idGroup" />
 							</td>
 							<td></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.email"/></td>
-							<td><s:textfield name="userBean.email" /></td>
+							<td><s:textfield name="userBean.email"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.email"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.password.new"/></td>
-							<td><s:password name="userBean.newPassword"/></td>
+							<td><s:password name="userBean.newPassword"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.newpassword"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.password.confirm"/></td>
-							<td><s:password name="userBean.confirmPassword"/></td>
+							<td><s:password name="userBean.confirmPassword"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.confirmpassword"/></td>
 						</tr>
 					</table>

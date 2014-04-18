@@ -2,6 +2,7 @@ package unitCase.model.dao;
 
 
 import java.util.List;
+import java.util.TreeMap;
 
 import model.dao.SubjectDAO;
 import model.org.persistence.SubjectEntity;
@@ -78,22 +79,13 @@ public class SubjectDAOTest
 	}
 	
 	/**
-	 * Test de la méthode du DAO permettant de trouver un sujet par son nom
+	 * Méthode permettant de récupérer une map <idSubject,nameSubject>
+	 * 
 	 */
 	@Test
-	public void testGetSubjectByName() 
+	public void testGetAllTeacherForMap() 
 	{
-		SubjectEntity s= sdao.getSubjectByName("Cours magistral");
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (s==null));
-	}
-	
-	/**
-	 * Test de la méthode du DAO permettant de trouver tous les noms de sujets
-	 */
-	@Test
-	public void testGetAllSubjectName() 
-	{
-		List<String> s= sdao.getAllSubjectName();
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (s==null));
+		TreeMap<Long, String> res = sdao.getAllSubjectForMap();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (res==null));
 	}
 }

@@ -12,7 +12,7 @@ function showPwdTeach()
 {
 	var groupIndex= document.getElementById('groupList').selectedIndex ;
 	var groupValue= document.getElementById('groupList').options[groupIndex].value;
-	if(groupValue!='Enseignant')
+	if(groupValue!=1)
 	{
 		hideField('pwdTeacher');
 	}

@@ -10,7 +10,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 
@@ -24,7 +24,7 @@
 						<tr><td> </td></tr>
 						<tr>
 							<td><s:text name="label.name"/></td>
-							<td><s:textfield name="groupBean.name"/></td>
+							<td><s:textfield name="groupBean.name"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 					</table>

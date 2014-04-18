@@ -1,10 +1,10 @@
 package actions.schedule;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 import model.dao.ClassroomDAO;
 import model.dao.GroupDAO;
@@ -32,37 +32,31 @@ public class ScheduleAction extends AbstractAction
 	private ArrayList<ScheduleBean> listScheduleBean;
 
 	// déclaration et initialisation des DAO
-	private GroupDAO groupDao = new GroupDAO();
-	private ClassroomDAO classroomDao = new ClassroomDAO();
-	private UserDAO userDao = new UserDAO();
-	private SubjectDAO subjectDao = new SubjectDAO();
-	private List<String> arrayGroupName;
-	private List<String> arrayClassroomName;
-	private List<String> arrayUserTeacherName;
-	private List<String> arraySubjectName;
+	private GroupDAO gdao = new GroupDAO();
+	private ClassroomDAO cdao = new ClassroomDAO();
+	private UserDAO udao = new UserDAO();
+	private SubjectDAO sbdao = new SubjectDAO();
+	private ScheduleDAO sdao = new ScheduleDAO();
+	
+	//map d'affichage des listes déroulantes
+	private TreeMap<Long, String> mapGroup;
+	private TreeMap<Long, String> mapClassroom;
+	private TreeMap<Long, String> mapTeacher;
+	private TreeMap<Long, String> mapSubject;
+	
 
 	/**
 	 * Execution de l'ajout d'un horaire
 	 */
 	public String execute()
 	{
-		// Sauf si il y a erreur, le traitement est considéré comme étant un
-		// succès
 		forward = FORWARD_SUCCESS;
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		try
 		{
-			// Sauvegarde du user renseigné dans le formulaire
 			ScheduleEntity scheduleEntity = new ScheduleEntity();
-			scheduleEntity.setDayStart(this.scheduleBean.getDayStart());
-			scheduleEntity.setDayEnd(this.scheduleBean.getDayEnd());
-			scheduleEntity.setName(this.scheduleBean.getName());
-			scheduleEntity.setComment(this.scheduleBean.getComment());
-			GroupEntity groupEnseignant = groupDao.getById(1);
-			scheduleEntity.setUserTeacher(this.userDao.getEnseignantByName(this.scheduleBean.getNameUserTeacher(), groupEnseignant));
-			scheduleEntity.setSubject(this.subjectDao.getSubjectByName(this.scheduleBean.getNameSubject()));
-			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
-			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
+			convertCurrentBeanToEntity(scheduleEntity);
+			
 			scheduleDAO.save(scheduleEntity);
 		} catch (Exception e)
 		{
@@ -77,27 +71,16 @@ public class ScheduleAction extends AbstractAction
 	 */
 	public String updateSchedule()
 	{
-		// Sauf si il y a erreur, le traitement est considéré comme étant un
-		// succès
 		forward = FORWARD_SUCCESS;
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		try
 		{
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			ScheduleEntity scheduleEntity = new ScheduleEntity();
 			scheduleEntity.setId(this.scheduleBean.getId());
-			scheduleEntity.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(this.scheduleBean.getDayStart())));
-			scheduleEntity.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(this.scheduleBean.getDayEnd())));
-			scheduleEntity.setName(this.scheduleBean.getName());
-			scheduleEntity.setComment(this.scheduleBean.getComment());
-			GroupEntity groupEnseignant = groupDao.getById(1);
-			scheduleEntity.setUserTeacher(this.userDao.getEnseignantByName(this.scheduleBean.getNameUserTeacher(),groupEnseignant));
-			scheduleEntity.setSubject(this.subjectDao.getSubjectByName(this.scheduleBean.getNameSubject()));
-			scheduleEntity.setClassroom(this.classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom()));
-			scheduleEntity.setGroup(this.groupDao.getGroupByName(this.scheduleBean.getNameGroup()));
-
+			convertCurrentBeanToEntity(scheduleEntity);
 			scheduleDAO.update(scheduleEntity);
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
 			forward = generateError(e);
 		}
@@ -146,18 +129,12 @@ public class ScheduleAction extends AbstractAction
 			}
 			for (ScheduleEntity scheduleEntity : listScheduleEntity)
 			{
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				ScheduleBean scheduleBean = new ScheduleBean();
-				scheduleBean.setId(scheduleEntity.getId());
-				scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
-				scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
-				scheduleBean.setName(scheduleEntity.getName());
-				scheduleBean.setComment(scheduleEntity.getComment());
-				scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
-				scheduleBean.setSubject(scheduleEntity.getSubject().getName());
-				scheduleBean.setClassroom(scheduleEntity.getClassroom().getName());
-				scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
-				scheduleBean.setColorSubject(scheduleEntity.getSubject().getColor());
+				scheduleBean.convertEntityToBean(scheduleEntity);
+				scheduleBean.setMapGroup(gdao.getAllGroupForMap());
+				scheduleBean.setMapClassroom(cdao.getAllClassroomForMap());
+				scheduleBean.setMapSubject(sbdao.getAllSubjectForMap());
+				scheduleBean.setMapTeacher(udao.getAllTeacherForMap());
 				this.listScheduleBean.add(scheduleBean);
 			}
 		} catch (Exception e)
@@ -177,40 +154,35 @@ public class ScheduleAction extends AbstractAction
 	public String openScheduleForm()
 	{
 		forward = FORWARD_SUCCESS;
-		this.arrayGroupName = this.groupDao.getAllGroupName();
-		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
-		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
-		this.arraySubjectName = this.subjectDao.getAllSubjectName();
+		this.mapGroup = this.gdao.getAllGroupForMap();
+		this.mapClassroom = this.cdao.getAllClassroomForMap();
+		this.mapTeacher = this.udao.getAllTeacherForMap();
+		this.mapSubject = this.sbdao.getAllSubjectForMap();
 		return forward;
 	}
 
+	/**
+	 * Méthode permettant de récupérer l'horaire selectionné pour l'afficher en mode modification
+	 * 
+	 */
 	@SkipValidation
 	public String getSchedule()
 	{
 		forward = FORWARD_SUCCESS;
-		ScheduleDAO scheduleDAO = new ScheduleDAO();
+
 		try
 		{
-			ScheduleEntity scheduleEntity = scheduleDAO.getById(this.getId());
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			ScheduleEntity se = sdao.getById(this.getId());
 			this.scheduleBean = new ScheduleBean();
-			this.scheduleBean.setId(scheduleEntity.getId());
-			this.scheduleBean.setName(scheduleEntity.getName());
-			this.scheduleBean.setDayStart(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayStart())));
-			this.scheduleBean.setDayEnd(simpleDateFormat.format(simpleDateFormat.parse(scheduleEntity.getDayEnd())));
-			this.scheduleBean.setComment(scheduleEntity.getComment());
-			this.scheduleBean.setNameUserTeacher(scheduleEntity.getUserTeacher().getName());
-			this.scheduleBean.setNameSubject(scheduleEntity.getSubject().getName());
-			this.scheduleBean.setNameClassroom(scheduleEntity.getClassroom().getName());
-			this.scheduleBean.setNameGroup(scheduleEntity.getGroup().getName());
-			this.scheduleBean.setArrayGroupName(groupDao.getAllGroupName());
-			this.scheduleBean.setArrayClassroomName(classroomDao.getAllClassroomName());
-			this.scheduleBean.setArraySubjectName(subjectDao.getAllSubjectName());
-			this.scheduleBean.setArrayUserTeacher(userDao.getAllUserNameByGroup(groupDao.getGroupByName("Enseignant")));
-			this.arrayGroupName = this.groupDao.getAllGroupName();
-			this.arrayClassroomName = this.classroomDao.getAllClassroomName();
-			this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
-			this.arraySubjectName = this.subjectDao.getAllSubjectName();
+			this.scheduleBean.convertEntityToBean(se);
+			scheduleBean.setMapGroup(gdao.getAllGroupForMap());
+			scheduleBean.setMapClassroom(cdao.getAllClassroomForMap());
+			scheduleBean.setMapSubject(sbdao.getAllSubjectForMap());
+			scheduleBean.setMapTeacher(udao.getAllTeacherForMap());
+			this.mapGroup = this.gdao.getAllGroupForMap();
+			this.mapClassroom = this.cdao.getAllClassroomForMap();
+			this.mapTeacher = this.udao.getAllTeacherForMap();
+			this.mapSubject = this.sbdao.getAllSubjectForMap();
 		} catch (Exception e)
 		{
 			forward = generateError(e);
@@ -250,9 +222,8 @@ public class ScheduleAction extends AbstractAction
 					{
 						String dayStart = scheduleBean.getDayStart();
 						String dayEnd = scheduleBean.getDayEnd();
-						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						Date dayStartDate = simpleDateFormat.parse(dayStart);
-						Date dayEndDate = simpleDateFormat.parse(dayEnd);
+						Date dayStartDate = SIMPLE_DATE_FORMAT.parse(dayStart);
+						Date dayEndDate = SIMPLE_DATE_FORMAT.parse(dayEnd);
 						if (!dayStartDate.before(dayEndDate))
 						{
 							addFieldError("error.dayEnd", getText("validator.field.date.EndError"));
@@ -270,14 +241,14 @@ public class ScheduleAction extends AbstractAction
 				{
 					String dayStart = scheduleBean.getDayStart();
 					String dayEnd = scheduleBean.getDayEnd();
-					ScheduleDAO scheduleDAO = new ScheduleDAO();
-					ClassroomEntity classroom = classroomDao.getClassroomByName(this.scheduleBean.getNameClassroom());
-					GroupEntity group = groupDao.getGroupByName(this.scheduleBean.getNameGroup());
-					GroupEntity groupEnseignant = groupDao.getById(1);
-					UserEntity user = userDao.getEnseignantByName(this.scheduleBean.getNameUserTeacher(), groupEnseignant);
-					List<ScheduleEntity> listClassroom = scheduleDAO.findIfClassroomExist(classroom, dayStart, dayEnd, this.scheduleBean.getId());
-					List<ScheduleEntity> listGroup = scheduleDAO.findIfGroupExist(group, dayStart, dayEnd, this.scheduleBean.getId());
-					List<ScheduleEntity> listUser = scheduleDAO.findIfUserTeacherExist(user, dayStart, dayEnd, this.scheduleBean.getId());
+					ClassroomEntity classroom = cdao.getById(this.scheduleBean.getIdClassroom());
+					GroupEntity group = gdao.getById(this.scheduleBean.getIdGroup());
+					UserEntity user = udao.getById(this.scheduleBean.getIdTeacher());
+					
+					List<ScheduleEntity> listClassroom = sdao.findIfClassroomExist(classroom, dayStart, dayEnd, this.scheduleBean.getId());
+					List<ScheduleEntity> listGroup = sdao.findIfGroupExist(group, dayStart, dayEnd, this.scheduleBean.getId());
+					List<ScheduleEntity> listUser = sdao.findIfUserTeacherExist(user, dayStart, dayEnd, this.scheduleBean.getId());
+					
 					if (listClassroom != null && listClassroom.size() != 0)
 					{
 						addFieldError("error.classroom", getText("validator.classromm.already.use"));
@@ -297,20 +268,38 @@ public class ScheduleAction extends AbstractAction
 
 		}
 
-		this.arrayGroupName = this.groupDao.getAllGroupName();
-		this.arrayClassroomName = this.classroomDao.getAllClassroomName();
-		this.arrayUserTeacherName = this.userDao.getAllUserNameByGroup(this.groupDao.getGroupByName("Enseignant"));
-		this.arraySubjectName = this.subjectDao.getAllSubjectName();
-		scheduleBean.setArrayGroupName(groupDao.getAllGroupName());
-		scheduleBean.setArrayClassroomName(classroomDao.getAllClassroomName());
-		scheduleBean.setArraySubjectName(subjectDao.getAllSubjectName());
-		scheduleBean.setArrayUserTeacher(userDao.getAllUserNameByGroup(groupDao.getGroupByName("Enseignant")));
+		this.mapGroup = this.gdao.getAllGroupForMap();
+		this.mapClassroom = this.cdao.getAllClassroomForMap();
+		this.mapTeacher = this.udao.getAllTeacherForMap();
+		this.mapSubject = this.sbdao.getAllSubjectForMap();
+		scheduleBean.setMapGroup(gdao.getAllGroupForMap());
+		scheduleBean.setMapClassroom(cdao.getAllClassroomForMap());
+		scheduleBean.setMapSubject(sbdao.getAllSubjectForMap());
+		scheduleBean.setMapTeacher(udao.getAllTeacherForMap());
 	}
-
+	
+	
+	/**
+	 * Méthode de conversion avec un ScheduleEntity en entrée et le bean de la classe
+	 * @param UserEntity
+	 * 
+	 */
+	public void convertCurrentBeanToEntity(ScheduleEntity se) throws ParseException
+	{
+		se.setUserTeacher(this.udao.getById(this.scheduleBean.getIdTeacher()));
+		se.setSubject(this.sbdao.getById(this.scheduleBean.getIdSubject()));
+		se.setClassroom(this.cdao.getById(this.scheduleBean.getIdClassroom()));
+		se.setGroup(this.gdao.getById(this.scheduleBean.getIdGroup()));
+		se.setDayStart(this.scheduleBean.getDayStart());
+		se.setDayEnd(this.scheduleBean.getDayEnd());
+		se.setName(this.scheduleBean.getName());
+		se.setComment(this.scheduleBean.getComment());
+	}
+	
+	
 	/**
 	 * Getters and setters
 	 * 
-	 * @return
 	 */
 	public ScheduleBean getScheduleBean()
 	{
@@ -342,43 +331,43 @@ public class ScheduleAction extends AbstractAction
 		this.id = id;
 	}
 
-	public List<String> getArrayGroupName()
+	public TreeMap<Long, String> getMapClassroom() 
 	{
-		return arrayGroupName;
+		return mapClassroom;
 	}
 
-	public void setArrayGroupName(List<String> arrayGroupName)
+	public void setMapClassroom(TreeMap<Long, String> mapClassroom) 
 	{
-		this.arrayGroupName = arrayGroupName;
+		this.mapClassroom = mapClassroom;
 	}
 
-	public List<String> getArrayClassroomName()
+	public TreeMap<Long, String> getMapGroup() 
 	{
-		return arrayClassroomName;
+		return mapGroup;
 	}
 
-	public void setArrayClassroomName(List<String> arrayClassroomName)
+	public void setMapGroup(TreeMap<Long, String> mapGroup) 
 	{
-		this.arrayClassroomName = arrayClassroomName;
+		this.mapGroup = mapGroup;
 	}
 
-	public List<String> getArrayUserTeacherName()
+	public TreeMap<Long, String> getMapTeacher()
 	{
-		return arrayUserTeacherName;
+		return mapTeacher;
 	}
 
-	public void setArrayUserTeacherName(List<String> arrayUserTeacherName)
+	public void setMapTeacher(TreeMap<Long, String> mapTeacher) 
 	{
-		this.arrayUserTeacherName = arrayUserTeacherName;
+		this.mapTeacher = mapTeacher;
 	}
 
-	public List<String> getArraySubjectName()
+	public TreeMap<Long, String> getMapSubject()
 	{
-		return arraySubjectName;
+		return mapSubject;
 	}
 
-	public void setArraySubjectName(List<String> arraySubjectName)
+	public void setMapSubject(TreeMap<Long, String> mapSubject) 
 	{
-		this.arraySubjectName = arraySubjectName;
+		this.mapSubject = mapSubject;
 	}
 }

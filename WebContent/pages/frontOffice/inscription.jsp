@@ -20,40 +20,40 @@
 					<table>
 						<tr><td> </td></tr>
 						<tr>
-							<td><s:text name="label.firstname"/></td>
-							<td><s:textfield name="userBean.firstName"/></td>
-							<td class="error"><s:fielderror fieldName="error.firstName" /></td>
+							<td><s:text name="label.firstname" /></td>
+							<td><s:textfield name="userBean.firstName"  maxlength="100"/></td>
+							<td class="error"><s:fielderror fieldName="error.firstname" /></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.name"/></td>
-							<td><s:textfield name="userBean.name"/></td>
+							<td><s:textfield name="userBean.name"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.group"/></td>
 							<td>
-								<s:select id="groupList" list="userBean.arrayGroupName" name="userBean.nameGroup" onchange="showPwdTeach()" />
+								<s:select id="groupList" list="userBean.mapGroup" name="userBean.idGroup" onchange="showPwdTeach()" />
 							</td>
 							<td></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.email"/></td>
-							<td><s:textfield name="userBean.email" /></td>
+							<td><s:textfield name="userBean.email"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.email"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.password"/></td>
-							<td><s:password name="userBean.password"/></td>
+							<td><s:password name="userBean.password"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.password"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.password.confirm"/></td>
-							<td><s:password name="userBean.confirmPassword"/></td>
+							<td><s:password name="userBean.confirmPassword"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.confirmpassword"/></td>
 						</tr>
 						<tr id="pwdTeacher">
-							<td><s:text name="label.password.teacher"/></td>
-							<td><s:password name="userBean.passwordTeacher" /></td>
+							<td><s:text name="label.password.teacher" /></td>
+							<td><s:password name="userBean.passwordTeacher"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.teacherpassword"/></td>
 						</tr>
 					</table>

@@ -347,7 +347,8 @@ input,select
 	text-align: center;
 }
 
-input[type="radio"] {
+input[type="radio"] 
+{
 	margin:10px;
 	width:25px;
 }

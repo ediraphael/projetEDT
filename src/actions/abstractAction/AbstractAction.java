@@ -1,5 +1,6 @@
 package actions.abstractAction;
 
+import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,12 +27,24 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	protected Map<String, Object> session;
 	//pattern de vérification d'un email
 	protected static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-	//nom du groupe enseignant 
-	protected static final String GROUP_NAME_TEACHER="Enseignant";
+	//id de l'enseignant
+	protected static final long GROUP_ID_TEACHER=1;
+	//id de l'etudiant
+	protected static final long GROUP_ID_ETU=2;
+	//variable afin de mettre en session une ancienne valeur dans le cadre des test de validation des modules
+	protected static final String OLD_VALUE="oldValue";
+	//variable afin de mettre en session le user courant
+	protected static final String USER="user";
+	//variable afin de mettre en session le nom du groupe du user courant
+	protected static final String USER_GROUP="userGroup";
+	//format date de l'application
+	public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
 	//valeurs de forward
 	protected static final String FORWARD_SUCCESS = "SUCCESS";
 	protected static final String FORWARD_ERROR = "ERROR";
 	protected static final String FORWARD_INPUT = "input";
+	
 	//permet de remonter l'erreur
 	protected ErrorBean error; 
 	
@@ -57,6 +70,10 @@ public class AbstractAction extends ActionSupport implements SessionAware
 		return matcher.matches();
 	}
 	
+	/**
+	 * Méthode qui va mettre en forme les erreurs pour les afficher comme il se doit
+	 * 
+	 */
 	protected String generateError(Exception e)
 	{
 		error = new ErrorBean();
@@ -86,7 +103,10 @@ public class AbstractAction extends ActionSupport implements SessionAware
 		return session;
 	}
 
-
+	/**
+	 * container des erreurs
+	 * 
+	 */
 	public ErrorBean getError() 
 	{
 		return error;

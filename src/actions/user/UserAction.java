@@ -48,10 +48,13 @@ public class UserAction extends AbstractAction
 			List<UserEntity> listUserEntity = uDao.getAll();
 			for (UserEntity userEntity : listUserEntity)
 			{
-				UserBean userBean = convertEntityToBean(userEntity);
+				UserBean userBean=new UserBean();
+				userBean.convertEntityToBean(userEntity);
+				userBean.setMapGroup(gdao.getAllGroupForMap());
 				this.listUserBean.add(userBean);
 			}
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
 			forward=generateError(e);
 		}
@@ -69,9 +72,12 @@ public class UserAction extends AbstractAction
 		try
 		{
 			UserEntity userEntity = (UserEntity) uDao.getById(this.id);
-			this.userBean = convertEntityToBean(userEntity);
-			this.userBean.setArrayGroupName(gdao.getAllGroupName());
-		} catch (Exception e)
+			this.userBean=new UserBean();
+			this.userBean.convertEntityToBean(userEntity);
+			this.userBean.setMapGroup(gdao.getAllGroupForMap());
+			session.put(OLD_VALUE, userBean.getEmail());
+		} 
+		catch (Exception e)
 		{
 			forward=generateError(e);
 		}
@@ -105,9 +111,10 @@ public class UserAction extends AbstractAction
 		try
 		{
 			UserEntity userEntity=uDao.getById(userBean.getId());
-			convertBeanToEntity(userBean, userEntity);
+			convertCurrentBeanToEntity(userEntity);
 			uDao.update(userEntity);
-		} catch (Exception e)
+		} 
+		catch (Exception e)
 		{
 			forward=generateError(e);
 		}
@@ -122,6 +129,11 @@ public class UserAction extends AbstractAction
 	{
 		if(userBean!=null)
 		{
+			//test si le nom est renseigné
+			if(userBean.getFirstName().isEmpty())
+			{
+				addFieldError("error.firstname", getText("validator.field.empty"));
+			}
 
 			//test si le nom est renseigné
 			if(userBean.getName().isEmpty())
@@ -163,7 +175,7 @@ public class UserAction extends AbstractAction
 				}
 			}
 
-			if(!userBean.getEmail().equals(userBean.getOldEmail()))
+			if(!userBean.getEmail().equals(session.get(OLD_VALUE)))
 			{
 				if(uDao.existEmailUser(userBean.getEmail()))
 					addFieldError("error.email",  getText("validator.user.exist"));
@@ -171,40 +183,22 @@ public class UserAction extends AbstractAction
 		}		
 
 		//rechargement de la liste des groupe pour réafficher la page des inscriptions
-		userBean.setArrayGroupName(gdao.getAllGroupName());
+		userBean.setMapGroup(gdao.getAllGroupForMap());
 	}
 
 	
 	/**
-	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
+	 * Méthode de conversion avec un userEntity en entrée et le bean de la classe
 	 * @param UserEntity
 	 * @return UserBean
 	 */
-	private UserBean convertEntityToBean(UserEntity userToConvert)
+	private void convertCurrentBeanToEntity(UserEntity userResult)
 	{
-		UserBean userResult = new UserBean();
-		
-		userResult.setId(userToConvert.getId());
-		userResult.setEmail(userToConvert.getEmail());
-		userResult.setName(userToConvert.getName());
-		userResult.setNameGroup(userToConvert.getGroupe().getName());
-		userResult.setArrayGroupName(gdao.getAllGroupName());
-		
-		return userResult;
-	}
-	
-	/**
-	 * Méthode de conversion avec un userEntity en entrée et un userBean en sortie
-	 * @param UserEntity
-	 * @return UserBean
-	 */
-	private void convertBeanToEntity(UserBean userToConvert, UserEntity userResult)
-	{
-		userResult.setEmail(userToConvert.getEmail());
-		userResult.setName(userToConvert.getName());
-		userResult.setGroupe(gdao.getGroupByName(userToConvert.getNameGroup()));
-		if(!userToConvert.getConfirmPassword().isEmpty())
-			userResult.setPassword(userToConvert.getConfirmPassword());
+		userResult.setEmail(this.userBean.getEmail());
+		userResult.setName(this.userBean.getName());
+		userResult.setGroupe(gdao.getById(this.userBean.getIdGroup()));
+		if(!this.userBean.getConfirmPassword().isEmpty())
+			userResult.setPassword(this.userBean.getConfirmPassword());
 	}
 	
 	/**

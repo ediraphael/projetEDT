@@ -1,6 +1,8 @@
 package model.dao;
 
 import java.util.List;
+import java.util.TreeMap;
+
 
 import javax.persistence.Query;
 
@@ -55,24 +57,21 @@ public class ClassroomDAO extends AbstractDAO<ClassroomEntity>
 	}
 
 	/**
-	 * Méthode permettant de récupérer une salle grace à son nom
+	 * Méthode permettant de récupérer une map <idClassroom,nameClassroom>
 	 * 
 	 */
-	public ClassroomEntity getClassroomByName(String name)
+	public TreeMap<Long,String> getAllClassroomForMap()
 	{
 		initEntityManager();
-		ClassroomEntity classroomEntity;
-		try
+		TreeMap<Long,String> allClassroomName = new TreeMap<Long,String>();
+		List<ClassroomEntity> listAll = getAll();
+		for (int i = 0; i < listAll.size(); i++) 
 		{
-			Query q = getEntityManager().createNamedQuery("ClassroomEntity.findByName").setParameter("name", name);
-			classroomEntity = (q.getResultList().size()!=0) ? (ClassroomEntity) q.getResultList().get(0) : null ;
-		} finally
-		{
-			getEntityManager().close();
-		}
-		return classroomEntity;
+			allClassroomName.put(listAll.get(i).getId(), listAll.get(i).getName());
+		}			
+		return allClassroomName;
 	}
-	
+
 	/**
 	 * Méthode permettant de savoir si le nom de la classroom existe deja 
 	 * @param name
@@ -82,9 +81,13 @@ public class ClassroomDAO extends AbstractDAO<ClassroomEntity>
 	{
 		boolean res = false;
 		
-		if(getClassroomByName(name)!=null)
+		List<String> listName= getAllClassroomName();
+		for (int i = 0; i < listName.size(); i++) 
 		{
-			res=true;
+			if(listName.get(i)!=null && listName.get(i).equals(name))
+			{
+				res=true;
+			}
 		}
 		return res;
 	}

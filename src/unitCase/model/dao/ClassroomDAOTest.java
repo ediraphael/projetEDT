@@ -1,6 +1,7 @@
 package unitCase.model.dao;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import model.dao.ClassroomDAO;
 import model.org.persistence.ClassroomEntity;
@@ -74,16 +75,6 @@ public class ClassroomDAOTest
 		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (c==null));
 	}
 	
-
-	/**
-	 * Test de la méthode du DAO permettant de trouver une salle par son nom
-	 */
-	@Test
-	public void testGetClassroomByName() 
-	{
-		ClassroomEntity c= classroomDAO.getClassroomByName("A005");
-		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (c==null || c.getId()<0));
-	}
 	
 	/**
 	 * Test de la méthode du DAO permettant de trouver tous les noms des salles
@@ -93,5 +84,26 @@ public class ClassroomDAOTest
 	{
 		List<String> u= classroomDAO.getAllClassroomName();
 		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
+	}
+	
+	
+	/**
+	 * Test de la méthode du DAO permettant de récupérer une map <idClassroom,nameClassroom>
+	 */
+	@Test
+	public void testGetAllClassroomForMap() 
+	{
+		TreeMap<Long, String> u= classroomDAO.getAllClassroomForMap();
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (u==null));
+	}
+	
+	/**
+	 * Test de la méthode du DAO permettant  de savoir si le nom d'une salle existe
+	 */
+	@Test
+	public void testExistNameGroup() 
+	{
+		boolean res = classroomDAO.existNameClassroom("A005");
+		Assert.assertFalse("Soit la base est vide, soit la méthode ne fonctionne pas", (!res));
 	}
 }

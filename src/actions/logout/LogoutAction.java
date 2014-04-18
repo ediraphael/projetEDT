@@ -18,7 +18,8 @@ public class LogoutAction extends AbstractAction
 	public String execute()
 	{
 		forward=FORWARD_SUCCESS;
-		session.remove("user");		
+		session.remove(USER);	
+		session.remove(USER_GROUP);
 		return forward;
 	}
 }

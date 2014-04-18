@@ -7,7 +7,7 @@
 			<s:property value="#session.user.firstName" />
 			<s:property value="#session.user.name" /><br/>
 			-
-			<br/><s:property value="#session.user.nameGroup" />
+			<br/><s:property value="#session.userGroup" />
 		</p>
 	</s:if>
 </div>

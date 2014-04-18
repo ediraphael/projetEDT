@@ -13,7 +13,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 
@@ -27,42 +27,42 @@
 						<tr><td></td></tr>
 						<tr>
 							<td><s:text name="label.name"/></td>
-							<td><s:textfield name="scheduleBean.name" cssClass="text"/></td>
+							<td><s:textfield name="scheduleBean.name" cssClass="text"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.name"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayStart"/></td>
-							<td><s:textfield id="heure_debut" name="scheduleBean.dayStart" key="label.dayStart" /></td>
+							<td><s:textfield id="heure_debut" name="scheduleBean.dayStart" key="label.dayStart"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.dayStart"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayEnd"/></td>
-							<td><s:textfield id="heure_fin" name="scheduleBean.dayEnd" key="label.dayEnd" /></td>
+							<td><s:textfield id="heure_fin" name="scheduleBean.dayEnd" key="label.dayEnd"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.dayEnd"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.comment"/></td>
-							<td><s:textfield name="scheduleBean.comment" /></td>
+							<td><s:textfield name="scheduleBean.comment"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.comment"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.group"/></td>				
-							<td><s:select name="scheduleBean.nameGroup" list="arrayGroupName" /></td>
+							<td><s:select name="scheduleBean.idGroup" list="mapGroup" /></td>
 							<td class="error"><s:fielderror fieldName="error.group"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.classroom"/></td>		
-							<td><s:select name="scheduleBean.nameClassroom" list="arrayClassroomName" /></td>
+							<td><s:select name="scheduleBean.idClassroom" list="mapClassroom" /></td>
 							<td class="error"><s:fielderror fieldName="error.classroom"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.userTeacher"/></td>
-							<td><s:select name="scheduleBean.nameUserTeacher" list="arrayUserTeacherName" /></td>
+							<td><s:select name="scheduleBean.idTeacher" list="mapTeacher" /></td>
 							<td class="error"><s:fielderror fieldName="error.userTeacher"/></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.subject"/></td>
-							<td><s:select name="scheduleBean.nameSubject" list="arraySubjectName" /></td>
+							<td><s:select name="scheduleBean.idSubject" list="mapSubject" /></td>
 							<td class="error"><s:fielderror fieldName="error.subject"/></td>
 						</tr>
 					</table>

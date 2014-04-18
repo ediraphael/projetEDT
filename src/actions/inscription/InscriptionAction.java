@@ -39,13 +39,15 @@ public class InscriptionAction extends AbstractAction
 			//On prépare l'enregistrement en reprenant les informations bean
 			UserEntity userToSave = new UserEntity();
 			userToSave.setName(userBean.getName());
+			userToSave.setFirstName(userBean.getFirstName());
 			userToSave.setEmail(userBean.getEmail());
 			userToSave.setPassword(userBean.getPassword());
-			userToSave.setGroupe(gdao.getGroupByName(userBean.getNameGroup()));
+			userToSave.setGroupe(gdao.getById(userBean.getIdGroup()));
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.save(userToSave);
 			session.remove("pwdTeacher");
-			session.put("user", userBean);
+			session.put(USER, userBean);
+			session.put(USER_GROUP, userToSave.getGroupe().getName());
 		}
 		catch(Exception e)
 		{
@@ -64,7 +66,7 @@ public class InscriptionAction extends AbstractAction
 		forward=FORWARD_SUCCESS;
 		userBean=new UserBean();
 		//pour ouvrir le formulaire d'inscription il faut charger la liste des groupes existant
-		userBean.setArrayGroupName(gdao.getAllGroupName());
+		userBean.setMapGroup(gdao.getAllGroupForMap());
 		//De meme, il faut récupérer le password prof pour le test lors de l'inscription
 		session.put("pwdTeacher",pdao.getPasswordTeacher());
 		return forward;
@@ -75,6 +77,12 @@ public class InscriptionAction extends AbstractAction
 	 */
 	public void validate()
 	{
+		//test si le nom est renseigné
+		if(userBean.getFirstName().isEmpty())
+		{
+			addFieldError("error.firstname", getText("validator.field.empty"));
+		}
+
 		//test si le nom est renseigné
 		if(userBean.getName().isEmpty())
 		{
@@ -90,6 +98,10 @@ public class InscriptionAction extends AbstractAction
 		else if(!emailValidator(userBean.getEmail()))
 		{
 			addFieldError("error.email", getText("validator.mail.false"));
+		}
+		else if (udao.existEmailUser(userBean.getEmail()))
+		{
+			addFieldError("error.email", getText("validator.user.exist"));
 		}
 		
 		//test si le password est renseigné
@@ -109,7 +121,7 @@ public class InscriptionAction extends AbstractAction
 		}
 		
 		//test si le groupe choisi est Enseignant, alors il faut le mot de passe d'inscription
-		if(GROUP_NAME_TEACHER.equals(userBean.getNameGroup()))
+		if(userBean.getIdGroup()==GROUP_ID_TEACHER)
 		{
 			if(userBean.getPasswordTeacher().isEmpty())
 			{
@@ -121,7 +133,7 @@ public class InscriptionAction extends AbstractAction
 			}
 		}
 		//rechargement de la liste des groupe pour réafficher la page des inscriptions
-		userBean.setArrayGroupName(gdao.getAllGroupName());
+		userBean.setMapGroup(gdao.getAllGroupForMap());
 	}
 
 

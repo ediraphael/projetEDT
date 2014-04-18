@@ -10,7 +10,7 @@
 	<body>
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
-			<s:if test="#session.user.nameGroup=='Enseignant'">
+			<s:if test="#session.user.idGroup==1">
 			</s:if>
 			<s:else>
 				<% response.sendRedirect("AccessDenied");	%> 
@@ -26,7 +26,7 @@
 					</tr>
 					<s:iterator value="listGroupBean" id="group">
 						<tr>
-							<s:if test="%{id<=2 }">
+							<s:if test="%{id<=2}">
 								<td><s:property value="name"/></td>
 								<td class="bine">
 									<a href="#">

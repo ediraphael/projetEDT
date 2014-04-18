@@ -112,6 +112,7 @@ public class GroupAction extends AbstractAction
 			this.groupBean = new GroupBean();
 			this.groupBean.setId(groupEntity.getId());
 			this.groupBean.setName(groupEntity.getName());
+			session.put(OLD_VALUE, groupEntity.getName());
 		} 
 		catch (Exception e)
 		{
@@ -152,9 +153,9 @@ public class GroupAction extends AbstractAction
 				addFieldError("error.name", getText("validator.field.empty"));
 			}
 
-			if(!groupBean.getName().equals(groupBean.getOldName()))
+			if(!groupBean.getName().equals(session.get(OLD_VALUE)))
 			{
-				if(gdao.existNameClassroom(groupBean.getName()))
+				if(gdao.existNameGroup(groupBean.getName()))
 					addFieldError("error.name",  getText("validator.group.exist"));
 			}
 		}

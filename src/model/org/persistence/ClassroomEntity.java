@@ -10,8 +10,7 @@ import javax.persistence.*;
 ({
     @NamedQuery(name = "ClassroomEntity.findAll", query = "SELECT cr FROM ClassroomEntity cr"),
     @NamedQuery(name = "ClassroomEntity.findAllName", query = "SELECT cr.name FROM ClassroomEntity cr"),
-    @NamedQuery(name = "ClassroomEntity.findById", query = "SELECT cr FROM ClassroomEntity cr WHERE cr.id = :id"),
-    @NamedQuery(name = "ClassroomEntity.findByName", query = "SELECT cr FROM ClassroomEntity cr WHERE cr.name = :name"),
+    @NamedQuery(name = "ClassroomEntity.findById", query = "SELECT cr FROM ClassroomEntity cr WHERE cr.id = :id")
 })
 public class ClassroomEntity implements Serializable 
 {

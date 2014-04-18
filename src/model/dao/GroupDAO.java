@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.persistence.Query;
 
@@ -33,25 +34,6 @@ public class GroupDAO extends AbstractDAO<GroupEntity>
 	}
 	
 	/**
-	 * Methode permetant de récupérer un groupe avec son nom 
-	 * @param name
-	 */
-	public GroupEntity getGroupByName(String name)
-	{
-		initEntityManager();
-		GroupEntity groupEntity;
-		try
-		{
-			Query q = getEntityManager().createNamedQuery("GroupEntity.findByName").setParameter("name", name);
-			groupEntity = (q.getResultList().size()!=0) ? (GroupEntity) q.getResultList().get(0) : null ;
-		} finally
-		{
-			getEntityManager().close();
-		}
-		return groupEntity;
-	}
-	
-	/**
 	 * Methode permetant de récupérer les noms de tous les groupes
 	 * @param name
 	 */
@@ -72,17 +54,37 @@ public class GroupDAO extends AbstractDAO<GroupEntity>
 	}
 	
 	/**
+	 * Méthode permettant de récupérer une map <idGroup,nameGroup>
+	 * 
+	 */
+	public TreeMap<Long,String> getAllGroupForMap()
+	{
+		initEntityManager();
+		TreeMap<Long,String> allGroupName = new TreeMap<Long,String>();
+		List<GroupEntity> listAll = getAll();
+		for (int i = 0; i < listAll.size(); i++) 
+		{
+			allGroupName.put(listAll.get(i).getId(), listAll.get(i).getName());
+		}			
+		return allGroupName;
+	}
+	
+	/**
 	 * Méthode permettant de savoir si le nom du groupe existe deja 
 	 * @param name
 	 * @return
 	 */
-	public boolean existNameClassroom(String name)
+	public boolean existNameGroup(String name)
 	{
 		boolean res = false;
 		
-		if(getGroupByName(name)!=null)
+		List<String> listName= getAllGroupName();
+		for (int i = 0; i < listName.size(); i++) 
 		{
-			res=true;
+			if(listName.get(i)!=null && listName.get(i).equals(name))
+			{
+				res=true;
+			}
 		}
 		return res;
 	}

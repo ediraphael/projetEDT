@@ -20,13 +20,13 @@
 						<tr><td> </td></tr>
 						<tr>
 							<td><s:text name="label.email"/></td>
-							<td><s:textfield name="userBean.email"/></td>
+							<td><s:textfield name="userBean.email"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.email"/></td>
 						</tr>
 						<tr><td> </td></tr>
 						<tr>
 							<td><s:text name="label.password"/></td>
-							<td><s:password name="userBean.password"/></td>
+							<td><s:password name="userBean.password"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.password"/></td>
 						</tr>
 					</table>

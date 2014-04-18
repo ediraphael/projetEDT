@@ -121,13 +121,13 @@ CREATE TABLE IF NOT EXISTS `schedule` (
 
 INSERT INTO `schedule` (`id_schedule`, `day_start`, `day_end`, `name`, `comment`, `id_user_teacher`, `id_subject`, `id_classroom`, `id_group_user`) VALUES
 (3, '2014-04-14 09:00:00', '2014-04-14 11:30:00', 'Optimisation Lineaire', '', 1, 2, 1, 4),
-(4, '2014-04-14 14:00:00', '2014-04-14 16:00:00', 'langages et Compilation', '', 2, 2, 1, 4),
-(5, '2014-04-15 09:30:00', '2014-04-15 12:20:00', ' Resolution de problemes', '', 1, 1, 1, 4),
-(6, '2014-04-15 14:00:00', '2014-04-15 17:00:00', 'Developpement Web', '', 2, 1, 1, 4),
-(7, '2014-04-16 09:30:00', '2014-04-16 12:00:00', 'Resolution de problemes', '', 1, 1, 1, 4),
+(4, '2014-04-14 14:00:00', '2014-04-14 16:00:00', 'Langages et Compilation', '', 2, 2, 1, 4),
+(5, '2014-04-15 09:30:00', '2014-04-15 12:20:00', ' Résolution de problèmes', '', 1, 1, 1, 4),
+(6, '2014-04-15 14:00:00', '2014-04-15 17:00:00', 'Développement Web', '', 2, 1, 1, 4),
+(7, '2014-04-16 09:30:00', '2014-04-16 12:00:00', 'Résolution de problèmes', '', 1, 1, 1, 4),
 (8, '2014-04-16 14:00:00', '2014-04-16 17:30:00', 'Optimisation combinatoire', '', 2, 2, 1, 4),
 (9, '2014-04-17 09:00:00', '2014-04-17 11:00:00', 'Frameworks et langages', '', 1, 3, 1, 4),
-(10, '2014-04-17 11:15:00', '2014-04-17 12:15:00', 'Presentation projets', '', 2, 3, 1, 4),
+(10, '2014-04-17 11:15:00', '2014-04-17 12:15:00', 'Présentation projets', '', 2, 3, 1, 4),
 (11, '2014-04-17 14:00:00', '2014-04-17 15:30:00', 'Optimisation', '', 1, 3, 1, 4),
 (12, '2014-04-17 16:00:00', '2014-04-17 17:00:00', 'Optimisation combinatoire', '', 2, 3, 1, 4);
 
@@ -153,8 +153,8 @@ CREATE TABLE IF NOT EXISTS `subject` (
 INSERT INTO `subject` (`id_subject`, `name`, `short_name`, `color`) VALUES
 (1, 'Cours magistral', 'CM', '#FAF616'),
 (2, 'Travaux pratiques', 'TP', '#FF771C'),
-(3, 'Devoir surveille', 'DS', '#FF0000'),
-(4, 'Cours annule', 'Annule', '#BF00E6');
+(3, 'Devoir surveillé', 'DS', '#FF0000'),
+(4, 'Cours annulé', 'Annulé', '#BF00E6');
 
 
 -- --------------------------------------------------------
@@ -168,24 +168,26 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
+  `first_name` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `id_group_user` int(11) NOT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `id_group_user` (`id_group_user`)
+  KEY `id_group_user` (`id_group_user`),
+     UNIQUE (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email`, `password`, `name`, `id_group_user`) VALUES
-(1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire Lefevre', 1),
-(2, 'chhel@univ-angers.fr', 'chhel', 'Fabien Chhel', 1),
-(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian Coffinet', 4),
-(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël Fardilha', 4),
-(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault Gauthier', 4),
-(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël Pillié', 4),
-(7, 'noname@univ-angers.fr', 'noname', 'No Name', 3);
+INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group_user`) VALUES
+(1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire','Lefevre', 1),
+(2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
+(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian','Coffinet', 4),
+(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël','Fardilha', 4),
+(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault','Gauthier', 4),
+(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël','Pillié', 4),
+(7, 'noname@univ-angers.fr', 'noname', 'No','Name', 3);
 
 --
 -- Contraintes pour les tables exportées
