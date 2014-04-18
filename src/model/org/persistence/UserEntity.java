@@ -16,7 +16,8 @@ import javax.persistence.*;
     @NamedQuery(name = "UserEntity.findAll", query = "SELECT u FROM UserEntity u"),
     @NamedQuery(name = "UserEntity.findById", query = "SELECT u FROM UserEntity u WHERE u.id = :id"),
     @NamedQuery(name = "UserEntity.findByEmail", query = "SELECT u FROM UserEntity u WHERE u.email = :email"),
-    @NamedQuery(name = "UserEntity.findByEmailAndPwd", query = "SELECT u FROM UserEntity u WHERE u.email = :email and u.password = :pwd")
+    @NamedQuery(name = "UserEntity.findByEmailAndPwd", query = "SELECT u FROM UserEntity u WHERE u.email = :email and u.password = :pwd"),
+    @NamedQuery(name = "UserEntity.findByGroup", query = "SELECT u FROM UserEntity u WHERE u.group = :group")
 })
 public class UserEntity implements Serializable 
 {
@@ -37,7 +38,7 @@ public class UserEntity implements Serializable
 	private String password;
 	@ManyToOne
 	@JoinColumn(name="id_group_user")
-	private GroupEntity groupe;
+	private GroupEntity group;
 
 	/**
 	 * Constructeur par defaut
@@ -58,7 +59,7 @@ public class UserEntity implements Serializable
 		this.firstName = u.getFirstName();
 		this.email = u.getEmail();
 		this.password = u.getPassword();
-		this.groupe=new GroupEntity(u.getGroupe());
+		this.group=new GroupEntity(u.getGroupe());
 	}
 	
 	
@@ -108,12 +109,12 @@ public class UserEntity implements Serializable
 
 	public GroupEntity getGroupe()
 	{
-		return groupe;
+		return group;
 	}
 
 	public void setGroupe(GroupEntity groupe)
 	{
-		this.groupe = groupe;
+		this.group = groupe;
 	}
 
 	public String getFirstName() 
