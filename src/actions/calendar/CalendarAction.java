@@ -27,8 +27,8 @@ public class CalendarAction extends AbstractAction
 	private long id;
 	private String dayMin;
 	private String dayMax;
-	private String view;
-	private ArrayList<String> listView = new ArrayList<String>();
+	private Long view;
+	private TreeMap<Long,String> listView = new TreeMap<Long,String>();
 
 	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
@@ -65,10 +65,10 @@ public class CalendarAction extends AbstractAction
 	public String showSchedule()
 	{
 		forward = FORWARD_SUCCESS;
-		this.listView = new ArrayList<String>();
-		this.listView.add(getText("label.type.calendar.normal"));
-		this.listView.add(getText("label.type.calendar.compact"));
-		this.listView.add(getText("label.type.calendar.resume"));
+		this.listView = new TreeMap<Long,String>();
+		this.listView.put(NORMAL,getText("label.type.calendar.normal"));
+		this.listView.put(COMPACT, getText("label.type.calendar.compact"));
+		this.listView.put(RESUME,getText("label.type.calendar.resume"));
 		this.listScheduleBean = new ArrayList<ScheduleBean>();
 		try
 		{
@@ -226,34 +226,26 @@ public class CalendarAction extends AbstractAction
 		this.dayMax = dayMax;
 	}
 
-	public String getView()
+	public Long getView()
 	{
 		return view;
 	}
 
-	public void setView(String view)
+	public void setView(Long view)
 	{
 		this.view = view;
 	}
 
-	public ArrayList<String> getListView()
-	{
-		return listView;
-	}
 
-	public void setListView(ArrayList<String> listView)
+	public long getDefaultViewValue()
 	{
-		this.listView = listView;
-	}
-
-	public String getDefaultViewValue()
-	{
-		if (this.view != null && !"".equals(this.view))
+		if (this.view != null && this.view!=0)
 		{
 			return this.view;
-		} else
+		} 
+		else
 		{
-			return this.listView.get(0);
+			return 0l;
 		}
 	}
 
@@ -295,5 +287,15 @@ public class CalendarAction extends AbstractAction
 	public void setMapSubject(TreeMap<Long, String> mapSubject)
 	{
 		this.mapSubject = mapSubject;
+	}
+
+	public TreeMap<Long, String> getListView() 
+	{
+		return listView;
+	}
+
+	public void setListView(TreeMap<Long, String> listView) 
+	{
+		this.listView = listView;
 	}
 }

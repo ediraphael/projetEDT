@@ -15,8 +15,8 @@
 	<script type="text/javascript" src="/ProjetEDT/javascript/calendar/date.js"></script>
 	<script type='text/javascript' src='/ProjetEDT/javascript/calendar/jquery.weekcalendar.js'></script>
 	<s:set name="view" value="view"/>
-	<s:if test="%{#view!='Resume'}">
-	<s:if test="%{#view=='Compact'}">
+	<s:if test="%{#view!=2}">
+	<s:if test="%{#view==1}">
 	<script type='text/javascript'>
 	var year = new Date().getFullYear();
 	var month = new Date().getMonth();
@@ -179,7 +179,7 @@
 					<div><s:submit key="label.valide"  cssClass="user_button"/></div>
 				</s:form>
 				<div id='calendar'>
-					<s:if test="%{#view=='Resume'}">
+					<s:if test="%{#view==2}">
 						<table>
 						<tr>
 							<td><s:text name="label.dayStart"/></td>

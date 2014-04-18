@@ -27,6 +27,12 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	protected Map<String, Object> session;
 	//pattern de vérification d'un email
 	protected static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	
+	//variable d'affichage du type calendrier
+	protected static final long NORMAL=0;
+	protected static final long COMPACT=1;
+	protected static final long RESUME=2;
+	
 	//id de l'enseignant
 	protected static final long GROUP_ID_TEACHER=1;
 	//id de l'etudiant
