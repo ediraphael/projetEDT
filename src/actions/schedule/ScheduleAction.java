@@ -250,7 +250,9 @@ public class ScheduleAction extends AbstractAction
 					List<ScheduleEntity> listUser = sdao.findIfUserTeacherExist(user, dayStart, dayEnd, this.scheduleBean.getId());
 					if(this.scheduleBean.getIdGroup()>2)
 					{
-						List<ScheduleEntity> listEtud = sdao.findIfGroupExist(group, dayStart, dayEnd, 2);
+						System.out.println("ixi");
+						GroupEntity groupEtu = gdao.getById(GROUP_ID_ETU);
+						List<ScheduleEntity> listEtud = sdao.findIfGroupExist(groupEtu, dayStart, dayEnd, this.scheduleBean.getId());
 						if (listEtud != null && listEtud.size() != 0)
 						{
 							addFieldError("error.group", getText("validator.group.already.use"));
