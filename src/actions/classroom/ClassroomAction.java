@@ -3,6 +3,8 @@ package actions.classroom;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import model.dao.ClassroomDAO;
 import model.org.persistence.ClassroomEntity;
 import actions.abstractAction.AbstractAction;
@@ -69,6 +71,7 @@ public class ClassroomAction extends AbstractAction
 	/**
 	 * Méthode permettant de supprimer une salle
 	 */
+	@SkipValidation 
 	public String deleteClassroom()
 	{
 		forward = FORWARD_SUCCESS;
@@ -88,6 +91,7 @@ public class ClassroomAction extends AbstractAction
 	 * Méthode permettant d'afficher la liste des salles 
 	 * @return
 	 */
+	@SkipValidation 
 	public String showClassroom()
 	{
 		forward = FORWARD_SUCCESS;
@@ -113,6 +117,7 @@ public class ClassroomAction extends AbstractAction
 	 * Méthode permettant de récupérer la salle selectionné pour l'afficher en mode modification
 	 * 
 	 */
+	@SkipValidation 
 	public String getClassroom()
 	{
 		forward = FORWARD_SUCCESS;
