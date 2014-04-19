@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "classroom")
 @NamedQueries
 ({
-    @NamedQuery(name = "ClassroomEntity.findAll", query = "SELECT cr FROM ClassroomEntity cr"),
+    @NamedQuery(name = "ClassroomEntity.findAll", query = "SELECT cr FROM ClassroomEntity cr order by cr.name"),
     @NamedQuery(name = "ClassroomEntity.findAllName", query = "SELECT cr.name FROM ClassroomEntity cr"),
     @NamedQuery(name = "ClassroomEntity.findById", query = "SELECT cr FROM ClassroomEntity cr WHERE cr.id = :id")
 })

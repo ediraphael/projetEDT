@@ -3,17 +3,18 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
-		<title><s:text name="title.calendar"/></title>
-		<link rel="stylesheet" type='text/css' href="/ProjetEDT/css/smoothness/jquery-ui-1.10.4.custom.css"/>
-		<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
+	<title><s:text name="title.calendar"/></title>
+	<link rel="stylesheet" type='text/css' href="/ProjetEDT/css/smoothness/jquery-ui-1.10.4.custom.css"/>
+	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery-ui-1.8.11.custom.css' />
 	<link rel='stylesheet' type='text/css' href='/ProjetEDT/css/jquery.weekcalendar.css' />
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-1.4.4.min.js'></script>
 	<script type='text/javascript' src="/ProjetEDT/javascript/jquery/jquery-ui-1.10.4.custom.js"></script>
 	<script type='text/javascript' src='/ProjetEDT/javascript/jquery/jquery-ui-1.8.11.custom.min.js'></script>
 	<script type="text/javascript" src="/ProjetEDT/javascript/calendar/date.js"></script>
 	<script type='text/javascript' src='/ProjetEDT/javascript/calendar/jquery.weekcalendar.js'></script>
+	<script type="text/javascript" src="./javascript/utils/form.js"></script>
 	<s:set name="view" value="view"/>
 	<s:if test="%{#view!=2}">
 	<s:if test="%{#view==1}">
@@ -144,7 +145,7 @@
 	</s:else>
 	</s:if>
 	</head>
-	<body>
+	<body onload="hideAndShowSearchType();">
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
 			<s:if test="#session.user.idGroup==1">
@@ -160,12 +161,8 @@
 					<table>
 						<tr><td></td></tr>
 						<tr>
-							<td><s:text name="label.type"/></td>
+							<td><s:text name="label.type.calendar"/></td>
 							<td><s:radio label="Type" name="view" list="listView" value="defaultViewValue" /></td>
-						</tr>
-						<tr>
-							<td><s:text name="label.group"/></td>				
-							<td><s:select name="scheduleBean.idGroup" list="mapGroup" /></td>
 						</tr>
 						<tr>
 							<td><s:text name="label.dayStart"/></td>
@@ -174,6 +171,20 @@
 						<tr>
 							<td><s:text name="label.dayEnd"/></td>
 							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd"  maxlength="100" /></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.type.search"/></td>				
+							<td><s:radio label="Type" name="search" list="listSearch" 
+									value="defaultSearchValue" onclick="hideAndShowSearchType();" id="idTypSearch"/></td>
+						</tr>
+						<tr  id="grpId">
+							<td><s:text name="label.group"/></td>				
+							<td><s:select name="scheduleBean.idGroup" list="mapGroup" /></td>
+						</tr>
+						<tr id="trVideId"><td></td></tr>
+						<tr id="roomId">
+							<td><s:text name="label.classroom"/></td>				
+							<td><s:select name="scheduleBean.idClassroom" list="mapClassroom" /></td>
 						</tr>
 					</table>
 					<div><s:submit key="label.valide"  cssClass="user_button"/></div>

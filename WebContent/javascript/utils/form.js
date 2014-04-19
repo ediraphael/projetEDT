@@ -1,11 +1,11 @@
 function hideField(id)
 {
-	document.getElementById(id).style.visibility="hidden";
+	document.getElementById(id).style.display="none";
 }
 
 function showField(id)
 {
-	document.getElementById(id).style.visibility="visible";
+	document.getElementById(id).style.display="table-row";
 }
 
 function showPwdTeach() 
@@ -21,4 +21,22 @@ function showPwdTeach()
 		showField('pwdTeacher');
 	}
 }
+
+function hideAndShowSearchType()
+{
+	var typeSearch=document.getElementById('idTypSearch0').checked;
+	
+	hideField("trVideId");
+	if(typeSearch==0)
+	{
+		hideField("grpId");
+		showField("roomId");
+	}
+	else
+	{
+		hideField("roomId");
+		showField("grpId");
+	}
+}
+
 

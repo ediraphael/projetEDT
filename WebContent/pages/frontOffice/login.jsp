@@ -4,10 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="./javascript/utils/form.js"></script>
 		<link rel="stylesheet" href="./css/pageCss/css/mainstyle.css" type="text/css" />
 		<title><s:text name="title.login"/></title>
 	</head>
-	<body>
+	<body onload="hideField('trVideId')">
 		<div id="wrap">
 			<%@ include file="../other/applicationName.jsp" %>
 			<%@ include file="../other/menuEtu.jsp" %>
@@ -23,7 +24,7 @@
 							<td><s:textfield name="userBean.email"  maxlength="100"/></td>
 							<td class="error"><s:fielderror fieldName="error.email"/></td>
 						</tr>
-						<tr><td> </td></tr>
+						<tr id="trVideId"><td> </td></tr>
 						<tr>
 							<td><s:text name="label.password"/></td>
 							<td><s:password name="userBean.password"  maxlength="100"/></td>

@@ -11,6 +11,7 @@ import model.dao.GroupDAO;
 import model.dao.ScheduleDAO;
 import model.dao.SubjectDAO;
 import model.dao.UserDAO;
+import model.org.persistence.ClassroomEntity;
 import model.org.persistence.GroupEntity;
 import model.org.persistence.ScheduleEntity;
 
@@ -28,7 +29,9 @@ public class CalendarAction extends AbstractAction
 	private String dayMin;
 	private String dayMax;
 	private Long view;
+	private Long search;
 	private TreeMap<Long,String> listView = new TreeMap<Long,String>();
+	private TreeMap<Long,String> listSearch = new TreeMap<Long,String>();
 
 	// bean de formulaire permettant le transfere des informations
 	private ScheduleBean scheduleBean;
@@ -47,6 +50,9 @@ public class CalendarAction extends AbstractAction
 	private TreeMap<Long, String> mapClassroom;
 	private TreeMap<Long, String> mapTeacher;
 	private TreeMap<Long, String> mapSubject;
+	
+	//
+	private final Long SEARCH_BY_GROUP=0l;
 
 	/**
 	 * Execution de l'ajout d'un horaire
@@ -65,21 +71,39 @@ public class CalendarAction extends AbstractAction
 	public String showSchedule()
 	{
 		forward = FORWARD_SUCCESS;
+		
+		//permet l'affichage des types de calendrier dispo
 		this.listView = new TreeMap<Long,String>();
 		this.listView.put(NORMAL,getText("label.type.calendar.normal"));
 		this.listView.put(COMPACT, getText("label.type.calendar.compact"));
 		this.listView.put(RESUME,getText("label.type.calendar.resume"));
+		
+		//permet l'affichage des types de calendrier dispo
+		this.listSearch = new TreeMap<Long,String>();
+		this.listSearch.put(NORMAL,getText("label.group"));
+		this.listSearch.put(COMPACT, getText("label.classroom"));
+
+		
 		this.listScheduleBean = new ArrayList<ScheduleBean>();
 		try
 		{
 			List<ScheduleEntity> listScheduleEntity;
-			GroupEntity group;
-			if (this.scheduleBean != null && this.scheduleBean.getIdGroup() != 0)
+			GroupEntity group = new GroupEntity();
+			ClassroomEntity room = new ClassroomEntity();
+			if (this.scheduleBean != null)
 			{
-				group = this.gdao.getById(this.scheduleBean.getIdGroup());
-			} else
+				if(SEARCH_BY_GROUP==search && this.scheduleBean.getIdGroup() != 0)
+				{
+					group = this.gdao.getById(this.scheduleBean.getIdGroup());
+				}
+				else if(SEARCH_BY_GROUP!=search && this.scheduleBean.getIdClassroom() != 0)
+				{
+					room = this.cdao.getById(this.scheduleBean.getIdClassroom());
+				}
+			} 
+			else
 			{
-				group = this.gdao.getById(1);
+				group = this.gdao.getById(GROUP_ID_TEACHER);
 				UserBean user = (UserBean) session.get(USER);
 				if (user != null)
 				{
@@ -124,14 +148,24 @@ public class CalendarAction extends AbstractAction
 				Date date = calendar.getTime();
 				this.dayMax = SIMPLE_DATE_FORMAT.format(date);
 			}
-			if(group.getId()==GROUP_ID_TEACHER || group.getId()==GROUP_ID_ETU)
+			
+			//récupération des données a afficher dans le calendrier
+			if(SEARCH_BY_GROUP==search)
 			{
-				listScheduleEntity = scdao.getAllByGroupAndDay(group, this.dayMin, this.dayMax);
+				if(group.getId()==GROUP_ID_TEACHER || group.getId()==GROUP_ID_ETU)
+				{
+					listScheduleEntity = scdao.getAllByGroupAndDay(group, this.dayMin, this.dayMax);
+				}
+				else
+				{
+					GroupEntity groupEtu=gdao.getById(GROUP_ID_ETU);
+					listScheduleEntity = scdao.getAllByGroupAndDayWithEtu(group,groupEtu, this.dayMin, this.dayMax);
+				}
 			}
 			else
 			{
-				GroupEntity groupEtu=gdao.getById(GROUP_ID_ETU);
-				listScheduleEntity = scdao.getAllByGroupAndDayWithEtu(group,groupEtu, this.dayMin, this.dayMax);
+				
+				listScheduleEntity = scdao.getAllByClassroomAndDay(room, this.dayMin, this.dayMax);
 			}
 			
 			if (listScheduleEntity == null)
@@ -149,6 +183,7 @@ public class CalendarAction extends AbstractAction
 				this.listScheduleBean.add(scheduleBean);
 			}
 			this.mapGroup = this.gdao.getAllGroupForMap();
+			this.mapClassroom = this.cdao.getAllClassroomForMap();
 		} 
 		catch (Exception e)
 		{
@@ -248,6 +283,18 @@ public class CalendarAction extends AbstractAction
 			return 0l;
 		}
 	}
+	
+	public long getDefaultSearchValue()
+	{
+		if (this.search != null && this.search!=0)
+		{
+			return this.search;
+		} 
+		else
+		{
+			return 0l;
+		}
+	}
 
 	public TreeMap<Long, String> getMapGroup() 
 	{
@@ -297,5 +344,25 @@ public class CalendarAction extends AbstractAction
 	public void setListView(TreeMap<Long, String> listView) 
 	{
 		this.listView = listView;
+	}
+
+	public Long getSearch() 
+	{
+		return search;
+	}
+
+	public void setSearch(Long search) 
+	{
+		this.search = search;
+	}
+
+	public TreeMap<Long, String> getListSearch() 
+	{
+		return listSearch;
+	}
+
+	public void setListSearch(TreeMap<Long, String> listSearch) 
+	{
+		this.listSearch = listSearch;
 	}
 }

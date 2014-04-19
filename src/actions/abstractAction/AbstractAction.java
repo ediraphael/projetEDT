@@ -45,7 +45,7 @@ public class AbstractAction extends ActionSupport implements SessionAware
 	protected static final String USER_GROUP="userGroup";
 	//format date de l'application
 	public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
+
 	//valeurs de forward
 	protected static final String FORWARD_SUCCESS = "SUCCESS";
 	protected static final String FORWARD_ERROR = "ERROR";
