@@ -66,10 +66,30 @@
 			},
 			minDate: '<s:property value="dayMin"/>',
 		    maxDate: '<s:property value="dayMax"/>',
-			shortMonths: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-			longMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-			shortDays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-			longDays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+		    shortMonths: ['<s:text name="calendar.short.month.january"/>', '<s:text name="calendar.short.month.february"/>',
+			              '<s:text name="calendar.short.month.march"/>', '<s:text name="calendar.short.month.april"/>', 
+			              '<s:text name="calendar.short.month.may"/>', '<s:text name="calendar.short.month.june"/>', 
+			              '<s:text name="calendar.short.month.july"/>', '<s:text name="calendar.short.month.august"/>', 
+			              '<s:text name="calendar.short.month.september"/>', '<s:text name="calendar.short.month.october"/>', 
+			              '<s:text name="calendar.short.month.november"/>', '<s:text name="calendar.short.month.december"/>'],
+			              
+			longMonths: ['<s:text name="calendar.long.month.january"/>', '<s:text name="calendar.long.month.february"/>',
+			              '<s:text name="calendar.long.month.march"/>', '<s:text name="calendar.long.month.april"/>', 
+			              '<s:text name="calendar.long.month.may"/>', '<s:text name="calendar.long.month.june"/>', 
+			              '<s:text name="calendar.long.month.july"/>', '<s:text name="calendar.long.month.august"/>', 
+			              '<s:text name="calendar.long.month.september"/>', '<s:text name="calendar.long.month.october"/>', 
+			              '<s:text name="calendar.long.month.november"/>', '<s:text name="calendar.long.month.december"/>'],
+			              
+
+			shortDays: ['<s:text name="calendar.short.day.sunday"/>', '<s:text name="calendar.short.day.monday"/>', 
+			            '<s:text name="calendar.short.day.tuesday"/>', '<s:text name="calendar.short.day.wednesday"/>', 
+			            '<s:text name="calendar.short.day.thursday"/>', '<s:text name="calendar.short.day.friday"/>', 
+			            '<s:text name="calendar.short.day.saturday"/>'],
+			            
+			longDays: ['<s:text name="calendar.long.day.sunday"/>', '<s:text name="calendar.long.day.monday"/>', 
+			            '<s:text name="calendar.long.day.tuesday"/>', '<s:text name="calendar.long.day.wednesday"/>', 
+			            '<s:text name="calendar.long.day.thursday"/>', '<s:text name="calendar.long.day.friday"/>', 
+			            '<s:text name="calendar.long.day.saturday"/>'],
 		});
 	
 		function displayMessage(message) {
@@ -129,10 +149,30 @@
 			},
 			minDate: '<s:property value="dayMin"/>',
 		    maxDate: '<s:property value="dayMax"/>',
-			shortMonths: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Jul', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'],
-			longMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-			shortDays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-			longDays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+			shortMonths: ['<s:text name="calendar.short.month.january"/>', '<s:text name="calendar.short.month.february"/>',
+			              '<s:text name="calendar.short.month.march"/>', '<s:text name="calendar.short.month.april"/>', 
+			              '<s:text name="calendar.short.month.may"/>', '<s:text name="calendar.short.month.june"/>', 
+			              '<s:text name="calendar.short.month.july"/>', '<s:text name="calendar.short.month.august"/>', 
+			              '<s:text name="calendar.short.month.september"/>', '<s:text name="calendar.short.month.october"/>', 
+			              '<s:text name="calendar.short.month.november"/>', '<s:text name="calendar.short.month.december"/>'],
+			              
+			longMonths: ['<s:text name="calendar.long.month.january"/>', '<s:text name="calendar.long.month.february"/>',
+			              '<s:text name="calendar.long.month.march"/>', '<s:text name="calendar.long.month.april"/>', 
+			              '<s:text name="calendar.long.month.may"/>', '<s:text name="calendar.long.month.june"/>', 
+			              '<s:text name="calendar.long.month.july"/>', '<s:text name="calendar.long.month.august"/>', 
+			              '<s:text name="calendar.long.month.september"/>', '<s:text name="calendar.long.month.october"/>', 
+			              '<s:text name="calendar.long.month.november"/>', '<s:text name="calendar.long.month.december"/>'],
+			              
+
+			shortDays: ['<s:text name="calendar.short.day.sunday"/>', '<s:text name="calendar.short.day.monday"/>', 
+			            '<s:text name="calendar.short.day.tuesday"/>', '<s:text name="calendar.short.day.wednesday"/>', 
+			            '<s:text name="calendar.short.day.thursday"/>', '<s:text name="calendar.short.day.friday"/>', 
+			            '<s:text name="calendar.short.day.saturday"/>'],
+			            
+			longDays: ['<s:text name="calendar.long.day.sunday"/>', '<s:text name="calendar.long.day.monday"/>', 
+			            '<s:text name="calendar.long.day.tuesday"/>', '<s:text name="calendar.long.day.wednesday"/>', 
+			            '<s:text name="calendar.long.day.thursday"/>', '<s:text name="calendar.long.day.friday"/>', 
+			            '<s:text name="calendar.long.day.saturday"/>'],
 		});
 	
 		function displayMessage(message) {
