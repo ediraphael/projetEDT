@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `passwordTeacher` (
 --
 
 INSERT INTO `passwordTeacher` (`id_password_teacher`, `password`) VALUES
-(1, 'passTeach');
+(1, '018c61431a981be22bc5c5c5e3881e8e');
 
 -- --------------------------------------------------------
 
@@ -181,13 +181,13 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `first_name`, `name`, `id_group_user`) VALUES
-(1, 'lefevre@univ-angers.fr', 'lefevre', 'Claire','Lefevre', 1),
-(2, 'chhel@univ-angers.fr', 'chhel', 'Fabien', 'Chhel', 1),
-(3, 'dorian.coffinet@univ-angers.fr', 'coffinet', 'Dorian','Coffinet', 4),
-(4, 'mickael.fardilha@univ-angers.fr', 'fardilha', 'Mickaël','Fardilha', 4),
-(5, 'thibault.gauthier@univ-angers.fr', 'gauthier', 'Thibault','Gauthier', 4),
-(6, 'raphael.pillie@univ-angers.fr', 'pillie', 'Raphaël','Pillié', 4),
-(7, 'noname@univ-angers.fr', 'noname', 'No','Name', 3);
+(1, 'lefevre@univ-angers.fr', '69cc906c0ef009ec7eb2ef2d01f91202', 'Claire','Lefevre', 1),
+(2, 'chhel@univ-angers.fr', '7a35ff13dfead8a7000cd9a9eca4911c', 'Fabien', 'Chhel', 1),
+(3, 'dorian.coffinet@univ-angers.fr', '1ec08faa91dbf7fb97658852bd8e0e74', 'Dorian','Coffinet', 4),
+(4, 'mickael.fardilha@univ-angers.fr', 'fada8b5a72e9dd2dd4632e049f0bda4c', 'Mickaël','Fardilha', 4),
+(5, 'thibault.gauthier@univ-angers.fr', '81f414698132a935acd41b78e891174f', 'Thibault','Gauthier', 4),
+(6, 'raphael.pillie@univ-angers.fr', '0252bde464e787ed008f91b415ed847c', 'Raphaël','Pillié', 4),
+(7, 'noname@univ-angers.fr', '499ddaad9df107bf7107a3e2c0064800', 'No','Name', 3);
 
 --
 -- Contraintes pour les tables exportées

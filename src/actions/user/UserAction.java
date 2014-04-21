@@ -198,7 +198,7 @@ public class UserAction extends AbstractAction
 		userResult.setName(this.userBean.getName());
 		userResult.setGroupe(gdao.getById(this.userBean.getIdGroup()));
 		if(!this.userBean.getConfirmPassword().isEmpty())
-			userResult.setPassword(this.userBean.getConfirmPassword());
+			userResult.setPassword(md5(this.userBean.getConfirmPassword()));
 	}
 	
 	/**

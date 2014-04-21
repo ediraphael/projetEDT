@@ -26,7 +26,7 @@ public class LoginAction extends AbstractAction
 	public String execute()
 	{
 		forward=FORWARD_SUCCESS;
-		UserEntity user=udao.getUserByEmailAndPwd(userBean.getEmail(), userBean.getPassword());
+		UserEntity user=udao.getUserByEmailAndPwd(userBean.getEmail(), md5(userBean.getPassword()));
 		
 		//Si le user n'existe pas c'est qu'il y a une erreur d'authentification
 		if(user==null)

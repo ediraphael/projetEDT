@@ -1,5 +1,7 @@
 package actions.abstractAction;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -95,6 +97,41 @@ public class AbstractAction extends ActionSupport implements SessionAware
 		return FORWARD_ERROR;
 	}
 	
+
+	/**
+	 * Méthode permettant le hashage des mots de passe
+	 * @param password
+	 * @return
+	 */
+	protected String md5(String password)
+	{
+		byte[] uniqueKey = password.getBytes();
+		byte[] hash      = null;
+
+		try
+		{
+			hash = MessageDigest.getInstance("MD5").digest(uniqueKey);
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			generateError(e);
+		}
+
+		StringBuilder hashString = new StringBuilder();
+		for (int i = 0; i < hash.length; i++)
+		{
+			String hex = Integer.toHexString(hash[i]);
+			if (hex.length() == 1)
+			{
+				hashString.append('0');
+				hashString.append(hex.charAt(hex.length() - 1));
+			}
+			else
+				hashString.append(hex.substring(hex.length() - 2));
+		}
+		return hashString.toString();
+	}
+
 	/**
 	 * Objet de session
 	 */

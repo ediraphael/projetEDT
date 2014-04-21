@@ -164,15 +164,7 @@
 							<td><s:text name="label.type.calendar"/></td>
 							<td><s:radio label="Type" name="view" list="listView" value="defaultViewValue" /></td>
 						</tr>
-						<tr>
-							<td><s:text name="label.dayStart"/></td>
-							<td><s:textfield id="heure_debut" name="dayMin" key="label.dayStart"   maxlength="100"/></td>
-						</tr>
-						<tr>
-							<td><s:text name="label.dayEnd"/></td>
-							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd"  maxlength="100" /></td>
-						</tr>
-						<tr>
+												<tr>
 							<td><s:text name="label.type.search"/></td>				
 							<td><s:radio label="Type" name="search" list="listSearch" 
 									value="defaultSearchValue" onclick="hideAndShowSearchType();" id="idTypSearch"/></td>
@@ -185,6 +177,14 @@
 						<tr id="roomId">
 							<td><s:text name="label.classroom"/></td>				
 							<td><s:select name="scheduleBean.idClassroom" list="mapClassroom" /></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.dayStart"/></td>
+							<td><s:textfield id="heure_debut" name="dayMin" key="label.dayStart"   maxlength="100"/></td>
+						</tr>
+						<tr>
+							<td><s:text name="label.dayEnd"/></td>
+							<td><s:textfield id="heure_fin" name="dayMax" key="label.dayEnd"  maxlength="100" /></td>
 						</tr>
 					</table>
 					<div><s:submit key="label.valide"  cssClass="user_button"/></div>

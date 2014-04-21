@@ -41,7 +41,7 @@ public class InscriptionAction extends AbstractAction
 			userToSave.setName(userBean.getName());
 			userToSave.setFirstName(userBean.getFirstName());
 			userToSave.setEmail(userBean.getEmail());
-			userToSave.setPassword(userBean.getPassword());
+			userToSave.setPassword(md5(userBean.getPassword()));
 			userToSave.setGroupe(gdao.getById(userBean.getIdGroup()));
 			//Sauvegarde du user renseigné dans le formulaire
 			udao.save(userToSave);
@@ -72,6 +72,7 @@ public class InscriptionAction extends AbstractAction
 		return forward;
 	}
 
+	
 	/**
 	 * Méthode permettant la validation des champs 
 	 */
@@ -127,7 +128,7 @@ public class InscriptionAction extends AbstractAction
 			{
 				addFieldError("error.teacherpassword", getText("validator.field.empty"));
 			}
-			else if(!userBean.getPasswordTeacher().equals(session.get("pwdTeacher")))
+			else if(!md5(userBean.getPasswordTeacher()).equals(session.get("pwdTeacher")))
 			{
 				addFieldError("error.teacherpassword", getText("validator.pwd.false"));
 			}
